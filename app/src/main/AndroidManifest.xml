@@ -16,16 +16,7 @@
             android:name=".activities.OnBoardActivity"
             android:exported="false" />
         <activity
-            android:name=".Authentication.LoginActivity"
-            android:exported="false" />
-        <activity
-            android:name=".OnBoarding.OnBoarding_A"
-            android:exported="false" />
-        <activity
             android:name=".LaunchActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Home.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

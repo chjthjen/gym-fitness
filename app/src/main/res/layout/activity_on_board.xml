@@ -13,7 +13,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="947px"
             android:layout_marginTop="175px"
-            android:fontFamily="More Fonts..."
+            android:fontFamily="@font/league_spartan"
             android:lineHeight="49.68px"
             android:text="Skip"
             android:textColor="@color/limegreen"
