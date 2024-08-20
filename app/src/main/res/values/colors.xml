@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
+    <color name="black">#232323</color>
     <color name="white">#FFFFFFFF</color>
     <color name="primary">#FF232323</color>
     <color name="second">#FFB3A0FF</color>
     <color name="third">#E2F163</color>
+    <color name="limegreen">#E2F163</color>
+    <color name="purple">#896CFE</color>
+    <color name="lightblue">#B3A0FF</color>
 </resources>
