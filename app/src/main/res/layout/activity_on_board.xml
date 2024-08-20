@@ -1,10 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".activities.OnBoardActivity">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/onboarding_bg1" >
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="947px"
+            android:layout_marginTop="175px"
+            android:fontFamily="More Fonts..."
+            android:lineHeight="49.68px"
+            android:text="Skip"
+            android:textColor="@color/limegreen"
+            android:textSize="54px" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="16.2px"
+            android:layout_height="33px"
+            android:layout_marginTop="210.6px"
+            app:srcCompat="@drawable/arrow" />
+    </RelativeLayout>
+</layout>
