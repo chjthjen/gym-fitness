@@ -1,5 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
+
+
+
 }
 
 android {
@@ -26,15 +29,38 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-}
+    buildFeatures{
+//        viewBinding = true
+        dataBinding = true
+    }
 
+
+}
+def nav_version = "2.7.7"
+def core_version = "1.13.1"
+def appcompat_version = "1.7.0"
+def lifecycle_version = "2.8.4"
+def room_version = "2.6.1"
 dependencies {
 
     implementation libs.appcompat
     implementation libs.material
     implementation libs.activity
     implementation libs.constraintlayout
+    implementation libs.navigation.fragment
+    implementation libs.navigation.ui
     testImplementation libs.junit
     androidTestImplementation libs.ext.junit
     androidTestImplementation libs.espresso.core
+    //KTX
+    implementation "androidx.collection:collection-ktx:1.4.3"
+    //Glide
+    implementation ("com.github.bumptech.glide:glide:4.16.0")
+    // ViewModel
+    implementation("androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version")
+    // room
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+    // Retrofit
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
 }
