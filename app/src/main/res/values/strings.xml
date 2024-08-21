@@ -1,7 +1,14 @@
 <resources>
     <string name="app_name">GymFitness</string>
     <string name="Temps_of_use">Terms of Use and Privacy Policy.</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-
+    <string name="some_id">16:04</string>
+    <string name="enter_your_">Enter your email address</string>
+    <string name="continue1">Continue</string>
+    <string name="forgotten_p">Forgotten Password</string>
+    <string name="forgot_pass">Forgot Password?</string>
+    <string name="example_exa">example@example.com</string>
+    <string name="lorem_ipsum">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    </string>
 </resources>
