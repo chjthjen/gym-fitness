@@ -1,3 +1,13 @@
-<svg width="30" height="50" viewBox="0 0 30 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M15.2464 27.4929C22.01 27.4929 27.4929 22.01 27.4929 15.2464C27.4929 8.48291 22.01 3 15.2464 3C8.48291 3 3 8.48291 3 15.2464C3 22.01 8.48291 27.4929 15.2464 27.4929ZM15.2464 27.4929V47.4287M22.8474 37.0493H7.65435" stroke="white" stroke-width="4.13906" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="30dp"
+    android:height="50dp"
+    android:viewportWidth="30"
+    android:viewportHeight="50">
+  <path
+      android:pathData="M15.246,27.493C22.01,27.493 27.493,22.01 27.493,15.246C27.493,8.483 22.01,3 15.246,3C8.483,3 3,8.483 3,15.246C3,22.01 8.483,27.493 15.246,27.493ZM15.246,27.493V47.429M22.847,37.049H7.654"
+      android:strokeLineJoin="round"
+      android:strokeWidth="4.13906"
+      android:fillColor="#00000000"
+      android:strokeColor="#ffffff"
+      android:strokeLineCap="round"/>
+</vector>
