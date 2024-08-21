@@ -1,6 +1,13 @@
 <resources>
     <string name="app_name">GymFitness</string>
+<<<<<<< HEAD
     <!-- TODO: Remove or change this placeholder text -->
+=======
+    <string name="skip">Skip</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="Temps_of_use">Terms of Use and Privacy Policy.</string>
+>>>>>>> c2d3851988469f7001d071ead4a9f3eea156db39
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="a_community">A community for you, challenge yourself</string>
 </resources>

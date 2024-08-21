@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context=".fragments.Onboarding.OnboardingBFragment"
+    android:background="@color/lightpurple">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="38.35dp"
+        android:layout_height="43.32dp"
+        android:src="@drawable/ic_workout"
+        android:foregroundTint="@color/limegreen"
+        app:tint="@color/limegreen"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="309dp"
+        android:layout_height="60dp"
+        android:text="Start your journey towards a more active lifestyle"
+        android:lineHeight="30sp"
+        android:fontFamily="@font/poppins"
+        android:gravity="center_horizontal|center_vertical"
+        android:layout_gravity="center"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="20sp"/>
+
+</LinearLayout>
