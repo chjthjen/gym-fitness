@@ -63,4 +63,8 @@ dependencies {
     annotationProcessor "androidx.room:room-compiler:$room_version"
     // Retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
+
+    // ViewPagerIndicator
+    implementation libs.viewpagerindicator
+
 }
