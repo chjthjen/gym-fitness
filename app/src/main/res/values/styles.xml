@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <style name="a_community">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:fontFamily">@font/poppins</item>
+        <item name="android:lineHeight">30sp</item>
+    </style>
     <style name="text_style_poppins">
         <item name="android:fontFamily">@font/poppins</item>
         <item name="android:textSize">20sp</item>

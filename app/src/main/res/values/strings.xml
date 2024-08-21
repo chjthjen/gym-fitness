@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">GymFitness</string>
+    <string name="skip">Skip</string>
+    <string name="Temps_of_use">Terms of Use and Privacy Policy.</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="a_community">A community for you, challenge yourself</string>
     <string name="some_id">16:04</string>
     <string name="enter_your_">Enter your email address</string>
     <string name="continue1">Continue</string>
@@ -7,8 +11,17 @@
     <string name="forgot_pass">Forgot Password?</string>
     <string name="example_exa">example@example.com</string>
     <string name="lorem_ipsum">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+        labore et dolore magna aliqua.
     </string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="arrow">Arrow</string>
+    <string name="set_password">Set Password</string>
+    <string
+        name="lorem_ipsum_dolor_sit_amet_consectetur_adipiscing_elit_n_sed_do_eiusmod_tempor_incididunt_ut_labore_et_dolore_n_magna_aliqua">Lorem
+        ipsum dolor sit amet, consectetur adipiscing elit,\n sed do eiusmod tempor incididunt ut
+        labore et dolore\n magna aliqua.</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="hint_pass">*************</string>
+    <string name="reset_password">Reset Password</string>
 </resources>
