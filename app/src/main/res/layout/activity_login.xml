@@ -97,11 +97,11 @@
             android:layout_marginTop="8dp"
             android:background="@drawable/custom_textview"
             android:ems="10"
+            android:hint="example@example.com"
             android:inputType="text"
             android:paddingStart="15dp"
             android:paddingEnd="15dp"
             android:singleLine="true"
-            android:text="Name"
             android:textSize="16sp" />
 
         <TextView
@@ -125,12 +125,13 @@
             android:layout_marginTop="8dp"
             android:background="@drawable/custom_textview"
             android:ems="10"
+            android:hint="Enter Your Password"
             android:inputType="textPassword"
+            android:letterSpacing="0.1"
             android:lineHeight="14dp"
             android:paddingStart="15dp"
             android:paddingEnd="15dp"
             android:singleLine="true"
-            android:text="Password"
             android:textSize="16sp" />
 
         <TextView
@@ -155,13 +156,13 @@
         android:layout_alignParentEnd="false"
         android:layout_alignParentBottom="false"
         android:layout_marginLeft="107dp"
-        android:layout_marginTop="579dp"
+        android:layout_marginTop="581dp"
         android:background="@drawable/custom_button"
         android:fontFamily="@font/poppins"
         android:text="Log In"
+        android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="18sp"
-        android:textAllCaps="false"
         android:textStyle="bold" />
 
     <TextView
