@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">GymFitness</string>
+    <string name="Temps_of_use">Terms of Use and Privacy Policy.</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="some_id">16:04</string>
     <string name="enter_your_">Enter your email address</string>
     <string name="continue1">Continue</string>
