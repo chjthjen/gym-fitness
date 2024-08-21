@@ -8,4 +8,6 @@
     <color name="limegreen">#E2F163</color>
     <color name="purple">#896CFE</color>
     <color name="lightpurple">#B3A0FF</color>
+    <color name="lightblue">#B3A0FF</color>
+    <color name="cardview_dark_background">@color/white</color>
 </resources>

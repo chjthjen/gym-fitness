@@ -1,6 +1,8 @@
 package com.example.gymfitness.activities;
 
 import android.os.Bundle;
+import android.text.Html;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +17,7 @@ import com.example.gymfitness.viewmodels.OnBoardViewmodel;
 
 public class OnBoardActivity extends AppCompatActivity {
     ActivityOnBoardBinding binding;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
