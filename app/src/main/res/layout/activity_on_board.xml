@@ -58,17 +58,17 @@
                 android:layout_marginTop="16dp">
             </androidx.viewpager2.widget.ViewPager2>
 
-            <com.zhpan.indicator.IndicatorView
-                android:id="@+id/indicator_view"
-                android:layout_width="wrap_content"
-                android:layout_height="4dp"
-                app:vpi_style="dash"
-                app:vpi_slide_mode="smooth"
-                android:layout_marginTop="9dp"
-                app:vpi_slider_checked_color="@color/white"
-                app:vpi_slider_normal_color="@color/purple"
+<!--            <com.zhpan.indicator.IndicatorView-->
+<!--                android:id="@+id/indicator_view"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="4dp"-->
+<!--                app:vpi_style="dash"-->
+<!--                app:vpi_slide_mode="smooth"-->
+<!--                android:layout_marginTop="9dp"-->
+<!--                app:vpi_slider_checked_color="@color/white"-->
+<!--                app:vpi_slider_normal_color="@color/purple"-->
 
-                setIndicator="@{viewPager}"/>
+<!--                setIndicator="@{viewPager}"/>-->
         </LinearLayout>
 
     </LinearLayout>

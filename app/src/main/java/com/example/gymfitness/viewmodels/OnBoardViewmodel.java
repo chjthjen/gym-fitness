@@ -7,7 +7,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.gymfitness.adapters.OnboardingVpAdapter;
-import com.zhpan.indicator.IndicatorView;
+//import com.zhpan.indicator.IndicatorView;
 
 import java.util.Objects;
 
@@ -52,22 +52,22 @@ public class OnBoardViewmodel {
         viewPager2.setUserInputEnabled(false);
     }
 
-    @BindingAdapter("setIndicator")
-    public static void bindIndicator(IndicatorView indicatorView, ViewPager2 viewPager2) {
-        indicatorView.setPageSize(Objects.requireNonNull(viewPager2.getAdapter()).getItemCount());
-        indicatorView.notifyDataChanged();
-        viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
-            @Override
-            public void onPageSelected(int position) {
-                super.onPageSelected(position);
-                indicatorView.setCurrentPosition(position);
-            }
-
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                super.onPageScrolled(position, positionOffset, positionOffsetPixels);
-                indicatorView.onPageScrolled(position, positionOffset, positionOffsetPixels);
-            }
-        });
-    }
+//    @BindingAdapter("setIndicator")
+//    public static void bindIndicator(IndicatorView indicatorView, ViewPager2 viewPager2) {
+//        indicatorView.setPageSize(Objects.requireNonNull(viewPager2.getAdapter()).getItemCount());
+//        indicatorView.notifyDataChanged();
+//        viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+//            @Override
+//            public void onPageSelected(int position) {
+//                super.onPageSelected(position);
+//                indicatorView.setCurrentPosition(position);
+//            }
+//
+//            @Override
+//            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+//                super.onPageScrolled(position, positionOffset, positionOffsetPixels);
+//                indicatorView.onPageScrolled(position, positionOffset, positionOffsetPixels);
+//            }
+//        });
+//    }
 }
