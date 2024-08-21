@@ -13,6 +13,9 @@
         android:theme="@style/Theme.GymFitness"
         tools:targetApi="31">
         <activity
+            android:name=".OnBroading_2a"
+            android:exported="false" />
+        <activity
             android:name=".activities.OnBoardActivity"
             android:exported="false" />
         <activity
