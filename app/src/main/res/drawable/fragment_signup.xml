@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/primary">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="20dp">
+
+        <!-- Item thứ nhất: Nút Back (ImageView) -->
+        <ImageView
+            android:id="@+id/backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_arrow_back_24"
+            android:contentDescription="Back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <!-- Item thứ hai: TextView căn giữa -->
+        <TextView
+            android:id="@+id/titleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Create Account"
+            android:textColor="#FFEB3B"
+            android:textStyle="bold"
+            android:textSize="24sp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <!-- Subtitle -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Let's Start!"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:layout_gravity="center_horizontal"
+        android:paddingHorizontal="16dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="30dp"/>
+
+    <!-- Form Section -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#B8A4FC"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="30dp"
+        android:layout_marginBottom="24dp">
+
+        <!-- label edit text full name -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Full name"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:padding="5dp"/>
+
+        <!-- Full Name -->
+
+        <!-- label edit text Email or Mobile Number -->
+        <EditText
+            android:id="@+id/edt_fullname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_edittext_signup"
+            android:backgroundTint="@color/white"
+            android:hint="Full name"
+            android:padding="12dp"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Email or Mobile Number"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:padding="5dp"
+            android:layout_marginTop="10dp"/>
+
+        <!-- Email or Mobile Number -->
+
+        <!-- label edit text Password -->
+        <EditText
+            android:id="@+id/edt_email_or_mobile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_edittext_signup"
+            android:backgroundTint="@color/white"
+            android:hint="Email or Mobile Number"
+            android:padding="12dp"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Password"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:padding="5dp"
+            android:layout_marginTop="10dp"/>
+
+        <!-- Password -->
+        <EditText
+            android:id="@+id/edt_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/black"
+            android:padding="12dp"
+            android:background="@drawable/rounded_edittext_signup" />
+
+        <!-- label edit text Confirm Password -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Confirm Password"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:padding="5dp"
+            android:layout_marginTop="10dp"/>
+
+        <!-- Confirm Password -->
+        <EditText
+            android:id="@+id/edt_confirm_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Confirm Password"
+            android:inputType="textPassword"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/black"
+            android:padding="12dp"
+            android:background="@drawable/rounded_edittext_signup" />
+
+    </LinearLayout>
+
+    <!-- Terms and Privacy Policy -->
+    <TextView
+        android:id="@+id/tv_terms_and_privacy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="By continuing, you agree to."
+        android:textSize="12sp"
+        android:textColor="@color/white"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="4dp"
+        android:layout_marginHorizontal="100dp"
+        android:textAlignment="center" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Temps_of_use"
+        android:textSize="12sp"
+        android:textColor="@color/third"
+        android:layout_marginTop="0dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="20dp"
+        android:layout_marginHorizontal="100dp"
+        android:textAlignment="center" />
+
+
+    <!-- Sign Up Button -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_signUp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sign Up"
+        android:textStyle="bold"
+        android:fontFamily="@font/poppins"
+        android:background="@drawable/rounded_button_signup"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:layout_marginBottom="20dp"
+        android:padding="12dp"
+        android:layout_marginHorizontal="100dp"/>
+
+    <!-- Different way sign up -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="or sign up with"
+        android:textSize="12sp"
+        android:textColor="@color/white"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="24dp"
+        android:textAlignment="center" />
+
+    <!-- Social Sign Up Options -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:layout_marginLeft="15dp"
+        android:layout_marginBottom="24dp">
+
+        <!-- Google Sign Up -->
+        <ImageView
+            android:id="@+id/google_sign_up"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_google"
+            android:background="@drawable/rounded_edittext_signup"
+            android:layout_marginEnd="16dp" />
+
+        <!-- Facebook Sign Up -->
+        <ImageView
+            android:id="@+id/facebook_sign_up"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/ic_facebook" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Already have an account?"
+            android:textSize="14sp"
+            android:textColor="@color/white"
+            android:paddingEnd="4dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Log in"
+            android:textSize="14sp"
+            android:textColor="@color/third" />
+    </LinearLayout>
+
+</LinearLayout>
