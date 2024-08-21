@@ -9,18 +9,24 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.gymfitness.R;
+import com.example.gymfitness.adapters.OnboardingVpAdapter;
+import com.example.gymfitness.databinding.ActivityOnBoardBinding;
+import com.example.gymfitness.viewmodels.OnBoardViewmodel;
 
 public class OnBoardActivity extends AppCompatActivity {
+    ActivityOnBoardBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        binding = ActivityOnBoardBinding.inflate(getLayoutInflater());
+        OnBoardViewmodel onBoardViewmodel = new OnBoardViewmodel(this);
+        onBoardViewmodel.setAdapter(new OnboardingVpAdapter(this));
+        binding.setViewModel(onBoardViewmodel);
+        binding.setLifecycleOwner(this);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_on_board);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+        setContentView(binding.getRoot());
+
+
     }
 }
