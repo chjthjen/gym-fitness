@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.Fragment_2d">
+
+    <View
+        android:id="@+id/rectangle_1"
+        android:layout_width="394dp"
+        android:layout_height="125dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="337dp"
+        android:background="#B3A0FF">
+    </View>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="350dp"
+        android:src="@drawable/community"/>
+A
+    <TextView
+        android:id="@+id/a_community"
+        android:layout_width="309dp"
+        android:layout_height="60dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="405dp"
+        android:text="@string/a_community"
+        android:style="@style/a_community"
+        android:gravity="center_horizontal|center_vertical"/>
+
+</RelativeLayout>
