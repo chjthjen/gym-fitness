@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:background="@color/lightpurple"
     android:orientation="vertical"
-    tools:context=".fragments.Fragment_2d">
+    tools:context=".fragments.Onboarding.Fragment_2d">
 
     <ImageView
         android:layout_width="match_parent"

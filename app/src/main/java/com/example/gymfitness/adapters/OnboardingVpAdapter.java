@@ -5,8 +5,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import com.example.gymfitness.OnBroading_2c;
-import com.example.gymfitness.fragments.Fragment_2d;
+import com.example.gymfitness.fragments.Onboarding.OnBroading_2c;
+import com.example.gymfitness.fragments.Onboarding.Fragment_2d;
 import com.example.gymfitness.fragments.Onboarding.OnboardingBFragment;
 
 public class OnboardingVpAdapter extends FragmentStateAdapter {
