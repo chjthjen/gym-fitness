@@ -21,13 +21,13 @@
         android:id="@+id/textView"
         android:layout_width="309dp"
         android:layout_height="60dp"
-        android:text="Start your journey towards a more active lifestyle"
-        android:lineHeight="30sp"
-        android:fontFamily="@font/poppins"
-        android:gravity="center_horizontal|center_vertical"
         android:layout_gravity="center"
+        android:fontFamily="@font/poppins_bold"
+        android:gravity="center_horizontal|center_vertical"
+        android:lineHeight="30sp"
+        android:text="Start your journey towards a more active lifestyle"
         android:textColor="@color/white"
-        android:textStyle="bold"
-        android:textSize="20sp"/>
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
 </LinearLayout>
