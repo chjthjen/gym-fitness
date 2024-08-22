@@ -17,10 +17,10 @@
             android:name=".OnBroading_2a"
             android:exported="false" />
         <activity
-            android:name=".activities.OnBoardActivity"
+            android:name=".LaunchActivity"
             android:exported="false" />
         <activity
-            android:name=".LaunchActivity"
+            android:name=".activities.OnBoardActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

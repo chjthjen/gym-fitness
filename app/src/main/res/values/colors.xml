@@ -10,4 +10,5 @@
     <color name="lightpurple">#B3A0FF</color>
     <color name="lightblue">#B3A0FF</color>
     <color name="cardview_dark_background">@color/white</color>
+    <color name="grey">#30bdc3c7</color>
 </resources>
