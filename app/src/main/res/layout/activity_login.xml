@@ -6,13 +6,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/primary"
-    android:gravity="center"
     tools:context=".activities.LoginActivity">
 
     <LinearLayout
+        android:id="@+id/ll1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="-30dp"
+        android:layout_marginTop="40dp"
         android:orientation="horizontal">
 
         <ImageButton
@@ -45,12 +45,12 @@
         android:id="@+id/textView4"
         android:layout_width="match_parent"
         android:layout_height="30dp"
+        android:layout_below="@+id/ll1"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="100dp"
+        android:layout_marginStart="103dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginEnd="97dp"
         android:fontFamily="@font/poppins"
         android:gravity="center"
         android:text="Welcome"
@@ -66,7 +66,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="35dp"
-        android:layout_marginTop="115dp"
+        android:layout_marginTop="155dp"
         android:layout_marginEnd="35dp"
         android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
         android:textAlignment="center"
@@ -76,7 +76,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="235dp"
-        android:layout_marginTop="220dp"
+        android:layout_marginTop="270dp"
         android:background="@color/lightpurple"
         android:orientation="vertical">
 
@@ -156,7 +156,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="510dp"
+        android:layout_marginTop="560dp"
         android:orientation="vertical">
 
         <androidx.appcompat.widget.AppCompatButton
