@@ -14,6 +14,15 @@
         android:theme="@style/Theme.GymFitness"
         tools:targetApi="31">
         <activity
+            android:name=".activities.SetPasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.SignUpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.ForgottenPasswordActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.OnBoardActivity"
             android:exported="false" />
         <activity
@@ -27,6 +36,7 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
