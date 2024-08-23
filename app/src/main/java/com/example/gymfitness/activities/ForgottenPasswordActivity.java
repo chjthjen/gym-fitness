@@ -10,9 +10,11 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.gymfitness.R;
+import com.example.gymfitness.databinding.ActivitySetPasswordBinding;
 
 public class ForgottenPasswordActivity extends AppCompatActivity {
 
+    ActivitySetPasswordBinding binding;
     Button btn_continue;
     ImageView fp_img_backArrow;
     private void addControls()
@@ -29,12 +31,15 @@ public class ForgottenPasswordActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
         fp_img_backArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
+
+
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,4 +49,5 @@ public class ForgottenPasswordActivity extends AppCompatActivity {
         addControls();
         addEvents();
     }
+
 }
