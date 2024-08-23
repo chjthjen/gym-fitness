@@ -1,5 +1,6 @@
 package com.example.gymfitness.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
@@ -12,16 +13,39 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import com.example.gymfitness.R;
+import com.example.gymfitness.databinding.ActivityLoginBinding;
+import com.example.gymfitness.fragments.authentication.ForgottenPasswordFragment;
+import com.example.gymfitness.fragments.authentication.SignUpFragment;
 
 public class LoginActivity extends AppCompatActivity {
+
+    ActivityLoginBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        binding = ActivityLoginBinding.inflate(getLayoutInflater());
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_login);
+        //setContentView(R.layout.activity_login);
+        setContentView(binding.getRoot());
 
         EditText edtPassword = findViewById(R.id.edt_password);
         edtPassword.setTransformationMethod(new CustomPasswordTransformation());
+
+        binding.tvForgotpw.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, ForgottenPasswordActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        binding.tvSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 }
