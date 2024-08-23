@@ -9,31 +9,37 @@
     android:gravity="center"
     tools:context=".activities.LoginActivity">
 
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="6dp"
-        android:layout_height="11dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="35dp"
-        android:layout_marginTop="49dp"
-        android:background="@null"
-        android:scaleType="fitCenter"
-        android:src="@drawable/arrow" />
-
-    <TextView
-        android:id="@+id/textView2"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="40dp"
-        android:gravity="center"
-        android:fontFamily="@font/poppins"
-        android:text="Log In"
-        android:textColor="@color/limegreen"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-30dp"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="6dp"
+            android:layout_height="11dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="15dp"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:src="@drawable/arrow" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="-41dp"
+            android:fontFamily="@font/poppins"
+            android:gravity="center"
+            android:text="Log In"
+            android:textColor="@color/limegreen"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/textView4"
@@ -43,7 +49,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="100dp"
-        android:layout_marginTop="130dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="100dp"
         android:fontFamily="@font/poppins"
         android:gravity="center"
@@ -60,7 +66,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="35dp"
-        android:layout_marginTop="190dp"
+        android:layout_marginTop="115dp"
         android:layout_marginEnd="35dp"
         android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
         android:textAlignment="center"
@@ -70,7 +76,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="235dp"
-        android:layout_marginTop="303dp"
+        android:layout_marginTop="220dp"
         android:background="@color/lightpurple"
         android:orientation="vertical">
 
@@ -150,27 +156,28 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="581dp"
+        android:layout_marginTop="510dp"
         android:orientation="vertical">
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_login"
             android:layout_width="179dp"
             android:layout_height="44dp"
+            android:layout_gravity="center"
             android:background="@drawable/custom_button"
             android:fontFamily="@font/poppins"
             android:text="Log In"
-            android:layout_gravity="center"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="bold" />
+
         <TextView
             android:id="@+id/textView3"
             android:layout_width="135dp"
             android:layout_height="15dp"
-            android:layout_marginTop="27dp"
             android:layout_gravity="center"
+            android:layout_marginTop="27dp"
             android:fontFamily="@font/league_spartan"
             android:gravity="bottom|center"
             android:text="or sign up with"
@@ -187,16 +194,16 @@
                 android:id="@+id/btn_google"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                android:scaleType="center"
                 android:layout_margin="15dp"
+                android:scaleType="center"
                 android:src="@drawable/google_icon" />
 
             <ImageButton
                 android:id="@+id/btn_facebook"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                android:scaleType="center"
                 android:layout_margin="15dp"
+                android:scaleType="center"
                 android:src="@drawable/facebook_icon" />
         </LinearLayout>
 
@@ -204,6 +211,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
+            android:layout_marginTop="20dp"
             android:orientation="horizontal">
 
             <TextView
