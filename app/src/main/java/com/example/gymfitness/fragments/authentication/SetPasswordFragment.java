@@ -1,6 +1,9 @@
 package com.example.gymfitness.fragments.authentication;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -10,27 +13,20 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import com.example.gymfitness.R;
-import com.example.gymfitness.activities.AuthenticateActivity;
-import com.example.gymfitness.databinding.FragmentLoginBinding;
-import com.example.gymfitness.databinding.FragmentSignUpBinding;
+import com.example.gymfitness.databinding.FragmentSetPasswordBinding;
 import com.example.gymfitness.viewmodels.AuthViewModel;
 
-public class SignUpFragment extends Fragment {
+public class SetPasswordFragment extends Fragment {
     private AuthViewModel viewModel;
-    FragmentSignUpBinding binding;
-    NavController navController;
+    FragmentSetPasswordBinding binding;
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
     private String mParam1;
     private String mParam2;
 
-    public SignUpFragment() {
+    public SetPasswordFragment() {
     }
 
     public static SignUpFragment newInstance(String param1, String param2) {
@@ -54,29 +50,15 @@ public class SignUpFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_sign_up, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_set_password, container, false);
         viewModel = new ViewModelProvider(getActivity()).get(AuthViewModel.class);
         binding.setViewModel(viewModel);
         binding.setLifecycleOwner(this);
-        navController = NavHostFragment.findNavController(SignUpFragment.this);
         return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        binding.tvLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                navController.navigate(R.id.action_signUpFragment_to_loginFragment);
-            }
-        });
-        binding.btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                navController.navigate(R.id.action_signUpFragment_to_loginFragment);
-
-            }
-        });
     }
 }

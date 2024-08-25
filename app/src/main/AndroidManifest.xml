@@ -14,13 +14,16 @@
         android:theme="@style/Theme.GymFitness"
         tools:targetApi="31">
         <activity
+            android:name=".activities.AuthenticateActivity"
+            android:exported="true" />
+        <activity
             android:name=".activities.SetPasswordActivity"
             android:exported="false" />
         <activity
             android:name=".activities.SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.ForgottenPasswordActivity"
+            android:name=".activities.PasswordActivityFragment"
             android:exported="false" />
         <activity
             android:name=".activities.OnBoardActivity"
