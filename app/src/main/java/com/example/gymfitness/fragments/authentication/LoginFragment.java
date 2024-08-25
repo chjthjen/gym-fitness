@@ -2,23 +2,24 @@ package com.example.gymfitness.fragments.authentication;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.NavHost;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.gymfitness.R;
-import com.example.gymfitness.activities.AuthenticateActivity;
 import com.example.gymfitness.databinding.FragmentLoginBinding;
-import com.example.gymfitness.databinding.FragmentSignUpBinding;
 import com.example.gymfitness.viewmodels.AuthViewModel;
 
-public class SignUpFragment extends Fragment {
+public class LoginFragment extends Fragment {
+
     private AuthViewModel viewModel;
 
     private static final String ARG_PARAM1 = "param1";
@@ -27,11 +28,11 @@ public class SignUpFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public SignUpFragment() {
+    public LoginFragment() {
     }
 
-    public static SignUpFragment newInstance(String param1, String param2) {
-        SignUpFragment fragment = new SignUpFragment();
+    public static LoginFragment newInstance(String param1, String param2) {
+        LoginFragment fragment = new LoginFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -51,22 +52,21 @@ public class SignUpFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        FragmentSignUpBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_sign_up, container, false);
+        FragmentLoginBinding binding = DataBindingUtil.inflate(inflater,R.layout.fragment_login,container,false);
         viewModel = new ViewModelProvider(this).get(AuthViewModel.class);
         binding.setViewModel(viewModel);
         binding.setLifecycleOwner(this);
-        binding.tvLogin.setOnClickListener(new View.OnClickListener() {
+        binding.tvSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                navigateToLogin();
+                navigateToSignUp();
             }
         });
         return binding.getRoot();
     }
-
-    private void navigateToLogin() {
+    public void navigateToSignUp() {
         getParentFragmentManager().beginTransaction()
-                .replace(R.id.frame_layout, new LoginFragment())
+                .replace(R.id.frame_layout, new SignUpFragment())
                 .commit();
     }
 
@@ -74,6 +74,6 @@ public class SignUpFragment extends Fragment {
     public void onResume() {
         super.onResume();
         AuthViewModel viewModel = new ViewModelProvider(getActivity()).get(AuthViewModel.class);
-        viewModel.fragmentName.setValue("Create Account");
+        viewModel.fragmentName.setValue("Log In");
     }
 }

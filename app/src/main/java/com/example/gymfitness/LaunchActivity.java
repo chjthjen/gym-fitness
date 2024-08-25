@@ -11,6 +11,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.gymfitness.activities.AuthenticateActivity;
 import com.example.gymfitness.activities.LoginActivity;
 import com.example.gymfitness.activities.OnBoardActivity;
 
@@ -34,7 +35,7 @@ public class LaunchActivity extends AppCompatActivity {
                 int onboarded = sharedPreferences.getInt("status",0);
                 if(onboarded == 1)
                 {
-                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), AuthenticateActivity.class);
                     startActivity(intent);
                     finish();
                 }
