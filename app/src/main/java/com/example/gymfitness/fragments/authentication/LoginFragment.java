@@ -26,6 +26,7 @@ public class LoginFragment extends Fragment {
 
     private AuthViewModel viewModel;
     private  FragmentLoginBinding binding;
+    private NavController navController;
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -60,7 +61,7 @@ public class LoginFragment extends Fragment {
         viewModel = new ViewModelProvider(getActivity()).get(AuthViewModel.class);
         binding.setViewModel(viewModel);
         binding.setLifecycleOwner(this);
-
+        navController = NavHostFragment.findNavController(LoginFragment.this);
         return binding.getRoot();
     }
 
@@ -70,23 +71,16 @@ public class LoginFragment extends Fragment {
         binding.tvSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NavController navController = NavHostFragment.findNavController(LoginFragment.this);
                 navController.navigate(R.id.action_loginFragment_to_signUpFragment);
             }
         });
 
+        binding.tvForgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.action_loginFragment_to_forgottenPasswordFragment22);
+            }
+        });
     }
 
-//    public void navigateToSignUp() {
-//        getParentFragmentManager().beginTransaction()
-//                .replace(R.id.frame_layout, new SignUpFragment())
-//                .commit();
-//    }
-//
-//    @Override
-//    public void onResume() {
-//        super.onResume();
-//        AuthViewModel viewModel = new ViewModelProvider(getActivity()).get(AuthViewModel.class);
-//        viewModel.fragmentName.setValue("Log In");
-//    }
 }

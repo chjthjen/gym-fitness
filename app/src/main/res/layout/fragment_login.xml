@@ -12,18 +12,49 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/primary"
+        android:paddingTop="30dp"
         tools:context=".fragments.authentication.LoginFragment">
+
+        <RelativeLayout
+            android:id="@+id/actionBar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
+
+            <ImageButton
+                android:id="@+id/btnBack"
+                android:layout_width="10dp"
+                android:layout_height="12dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="25dp"
+                android:background="@null"
+                android:scaleType="fitCenter"
+                android:src="@drawable/arrow"
+                android:contentDescription="Back to before" />
+
+
+            <TextView
+                android:id="@+id/tvNameOfFragment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Log In"
+                android:textColor="@color/limegreen"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
 
         <TextView
             android:id="@+id/textView4"
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:layout_marginTop="64dp"
             android:fontFamily="@font/poppins"
             android:gravity="center"
             android:text="Welcome"
+            android:layout_marginTop="64dp"
             android:textColor="@color/white"
             android:textSize="20sp"
+            android:layout_below="@+id/actionBar"
             android:textStyle="bold" />
 
         <TextView
@@ -40,87 +71,85 @@
             android:lineHeight="20dp"
             android:textSize="12.6sp" />
 
-<!--        <LinearLayout-->
-<!--            android:id="@+id/form"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="235dp"-->
-<!--            android:layout_below="@+id/textView5"-->
-<!--            android:layout_marginTop="71dp"-->
-<!--            android:background="@color/lightpurple"-->
-<!--            android:orientation="vertical">-->
+        <LinearLayout
+            android:id="@+id/form"
+            android:layout_width="match_parent"
+            android:layout_height="235dp"
+            android:layout_below="@+id/textView5"
+            android:layout_marginTop="71dp"
+            android:background="@color/lightpurple"
+            android:orientation="vertical">
 
-<!--            <TextView-->
-<!--                android:id="@+id/tv_username"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="20dp"-->
-<!--                android:layout_marginLeft="46dp"-->
-<!--                android:layout_marginTop="28dp"-->
-<!--                android:fontFamily="@font/league_spartan"-->
-<!--                android:gravity="bottom"-->
-<!--                android:text="Username or email"-->
-<!--                android:textColor="@color/black"-->
-<!--                android:textSize="18sp"-->
-<!--                android:textStyle="bold" />-->
+            <TextView
+                android:id="@+id/tv_username"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_marginLeft="46dp"
+                android:layout_marginTop="28dp"
+                android:fontFamily="@font/league_spartan"
+                android:gravity="bottom"
+                android:text="Username or email"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
-<!--            <EditText-->
-<!--                android:id="@+id/edt_username"-->
-<!--                android:layout_width="311dp"-->
-<!--                android:layout_height="45dp"-->
-<!--                android:layout_gravity="center"-->
-<!--                android:layout_marginTop="8dp"-->
-<!--                android:background="@drawable/custom_textview"-->
-<!--                android:ems="10"-->
-<!--                android:hint="example@example.com"-->
-<!--                android:inputType="text"-->
-<!--                android:paddingStart="15dp"-->
-<!--                android:paddingEnd="15dp"-->
-<!--                android:singleLine="true"-->
-<!--                android:textSize="16sp" />-->
+            <EditText
+                android:id="@+id/edt_username"
+                android:layout_width="311dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/custom_textview"
+                android:ems="10"
+                android:hint="example@example.com"
+                android:inputType="text"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                android:singleLine="true"
+                android:textSize="16sp" />
 
-<!--            <TextView-->
-<!--                android:id="@+id/tv_password"-->
-<!--                android:layout_width="71dp"-->
-<!--                android:layout_height="20dp"-->
-<!--                android:layout_marginLeft="46dp"-->
-<!--                android:layout_marginTop="13dp"-->
-<!--                android:fontFamily="@font/league_spartan"-->
-<!--                android:gravity="bottom"-->
-<!--                android:text="Password"-->
-<!--                android:textColor="@color/black"-->
-<!--                android:textSize="18sp"-->
-<!--                android:textStyle="bold" />-->
+            <TextView
+                android:id="@+id/tv_password"
+                android:layout_width="71dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="46dp"
+                android:layout_marginTop="13dp"
+                android:fontFamily="@font/league_spartan"
+                android:gravity="bottom"
+                android:text="Password"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
-<!--            <EditText-->
-<!--                android:id="@+id/edt_password"-->
-<!--                android:layout_width="311dp"-->
-<!--                android:layout_height="45dp"-->
-<!--                android:layout_gravity="center"-->
-<!--                android:layout_marginTop="8dp"-->
-<!--                android:background="@drawable/custom_textview"-->
-<!--                android:ems="10"-->
-<!--                android:hint="Enter Your Password"-->
-<!--                android:inputType="textPassword"-->
-<!--                android:letterSpacing="0.1"-->
-<!--                android:lineHeight="14dp"-->
-<!--                android:paddingStart="15dp"-->
-<!--                android:paddingEnd="15dp"-->
-<!--                android:singleLine="true"-->
-<!--                android:textSize="16sp" />-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/tv_forgotpw"-->
-<!--                android:layout_width="307dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_gravity="center"-->
-<!--                android:layout_marginTop="11dp"-->
-<!--                android:fontFamily="@font/poppins"-->
-<!--                android:gravity="right"-->
-<!--                android:text="Forgot Password?"-->
-<!--                android:textColor="@color/black"-->
-<!--                android:textSize="12sp"-->
-<!--                android:textStyle="bold" />-->
-
-<!--        </LinearLayout>-->
+            <EditText
+                android:id="@+id/edt_password"
+                android:layout_width="311dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/custom_textview"
+                android:ems="10"
+                android:hint="Enter Your Password"
+                android:inputType="textPassword"
+                android:letterSpacing="0.1"
+                android:lineHeight="14dp"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                android:singleLine="true"
+                android:textSize="16sp" />
+            <TextView
+                android:id="@+id/tvForgotPassword"
+                android:layout_width="307dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="11dp"
+                android:fontFamily="@font/poppins"
+                android:gravity="right"
+                android:text="Forgot Password?"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"

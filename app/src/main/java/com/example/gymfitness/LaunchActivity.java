@@ -12,7 +12,6 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.gymfitness.activities.AuthenticateActivity;
-import com.example.gymfitness.activities.LoginActivity;
 import com.example.gymfitness.activities.OnBoardActivity;
 
 public class LaunchActivity extends AppCompatActivity {

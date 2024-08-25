@@ -23,7 +23,7 @@
             android:name=".activities.SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.ForgottenPasswordActivity"
+            android:name=".activities.PasswordActivityFragment"
             android:exported="false" />
         <activity
             android:name=".activities.OnBoardActivity"
