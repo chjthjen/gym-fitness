@@ -20,7 +20,7 @@ import com.example.gymfitness.viewmodels.AuthViewModel;
 
 public class SignUpFragment extends Fragment {
     private AuthViewModel viewModel;
-
+    FragmentSignUpBinding binding;
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -51,17 +51,27 @@ public class SignUpFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        FragmentSignUpBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_sign_up, container, false);
-        viewModel = new ViewModelProvider(this).get(AuthViewModel.class);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_sign_up, container, false);
+        viewModel = new ViewModelProvider(getActivity()).get(AuthViewModel.class);
         binding.setViewModel(viewModel);
         binding.setLifecycleOwner(this);
+        return binding.getRoot();
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         binding.tvLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                navigateToLogin();
+                binding.tvLogin.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        navigateToLogin();
+                    }
+                });
             }
         });
-        return binding.getRoot();
     }
 
     private void navigateToLogin() {

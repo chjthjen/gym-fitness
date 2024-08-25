@@ -13,6 +13,7 @@ import androidx.databinding.ViewDataBinding;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.gymfitness.R;
 import com.example.gymfitness.databinding.ActivityAuthenticateBinding;

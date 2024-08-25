@@ -3,14 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".fragments.authentication.LoginFragment">
-
     <data>
-
         <variable
             name="viewModel"
             type="com.example.gymfitness.viewmodels.AuthViewModel" />
     </data>
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -27,8 +24,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:paddingHorizontal="16dp"
-                android:paddingTop="10dp"
-                android:paddingBottom="30dp"
+                android:layout_marginTop="26dp"
                 android:text="Let's Start!"
                 android:textColor="@color/white"
                 android:textSize="24sp"
@@ -38,13 +34,13 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
                 android:background="#B8A4FC"
                 android:orientation="vertical"
                 android:paddingHorizontal="16dp"
-                android:paddingVertical="30dp">
-
-                <!-- label edit text full name -->
+                android:layout_marginTop="35dp"
+                android:paddingTop="32dp"
+                android:paddingBottom="29dp"
+                >
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -52,10 +48,6 @@
                     android:text="Full name"
                     android:textColor="@color/black"
                     android:textSize="18sp" />
-
-                <!-- Full Name -->
-
-                <!-- label edit text Email or Mobile Number -->
                 <EditText
                     android:id="@+id/edt_fullname"
                     android:layout_width="match_parent"
@@ -65,7 +57,6 @@
                     android:hint="Full name"
                     android:padding="12dp"
                     android:textColor="@color/black" />
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -74,10 +65,6 @@
                     android:text="Email or Mobile Number"
                     android:textColor="@color/black"
                     android:textSize="18sp" />
-
-                <!-- Email or Mobile Number -->
-
-                <!-- label edit text Password -->
                 <EditText
                     android:id="@+id/edt_email_or_mobile"
                     android:layout_width="match_parent"
@@ -87,7 +74,6 @@
                     android:hint="Email or Mobile Number"
                     android:padding="12dp"
                     android:textColor="@color/black" />
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -96,8 +82,6 @@
                     android:text="Password"
                     android:textColor="@color/black"
                     android:textSize="18sp" />
-
-                <!-- Password -->
                 <EditText
                     android:id="@+id/edt_password"
                     android:layout_width="match_parent"
@@ -108,8 +92,6 @@
                     android:inputType="textPassword"
                     android:padding="12dp"
                     android:textColor="@color/black" />
-
-                <!-- label edit text Confirm Password -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -118,8 +100,6 @@
                     android:text="Confirm Password"
                     android:textColor="@color/black"
                     android:textSize="18sp" />
-
-                <!-- Confirm Password -->
                 <EditText
                     android:id="@+id/edt_confirm_password"
                     android:layout_width="match_parent"
@@ -130,51 +110,39 @@
                     android:inputType="textPassword"
                     android:padding="12dp"
                     android:textColor="@color/black" />
-
             </LinearLayout>
-
-            <!-- Terms and Privacy Policy -->
             <TextView
                 android:id="@+id/tv_terms_and_privacy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginHorizontal="100dp"
-                android:layout_marginBottom="4dp"
                 android:text="By continuing, you agree to."
                 android:textAlignment="center"
                 android:textColor="@color/white"
+                android:layout_marginTop="26dp"
                 android:textSize="12sp" />
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginHorizontal="100dp"
                 android:layout_marginTop="0dp"
-                android:layout_marginBottom="20dp"
                 android:text="@string/Temps_of_use"
                 android:textAlignment="center"
                 android:textColor="@color/third"
                 android:textSize="12sp" />
-
-
-            <!-- Sign Up Button -->
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_signUp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="100dp"
-                android:layout_marginBottom="20dp"
                 android:background="@drawable/rounded_button_signup"
                 android:fontFamily="@font/poppins"
-                android:padding="12dp"
                 android:text="Sign Up"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
+                android:layout_marginTop="20dp"
                 android:textStyle="bold" />
-
-            <!-- Different way sign up -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -184,8 +152,6 @@
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textSize="12sp" />
-
-            <!-- Social Sign Up Options -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
