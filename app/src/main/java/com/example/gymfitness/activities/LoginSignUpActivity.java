@@ -13,6 +13,6 @@ public class LoginSignUpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_signup);
+        setContentView(R.layout.activity_authenticate);
     }
 }

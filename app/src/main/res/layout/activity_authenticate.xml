@@ -22,14 +22,16 @@
 
             <ImageButton
                 android:id="@+id/imageButton"
-                android:layout_width="6dp"
-                android:layout_height="11dp"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="25dp"
                 android:background="@null"
                 android:scaleType="fitCenter"
-                android:src="@drawable/arrow" />
+                android:src="@drawable/arrow"
+                android:contentDescription="Back to before" />
+
 
             <TextView
                 android:id="@+id/tvNameOfFragment"
@@ -42,11 +44,15 @@
                 android:textStyle="bold" />
         </RelativeLayout>
 
-        <FrameLayout
-            android:id="@+id/frame_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/actionBar"
-            />
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragmentContainerView"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:defaultNavHost="true"
+        android:layout_below="@id/actionBar"
+        app:navGraph="@navigation/nav_graph" />
+
     </RelativeLayout>
+
 </layout>

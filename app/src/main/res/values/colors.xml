@@ -11,4 +11,8 @@
     <color name="lightblue">#B3A0FF</color>
     <color name="cardview_dark_background">@color/white</color>
     <color name="grey">#30bdc3c7</color>
+    <!-- Example color definitions -->
+    <color name="material_dynamic_neutral20">#FF0000</color> <!-- Replace with actual color -->
+
+
 </resources>

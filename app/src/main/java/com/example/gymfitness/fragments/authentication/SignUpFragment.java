@@ -61,29 +61,19 @@ public class SignUpFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        binding.tvLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                binding.tvLogin.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        navigateToLogin();
-                    }
-                });
-            }
-        });
+
     }
 
-    private void navigateToLogin() {
-        getParentFragmentManager().beginTransaction()
-                .replace(R.id.frame_layout, new LoginFragment())
-                .commit();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        AuthViewModel viewModel = new ViewModelProvider(getActivity()).get(AuthViewModel.class);
-        viewModel.fragmentName.setValue("Create Account");
-    }
+//    private void navigateToLogin() {
+//        getParentFragmentManager().beginTransaction()
+//                .replace(R.id.frame_layout, new LoginFragment())
+//                .commit();
+//    }
+//
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        AuthViewModel viewModel = new ViewModelProvider(getActivity()).get(AuthViewModel.class);
+//        viewModel.fragmentName.setValue("Create Account");
+//    }
 }

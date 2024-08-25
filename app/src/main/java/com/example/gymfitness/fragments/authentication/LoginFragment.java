@@ -22,7 +22,6 @@ import android.view.ViewGroup;
 import com.example.gymfitness.R;
 import com.example.gymfitness.databinding.FragmentLoginBinding;
 import com.example.gymfitness.viewmodels.AuthViewModel;
-
 public class LoginFragment extends Fragment {
 
     private AuthViewModel viewModel;
@@ -71,21 +70,23 @@ public class LoginFragment extends Fragment {
         binding.tvSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                navigateToSignUp();
+                NavController navController = NavHostFragment.findNavController(LoginFragment.this);
+                navController.navigate(R.id.action_loginFragment_to_signUpFragment);
             }
         });
+
     }
 
-    public void navigateToSignUp() {
-        getParentFragmentManager().beginTransaction()
-                .replace(R.id.frame_layout, new SignUpFragment())
-                .commit();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        AuthViewModel viewModel = new ViewModelProvider(getActivity()).get(AuthViewModel.class);
-        viewModel.fragmentName.setValue("Log In");
-    }
+//    public void navigateToSignUp() {
+//        getParentFragmentManager().beginTransaction()
+//                .replace(R.id.frame_layout, new SignUpFragment())
+//                .commit();
+//    }
+//
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        AuthViewModel viewModel = new ViewModelProvider(getActivity()).get(AuthViewModel.class);
+//        viewModel.fragmentName.setValue("Log In");
+//    }
 }

@@ -4,13 +4,13 @@
     android:shape="rectangle">
 
     <solid
-        android:color="@color/material_dynamic_neutral20"
+        android:color="#FF0000"
         >
     </solid>
 
     <stroke
         android:width="0.7dp"
-        android:color="@color/white" >
+        android:color="#FFFFFF" >
     </stroke>
 
     <corners
