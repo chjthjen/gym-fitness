@@ -19,6 +19,5 @@
         android:title="Profile"
         android:icon="@drawable/user_off"
         app:showAsAction="ifRoom"
-
         />
 </menu>
