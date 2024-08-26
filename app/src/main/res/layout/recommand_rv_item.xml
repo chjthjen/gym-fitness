@@ -101,6 +101,7 @@
             android:src="@drawable/ic_play_video"
             app:layout_constraintBottom_toTopOf="@id/linear_recommand_name"
             app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginBottom="-10dp"
 
 
             />
