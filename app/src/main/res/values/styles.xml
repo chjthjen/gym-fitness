@@ -71,5 +71,12 @@
         <item name="android:textColor">#232323</item>
         <item name="android:fontFamily">@font/poppins</item>
     </style>
+    <style name="ToolbarTitleTextAppearance" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">26sp</item>
+        <item name="android:fontFamily">@font/poppins</item>
+        <item name="android:textColor">@color/purple</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontWeight">1000</item>
 
+    </style>
 </resources>
