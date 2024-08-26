@@ -66,5 +66,33 @@
         <item name="android:fontFamily">@font/poppins</item> <!-- Đặt font family -->
         <item name="android:lineSpacingExtra">27sp</item> <!-- Line height -->
     </style>
+    <style name="fp_tv_enter_your">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">#232323</item>
+        <item name="android:fontFamily">@font/poppins</item>
+    </style>
+    <style name="ToolbarTitleTextAppearance" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">26sp</item>
+        <item name="android:fontFamily">@font/poppins</item>
+        <item name="android:textColor">@color/purple</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontWeight">1000</item>
 
+    </style>
+    <style name="title_medium" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">15sp</item>
+        <item name="android:fontFamily">@font/poppins</item>
+        <item name="android:textColor">@color/limegreen</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="banner_title" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">20sp</item>
+        <item name="android:fontFamily">@font/poppins</item>
+        <item name="android:textColor">@color/limegreen</item>
+    </style>
+    <style name="banner_content" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">10sp</item>
+        <item name="android:fontFamily">@font/poppins</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
 </resources>

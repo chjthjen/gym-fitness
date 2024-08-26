@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.gymfitness"
-        minSdk 34
+        minSdk 28
         targetSdk 34
         versionCode 1
         versionName "1.0"
@@ -30,7 +30,7 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
     buildFeatures{
-//        viewBinding = true
+        viewBinding = true
         dataBinding = true
     }
 
@@ -49,6 +49,8 @@ dependencies {
     implementation libs.constraintlayout
     implementation libs.navigation.fragment
     implementation libs.navigation.ui
+    implementation libs.legacy.support.v4
+    implementation libs.lifecycle.viewmodel.ktx
     testImplementation libs.junit
     androidTestImplementation libs.ext.junit
     androidTestImplementation libs.espresso.core
@@ -63,8 +65,15 @@ dependencies {
     annotationProcessor "androidx.room:room-compiler:$room_version"
     // Retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
-
+    // LiveData
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
     // ViewPagerIndicator
     implementation libs.viewpagerindicator
+    // Views/Fragments Integration
+    implementation "androidx.navigation:navigation-fragment:$nav_version"
+    implementation "androidx.navigation:navigation-ui:$nav_version"
+
+    //thanh tuoi
+    implementation("io.github.ShawnLin013:number-picker:2.4.13")
 
 }

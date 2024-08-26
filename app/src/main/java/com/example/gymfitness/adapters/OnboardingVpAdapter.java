@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
+import com.example.gymfitness.fragments.Onboarding.OnBroading_2c;
+import com.example.gymfitness.fragments.Onboarding.Fragment_2d;
 import com.example.gymfitness.fragments.Onboarding.OnboardingBFragment;
 
 public class OnboardingVpAdapter extends FragmentStateAdapter {
@@ -20,9 +22,9 @@ public class OnboardingVpAdapter extends FragmentStateAdapter {
             case 0:
                 return new OnboardingBFragment();
             case 1:
-                return new OnboardingBFragment();
+                return new OnBroading_2c();
             case 2:
-                return new OnboardingBFragment();
+                return new Fragment_2d();
             default:
                 return new OnboardingBFragment();
         }

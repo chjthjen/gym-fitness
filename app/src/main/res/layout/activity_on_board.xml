@@ -53,8 +53,7 @@
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/view_pager"
                 android:layout_width="match_parent"
-                android:layout_height="128dp"
-                setAdapter="@{viewModel.adapter}"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="16dp">
             </androidx.viewpager2.widget.ViewPager2>
 
@@ -62,14 +61,26 @@
                 android:id="@+id/indicator_view"
                 android:layout_width="wrap_content"
                 android:layout_height="4dp"
-                app:vpi_style="dash"
-                app:vpi_slide_mode="smooth"
                 android:layout_marginTop="9dp"
+                android:layout_gravity="center"
                 app:vpi_slider_checked_color="@color/white"
-                app:vpi_slider_normal_color="@color/purple"
-
-                setIndicator="@{viewPager}"/>
+                app:vpi_slider_normal_color="@color/purple" />
         </LinearLayout>
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="211dp"
+            android:layout_height="44dp"
+            android:text="@string/next"
+            android:layout_marginTop="18dp"
+            android:layout_gravity="center"
+            app:backgroundTint="@null"
+            android:background="@drawable/transparent_bg_bordered"
+            android:textColor="@color/white"
+            android:fontFamily="@font/poppins_bold"
+
+        />
+
 
     </LinearLayout>
 
