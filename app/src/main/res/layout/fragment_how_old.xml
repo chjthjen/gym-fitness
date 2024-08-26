@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.gymfitness.viewmodels.AuthViewModel" />
+    </data>
+    <LinearLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/primary"
+        android:orientation="vertical"
+        android:paddingTop="40dp"
+        tools:context=".fragments.authentication.LoginFragment">
+
+        <TextView
+            android:id="@+id/howold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_bold"
+            android:gravity="center"
+            android:text="How old are you?"
+            android:textColor="@color/white"
+            android:textSize="27sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_centerHorizontal="true"
+            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+            android:textAlignment="center"
+            android:layout_below="@+id/textView4"
+            android:layout_marginTop="31dp"
+            android:textColor="#CECCCC"
+            android:layout_gravity="center"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            style="@style/lorem_ipsum"
+            android:lineHeight="20dp"
+            android:textSize="12sp" />
+
+
+        <TextView
+            android:id="@+id/num_picker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="85dp"
+            android:fontFamily="@font/poppins_bold"
+            android:gravity="center"
+
+            android:text="20"
+            android:textColor="@color/white"
+            android:textSize="50sp" />
+
+
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:backgroundTint="@null"
+            android:layout_gravity="center"
+            android:rotation="-90"
+            android:rotationX="180"
+            app:srcCompat="@drawable/arrow" />
+
+        <com.shawnlin.numberpicker.NumberPicker
+            android:id="@+id/number_picker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_centerInParent="true"
+            android:background="@color/lightpurple"
+            app:np_dividerColor="@color/white"
+            app:np_dividerDistance="60dp"
+            app:np_dividerLength="150dp"
+            app:np_dividerThickness="1dp"
+            app:np_fadingEdgeStrength="0.7"
+            app:np_formatter="@string/number_picker_formatter"
+            app:np_max="100"
+            app:np_min="0"
+            app:np_orientation="horizontal"
+            app:np_selectedTextColor="@color/white"
+            app:np_selectedTextSize="33sp"
+            app:np_textColor="#3A3939"
+            app:np_textSize="28sp"
+            app:np_value="20"
+            app:np_wheelItemCount="7"
+            app:np_width="245dp"
+            app:np_wrapSelectorWheel="true" />
+
+    </LinearLayout>
+</layout>

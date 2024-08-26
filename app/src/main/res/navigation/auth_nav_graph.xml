@@ -10,10 +10,12 @@
         tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_loginFragment_to_signUpFragment"
-            app:destination="@id/signUpFragment" />
+            app:destination="@id/signUpFragment"
+            app:enterAnim="@anim/from_right" />
         <action
             android:id="@+id/action_loginFragment_to_forgottenPasswordFragment22"
-            app:destination="@id/forgottenPasswordFragment2" />
+            app:destination="@id/forgottenPasswordFragment2"
+            app:enterAnim="@anim/from_right" />
     </fragment>
 
     <fragment
@@ -22,7 +24,8 @@
         tools:layout="@layout/fragment_sign_up" >
         <action
             android:id="@+id/action_signUpFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/from_left" />
     </fragment>
     <fragment
         android:id="@+id/forgottenPasswordFragment2"
@@ -32,12 +35,22 @@
         >
         <action
             android:id="@+id/action_forgottenPasswordFragment2_to_setPasswordFragment"
-            app:destination="@id/setPasswordFragment" />
+            app:destination="@id/setPasswordFragment"
+            app:enterAnim="@anim/from_right" />
+        <action
+            android:id="@+id/action_forgottenPasswordFragment2_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/from_left" />
     </fragment>
     <fragment
         android:id="@+id/setPasswordFragment"
         android:name="com.example.gymfitness.fragments.authentication.SetPasswordFragment"
         android:label="SetPasswordFragment"
-        tools:layout="@layout/fragment_set_password"/>
+        tools:layout="@layout/fragment_set_password">
+        <action
+            android:id="@+id/action_setPasswordFragment_to_forgottenPasswordFragment2"
+            app:destination="@id/forgottenPasswordFragment2"
+            app:enterAnim="@anim/from_left" />
+    </fragment>
 
 </navigation>
