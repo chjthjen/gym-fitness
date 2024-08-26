@@ -69,5 +69,11 @@ public class ForgottenPasswordFragment extends Fragment {
                 navController.navigate(R.id.action_forgottenPasswordFragment2_to_setPasswordFragment);
             }
         });
+        binding.btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.action_forgottenPasswordFragment2_to_loginFragment);
+            }
+        });
     }
 }

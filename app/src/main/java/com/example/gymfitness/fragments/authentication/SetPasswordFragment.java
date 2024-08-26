@@ -19,7 +19,8 @@ import com.example.gymfitness.viewmodels.AuthViewModel;
 
 public class SetPasswordFragment extends Fragment {
     private AuthViewModel viewModel;
-    FragmentSetPasswordBinding binding;
+    private FragmentSetPasswordBinding binding;
+    private NavController navController;
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -54,11 +55,18 @@ public class SetPasswordFragment extends Fragment {
         viewModel = new ViewModelProvider(getActivity()).get(AuthViewModel.class);
         binding.setViewModel(viewModel);
         binding.setLifecycleOwner(this);
+        navController = NavHostFragment.findNavController(SetPasswordFragment.this);
         return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        binding.btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.action_setPasswordFragment_to_forgottenPasswordFragment2);
+            }
+        });
     }
 }
