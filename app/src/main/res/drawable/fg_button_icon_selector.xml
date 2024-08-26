@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Khi RadioButton được chọn -->
+    <item android:drawable="@drawable/fg_button_icon_checked" android:state_checked="true"/>
+    <!-- Khi RadioButton không được chọn -->
+    <item android:drawable="@drawable/fg_button_icon_unchecked" android:state_checked="false"/>
+</selector>
