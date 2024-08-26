@@ -33,11 +33,18 @@
         <action
             android:id="@+id/action_forgottenPasswordFragment2_to_setPasswordFragment"
             app:destination="@id/setPasswordFragment" />
+        <action
+            android:id="@+id/action_forgottenPasswordFragment2_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/setPasswordFragment"
         android:name="com.example.gymfitness.fragments.authentication.SetPasswordFragment"
         android:label="SetPasswordFragment"
-        tools:layout="@layout/fragment_set_password"/>
+        tools:layout="@layout/fragment_set_password">
+        <action
+            android:id="@+id/action_setPasswordFragment_to_forgottenPasswordFragment2"
+            app:destination="@id/forgottenPasswordFragment2" />
+    </fragment>
 
 </navigation>
