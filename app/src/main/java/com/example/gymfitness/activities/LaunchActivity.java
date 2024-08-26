@@ -1,4 +1,4 @@
-package com.example.gymfitness;
+package com.example.gymfitness.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -7,12 +7,8 @@ import android.os.Handler;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
-import com.example.gymfitness.activities.AuthenticateActivity;
-import com.example.gymfitness.activities.OnBoardActivity;
+import com.example.gymfitness.R;
 
 public class LaunchActivity extends AppCompatActivity {
 

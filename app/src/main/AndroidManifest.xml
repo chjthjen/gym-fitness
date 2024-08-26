@@ -17,25 +17,17 @@
             android:name=".activities.AuthenticateActivity"
             android:exported="true" />
         <activity
-            android:name=".activities.SetPasswordActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activities.SignUpActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activities.PasswordActivityFragment"
-            android:exported="false" />
-        <activity
             android:name=".activities.OnBoardActivity"
             android:exported="false" />
         <activity
-            android:name=".OnBroading_2a"
+            android:name=".activities.OnBroading_2a"
             android:exported="false" />
         <activity
-            android:name=".activities.LoginActivity"
+            android:name=".activities.LaunchActivity"
             android:exported="false" />
+
         <activity
-            android:name=".LaunchActivity"
+            android:name=".activities.HomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
