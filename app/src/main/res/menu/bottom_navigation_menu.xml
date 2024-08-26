@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+<item android:title="Home"
+    android:id="@+id/homeFragment"
+      android:icon="@drawable/ic_home"
+    />
+<item android:title="Resources Switch"
+
+    android:id="@+id/resourcesFragment"
+     android:icon="@drawable/ic_resources_icon"
+    />
+    <item android:title="Starts"
+
+        android:id="@+id/startsFragment"
+        android:icon="@drawable/ic_star"
+        />
+    <item android:title="Suport"
+        android:id="@+id/supportFragment"
+        android:icon="@drawable/ic_support_help"
+        />
+
+
+
+</menu>
