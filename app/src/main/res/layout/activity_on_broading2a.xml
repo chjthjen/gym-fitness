@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bgr_onbroading_2a"
-    tools:context=".activities.OnBroading_2a">
+    tools:context=".OnBroading_2a">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
