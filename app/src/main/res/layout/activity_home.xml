@@ -23,6 +23,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             android:background="@color/lightpurple"
             app:menu="@menu/bottom_navigation_menu"
+
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
