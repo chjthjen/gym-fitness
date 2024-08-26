@@ -17,22 +17,10 @@
             android:name=".activities.AuthenticateActivity"
             android:exported="true" />
         <activity
-            android:name=".activities.SetPasswordActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activities.SignUpActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activities.PasswordActivityFragment"
-            android:exported="false" />
-        <activity
             android:name=".activities.OnBoardActivity"
             android:exported="false" />
         <activity
             android:name=".OnBroading_2a"
-            android:exported="false" />
-        <activity
-            android:name=".activities.LoginActivity"
             android:exported="false" />
         <activity
             android:name=".LaunchActivity"
