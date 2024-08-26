@@ -17,10 +17,11 @@
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="130dp"
+        android:layout_height="120dp"
         android:orientation="vertical"
         android:layout_gravity="center"
-        android:paddingVertical="0dp">
+        android:layout_marginTop="10dp"
+        >
 
         <TextView
             android:id="@+id/textView7"
@@ -28,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Consistency is"
-            android:textSize="33dp"
+            android:textSize="30dp"
             android:layout_gravity="center"
             android:textColor="#E2F163"
             android:fontFamily="@font/poppins"/>
@@ -42,7 +43,7 @@
             android:text="The Key To Progress"
             android:layout_gravity="center"
             android:textColor="#E2F163"
-            android:textSize="33dp" />
+            android:textSize="30dp" />
 
         <TextView
             android:id="@+id/textView9"
@@ -50,7 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Don't Give Up!"
-            android:textSize="33dp"
+            android:textSize="30dp"
             android:layout_gravity="center"
             android:textColor="#E2F163"
             android:fontFamily="@font/poppins"/>
@@ -60,7 +61,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/lightblue"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        >
 
 <!--        <TextView-->
 <!--            android:id="@+id/textView2"-->
