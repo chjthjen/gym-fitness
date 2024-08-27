@@ -95,4 +95,10 @@
         <item name="android:fontFamily">@font/poppins</item>
         <item name="android:textColor">@color/white</item>
     </style>
+    <style name="my_profile">
+        <item name="android:fontFamily">@font/poppins</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:lineHeight">30sp</item>
+        <item name="android:textSize">20sp</item>
+    </style>
 </resources>
