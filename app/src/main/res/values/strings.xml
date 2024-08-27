@@ -26,4 +26,13 @@
     <string name="reset_password">Reset Password</string>
     <string name="next">Next</string>
     <string name="number_picker_formatter">%02d</string>
+
+<!--================================================================================================================-->
+<!--Fragment Goal-->
+    <string name="lose_weight">Lose Weight</string>
+    <string name="gain_weight">Gain Weight</string>
+    <string name="muscle_mass_gain">Muscle Mass Gain</string>
+    <string name="what_is_your_goal">What Is Your Goal?</string>
+    <string name="shape_body">Shape Body</string>
+    <string name="others">Others</string>
 </resources>
