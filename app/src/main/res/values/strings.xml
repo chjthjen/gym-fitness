@@ -26,5 +26,4 @@
     <string name="reset_password">Reset Password</string>
     <string name="next">Next</string>
     <string name="number_picker_formatter">%02d</string>
-    <string name="my_profile">My Profile</string>
 </resources>
