@@ -26,7 +26,7 @@ public class LaunchActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.fragment_fill_profile);
+        setContentView(R.layout.activity_launch);
         addControls();
         new Handler().postDelayed(new Runnable() {
             @Override
