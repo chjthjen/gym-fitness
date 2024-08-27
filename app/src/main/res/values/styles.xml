@@ -95,4 +95,35 @@
         <item name="android:fontFamily">@font/poppins</item>
         <item name="android:textColor">@color/white</item>
     </style>
+    <!--===================================================================================================-->
+    <!--Goad Fragment-->
+    <!--Main title-->
+    <style name="fg_tv_main_title">
+        <item name="android:textSize">25sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:fontFamily">@font/poppins</item>
+        <item name="android:lineHeight">38sp</item>
+    </style>
+
+    <!--Sub title-->
+    <style name="fg_tv_sub_title">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:fontFamily">@font/league_spartan</item>
+        <item name="android:lineHeight">14sp</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <!--body-->
+    <style name="fg_tv_body">
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">@font/league_spartan</item>
+        <item name="android:lineHeight">14sp</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <style name="my_profile">
+        <item name="android:fontFamily">@font/poppins</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:lineHeight">30sp</item>
+        <item name="android:textSize">20sp</item>
+    </style>
 </resources>
