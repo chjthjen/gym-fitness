@@ -6,41 +6,53 @@
     android:background="@color/black"
     android:orientation="vertical">
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
-        <ImageView
-            android:id="@+id/img_articles"
-            android:layout_width="157dp"
-            android:layout_height="134dp"
-            android:scaleType="fitCenter"
-            android:src="@drawable/img_woman_helping_home"
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/woman_helpi"
+            android:layout_width="100dp"
+            android:layout_height="85dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:cardElevation="0dp"
+            app:cardCornerRadius="25dp"
+            app:cardBackgroundColor="@color/primary">
+
         <ImageView
-            android:id="@+id/img_star"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
-            android:layout_margin="10dp"
-            android:src="@drawable/star_varient2"
-            app:layout_constraintEnd_toEndOf="@id/img_articles"
-            app:layout_constraintTop_toTopOf="@id/img_articles" />
-        <TextView
-            android:id="@+id/supplement_"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Supplement Guide..."
-            android:gravity="center_vertical"
-            android:textColor="@color/white"
-            app:layout_constraintTop_toBottomOf="@id/img_articles"
-            app:layout_constraintStart_toStartOf="@id/img_articles"
-            app:layout_constraintEnd_toEndOf="@id/img_articles"
-            />
+            android:id="@+id/img_woman_help"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+        android:src="@drawable/woman_help_home_2" />
+    </androidx.cardview.widget.CardView>
 
+    <ImageView
+        android:id="@+id/img_star"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_margin="10dp"
+        android:src="@drawable/star_varient2"
+        app:layout_constraintEnd_toEndOf="@id/woman_helpi"
+        app:layout_constraintTop_toTopOf="@id/woman_helpi" />
 
+    <TextView
+        android:id="@+id/supplement_"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="Supplement Guide..."
+        android:gravity="center_vertical"
+        android:textColor="@color/white"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:layout_marginHorizontal="7dp"
+        android:textSize="10sp"
+        app:layout_constraintTop_toBottomOf="@id/woman_helpi"
+        app:layout_constraintStart_toStartOf="@id/woman_helpi"
+        app:layout_constraintEnd_toEndOf="@id/woman_helpi" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
 
-</LinearLayout>
+    </LinearLayout>

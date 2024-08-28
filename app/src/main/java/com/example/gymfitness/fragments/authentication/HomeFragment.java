@@ -1,11 +1,12 @@
 package com.example.gymfitness.fragments.authentication;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,10 +20,12 @@ import com.example.gymfitness.databinding.FragmentHomeBinding;
 import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
+
     private FragmentHomeBinding binding;
     private RecommendExRCVApdater recommendExRCVApdater;
     private ArrayList<WorkoutTest> list;
     private RecyclerView.LayoutManager layoutManager;
+
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private String mParam1;
@@ -38,11 +41,11 @@ public class HomeFragment extends Fragment {
     }
 
     public HomeFragment() {
-        // Required empty public constructor
+
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
@@ -51,17 +54,26 @@ public class HomeFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false);
         View view = binding.getRoot();
+        setupRecyclerView();
 
+        return view;
+    }
+    private void setupRecyclerView() {
         WorkoutTest workoutTest = new WorkoutTest();
         list = workoutTest.makeList();
         recommendExRCVApdater = new RecommendExRCVApdater(list);
-        layoutManager = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL,false);
+        layoutManager = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false);
         binding.rcvRecommendations.setLayoutManager(layoutManager);
         binding.rcvRecommendations.setAdapter(recommendExRCVApdater);
-        return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
     }
 }
