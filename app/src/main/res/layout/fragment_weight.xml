@@ -143,32 +143,31 @@
         <TextView
             android:id="@+id/txt_weight"
             android:layout_width="88dp"
-            android:layout_height="65dp"
+            android:layout_height="74dp"
             android:layout_below="@+id/linear_weight"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="15dp"
-            android:layout_weight="4"
             android:gravity="center"
             android:text="95"
             android:textColor="@color/white"
-            android:textSize="56dp"
+            android:textSize="62sp"
             android:textStyle="bold"
             android:fontFamily="@font/poppins"/>
 
         <TextView
             android:id="@+id/txt_measurement_unit"
-            android:layout_width="48dp"
-            android:layout_height="34dp"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
             android:layout_below="@id/linear_weight"
             android:layout_gravity="bottom"
             android:layout_toRightOf="@id/txt_weight"
-            android:layout_weight="3"
             android:alpha="0.65"
             android:text="Kg"
             android:textColor="@color/white"
-            android:textSize="25dp"
+            android:textSize="27sp"
             android:textStyle="bold"
-            android:layout_marginTop="46dp"
+            android:lineHeight="30sp"
+            android:layout_marginTop="53dp"
             android:fontFamily="@font/poppins"/>
 
         <Button
