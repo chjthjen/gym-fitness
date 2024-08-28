@@ -66,10 +66,10 @@
         android:name="com.example.gymfitness.fragments.authentication.HomeFragment"
         android:label="HomeFragment"
         tools:layout="@layout/fragment_home">
-<!--        <action-->
-<!--            android:id="@+id/action_homeFragment_to_loginFragment"-->
-<!--            app:destination="@id/loginFragment"-->
-<!--            app:enterAnim="@anim/from_left" />-->
+        <action
+            android:id="@+id/action_homeFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/from_left" />
     </fragment>
 
 

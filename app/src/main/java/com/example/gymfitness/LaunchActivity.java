@@ -7,13 +7,10 @@ import android.os.Handler;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.example.gymfitness.activities.AuthenticateActivity;
 import com.example.gymfitness.activities.HomeActivity;
-import com.example.gymfitness.activities.OnBoardActivity;
+import com.example.gymfitness.activities.OnBroading_2a;
 
 public class LaunchActivity extends AppCompatActivity {
 
@@ -35,7 +32,7 @@ public class LaunchActivity extends AppCompatActivity {
                 int onboarded = sharedPreferences.getInt("status",0);
                 if(onboarded == 1)
                 {
-                    Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), AuthenticateActivity.class);
                     startActivity(intent);
                     finish();
                 }
