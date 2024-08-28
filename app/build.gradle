@@ -64,8 +64,8 @@ dependencies {
     // ViewModel
     implementation("androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version")
     // room
-    implementation "androidx.room:room-runtime:$room_version"
-    annotationProcessor "androidx.room:room-compiler:$room_version"
+    implementation ("androidx.room:room-runtime:$room_version")
+    annotationProcessor ("androidx.room:room-compiler:$room_version")
     // Retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     // LiveData

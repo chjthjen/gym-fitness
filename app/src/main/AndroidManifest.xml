@@ -30,8 +30,8 @@
             android:exported="false" />
         <activity
             android:name=".SetUp_4a"
-            android:exported="false" />
-        <activity
+            android:exported="false"/>
+    <activity
             android:name=".LaunchActivity"
             android:exported="true">
             <intent-filter>

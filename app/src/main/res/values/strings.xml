@@ -25,6 +25,7 @@
     <string name="hint_pass">*************</string>
     <string name="reset_password">Reset Password</string>
     <string name="next">Next</string>
+    <string name="back">Back</string>
     <string name="number_picker_formatter">%02d</string>
     <string name="default_web_client_id">498768445437-c6a1g5u8ornikcf95p13id9vi8uddt6s.apps.googleusercontent.com</string>
 
@@ -34,4 +35,22 @@
     <string name="facebook_client_token">EAAHCH4gaTG8BO2pRZCRQ6AHPMiy0U3jIiTCDpHf79oNXhJRpiYtslb76BYfAtJHqcgy6JALg4ELcTjDPurTKIZBX0UWAi1R6ZATuPZCZA0xqDpV4ZC9ZBJnA5iFW2wMbjZB5BRFCA6jCD0tFWxlZA818vX3oGvh74JKpLRkZC2gcYnmv9BFZC3GHSpwk9YWePHi8uZC8TfahgwhqDonCnChxDJGoRKanEhop0P3PfAgYpG1rYZCr07yva</string>
 
 
+
+
+<!--================================================================================================================-->
+<!--Fragment Goal-->
+    <string name="lose_weight">Lose Weight</string>
+    <string name="gain_weight">Gain Weight</string>
+    <string name="muscle_mass_gain">Muscle Mass Gain</string>
+    <string name="what_is_your_goal">What Is Your Goal?</string>
+    <string name="shape_body">Shape Body</string>
+    <string name="others">Others</string>
+    <string name="fill_your_profile">Fill Your Profile</string>
+    <string name="lorem_ipsum_dolor_sit_amet_consectetur_adipiscing_elit_sed_do_eiusmod_tempor_incididunt_ut_labore_et_dolore_magna_aliqua">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+    <string name="full_name">Full name</string>
+    <string name="nickname">Nickname</string>
+    <string name="email">Email</string>
+    <string name="mobile_number">Mobile Number</string>
+    <string name="start">Start</string>
+    <string name="my_profile">My Profile</string>
 </resources>

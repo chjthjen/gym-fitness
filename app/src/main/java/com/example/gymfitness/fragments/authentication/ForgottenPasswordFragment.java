@@ -10,9 +10,12 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
 import com.example.gymfitness.R;
 import com.example.gymfitness.databinding.FragmentForgottenPasswordBinding;
 import com.example.gymfitness.databinding.FragmentLoginBinding;
@@ -73,6 +76,43 @@ public class ForgottenPasswordFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 navController.navigate(R.id.action_forgottenPasswordFragment2_to_loginFragment);
+            }
+        });
+        binding.btnContinue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (validateInput()) {
+                    // Nếu email hợp lệ, hiển thị thông báo thành công + xử lý tiếp...
+                    Toast.makeText(getActivity(), "Valid email", Toast.LENGTH_SHORT).show();
+                } else {
+                    // Nếu email không hợp lệ, hiển thị thông báo lỗi
+                    Toast.makeText(getActivity(), "Invalid email", Toast.LENGTH_SHORT).show();
+                }
+            }
+            private boolean validateInput() {
+                String email = binding.fpEdtEnterYour.getText().toString().trim();
+
+                // Kiểm tra Email
+                if (email.isEmpty()) {
+                    binding.fpEdtEnterYour.setError("Email cannot be empty");
+                    return false;
+                }
+
+                // Kiểm tra định dạng email nếu input có chứa ký tự '@'
+                if (email.contains("@") && !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                    binding.fpEdtEnterYour.setError("Invalid email format");
+                    return false;
+                }
+
+                // Kiểm tra định dạng input có phải email hay không
+                if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                    binding.fpEdtEnterYour.setError("Please enter email address");
+                    return false;
+                }
+
+                //nếu email hợp lệ
+                binding.fpEdtEnterYour.setError(null);
+                return true;
             }
         });
     }

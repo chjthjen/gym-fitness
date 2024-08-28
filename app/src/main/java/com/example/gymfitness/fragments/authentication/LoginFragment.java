@@ -18,6 +18,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+
+import android.util.Patterns;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.gymfitness.LaunchActivity;
@@ -115,6 +120,52 @@ public class LoginFragment extends Fragment {
         callbackManager = CallbackManager.Factory.create();
 
         imgFB.setOnClickListener(new View.OnClickListener() {
+        binding.btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (validateInput()) {
+                    // Nếu dữ liệu hợp lệ, hiển thị thông báo thành công + xử lí tiếp...
+                    Toast.makeText(getActivity(), "Login successful", Toast.LENGTH_SHORT).show();
+                } else {
+                    // Nếu dữ liệu không hợp lệ, hiển thị thông báo lỗi
+                    Toast.makeText(getActivity(), "Invalid input, login failed", Toast.LENGTH_SHORT).show();
+                }
+            }
+            private boolean validateInput() {
+                String usernameOrEmail = binding.edtUsername.getText().toString().trim();
+                String password = binding.edtPassword.getText().toString().trim();
+
+                // Kiểm tra Username hoặc Email
+                if (usernameOrEmail.isEmpty()) {
+                    binding.edtUsername.setError("Username or Email cannot be empty");
+                    return false;
+                }
+
+                // Kiểm tra định dạng email nếu input có chứa ký tự '@'
+                if (usernameOrEmail.contains("@") && !Patterns.EMAIL_ADDRESS.matcher(usernameOrEmail).matches()) {
+                    binding.edtUsername.setError("Invalid email format");
+                    return false;
+                }
+
+                // Kiểm tra Password
+                if (password.isEmpty()) {
+                    binding.edtPassword.setError("Password cannot be empty");
+                    return false;
+                }
+
+                if (password.length() < 6) {
+                    binding.edtPassword.setError("Password must be at least 6 characters long");
+                    return false;
+                }
+
+                // Nếu tất cả đều hợp lệ
+                binding.edtUsername.setError(null);
+                binding.edtPassword.setError(null);
+                return true;
+            }
+        });
+        binding.tvForgotPassword.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 LoginManager.getInstance().logInWithReadPermissions(
@@ -213,5 +264,6 @@ public class LoginFragment extends Fragment {
                         }
                     }
                 });
+        }
     }
 }
