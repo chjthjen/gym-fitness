@@ -2,18 +2,21 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
     <data>
 
         <variable
             name="viewModel"
             type="com.example.gymfitness.viewmodels.AuthViewModel" />
     </data>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/black"
         android:clipToOutline="true"
         android:paddingTop="30dp">
+
         <RelativeLayout
             android:id="@+id/actionBar"
             android:layout_width="match_parent"
@@ -25,29 +28,162 @@
                 android:layout_height="11dp"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="25dp"
+                android:layout_marginLeft="35dp"
                 android:background="@null"
                 android:contentDescription="Back to before"
                 android:scaleType="fitCenter"
                 android:src="@drawable/arrow" />
 
+            <TextView
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="9dp"
+                android:layout_toRightOf="@+id/btnBack"
+                android:fontFamily="@font/league_spartan"
+                android:gravity="center"
+                android:lineHeight="14sp"
+                android:text="Back"
+                android:textColor="@color/third" />
 
         </RelativeLayout>
 
-        <TextView
-            android:id="@+id/textView10"
+        <LinearLayout
+            android:id="@+id/linear_weight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/actionBar"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="76dp"
-            android:fontFamily="@font/league_spartan"
-            android:text="@string/lorem_ipsum_dolor_sit_amet_consectetur_adipiscing_elit_n_sed_do_eiusmod_tempor_incididunt_ut_labore_et_dolore_n_magna_aliqua"
-            android:textAlignment="center"
-            android:textColor="#CECCCC"
-            android:textSize="12.6sp" />
+            android:layout_below="@+id/actionBar"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
 
+            <TextView
+                android:id="@+id/what_is_ur_weight"
+                android:layout_width="275dp"
+                android:layout_height="38dp"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="What is Your Weight?"
+                android:textColor="@color/white"
+                android:textSize="28dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="31dp"
+                android:fontFamily="@font/league_spartan"
+                android:lineHeight="14sp"
+                android:text="@string/lorem_ipsum_dolor_sit_amet_consectetur_adipiscing_elit_n_sed_do_eiusmod_tempor_incididunt_ut_labore_et_dolore_n_magna_aliqua"
+                android:textAlignment="center"
+                android:textColor="#CECCCC"
+                android:textSize="12.6sp" />
+
+            <LinearLayout
+                android:layout_width="323dp"
+                android:layout_height="58dp"
+                android:layout_marginTop="57dp"
+                android:background="@drawable/rounded_weight"
+                android:orientation="horizontal"
+                android:padding="9dp">
+
+
+                <TextView
+                    android:id="@+id/txt_kg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/poppins"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:text="KG"
+                    android:textColor="@color/black"
+                    android:textSize="26dp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/imageView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="9dp"
+                    android:layout_marginRight="9dp"
+                    tools:srcCompat="@drawable/black_partition" />
+
+                <TextView
+                    android:id="@+id/txt_lb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/poppins"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:lineHeight="30sp"
+                    android:text="LB"
+                    android:textColor="@color/black"
+                    android:textSize="26sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="132dp"
+                android:layout_marginTop="53dp"
+                android:orientation="vertical">
+
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/iV_polygon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                tools:srcCompat="@drawable/polygon_1" />
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/txt_weight"
+            android:layout_width="88dp"
+            android:layout_height="74dp"
+            android:layout_below="@+id/linear_weight"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:gravity="center"
+            android:text="95"
+            android:textColor="@color/white"
+            android:textSize="62sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/poppins"/>
+
+        <TextView
+            android:id="@+id/txt_measurement_unit"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:layout_below="@id/linear_weight"
+            android:layout_gravity="bottom"
+            android:layout_toRightOf="@id/txt_weight"
+            android:alpha="0.65"
+            android:text="Kg"
+            android:textColor="@color/white"
+            android:textSize="27sp"
+            android:textStyle="bold"
+            android:lineHeight="30sp"
+            android:layout_marginTop="53dp"
+            android:fontFamily="@font/poppins"/>
+
+        <Button
+            android:layout_width="178.56dp"
+            android:layout_height="44dp"
+            app:backgroundTint="@null"
+            android:background="@drawable/custom_button"
+            android:layout_below="@+id/txt_weight"
+            android:text="@string/continue1"
+            android:textSize="20dp"
+            android:layout_marginTop="100dp"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="@font/poppins"
+            android:textStyle="bold"/>
 
     </RelativeLayout>
+
 
 </layout>
