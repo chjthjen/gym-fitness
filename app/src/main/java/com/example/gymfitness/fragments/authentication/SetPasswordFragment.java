@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -66,6 +67,44 @@ public class SetPasswordFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 navController.navigate(R.id.action_setPasswordFragment_to_forgottenPasswordFragment2);
+            }
+        });
+        binding.btnResetPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (validateInput()) {
+                    // Nếu dữ liệu hợp lệ, hiển thị thông báo thành công + xử lý tiếp...
+                    Toast.makeText(getActivity(), "Successful", Toast.LENGTH_SHORT).show();
+                } else {
+                    // Nếu dữ liệu không hợp lệ, hiển thị thông báo lỗi
+                    Toast.makeText(getActivity(), "Invalid input", Toast.LENGTH_SHORT).show();
+                }
+            }
+            private boolean validateInput() {
+                String password = binding.edtPassword.getText().toString().trim();
+                String confirmPassword = binding.edtConfirmPassword.getText().toString().trim();
+
+                // Kiểm tra Password
+                if (password.isEmpty()) {
+                    binding.edtPassword.setError("Password cannot be empty");
+                    return false;
+                }
+
+                if (password.length() < 6) {
+                    binding.edtPassword.setError("Password must be at least 6 characters long");
+                    return false;
+                }
+
+                // Kiểm tra Confirm Password
+                if (!confirmPassword.equals(password)) {
+                    binding.edtConfirmPassword.setError("Passwords do not match");
+                    return false;
+                }
+
+                // Nếu tất cả đều hợp lệ
+                binding.edtPassword.setError(null);
+                binding.edtConfirmPassword.setError(null);
+                return true;
             }
         });
     }
