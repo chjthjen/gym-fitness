@@ -26,4 +26,12 @@
     <string name="reset_password">Reset Password</string>
     <string name="next">Next</string>
     <string name="number_picker_formatter">%02d</string>
+    <string name="default_web_client_id">498768445437-c6a1g5u8ornikcf95p13id9vi8uddt6s.apps.googleusercontent.com</string>
+
+
+    <string name="facebook_app_id">494915659910255</string>
+    <string name="fb_login_protocol_scheme">fb494915659910255</string>
+    <string name="facebook_client_token">EAAHCH4gaTG8BO2pRZCRQ6AHPMiy0U3jIiTCDpHf79oNXhJRpiYtslb76BYfAtJHqcgy6JALg4ELcTjDPurTKIZBX0UWAi1R6ZATuPZCZA0xqDpV4ZC9ZBJnA5iFW2wMbjZB5BRFCA6jCD0tFWxlZA818vX3oGvh74JKpLRkZC2gcYnmv9BFZC3GHSpwk9YWePHi8uZC8TfahgwhqDonCnChxDJGoRKanEhop0P3PfAgYpG1rYZCr07yva</string>
+
+
 </resources>

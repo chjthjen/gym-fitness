@@ -185,6 +185,14 @@
                 android:paddingBottom="7dp"
                 app:layout_constraintTop_toBottomOf="@+id/banner_weekly_challenge"/>
 
+<!--            <Button-->
+<!--                android:id="@+id/btnLogout"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Logout"-->
+<!--                android:textSize="20dp"-->
+<!--                android:layout_gravity="center" />-->
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rcv_articles_tips"
                 android:layout_width="match_parent"
@@ -194,4 +202,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
+
+
+
 </layout>
