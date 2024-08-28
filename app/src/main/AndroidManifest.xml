@@ -23,6 +23,9 @@
             android:name=".OnBroading_2a"
             android:exported="false" />
         <activity
+            android:name=".activities.HomeActivity"
+            android:exported="false" />
+        <activity
             android:name=".LaunchActivity"
             android:exported="true">
             <intent-filter>
