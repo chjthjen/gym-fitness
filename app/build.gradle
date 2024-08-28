@@ -76,4 +76,8 @@ dependencies {
     //thanh tuoi
     implementation("io.github.ShawnLin013:number-picker:2.4.13")
 
+    //
+    implementation ('com.google.android.material:material:1.9.0')
+
+
 }
