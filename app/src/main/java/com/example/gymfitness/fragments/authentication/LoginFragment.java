@@ -115,155 +115,164 @@ public class LoginFragment extends Fragment {
                 login();
             }
         });
+    }
 
         // Facebook Login
-        callbackManager = CallbackManager.Factory.create();
+//        callbackManager = CallbackManager.Factory.create();
+//
+//        imgFB.setOnClickListener(new View.OnClickListener() {
+//        binding.btnLogin.setOnClickListener(new View.OnClickListener()
+//            {
+//                @Override
+//                public void onClick (View view){
+//                if (validateInput()) {
+//                    // Nếu dữ liệu hợp lệ, hiển thị thông báo thành công + xử lí tiếp...
+//                    Toast.makeText(getActivity(), "Login successful", Toast.LENGTH_SHORT).show();
+//                } else {
+//                    // Nếu dữ liệu không hợp lệ, hiển thị thông báo lỗi
+//                    Toast.makeText(getActivity(), "Invalid input, login failed", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//                private boolean validateInput () {
+//                String usernameOrEmail = binding.edtUsername.getText().toString().trim();
+//                String password = binding.edtPassword.getText().toString().trim();
+//
+//                // Kiểm tra Username hoặc Email
+//                if (usernameOrEmail.isEmpty()) {
+//                    binding.edtUsername.setError("Username or Email cannot be empty");
+//                    return false;
+//                }
+//
+//                // Kiểm tra định dạng email nếu input có chứa ký tự '@'
+//                if (usernameOrEmail.contains("@") && !Patterns.EMAIL_ADDRESS.matcher(usernameOrEmail).matches()) {
+//                    binding.edtUsername.setError("Invalid email format");
+//                    return false;
+//                }
+//
+//                // Kiểm tra Password
+//                if (password.isEmpty()) {
+//                    binding.edtPassword.setError("Password cannot be empty");
+//                    return false;
+//                }
+//
+//                if (password.length() < 6) {
+//                    binding.edtPassword.setError("Password must be at least 6 characters long");
+//                    return false;
+//                }
+//
+//                // Nếu tất cả đều hợp lệ
+//                binding.edtUsername.setError(null);
+//                binding.edtPassword.setError(null);
+//                return true;
+//            }
+//            });
+//        binding.tvForgotPassword.setOnClickListener(new View.OnClickListener()
+//
+//            {
+//
+//                @Override
+//                public void onClick (View v){
+//                LoginManager.getInstance().logInWithReadPermissions(
+//                        getActivity(), Arrays.asList("email", "public_profile")
+//                );
+//            }
+//            });
 
-        imgFB.setOnClickListener(new View.OnClickListener() {
-        binding.btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (validateInput()) {
-                    // Nếu dữ liệu hợp lệ, hiển thị thông báo thành công + xử lí tiếp...
-                    Toast.makeText(getActivity(), "Login successful", Toast.LENGTH_SHORT).show();
-                } else {
-                    // Nếu dữ liệu không hợp lệ, hiển thị thông báo lỗi
-                    Toast.makeText(getActivity(), "Invalid input, login failed", Toast.LENGTH_SHORT).show();
-                }
+//        LoginManager.getInstance().
+//
+//            registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+//                @Override
+//                public void onSuccess (LoginResult loginResult){
+//                    handleFacebookAccessToken(loginResult.getAccessToken());
+//                }
+//
+//                @Override
+//                public void onCancel () {
+//                    Toast.makeText(getContext(), "Đăng nhập bị hủy.", Toast.LENGTH_SHORT).show();
+//                }
+//
+//                @Override
+//                public void onError (FacebookException error){
+//                    Toast.makeText(getContext(), "Đăng nhập Facebook không thành công.", Toast.LENGTH_SHORT).show();
+//                }
+//            });
+
+
+            private void login() {
+                Intent intent = nGoogleSignInClient.getSignInIntent();
+                startActivityForResult(intent, RC_SIGN_IN);
             }
-            private boolean validateInput() {
-                String usernameOrEmail = binding.edtUsername.getText().toString().trim();
-                String password = binding.edtPassword.getText().toString().trim();
+//
+//            @Override
+//            public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+//                super.onActivityResult(requestCode, resultCode, data);
+//
+//                // Xử lý kết quả đăng nhập Facebook
+//                callbackManager.onActivityResult(requestCode, resultCode, data);
+//
+//
+//                // Xử lý kết quả đăng nhập Google
+//                if (requestCode == RC_SIGN_IN) {
+//                    Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+//                    try {
+//                        GoogleSignInAccount account = task.getResult(ApiException.class);
+//                        firebaseAuthWithGoogle(account.getIdToken());
+//                    } catch (ApiException e) {
+//                        e.printStackTrace();
+//                        Toast.makeText(getContext(), "Đăng nhập không thành công.", Toast.LENGTH_SHORT).show();
+//                    }
+//                }
+//            }
+//
+//            private void firebaseAuthWithGoogle(String idToken) {
+//                AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
+//                auth.signInWithCredential(credential)
+//                        .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
+//                            @Override
+//                            public void onComplete(@NonNull Task<AuthResult> task) {
+//                                if (task.isSuccessful()) {
+//                                    FirebaseUser user = auth.getCurrentUser();
+//                                    Users users = new Users();
+//                                    users.setUserId(user.getUid());
+//                                    users.setName(user.getDisplayName());
+//                                    users.setProfile(user.getPhotoUrl() != null ? user.getPhotoUrl().toString() : "default");
+//
+//                                    database.getReference().child("Users").child(user.getUid()).setValue(users);
+//
+//                                    navController.navigate(R.id.action_loginFragment_to_homeFragment);
+//
+//                                } else {
+//                                    Toast.makeText(getContext(), "Xác thực không thành công.", Toast.LENGTH_SHORT).show();
+//                                }
+//                            }
+//                        });
+//            }
+//
+//            private void handleFacebookAccessToken(AccessToken token) {
+//                AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
+//                auth.signInWithCredential(credential)
+//                        .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
+//                            @Override
+//                            public void onComplete(@NonNull Task<AuthResult> task) {
+//                                if (task.isSuccessful()) {
+//                                    FirebaseUser user = auth.getCurrentUser();
+//                                    Users users = new Users();
+//                                    users.setUserId(user.getUid());
+//                                    users.setName(user.getDisplayName());
+//                                    users.setProfile(user.getPhotoUrl() != null ? user.getPhotoUrl().toString() : "default");
+//
+//                                    database.getReference().child("Users").child(user.getUid()).setValue(users);
+//                                    Log.e("Đã chuyển", users.getUserId());
+//                                    navController.navigate(R.id.action_loginFragment_to_homeFragment);
+//
+//                                } else {
+//                                    Toast.makeText(getContext(), "Xác thực không thành công.", Toast.LENGTH_SHORT).show();
+//                                }
+//                            }
+//                        });
+//            }
+//        }
+//    }
 
-                // Kiểm tra Username hoặc Email
-                if (usernameOrEmail.isEmpty()) {
-                    binding.edtUsername.setError("Username or Email cannot be empty");
-                    return false;
-                }
-
-                // Kiểm tra định dạng email nếu input có chứa ký tự '@'
-                if (usernameOrEmail.contains("@") && !Patterns.EMAIL_ADDRESS.matcher(usernameOrEmail).matches()) {
-                    binding.edtUsername.setError("Invalid email format");
-                    return false;
-                }
-
-                // Kiểm tra Password
-                if (password.isEmpty()) {
-                    binding.edtPassword.setError("Password cannot be empty");
-                    return false;
-                }
-
-                if (password.length() < 6) {
-                    binding.edtPassword.setError("Password must be at least 6 characters long");
-                    return false;
-                }
-
-                // Nếu tất cả đều hợp lệ
-                binding.edtUsername.setError(null);
-                binding.edtPassword.setError(null);
-                return true;
-            }
-        });
-        binding.tvForgotPassword.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                LoginManager.getInstance().logInWithReadPermissions(
-                        getActivity(), Arrays.asList("email", "public_profile")
-                );
-            }
-        });
-
-        LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                handleFacebookAccessToken(loginResult.getAccessToken());
-            }
-
-            @Override
-            public void onCancel() {
-                Toast.makeText(getContext(), "Đăng nhập bị hủy.", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onError(FacebookException error) {
-                Toast.makeText(getContext(), "Đăng nhập Facebook không thành công.", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-    private void login() {
-        Intent intent = nGoogleSignInClient.getSignInIntent();
-        startActivityForResult(intent, RC_SIGN_IN);
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        // Xử lý kết quả đăng nhập Facebook
-        callbackManager.onActivityResult(requestCode, resultCode, data);
-
-
-        // Xử lý kết quả đăng nhập Google
-        if (requestCode == RC_SIGN_IN) {
-            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-            try {
-                GoogleSignInAccount account = task.getResult(ApiException.class);
-                firebaseAuthWithGoogle(account.getIdToken());
-            } catch (ApiException e) {
-                e.printStackTrace();
-                Toast.makeText(getContext(), "Đăng nhập không thành công.", Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
-
-    private void firebaseAuthWithGoogle(String idToken) {
-        AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
-        auth.signInWithCredential(credential)
-                .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            FirebaseUser user = auth.getCurrentUser();
-                            Users users = new Users();
-                            users.setUserId(user.getUid());
-                            users.setName(user.getDisplayName());
-                            users.setProfile(user.getPhotoUrl() != null ? user.getPhotoUrl().toString() : "default");
-
-                            database.getReference().child("Users").child(user.getUid()).setValue(users);
-
-                            navController.navigate(R.id.action_loginFragment_to_homeFragment);
-
-                        } else {
-                            Toast.makeText(getContext(), "Xác thực không thành công.", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-    }
-
-    private void handleFacebookAccessToken(AccessToken token) {
-        AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
-        auth.signInWithCredential(credential)
-                .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            FirebaseUser user = auth.getCurrentUser();
-                            Users users = new Users();
-                            users.setUserId(user.getUid());
-                            users.setName(user.getDisplayName());
-                            users.setProfile(user.getPhotoUrl() != null ? user.getPhotoUrl().toString() : "default");
-
-                            database.getReference().child("Users").child(user.getUid()).setValue(users);
-                            Log.e("Đã chuyển",users.getUserId());
-                            navController.navigate(R.id.action_loginFragment_to_homeFragment);
-
-                        } else {
-                            Toast.makeText(getContext(), "Xác thực không thành công.", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-        }
-    }
 }
+
