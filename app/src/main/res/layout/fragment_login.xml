@@ -192,7 +192,7 @@
 
                 <ImageButton
                     android:id="@+id/btn_google"
-                    android:layout_width="35dp"
+                    android:layout_width="48dp"
                     android:layout_height="35dp"
                     android:layout_margin="15dp"
                     android:scaleType="center"
