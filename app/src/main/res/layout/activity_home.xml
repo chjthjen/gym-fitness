@@ -22,6 +22,7 @@
             android:layout_marginHorizontal="15dp"
             />
 
+
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragmentContainerView"
             android:name="androidx.navigation.fragment.NavHostFragment"
@@ -41,6 +42,8 @@
             app:menu="@menu/bottom_navigation_menu"
             android:layout_alignParentBottom="true"
             />
+
+
     </RelativeLayout>
 
 </layout>
