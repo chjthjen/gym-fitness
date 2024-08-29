@@ -24,10 +24,8 @@ import com.example.gymfitness.data.Users;
 import com.example.gymfitness.activities.HomeActivity;
 import com.example.gymfitness.databinding.FragmentLoginBinding;
 import com.example.gymfitness.utils.Resource;
-import com.example.gymfitness.viewmodels.AuthViewModel;
-import com.facebook.AccessToken;
+import com.example.gymfitness.viewmodels.LoginViewModel;
 import com.facebook.CallbackManager;
-import com.example.gymfitness.viewmodels.LoginViewModel ;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
@@ -37,13 +35,9 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthCredential;
-import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Arrays;
@@ -149,35 +143,41 @@ public class LoginFragment extends Fragment {
         btnLogin.setOnClickListener(v -> {
             String usernameOrEmail = binding.edtUsername.getText().toString().trim();
             String password = binding.edtPassword.getText().toString().trim();
-            //goi view model dang nhap
             viewModel.loginWithEmail(usernameOrEmail, password);
         });
 
         viewModel.getCurrentUser().observe(getViewLifecycleOwner(), resource -> {
             if (resource instanceof Resource.Success) {
-                progressDialog.dismiss();
-                navigateToHome();
+                FirebaseUser user = ((Resource.Success<FirebaseUser>) resource).getData();
+                if (user != null) {
+                    saveUserToDatabase(user);
+                    Intent intent = new Intent(getActivity(), HomeActivity.class);
+                    startActivity(intent);
+                    progressDialog.dismiss();
+                    getActivity().finish();
+                }
             } else if (resource instanceof Resource.Error) {
+                String error = ((Resource.Error<FirebaseUser>) resource).getMessage();
+                Toast.makeText(getContext(), error, Toast.LENGTH_SHORT).show();
                 progressDialog.dismiss();
-                Toast.makeText(getContext(), resource.getMessage(), Toast.LENGTH_SHORT).show();
             } else if (resource instanceof Resource.Loading) {
-                progressDialog.setMessage("Logging in...");
+
+                progressDialog.setMessage("Loading...");
                 progressDialog.show();
+            } else if (resource instanceof Resource.Unspecified) {
+
             }
         });
 
-        viewModel.getErrorMessage().observe(getViewLifecycleOwner(), error -> {
-            if (error != null) {
-                Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
-                progressDialog.dismiss();
-            }
-        });
     }
 
-    private void navigateToHome() {
-        Intent intent = new Intent(getActivity(), HomeActivity.class);
-        startActivity(intent);
-        getActivity().finish();
+    private void saveUserToDatabase(FirebaseUser user) {
+        Users users = new Users();
+        users.setUserId(user.getUid());
+        users.setName(user.getDisplayName());
+        users.setProfile(user.getPhotoUrl() != null ? user.getPhotoUrl().toString() : "default");
+
+        database.getReference().child("Users").child(user.getUid()).setValue(users);
     }
 
     @Override
@@ -186,7 +186,7 @@ public class LoginFragment extends Fragment {
 
         if (requestCode == RC_SIGN_IN) {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-            viewModel.handleGoogleSignInResult(task);  // Call ViewModel method to handle result
+            viewModel.handleGoogleSignInResult(task);
         } else {
             callbackManager.onActivityResult(requestCode, resultCode, data);
         }

@@ -8,7 +8,6 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import com.example.gymfitness.R;
-import com.example.gymfitness.Users;
 import com.example.gymfitness.utils.Resource;
 import com.facebook.AccessToken;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -22,7 +21,6 @@ import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
-import com.google.firebase.database.FirebaseDatabase;
 
 public class LoginViewModel extends AndroidViewModel {
 
@@ -30,7 +28,6 @@ public class LoginViewModel extends AndroidViewModel {
     private GoogleSignInClient googleSignInClient;
     private MutableLiveData<Resource<FirebaseUser>> currentUser = new MutableLiveData<>();
     private MutableLiveData<Resource<String>> errorMessage = new MutableLiveData<>();
-    private FirebaseDatabase database;
 
     public LoginViewModel(@NonNull Application application) {
         super(application);
@@ -47,22 +44,11 @@ public class LoginViewModel extends AndroidViewModel {
         auth.signInWithEmailAndPassword(usernameOrEmail, password)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-                        FirebaseUser user = auth.getCurrentUser();
                         currentUser.setValue(new Resource.Success<>(auth.getCurrentUser()));
-                        saveUserToDatabase(user);
                     } else {
                         errorMessage.setValue(new Resource.Error<>("Login failed: " + task.getException().getMessage()));
                     }
                 });
-    }
-
-    private void saveUserToDatabase(FirebaseUser user) {
-        Users users = new Users();
-        users.setUserId(user.getUid());
-        users.setName(user.getDisplayName());
-        users.setProfile(user.getPhotoUrl() != null ? user.getPhotoUrl().toString() : "default");
-
-        database.getReference().child("Users").child(user.getUid()).setValue(users);
     }
 
     public void loginWithGoogle() {
