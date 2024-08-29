@@ -148,7 +148,7 @@ public class LoginFragment extends Fragment {
 
         viewModel.getCurrentUser().observe(getViewLifecycleOwner(), user -> {
             if (user != null) {
-                saveUserToDatabase(user);
+                saveUserToDatabase(user.getData());
                 Intent intent = new Intent(getActivity(), HomeActivity.class);
                 startActivity(intent);
                 progressDialog.dismiss();
@@ -158,7 +158,7 @@ public class LoginFragment extends Fragment {
 
         viewModel.getErrorMessage().observe(getViewLifecycleOwner(), error -> {
             if (error != null) {
-                Toast.makeText(getContext(), error, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), (CharSequence) error, Toast.LENGTH_SHORT).show();
                 progressDialog.dismiss(); // Hide progress dialog if shown
             }
         });
