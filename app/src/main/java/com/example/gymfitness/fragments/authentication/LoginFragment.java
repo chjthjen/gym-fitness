@@ -87,6 +87,51 @@ public class LoginFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        binding.btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick (View view) {
+                if (validateInput()) {
+                    // Nếu dữ liệu hợp lệ, hiển thị thông báo thành công + xử lí tiếp...
+                    Toast.makeText(getActivity(), "Login successful", Toast.LENGTH_SHORT).show();
+                } else {
+                    // Nếu dữ liệu không hợp lệ, hiển thị thông báo lỗi
+                    Toast.makeText(getActivity(), "Invalid input, login failed", Toast.LENGTH_SHORT).show();
+                }
+            }
+            private boolean validateInput () {
+                String usernameOrEmail = binding.edtUsername.getText().toString().trim();
+                String password = binding.edtPassword.getText().toString().trim();
+
+                // Kiểm tra Username hoặc Email
+                if (usernameOrEmail.isEmpty()) {
+                    binding.edtUsername.setError("Username or Email cannot be empty");
+                    return false;
+                }
+
+                // Kiểm tra định dạng email nếu input có chứa ký tự '@'
+                if (usernameOrEmail.contains("@") && !Patterns.EMAIL_ADDRESS.matcher(usernameOrEmail).matches()) {
+                    binding.edtUsername.setError("Invalid email format");
+                    return false;
+                }
+
+                // Kiểm tra Password
+                if (password.isEmpty()) {
+                    binding.edtPassword.setError("Password cannot be empty");
+                    return false;
+                }
+
+                if (password.length() < 6) {
+                    binding.edtPassword.setError("Password must be at least 6 characters long");
+                    return false;
+                }
+
+                // Nếu tất cả đều hợp lệ
+                binding.edtUsername.setError(null);
+                binding.edtPassword.setError(null);
+                return true;
+            }
+        });
+
         imgGG = binding.btnGoogle;
         imgFB = binding.btnFacebook;
         auth = FirebaseAuth.getInstance();
