@@ -20,7 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.gymfitness.R;
-import com.example.gymfitness.Users;
+import com.example.gymfitness.data.Users;
 import com.example.gymfitness.activities.HomeActivity;
 import com.example.gymfitness.databinding.FragmentLoginBinding;
 import com.example.gymfitness.utils.Resource;
