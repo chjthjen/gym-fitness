@@ -25,8 +25,6 @@ import com.example.gymfitness.activities.HomeActivity;
 import com.example.gymfitness.databinding.FragmentLoginBinding;
 import com.example.gymfitness.utils.Resource;
 import com.example.gymfitness.viewmodels.LoginViewModel;
-import com.facebook.AccessToken;
-
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -160,11 +158,6 @@ public class LoginFragment extends Fragment {
             } else if (resource instanceof Resource.Error) {
                 String error = ((Resource.Error<FirebaseUser>) resource).getMessage();
                 Toast.makeText(getContext(), error, Toast.LENGTH_SHORT).show();
-        viewModel.getCurrentUser().observe(getViewLifecycleOwner(), user -> {
-            if (user != null) {
-                saveUserToDatabase(user.getData());
-                Intent intent = new Intent(getActivity(), HomeActivity.class);
-                startActivity(intent);
                 progressDialog.dismiss();
             } else if (resource instanceof Resource.Loading) {
 
@@ -172,10 +165,6 @@ public class LoginFragment extends Fragment {
                 progressDialog.show();
             } else if (resource instanceof Resource.Unspecified) {
 
-        viewModel.getErrorMessage().observe(getViewLifecycleOwner(), error -> {
-            if (error != null) {
-                Toast.makeText(getContext(), (CharSequence) error, Toast.LENGTH_SHORT).show();
-                progressDialog.dismiss(); // Hide progress dialog if shown
             }
         });
 

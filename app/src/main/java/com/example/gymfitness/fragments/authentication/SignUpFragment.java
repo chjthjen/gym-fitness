@@ -20,8 +20,8 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.gymfitness.R;
-import com.example.gymfitness.User;
-import com.example.gymfitness.Users;
+import com.example.gymfitness.data.Users;
+
 import com.example.gymfitness.databinding.FragmentSignUpBinding;
 import com.example.gymfitness.viewmodels.AuthViewModel;
 import com.example.gymfitness.data.SignUpCallback;
