@@ -23,10 +23,10 @@ import com.example.gymfitness.R;
 import com.example.gymfitness.Users;
 import com.example.gymfitness.activities.HomeActivity;
 import com.example.gymfitness.databinding.FragmentLoginBinding;
-import com.example.gymfitness.viewmodels.AuthViewModel;
+import com.example.gymfitness.utils.Resource;
+import com.example.gymfitness.viewmodels.LoginViewModel;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
-import com.example.gymfitness.viewmodels.LoginViewModel ;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
@@ -49,7 +49,6 @@ import java.util.Arrays;
 
 public class LoginFragment extends Fragment {
 
-    // Xai viewmodel
     private LoginViewModel viewModel;
     private FragmentLoginBinding binding;
     private NavController navController;
@@ -108,7 +107,7 @@ public class LoginFragment extends Fragment {
         LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                viewModel.handleFacebookAccessToken(loginResult.getAccessToken());  // This method should be in LoginViewModel
+                viewModel.handleFacebookAccessToken(loginResult.getAccessToken());
             }
 
             @Override
@@ -148,27 +147,34 @@ public class LoginFragment extends Fragment {
         btnLogin.setOnClickListener(v -> {
             String usernameOrEmail = binding.edtUsername.getText().toString().trim();
             String password = binding.edtPassword.getText().toString().trim();
-            //goi view model dang nhap
             viewModel.loginWithEmail(usernameOrEmail, password);
         });
 
-        viewModel.getCurrentUser().observe(getViewLifecycleOwner(), user -> {
-            if (user != null) {
-                saveUserToDatabase(user);
-                Intent intent = new Intent(getActivity(), HomeActivity.class);
-                startActivity(intent);
+        viewModel.getCurrentUser().observe(getViewLifecycleOwner(), resource -> {
+            if (resource instanceof Resource.Success) {
+                FirebaseUser user = ((Resource.Success<FirebaseUser>) resource).getData();
+                if (user != null) {
+                    saveUserToDatabase(user);
+                    Intent intent = new Intent(getActivity(), HomeActivity.class);
+                    startActivity(intent);
+                    progressDialog.dismiss();
+                    getActivity().finish();
+                }
+            } else if (resource instanceof Resource.Error) {
+                String error = ((Resource.Error<FirebaseUser>) resource).getMessage();
+                Toast.makeText(getContext(), error, Toast.LENGTH_SHORT).show();
                 progressDialog.dismiss();
-                getActivity().finish();
+            } else if (resource instanceof Resource.Loading) {
+
+                progressDialog.setMessage("Loading...");
+                progressDialog.show();
+            } else if (resource instanceof Resource.Unspecified) {
+
             }
         });
 
-        viewModel.getErrorMessage().observe(getViewLifecycleOwner(), error -> {
-            if (error != null) {
-                Toast.makeText(getContext(), error, Toast.LENGTH_SHORT).show();
-                progressDialog.dismiss(); // Hide progress dialog if shown
-            }
-        });
     }
+
     private void saveUserToDatabase(FirebaseUser user) {
         Users users = new Users();
         users.setUserId(user.getUid());
@@ -184,10 +190,9 @@ public class LoginFragment extends Fragment {
 
         if (requestCode == RC_SIGN_IN) {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-            viewModel.handleGoogleSignInResult(task);  // Call ViewModel method to handle result
+            viewModel.handleGoogleSignInResult(task);
         } else {
             callbackManager.onActivityResult(requestCode, resultCode, data);
         }
     }
 }
-
