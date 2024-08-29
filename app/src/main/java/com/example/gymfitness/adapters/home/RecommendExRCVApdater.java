@@ -1,4 +1,4 @@
-package com.example.gymfitness.adapters;
+package com.example.gymfitness.adapters.home;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gymfitness.R;
 import com.example.gymfitness.data.WorkoutTest;
-import com.example.gymfitness.databinding.RecommandRvItemBinding;
+import com.example.gymfitness.databinding.RecommandRvcItemBinding;
 
 import java.util.ArrayList;
 
@@ -25,7 +25,7 @@ public class RecommendExRCVApdater extends RecyclerView.Adapter<RecommendExRCVAp
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        RecommandRvItemBinding binding = DataBindingUtil.inflate(layoutInflater, R.layout.recommand_rv_item,parent,false);
+        RecommandRvcItemBinding binding = DataBindingUtil.inflate(layoutInflater, R.layout.recommand_rvc_item,parent,false);
         return new MyViewHolder(binding);
     }
 
@@ -41,8 +41,8 @@ public class RecommendExRCVApdater extends RecyclerView.Adapter<RecommendExRCVAp
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
-        private RecommandRvItemBinding binding;
-        public MyViewHolder(RecommandRvItemBinding binding) {
+        private RecommandRvcItemBinding binding;
+        public MyViewHolder(RecommandRvcItemBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
         }

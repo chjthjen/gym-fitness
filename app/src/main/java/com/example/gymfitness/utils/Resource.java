@@ -5,7 +5,7 @@ public abstract class Resource<T> {
     private final String message;
 
     public Resource(T data, String message) {
-        this.data = data;
+        this.data = data;   
         this.message = message;
     }
 
