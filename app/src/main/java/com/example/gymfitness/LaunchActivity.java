@@ -32,7 +32,7 @@ public class LaunchActivity extends AppCompatActivity {
                 int onboarded = sharedPreferences.getInt("status",0);
                 if(onboarded == 1)
                 {
-                    Intent intent = new Intent(getApplicationContext(), AuthenticateActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                     startActivity(intent);
                     finish();
                 }
