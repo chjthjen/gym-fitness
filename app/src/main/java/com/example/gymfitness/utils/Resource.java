@@ -1,5 +1,6 @@
 package com.example.gymfitness.utils;
 // kiem tra animation
+// quan li phan hoi
 public abstract class Resource<T> {
     private final T data;
     private final String message;
