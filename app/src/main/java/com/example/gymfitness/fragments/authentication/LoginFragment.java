@@ -135,7 +135,12 @@ public class LoginFragment extends Fragment {
 
         TextView tvSignUp = binding.tvSignUp;
         tvSignUp.setOnClickListener(v -> navController.navigate(R.id.action_loginFragment_to_signUpFragment));
-
+        binding.tvForgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.action_loginFragment_to_forgottenPasswordFragment22);
+            }
+        });
         Button btnLogin = binding.btnLogin;
         btnLogin.setOnClickListener(v -> {
             String usernameOrEmail = binding.edtUsername.getText().toString().trim();
