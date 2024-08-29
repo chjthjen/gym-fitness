@@ -5,28 +5,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
-import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.gymfitness.R;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.example.gymfitness.adapters.home.ArticlesTipsRCVAdapter;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.firebase.auth.FirebaseAuth;
 
-import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.gymfitness.R;
-import com.example.gymfitness.adapters.RecommendExRCVApdater;
+import com.example.gymfitness.adapters.home.RecommendExRCVApdater;
 import com.example.gymfitness.data.WorkoutTest;
 import com.example.gymfitness.databinding.FragmentHomeBinding;
 
@@ -39,7 +33,8 @@ public class HomeFragment extends Fragment {
     private RecommendExRCVApdater recommendExRCVApdater;
     private ArrayList<WorkoutTest> list;
     private RecyclerView.LayoutManager layoutManager;
-
+    private RecyclerView.LayoutManager layoutManager2;
+    private ArticlesTipsRCVAdapter articlesTipsRCVAdapter;
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private String mParam1;
@@ -91,6 +86,11 @@ public class HomeFragment extends Fragment {
         layoutManager = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false);
         binding.rcvRecommendations.setLayoutManager(layoutManager);
         binding.rcvRecommendations.setAdapter(recommendExRCVApdater);
+
+        layoutManager2 = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false);
+        articlesTipsRCVAdapter = new ArticlesTipsRCVAdapter(list);
+        binding.rcvArticlesTips.setLayoutManager(layoutManager2);
+        binding.rcvArticlesTips.setAdapter(articlesTipsRCVAdapter);
     }
 
     @Override
