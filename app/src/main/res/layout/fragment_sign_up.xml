@@ -7,7 +7,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.gymfitness.viewmodels.AuthViewModel" />
+            type="com.example.gymfitness.viewmodels.SignUpViewModel" />
     </data>
     <ScrollView
         android:layout_width="match_parent"
@@ -16,7 +16,7 @@
         >
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
             <RelativeLayout
                 android:id="@+id/actionBar"
@@ -29,7 +29,7 @@
                     android:layout_height="12dp"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="25dp"
+                    android:layout_marginStart="25dp"
                     android:background="@null"
                     android:scaleType="fitCenter"
                     android:src="@drawable/arrow"
