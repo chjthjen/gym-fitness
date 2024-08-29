@@ -204,7 +204,7 @@ public class LoginFragment extends Fragment {
                     }
                 });
     }
-    //
+//
     private void handleFacebookAccessToken(AccessToken token) {
         AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
         auth.signInWithCredential(credential)
@@ -232,7 +232,7 @@ public class LoginFragment extends Fragment {
 }
 
 
-// Facebook Login
+        // Facebook Login
 //        callbackManager = CallbackManager.Factory.create();
 //
 //        imgFB.setOnClickListener(new View.OnClickListener() {
@@ -315,3 +315,4 @@ public class LoginFragment extends Fragment {
 
 
 //
+
