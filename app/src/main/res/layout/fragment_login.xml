@@ -5,7 +5,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.gymfitness.viewmodels.AuthViewModel" />
+            type="com.example.gymfitness.viewmodels.LoginViewModel" />
     </data>
     <RelativeLayout
         android:id="@+id/main"
