@@ -6,29 +6,32 @@ import android.widget.EditText;
 public class ValidationEmail {
     public static boolean validateInputEmail(String usernameOrEmail, String password,
                                              EditText usernameEditText, EditText passwordEditText) {
+        boolean isValid = true;
+
         if (usernameOrEmail.isEmpty()) {
             usernameEditText.setError("Username or Email cannot be empty");
-            return false;
+            isValid = false;
         }
 
         if (usernameOrEmail.contains("@") && !Patterns.EMAIL_ADDRESS.matcher(usernameOrEmail).matches()) {
             usernameEditText.setError("Invalid email format");
-            return false;
+            isValid = false;
         }
 
         if (password.isEmpty()) {
             passwordEditText.setError("Password cannot be empty");
-            return false;
+            isValid = false;
         }
 
         if (password.length() < 6) {
             passwordEditText.setError("Password must be at least 6 characters long");
-            return false;
+            isValid = false;
         }
 
-
-        usernameEditText.setError(null);
-        passwordEditText.setError(null);
-        return true;
+        if (isValid) {
+            usernameEditText.setError(null);
+            passwordEditText.setError(null);
+        }
+        return isValid;
     }
 }

@@ -23,6 +23,7 @@ import com.example.gymfitness.R;
 import com.example.gymfitness.data.Users;
 import com.example.gymfitness.activities.HomeActivity;
 import com.example.gymfitness.databinding.FragmentLoginBinding;
+import com.example.gymfitness.helpers.ValidationEmail;
 import com.example.gymfitness.utils.Resource;
 import com.example.gymfitness.viewmodels.LoginViewModel;
 import com.facebook.CallbackManager;
@@ -143,7 +144,9 @@ public class LoginFragment extends Fragment {
         btnLogin.setOnClickListener(v -> {
             String usernameOrEmail = binding.edtUsername.getText().toString().trim();
             String password = binding.edtPassword.getText().toString().trim();
-            viewModel.loginWithEmail(usernameOrEmail, password);
+            if (ValidationEmail.validateInputEmail(usernameOrEmail, password, binding.edtUsername, binding.edtPassword)) {
+                viewModel.loginWithEmail(usernameOrEmail, password);
+            }
         });
 
         viewModel.getCurrentUser().observe(getViewLifecycleOwner(), resource -> {
@@ -153,22 +156,24 @@ public class LoginFragment extends Fragment {
                     saveUserToDatabase(user);
                     Intent intent = new Intent(getActivity(), HomeActivity.class);
                     startActivity(intent);
-                    progressDialog.dismiss();
                     getActivity().finish();
                 }
-            } else if (resource instanceof Resource.Error) {
-                String error = ((Resource.Error<FirebaseUser>) resource).getMessage();
-                Toast.makeText(getContext(), error, Toast.LENGTH_SHORT).show();
-                progressDialog.dismiss();
             } else if (resource instanceof Resource.Loading) {
-
                 progressDialog.setMessage("Loading...");
                 progressDialog.show();
             } else if (resource instanceof Resource.Unspecified) {
 
             }
+
+            progressDialog.dismiss();
         });
 
+        viewModel.getErrorMessage().observe(getViewLifecycleOwner(), resource -> {
+            if (resource instanceof Resource.Error) {
+                String error = ((Resource.Error<String>) resource).getMessage();
+                Toast.makeText(getContext(), error, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void saveUserToDatabase(FirebaseUser user) {

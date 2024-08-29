@@ -46,7 +46,8 @@ public class LoginViewModel extends AndroidViewModel {
                     if (task.isSuccessful()) {
                         currentUser.setValue(new Resource.Success<>(auth.getCurrentUser()));
                     } else {
-                        errorMessage.setValue(new Resource.Error<>("Login failed: " + task.getException().getMessage()));
+//                        errorMessage.setValue(new Resource.Error<>("Login failed: " + task.getException().getMessage()));
+                        errorMessage.setValue(new Resource.Error<>("Email hoặc password không hợp lệ"));
                     }
                 });
     }
