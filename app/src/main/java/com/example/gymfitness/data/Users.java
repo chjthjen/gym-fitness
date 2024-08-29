@@ -1,8 +1,8 @@
-package com.example.gymfitness;
+package com.example.gymfitness.data;
 
 public class Users {
 
-    String userId, name, profile;
+    private String userId, name, profile;
 
     public Users(String userId, String name, String profile) {
         this.userId = userId;

@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
+import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +24,11 @@ import com.example.gymfitness.User;
 import com.example.gymfitness.Users;
 import com.example.gymfitness.databinding.FragmentSignUpBinding;
 import com.example.gymfitness.viewmodels.AuthViewModel;
+import com.example.gymfitness.data.SignUpCallback;
+import com.example.gymfitness.data.UserSignUp;
+import com.example.gymfitness.data.Users;
+import com.example.gymfitness.databinding.FragmentSignUpBinding;
+import com.example.gymfitness.viewmodels.SignUpViewModel;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -47,7 +53,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.Arrays;
 
 public class SignUpFragment extends Fragment {
-    private AuthViewModel viewModel;
+    private SignUpViewModel viewModel;
     FragmentSignUpBinding binding;
     NavController navController;
     private static final String ARG_PARAM1 = "param1";
@@ -91,7 +97,7 @@ public class SignUpFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_sign_up, container, false);
-        viewModel = new ViewModelProvider(getActivity()).get(AuthViewModel.class);
+        viewModel = new ViewModelProvider(requireActivity()).get(SignUpViewModel.class);
         binding.setViewModel(viewModel);
         binding.setLifecycleOwner(this);
         navController = NavHostFragment.findNavController(SignUpFragment.this);
@@ -168,16 +174,30 @@ public class SignUpFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if (validateInput()) {
-                    User user=new User(binding.edtEmailOrMobile.getText().toString(),binding.edtPassword.getText().toString(),binding.edtFullname.getText().toString());
-                    viewModel.setUser(user);
+                    UserSignUp userSignUp =new UserSignUp(binding.edtEmailOrMobile.getText().toString(),binding.edtPassword.getText().toString(),binding.edtFullname.getText().toString());
+                    viewModel.setUser(userSignUp);
                     if(viewModel.checkUserStatus()){
-                        Toast.makeText(getActivity(), "Đang đăng nhập", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Vui lòng đăng xuất tài khoản!", Toast.LENGTH_SHORT).show();
                     }
                     else{
-                        viewModel.signUp();
+                        viewModel.signUp(new SignUpCallback() {
+                            @Override
+                            public void onSuccess() {
+                                Toast.makeText(getActivity(),"Đăng kí thành công",Toast.LENGTH_LONG).show();
+                            }
+
+                            @Override
+                            public void onFailure(int errorCode) {
+                                if(errorCode==-999){
+                                    Toast.makeText(getActivity(),"Gmail này đã được dùng cho tài khoản khác",Toast.LENGTH_LONG).show();
+
+                                }
+                                else
+                                    Toast.makeText(getActivity(),"Đăng kí thất bại. vui lòng thử lại",Toast.LENGTH_LONG).show();
+
+                            }
+                        });
                     }
-                    // Nếu dữ liệu hợp lệ, hiển thị thông báo thành công + xử lý tiếp...
-                    Toast.makeText(getActivity(), "Sign up successful", Toast.LENGTH_SHORT).show();
                 } else {
                     // Nếu dữ liệu không hợp lệ, hiển thị thông báo lỗi
                     Toast.makeText(getActivity(), "Invalid input, Sign up failed", Toast.LENGTH_SHORT).show();
