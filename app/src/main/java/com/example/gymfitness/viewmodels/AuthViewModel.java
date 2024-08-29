@@ -1,16 +1,12 @@
 package com.example.gymfitness.viewmodels;
 
 import android.util.Log;
-import android.view.View;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-import androidx.navigation.NavController;
 
-import com.example.gymfitness.R;
-import com.example.gymfitness.User;
-import com.example.gymfitness.fragments.authentication.SignUpFragment;
+import com.example.gymfitness.data.UserSignUp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -22,7 +18,7 @@ public class AuthViewModel extends ViewModel {
 
     //signup
     private final FirebaseAuth mAuth;
-    private MutableLiveData<User> user;
+    private MutableLiveData<UserSignUp> user;
 
     public AuthViewModel() {
         email = new MutableLiveData<>();
@@ -57,8 +53,8 @@ public class AuthViewModel extends ViewModel {
     }
 
 
-    public void setUser(User user) {
-        this.user.setValue(user);
+    public void setUser(UserSignUp userSignUp) {
+        this.user.setValue(userSignUp);
     }
 
 }

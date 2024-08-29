@@ -20,11 +20,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.gymfitness.R;
-import com.example.gymfitness.Users;
+import com.example.gymfitness.data.Users;
 import com.example.gymfitness.activities.HomeActivity;
 import com.example.gymfitness.databinding.FragmentLoginBinding;
-import com.example.gymfitness.viewmodels.AuthViewModel;
-import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.example.gymfitness.viewmodels.LoginViewModel ;
 import com.facebook.FacebookCallback;
@@ -36,13 +34,9 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthCredential;
-import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Arrays;

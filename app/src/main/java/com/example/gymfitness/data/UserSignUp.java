@@ -1,17 +1,17 @@
-package com.example.gymfitness;
+package com.example.gymfitness.data;
 
-public class User {
+public class UserSignUp {
     private String email;
     private String password;
     private String fullName;
 
-    public User(String email, String password, String fullName) {
+    public UserSignUp(String email, String password, String fullName) {
         this.email = email;
         this.password = password;
         this.fullName = fullName;
     }
 
-    public User() {
+    public UserSignUp() {
     }
 
     public String getEmail() {
