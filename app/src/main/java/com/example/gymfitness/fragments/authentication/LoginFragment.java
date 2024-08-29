@@ -16,6 +16,7 @@ import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -150,6 +151,13 @@ public class LoginFragment extends Fragment {
             }
         });
 
+        Button btnLogin = binding.btnLogin;
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                normalLogin();
+            }
+        });
     }
 
     private void login() {
@@ -204,7 +212,7 @@ public class LoginFragment extends Fragment {
                     }
                 });
     }
-//
+    //
     private void handleFacebookAccessToken(AccessToken token) {
         AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
         auth.signInWithCredential(credential)
@@ -229,10 +237,66 @@ public class LoginFragment extends Fragment {
 
 
     }
+
+    // Login = Email/Password
+    private void normalLogin() {
+        String usernameOrEmail = binding.edtUsername.getText().toString().trim();
+        String password = binding.edtPassword.getText().toString().trim();
+
+        if(!validateInput(usernameOrEmail, password)) {
+            return;
+        }
+
+        progressDialog.show();
+
+        auth.signInWithEmailAndPassword(usernameOrEmail, password)
+                .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        progressDialog.dismiss();
+                        if(task.isSuccessful()) {
+                            navController.navigate(R.id.action_loginFragment_to_homeFragment);
+                        }
+                        else {
+                            Toast.makeText(getContext(), "Xác thực không thành công.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
+
+    private boolean validateInput (String usernameOrEmail, String password) {
+        // Kiểm tra Username hoặc Email
+        if (usernameOrEmail.isEmpty()) {
+            binding.edtUsername.setError("Username or Email cannot be empty");
+            return false;
+        }
+
+        // Kiểm tra định dạng email nếu input có chứa ký tự '@'
+        if (usernameOrEmail.contains("@") && !Patterns.EMAIL_ADDRESS.matcher(usernameOrEmail).matches()) {
+            binding.edtUsername.setError("Invalid email format");
+            return false;
+        }
+
+        // Kiểm tra Password
+        if (password.isEmpty()) {
+            binding.edtPassword.setError("Password cannot be empty");
+            return false;
+        }
+
+        if (password.length() < 6) {
+            binding.edtPassword.setError("Password must be at least 6 characters long");
+            return false;
+        }
+
+        // Nếu tất cả đều hợp lệ
+        binding.edtUsername.setError(null);
+        binding.edtPassword.setError(null);
+        return true;
+    }
 }
 
 
-        // Facebook Login
+// Facebook Login
 //        callbackManager = CallbackManager.Factory.create();
 //
 //        imgFB.setOnClickListener(new View.OnClickListener() {
@@ -248,38 +312,7 @@ public class LoginFragment extends Fragment {
 //                    Toast.makeText(getActivity(), "Invalid input, login failed", Toast.LENGTH_SHORT).show();
 //                }
 //            }
-//                private boolean validateInput () {
-//                String usernameOrEmail = binding.edtUsername.getText().toString().trim();
-//                String password = binding.edtPassword.getText().toString().trim();
-//
-//                // Kiểm tra Username hoặc Email
-//                if (usernameOrEmail.isEmpty()) {
-//                    binding.edtUsername.setError("Username or Email cannot be empty");
-//                    return false;
-//                }
-//
-//                // Kiểm tra định dạng email nếu input có chứa ký tự '@'
-//                if (usernameOrEmail.contains("@") && !Patterns.EMAIL_ADDRESS.matcher(usernameOrEmail).matches()) {
-//                    binding.edtUsername.setError("Invalid email format");
-//                    return false;
-//                }
-//
-//                // Kiểm tra Password
-//                if (password.isEmpty()) {
-//                    binding.edtPassword.setError("Password cannot be empty");
-//                    return false;
-//                }
-//
-//                if (password.length() < 6) {
-//                    binding.edtPassword.setError("Password must be at least 6 characters long");
-//                    return false;
-//                }
-//
-//                // Nếu tất cả đều hợp lệ
-//                binding.edtUsername.setError(null);
-//                binding.edtPassword.setError(null);
-//                return true;
-//            }
+
 //            });
 //        binding.tvForgotPassword.setOnClickListener(new View.OnClickListener()
 //
@@ -315,4 +348,3 @@ public class LoginFragment extends Fragment {
 
 
 //
-
