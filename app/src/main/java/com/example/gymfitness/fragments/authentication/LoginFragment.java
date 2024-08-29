@@ -23,6 +23,7 @@ import com.example.gymfitness.R;
 import com.example.gymfitness.Users;
 import com.example.gymfitness.activities.HomeActivity;
 import com.example.gymfitness.databinding.FragmentLoginBinding;
+import com.example.gymfitness.utils.Resource;
 import com.example.gymfitness.viewmodels.AuthViewModel;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -152,30 +153,31 @@ public class LoginFragment extends Fragment {
             viewModel.loginWithEmail(usernameOrEmail, password);
         });
 
-        viewModel.getCurrentUser().observe(getViewLifecycleOwner(), user -> {
-            if (user != null) {
-                saveUserToDatabase(user);
-                Intent intent = new Intent(getActivity(), HomeActivity.class);
-                startActivity(intent);
+        viewModel.getCurrentUser().observe(getViewLifecycleOwner(), resource -> {
+            if (resource instanceof Resource.Success) {
                 progressDialog.dismiss();
-                getActivity().finish();
+                navigateToHome();
+            } else if (resource instanceof Resource.Error) {
+                progressDialog.dismiss();
+                Toast.makeText(getContext(), resource.getMessage(), Toast.LENGTH_SHORT).show();
+            } else if (resource instanceof Resource.Loading) {
+                progressDialog.setMessage("Logging in...");
+                progressDialog.show();
             }
         });
 
         viewModel.getErrorMessage().observe(getViewLifecycleOwner(), error -> {
             if (error != null) {
-                Toast.makeText(getContext(), error, Toast.LENGTH_SHORT).show();
-                progressDialog.dismiss(); // Hide progress dialog if shown
+                Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                progressDialog.dismiss();
             }
         });
     }
-    private void saveUserToDatabase(FirebaseUser user) {
-        Users users = new Users();
-        users.setUserId(user.getUid());
-        users.setName(user.getDisplayName());
-        users.setProfile(user.getPhotoUrl() != null ? user.getPhotoUrl().toString() : "default");
 
-        database.getReference().child("Users").child(user.getUid()).setValue(users);
+    private void navigateToHome() {
+        Intent intent = new Intent(getActivity(), HomeActivity.class);
+        startActivity(intent);
+        getActivity().finish();
     }
 
     @Override
