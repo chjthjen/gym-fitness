@@ -86,12 +86,15 @@ dependencies {
     implementation platform("com.google.firebase:firebase-bom:33.2.0")
     implementation "com.google.firebase:firebase-auth"
     implementation "com.google.android.gms:play-services-auth:21.2.0"
+    implementation 'com.facebook.android:facebook-android-sdk:[8,9)'
+    implementation 'com.facebook.android:facebook-login:latest.release'
+
     // Facebook SDK với exclude
 //    implementation('com.facebook.android:facebook-android-sdk:5.15.3') {
 //        exclude group: 'androidx.legacy', module: 'legacy-support-v4'
 //    }
 //    implementation 'androidx.browser:browser:1.5.0'
-    implementation 'com.facebook.android:facebook-login:17.0.1'  // Thay latest_version bằng phiên bản mới nhất.
+//    implementation 'com.facebook.android:facebook-login:17.0.1'  // Thay latest_version bằng phiên bản mới nhất.
     implementation 'androidx.browser:browser:1.5.0'
 
 }

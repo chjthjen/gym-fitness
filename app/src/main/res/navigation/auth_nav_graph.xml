@@ -34,6 +34,10 @@
             android:id="@+id/action_signUpFragment_to_loginFragment"
             app:destination="@id/loginFragment"
             app:enterAnim="@anim/from_left" />
+<!--        <action-->
+<!--            android:id="@+id/action_signUpFragment_to_homeFragment"-->
+<!--            app:destination="@id/homeFragment"-->
+<!--            app:enterAnim="@anim/from_right" />-->
     </fragment>
     <fragment
         android:id="@+id/forgottenPasswordFragment2"
