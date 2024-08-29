@@ -23,6 +23,7 @@ import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.gymfitness.LaunchActivity;
@@ -145,6 +146,17 @@ public class LoginFragment extends Fragment {
             }
         });
 
+        // Thiết lập sự kiện cho TextView để chuyển đến SignUpFragment
+        TextView tvSignUp = binding.tvSignUp;
+        tvSignUp.setOnClickListener(new View.OnClickListener() {
+
+
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.action_loginFragment_to_signUpFragment);
+            }
+        });
+
     }
 
     private void login() {
@@ -153,77 +165,77 @@ public class LoginFragment extends Fragment {
     }
 
 
-            @Override
-            public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-                super.onActivityResult(requestCode, resultCode, data);
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
-                // Xử lý kết quả đăng nhập Facebook
-                if (callbackManager != null) {
-                    callbackManager.onActivityResult(requestCode, resultCode, data);
-                }
+        // Xử lý kết quả đăng nhập Facebook
+        if (callbackManager != null) {
+            callbackManager.onActivityResult(requestCode, resultCode, data);
+        }
 
 
-                // Xử lý kết quả đăng nhập Google
-                if (requestCode == RC_SIGN_IN) {
-                    Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-                    try {
-                        GoogleSignInAccount account = task.getResult(ApiException.class);
-                        firebaseAuthWithGoogle(account.getIdToken());
-                    } catch (ApiException e) {
-                        e.printStackTrace();
-                        Toast.makeText(getContext(), "Đăng nhập không thành công.", Toast.LENGTH_SHORT).show();
+        // Xử lý kết quả đăng nhập Google
+        if (requestCode == RC_SIGN_IN) {
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            try {
+                GoogleSignInAccount account = task.getResult(ApiException.class);
+                firebaseAuthWithGoogle(account.getIdToken());
+            } catch (ApiException e) {
+                e.printStackTrace();
+                Toast.makeText(getContext(), "Đăng nhập không thành công.", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    private void firebaseAuthWithGoogle(String idToken) {
+        AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
+        auth.signInWithCredential(credential)
+                .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            FirebaseUser user = auth.getCurrentUser();
+                            Users users = new Users();
+                            users.setUserId(user.getUid());
+                            users.setName(user.getDisplayName());
+                            users.setProfile(user.getPhotoUrl() != null ? user.getPhotoUrl().toString() : "default");
+
+                            database.getReference().child("Users").child(user.getUid()).setValue(users);
+
+                            navController.navigate(R.id.action_loginFragment_to_homeFragment);
+
+                        } else {
+                            Toast.makeText(getContext(), "Xác thực không thành công.", Toast.LENGTH_SHORT).show();
+                        }
                     }
-                }
-            }
-
-            private void firebaseAuthWithGoogle(String idToken) {
-                AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
-                auth.signInWithCredential(credential)
-                        .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    FirebaseUser user = auth.getCurrentUser();
-                                    Users users = new Users();
-                                    users.setUserId(user.getUid());
-                                    users.setName(user.getDisplayName());
-                                    users.setProfile(user.getPhotoUrl() != null ? user.getPhotoUrl().toString() : "default");
-
-                                    database.getReference().child("Users").child(user.getUid()).setValue(users);
-
-                                    navController.navigate(R.id.action_loginFragment_to_homeFragment);
-
-                                } else {
-                                    Toast.makeText(getContext(), "Xác thực không thành công.", Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        });
-            }
+                });
+    }
 //
-            private void handleFacebookAccessToken(AccessToken token) {
-                AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
-                auth.signInWithCredential(credential)
-                        .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    FirebaseUser user = auth.getCurrentUser();
-                                    Users users = new Users();
-                                    users.setUserId(user.getUid());
-                                    users.setName(user.getDisplayName());
-                                    users.setProfile(user.getPhotoUrl() != null ? user.getPhotoUrl().toString() : "default");
+    private void handleFacebookAccessToken(AccessToken token) {
+        AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
+        auth.signInWithCredential(credential)
+                .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            FirebaseUser user = auth.getCurrentUser();
+                            Users users = new Users();
+                            users.setUserId(user.getUid());
+                            users.setName(user.getDisplayName());
+                            users.setProfile(user.getPhotoUrl() != null ? user.getPhotoUrl().toString() : "default");
 
-                                    database.getReference().child("Users").child(user.getUid()).setValue(users);
-                                    navController.navigate(R.id.action_loginFragment_to_homeFragment);
+                            database.getReference().child("Users").child(user.getUid()).setValue(users);
+                            navController.navigate(R.id.action_loginFragment_to_homeFragment);
 
-                                } else {
-                                    Toast.makeText(getContext(), "Xác thực không thành công.", Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        });
-            }
+                        } else {
+                            Toast.makeText(getContext(), "Xác thực không thành công.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
 
 
+    }
 }
 
 
