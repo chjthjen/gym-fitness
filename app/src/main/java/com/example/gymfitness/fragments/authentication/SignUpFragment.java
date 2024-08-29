@@ -19,11 +19,13 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.gymfitness.R;
+import com.example.gymfitness.User;
 import com.example.gymfitness.Users;
 import com.example.gymfitness.activities.AuthenticateActivity;
 import com.example.gymfitness.databinding.FragmentLoginBinding;
 import com.example.gymfitness.databinding.FragmentSignUpBinding;
 import com.example.gymfitness.viewmodels.AuthViewModel;
+import com.example.gymfitness.viewmodels.SignUpViewModel;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -169,6 +171,14 @@ public class SignUpFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if (validateInput()) {
+                    User user=new User(binding.edtEmailOrMobile.getText().toString(),binding.edtPassword.getText().toString(),binding.edtFullname.getText().toString());
+                    viewModel.setUser(user);
+                    if(viewModel.checkUserStatus()){
+                        Toast.makeText(getActivity(), "Đang đăng nhập", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        viewModel.signUp();
+                    }
                     // Nếu dữ liệu hợp lệ, hiển thị thông báo thành công + xử lý tiếp...
                     Toast.makeText(getActivity(), "Sign up successful", Toast.LENGTH_SHORT).show();
                 } else {
