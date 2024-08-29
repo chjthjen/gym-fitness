@@ -1,4 +1,4 @@
-package com.example.gymfitness.utils;
+package com.example.gymfitness.helpers;
 
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
