@@ -1,6 +1,7 @@
 package com.example.gymfitness.activities;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -73,6 +74,8 @@ public class OnBoardActivity extends AppCompatActivity {
 //        binding.button3.getBackground().setAlpha(25);
         binding.button3.setOnClickListener(v -> {
             if (binding.viewPager.getCurrentItem() == 2) {
+                Intent intent = new Intent(OnBoardActivity.this, AuthenticateActivity.class);
+                startActivity(intent);
                 finish();
             } else {
                 binding.viewPager.setCurrentItem(binding.viewPager.getCurrentItem() + 1);
