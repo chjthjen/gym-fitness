@@ -17,7 +17,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingBottom="30dp">
             <RelativeLayout
                 android:id="@+id/actionBar"
                 android:layout_width="match_parent"
@@ -83,6 +84,7 @@
                     android:background="@drawable/rounded_edittext_signup"
                     android:backgroundTint="@color/white"
                     android:hint="Full name"
+                    android:textColorHint="#757070"
                     android:padding="12dp"
                     android:textColor="@color/black" />
                 <TextView
@@ -100,6 +102,7 @@
                     android:background="@drawable/rounded_edittext_signup"
                     android:backgroundTint="@color/white"
                     android:hint="Email or Mobile Number"
+                    android:textColorHint="#757070"
                     android:padding="12dp"
                     android:textColor="@color/black" />
                 <TextView
@@ -117,6 +120,7 @@
                     android:background="@drawable/rounded_edittext_signup"
                     android:backgroundTint="@color/white"
                     android:hint="Password"
+                    android:textColorHint="#757070"
                     android:inputType="textPassword"
                     android:padding="12dp"
                     android:textColor="@color/black" />
@@ -136,6 +140,7 @@
                     android:backgroundTint="@color/white"
                     android:hint="Confirm Password"
                     android:inputType="textPassword"
+                    android:textColorHint="#757070"
                     android:padding="12dp"
                     android:textColor="@color/black" />
             </LinearLayout>
@@ -170,6 +175,7 @@
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:layout_marginTop="20dp"
+                android:textSize="18sp"
                 android:textStyle="bold" />
             <TextView
                 android:layout_width="wrap_content"

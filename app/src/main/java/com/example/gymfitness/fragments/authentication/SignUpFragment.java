@@ -86,6 +86,8 @@ public class SignUpFragment extends Fragment {
                             @Override
                             public void onSuccess() {
                                 Toast.makeText(getActivity(), "Đăng kí thành công", Toast.LENGTH_LONG).show();
+                                navController.navigate(R.id.action_signUpFragment_to_loginFragment);
+
                             }
 
                             @Override

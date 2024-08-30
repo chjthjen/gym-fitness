@@ -33,29 +33,5 @@ public class AuthViewModel extends ViewModel {
         return isLoginSuccessful;
     }
 
-
-    //signup
-    public boolean checkUserStatus(){
-        FirebaseUser currentUser=mAuth.getCurrentUser();
-        return currentUser != null;
-    }
-
-    public void signUp(){
-        mAuth.createUserWithEmailAndPassword(user.getValue().getUser_email(),user.getValue().getUser_password())
-                .addOnCompleteListener(task -> {
-                    if(task.isComplete()){
-                        Log.d("khanh", "createUserWithEmail:success");
-                    }
-                    else{
-                        Log.w("khanh", "createUserWithEmail:failure", task.getException());
-                    }
-                });
-    }
-
-
-    public void setUser(UserAccount userSignUp) {
-        this.user.setValue(userSignUp);
-    }
-
 }
 
