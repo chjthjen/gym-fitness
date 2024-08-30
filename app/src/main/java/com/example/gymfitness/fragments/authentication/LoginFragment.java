@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,7 +18,6 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.gymfitness.retrofit.GymApi;
 import com.example.gymfitness.R;
 import com.example.gymfitness.data.UserAccount;
@@ -28,6 +26,7 @@ import com.example.gymfitness.data.Users;
 import com.example.gymfitness.activities.HomeActivity;
 import com.example.gymfitness.databinding.FragmentLoginBinding;
 import com.example.gymfitness.helpers.ValidationEmail;
+import com.example.gymfitness.retrofit.RetrofitInstance;
 import com.example.gymfitness.utils.Resource;
 import com.example.gymfitness.viewmodels.LoginViewModel;
 import com.facebook.CallbackManager;
@@ -86,24 +85,11 @@ public class LoginFragment extends Fragment {
         viewModel = new ViewModelProvider(requireActivity()).get(LoginViewModel.class);
         binding.setViewModel(viewModel);
         binding.setLifecycleOwner(this);
-
-        OkHttpClient client = new OkHttpClient.Builder()
-                .hostnameVerifier((hostname, session) -> true)
-                .build();
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://172.16.112.124:3000/")
-                .client(client)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-
-        apiService = retrofit.create(GymApi.class);
-
-
+        apiService = RetrofitInstance.getApiService();
         navController = NavHostFragment.findNavController(this);
         return binding.getRoot();
     }
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
