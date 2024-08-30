@@ -27,6 +27,7 @@ public class OnBoardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityOnBoardBinding.inflate(getLayoutInflater());
+        EdgeToEdge.enable(this);
         viewModel = new ViewModelProvider(this).get(OnBoardViewmodel.class);
 
         setContentView(binding.getRoot());
