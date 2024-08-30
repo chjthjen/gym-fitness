@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +20,10 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.gymfitness.ApiService;
 import com.example.gymfitness.R;
+import com.example.gymfitness.UserAccount;
+import com.example.gymfitness.UserInfo;
 import com.example.gymfitness.data.Users;
 import com.example.gymfitness.activities.HomeActivity;
 import com.example.gymfitness.databinding.FragmentLoginBinding;
@@ -41,7 +45,16 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.io.IOException;
 import java.util.Arrays;
+
+import okhttp3.OkHttpClient;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LoginFragment extends Fragment {
 
@@ -56,6 +69,7 @@ public class LoginFragment extends Fragment {
     private GoogleSignInClient googleSignInClient;
     private ProgressDialog progressDialog;
     private CallbackManager callbackManager;
+    private ApiService apiService;
 
     private static final int RC_SIGN_IN = 100;
 
@@ -72,6 +86,21 @@ public class LoginFragment extends Fragment {
         viewModel = new ViewModelProvider(requireActivity()).get(LoginViewModel.class);
         binding.setViewModel(viewModel);
         binding.setLifecycleOwner(this);
+
+        OkHttpClient client = new OkHttpClient.Builder()
+                .hostnameVerifier((hostname, session) -> true)
+                .build();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://172.16.112.124:3000/")
+                .client(client)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+
+        apiService = retrofit.create(ApiService.class);
+
+
         navController = NavHostFragment.findNavController(this);
         return binding.getRoot();
     }
@@ -181,9 +210,82 @@ public class LoginFragment extends Fragment {
         users.setUserId(user.getUid());
         users.setName(user.getDisplayName());
         users.setProfile(user.getPhotoUrl() != null ? user.getPhotoUrl().toString() : "default");
-
+        saveUser(user);
         database.getReference().child("Users").child(user.getUid()).setValue(users);
     }
+
+    private void saveUser(FirebaseUser user) {
+        // Tạo đối tượng UserAccount
+        UserAccount userAccount = new UserAccount(
+                user.getUid(),              // user_id
+                user.getDisplayName(),      // user_fullname
+                user.getEmail(),            // user_email
+                "",                         // user_phone (có thể để trống hoặc thêm thông tin nếu có)
+                "",                         // user_password (có thể để trống hoặc thêm thông tin nếu có)
+                true                        // isNormalUser (hoặc false tùy vào logic ứng dụng của bạn)
+        );
+
+        // Tạo đối tượng UserInfo
+        UserInfo userInfo = new UserInfo(
+                null,               // gender
+                0,                  // weight
+                0,                  // height
+                0,                  // age
+                null,               // DoB
+                user.getPhotoUrl() != null ? user.getPhotoUrl().toString() : "default", // user_image
+                user.getUid(),      // user_id
+                5,                  // goal_id
+                1                   // level_id
+        );
+
+        // Lưu UserAccount
+        Call<ResponseBody> accountCall = apiService.saveUserAccount(userAccount);
+        accountCall.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.isSuccessful()) {
+                    Log.e("user account:", "Thành công" );
+                } else {
+                    try {
+                        String errorBody = response.errorBody().string();
+                        Log.e("user account", "Lỗi: " + errorBody);
+                        Toast.makeText(getContext(), "Lỗi: " + errorBody, Toast.LENGTH_SHORT).show();
+                    } catch (IOException e) {
+                        Log.e("SaveUserAccount", "Lỗi", e);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+            }
+        });
+
+        // Lưu UserInfo
+        Call<ResponseBody> infoCall = apiService.saveUserInfo(userInfo);
+        infoCall.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.isSuccessful()) {
+                    Log.e("User info:", "Thành công" );
+                } else {
+
+                    try {
+                        String errorBody = response.errorBody().string();
+                        Log.e("User info", "Lỗi: " + errorBody);
+                    } catch (IOException e) {
+                        Log.e("User info", "Lỗi", e);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+            }
+        });
+    }
+
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
