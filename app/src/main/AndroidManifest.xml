@@ -26,7 +26,7 @@
             android:name=".activities.OnBroading_2a"
             android:exported="false" />
         <activity
-            android:name=".SetUp_4a"
+            android:name=".activities.SetUp_4a"
             android:exported="false" />
         <activity
             android:name=".activities.HomeActivity"

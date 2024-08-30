@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    tools:context=".Fragment_6_1_1_A">
+    tools:context=".fragments.Fragment_6_1_1_A">
 
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout

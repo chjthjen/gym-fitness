@@ -25,7 +25,7 @@ public interface GymApi {
             @Field("user_id") String userId
     );
 
-    @POST("api/saveuseraccount")
+    @POST("api/signup")
     Call<ResponseBody> saveUserAccount(@Body UserAccount userAccount);
 
     @POST("api/saveuserinfo")
