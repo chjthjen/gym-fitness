@@ -1,5 +1,8 @@
 package com.example.gymfitness;
 
+import com.example.gymfitness.data.UserAccount;
+import com.example.gymfitness.data.UserInfo;
+
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;

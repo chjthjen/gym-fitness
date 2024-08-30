@@ -16,7 +16,7 @@ import android.widget.Toast;
 import com.example.gymfitness.R;
 import com.example.gymfitness.databinding.FragmentSignUpBinding;
 import com.example.gymfitness.data.SignUpCallback;
-import com.example.gymfitness.data.UserSignUp;
+import com.example.gymfitness.data.UserAccount;
 import com.example.gymfitness.helpers.ValidationEmail;
 import com.example.gymfitness.viewmodels.SignUpViewModel;
 import com.facebook.CallbackManager;
@@ -67,12 +67,12 @@ public class SignUpFragment extends Fragment {
 
     private void handleSignUp() {
         if (validateInput()) {
-            UserSignUp userSignUp = new UserSignUp(
+            UserAccount userAccount = new UserAccount(
                     binding.edtEmailOrMobile.getText().toString(),
                     binding.edtPassword.getText().toString(),
                     binding.edtFullname.getText().toString()
             );
-            viewModel.setUser(userSignUp);
+            viewModel.setUser(userAccount);
 
             if (viewModel.checkUserStatus()) {
                 Toast.makeText(getActivity(), "Vui lòng đăng xuất tài khoản!", Toast.LENGTH_SHORT).show();
