@@ -82,7 +82,27 @@ public class SignUpFragment extends Fragment {
                     @Override
                     public void onSuccess() {
                         progressDialog.dismiss();
-                        Toast.makeText(getActivity(), "Đăng kí thành công", Toast.LENGTH_LONG).show();
+                        viewModel.saveDB(new SignUpCallback() {
+                            @Override
+                            public void onSuccess() {
+                                Toast.makeText(getActivity(), "Đăng kí thành công", Toast.LENGTH_LONG).show();
+                            }
+
+                            @Override
+                            public void onFailure(int errorCode) {
+                                viewModel.deleteUserFromFirebase(new SignUpCallback() {
+                                    @Override
+                                    public void onSuccess() {
+                                        Toast.makeText(getActivity(), "Đăng kí thất bại. vui lòng thử lại", Toast.LENGTH_LONG).show();
+                                    }
+
+                                    @Override
+                                    public void onFailure(int errorCode) {
+                                        Toast.makeText(getActivity(), "Đăng kí thất bại. vui lòng thử lại", Toast.LENGTH_LONG).show();
+                                    }
+                                });
+                            }
+                        });
                     }
 
                     @Override
