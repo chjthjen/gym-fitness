@@ -20,10 +20,10 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.gymfitness.ApiService;
+import com.example.gymfitness.retrofit.GymApi;
 import com.example.gymfitness.R;
-import com.example.gymfitness.UserAccount;
-import com.example.gymfitness.UserInfo;
+import com.example.gymfitness.data.UserAccount;
+import com.example.gymfitness.data.UserInfo;
 import com.example.gymfitness.data.Users;
 import com.example.gymfitness.activities.HomeActivity;
 import com.example.gymfitness.databinding.FragmentLoginBinding;
@@ -69,7 +69,7 @@ public class LoginFragment extends Fragment {
     private GoogleSignInClient googleSignInClient;
     private ProgressDialog progressDialog;
     private CallbackManager callbackManager;
-    private ApiService apiService;
+    private GymApi apiService;
 
     private static final int RC_SIGN_IN = 100;
 
@@ -98,7 +98,7 @@ public class LoginFragment extends Fragment {
                 .build();
 
 
-        apiService = retrofit.create(ApiService.class);
+        apiService = retrofit.create(GymApi.class);
 
 
         navController = NavHostFragment.findNavController(this);

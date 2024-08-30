@@ -1,4 +1,4 @@
-package com.example.gymfitness;
+package com.example.gymfitness.data;
 
 public class UserAccount {
     private String user_id;
@@ -12,6 +12,11 @@ public class UserAccount {
         // Default constructor required for calls to DataSnapshot.getValue(UserAccount.class)
     }
 
+    public UserAccount(String email, String password, String fullName) {
+        this.user_email = email;
+        this.user_password = password;
+        this.user_fullname = fullName;
+    }
     public UserAccount(String user_id, String user_fullname, String user_email, String user_phone, String user_password, boolean isNormalUser) {
         this.user_id = user_id;
         this.user_fullname = user_fullname;

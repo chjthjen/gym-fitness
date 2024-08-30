@@ -1,4 +1,4 @@
-package com.example.gymfitness;
+package com.example.gymfitness.data;
 
 import java.sql.Date;
 

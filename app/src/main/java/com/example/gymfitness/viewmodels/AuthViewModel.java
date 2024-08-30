@@ -6,7 +6,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.gymfitness.data.UserSignUp;
+import com.example.gymfitness.data.UserAccount;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -18,7 +18,7 @@ public class AuthViewModel extends ViewModel {
 
     //signup
     private final FirebaseAuth mAuth;
-    private MutableLiveData<UserSignUp> user;
+    private MutableLiveData<UserAccount> user;
 
     public AuthViewModel() {
         email = new MutableLiveData<>();
@@ -41,7 +41,7 @@ public class AuthViewModel extends ViewModel {
     }
 
     public void signUp(){
-        mAuth.createUserWithEmailAndPassword(user.getValue().getEmail(),user.getValue().getPassword())
+        mAuth.createUserWithEmailAndPassword(user.getValue().getUser_email(),user.getValue().getUser_password())
                 .addOnCompleteListener(task -> {
                     if(task.isComplete()){
                         Log.d("khanh", "createUserWithEmail:success");
@@ -53,7 +53,7 @@ public class AuthViewModel extends ViewModel {
     }
 
 
-    public void setUser(UserSignUp userSignUp) {
+    public void setUser(UserAccount userSignUp) {
         this.user.setValue(userSignUp);
     }
 

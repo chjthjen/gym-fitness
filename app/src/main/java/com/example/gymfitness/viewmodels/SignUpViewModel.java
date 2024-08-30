@@ -12,7 +12,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.gymfitness.data.ApiResponse;
 import com.example.gymfitness.data.SignUpCallback;
-import com.example.gymfitness.data.UserSignUp;
+import com.example.gymfitness.data.UserAccount;
 import com.example.gymfitness.data.Users;
 import com.example.gymfitness.retrofit.GymApi;
 import com.example.gymfitness.retrofit.RetrofitInstance;
@@ -42,7 +42,7 @@ public class SignUpViewModel extends ViewModel {
 
     private FirebaseAuth mAuth;
     private FirebaseDatabase database;
-    private MutableLiveData<UserSignUp> user;
+    private MutableLiveData<UserAccount> user;
     private GoogleSignInClient googleSignInClient;
     private CallbackManager callbackManager;
 
@@ -73,10 +73,10 @@ public class SignUpViewModel extends ViewModel {
     }
 
     public void signUp(SignUpCallback signUpCallback) {
-        UserSignUp userSignUp = user.getValue();
-        if (userSignUp == null) return;
+        UserAccount userAccount = user.getValue();
+        if (userAccount == null) return;
 
-        mAuth.createUserWithEmailAndPassword(userSignUp.getEmail(), userSignUp.getPassword())
+        mAuth.createUserWithEmailAndPassword(userAccount.getUser_email(), userAccount.getUser_password())
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         signUpCallback.onSuccess();
@@ -145,12 +145,12 @@ public class SignUpViewModel extends ViewModel {
     }
 
 
-    public void setUser(UserSignUp userSignUp) {
-        this.user.setValue(userSignUp);
+    public void setUser(UserAccount userAccount) {
+        this.user.setValue(userAccount);
     }
 
     public void saveDB(SignUpCallback signUpCallback){
-        Call<ApiResponse> call=gymApi.signup(user.getValue().getEmail(),user.getValue().getFullName(), mAuth.getUid());
+        Call<ApiResponse> call=gymApi.signup(user.getValue().getUser_email(),user.getValue().getUser_fullname(), mAuth.getUid());
         call.enqueue(new Callback<ApiResponse>() {
             @Override
             public void onResponse(@NonNull Call<ApiResponse> call, @NonNull Response<ApiResponse> response) {
@@ -173,7 +173,7 @@ public class SignUpViewModel extends ViewModel {
         FirebaseUser firebaseUser=mAuth.getCurrentUser();
         if(firebaseUser!=null){
             AuthCredential credential= EmailAuthProvider
-                    .getCredential(user.getValue().getEmail(),user.getValue().getPassword());
+                    .getCredential(user.getValue().getUser_email(),user.getValue().getUser_password());
 
             firebaseUser.reauthenticate(credential)
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
