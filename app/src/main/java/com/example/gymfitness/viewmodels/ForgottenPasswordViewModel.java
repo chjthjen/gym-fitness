@@ -32,25 +32,29 @@ public class ForgottenPasswordViewModel extends ViewModel {
     }
 
     public void checkEmail(String email) {
-        gymApi.checkExist(email).enqueue(new Callback<ApiResponse>() {
+        Call<ApiResponse> call = gymApi.checkExist(email);
+        call.enqueue(new Callback<ApiResponse>() {
             @Override
             public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    if (response.body().getMessage().equals("Email already exists")) {
+                if(response.isSuccessful() && response.body() != null)
+                {
+                    String message = response.body().getMessage();
+                    if ("Email already exists".equals(message)) {
                         emailExists.setValue(true);
                     } else {
                         emailExists.setValue(false);
-                        errorMessage.setValue("Email not found");
+                        errorMessage.setValue("Can't find account");
                     }
-                } else {
-                    errorMessage.setValue("Response error: " + response.message());
                 }
+                else
+                    errorMessage.setValue("Error " + response.message());
             }
 
             @Override
             public void onFailure(Call<ApiResponse> call, Throwable t) {
-                errorMessage.setValue("API call failed: " + t.getMessage());
+                errorMessage.setValue("Error: " + t.getMessage());
             }
         });
+
     }
 }

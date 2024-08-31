@@ -2,9 +2,11 @@ package com.example.gymfitness.fragments.authentication;
 
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,6 +19,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.example.gymfitness.R;
 import com.example.gymfitness.databinding.FragmentForgottenPasswordBinding;
 import com.example.gymfitness.viewmodels.ForgottenPasswordViewModel;
+import com.example.gymfitness.viewmodels.SignUpViewModel;
 
 public class ForgottenPasswordFragment extends Fragment {
 
@@ -27,7 +30,7 @@ public class ForgottenPasswordFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_forgotten_password, container, false);
-        viewModel = new ViewModelProvider(this).get(ForgottenPasswordViewModel.class);
+        viewModel = new ViewModelProvider(requireActivity()).get(ForgottenPasswordViewModel.class);
         binding.setViewModel(viewModel);
         binding.setLifecycleOwner(this);
         navController = NavHostFragment.findNavController(this);
@@ -49,15 +52,12 @@ public class ForgottenPasswordFragment extends Fragment {
 
         binding.btnBack.setOnClickListener(v -> navController.navigate(R.id.action_forgottenPasswordFragment2_to_loginFragment));
 
-        // Observe ViewModel for email existence
         viewModel.getEmailExists().observe(getViewLifecycleOwner(), exists -> {
             if (exists) {
-                // Navigate to set password fragment
                 navController.navigate(R.id.action_forgottenPasswordFragment2_to_setPasswordFragment);
             }
         });
 
-        // Observe ViewModel for error messages
         viewModel.getErrorMessage().observe(getViewLifecycleOwner(), error -> {
             if (error != null) {
                 binding.fpTvInput.setText(error);
