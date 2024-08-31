@@ -30,4 +30,13 @@ public interface GymApi {
 
     @POST("api/saveuserinfo")
     Call<ResponseBody> saveUserInfo(@Body UserInfo userInfo);
+
+    @FormUrlEncoded
+    @POST("/api/updatePassword")
+    Call<ApiResponse> updatePassword(
+            @Field("user_email") String userEmail,
+            @Field("user_password") String userPassword
+    );
 }
+
+

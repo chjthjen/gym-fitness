@@ -6,8 +6,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class  RetrofitInstance {
     private static Retrofit retrofit;
-    private static final String BASE_URL = "http://172.16.0.2:3000"; // link url cua server
-      //tao rieng
+    private static final String BASE_URL = "http://192.168.190.232:3000"; // link url cua server
+    //tao rieng
     private RetrofitInstance() {
 
     }
