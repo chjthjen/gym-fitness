@@ -33,5 +33,8 @@ public class AuthViewModel extends ViewModel {
         return isLoginSuccessful;
     }
 
+    public void resetPassword(String email, String password) {
+
+    }
 }
 

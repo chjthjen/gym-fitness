@@ -8,6 +8,7 @@ public class  RetrofitInstance {
     private static Retrofit retrofit;
     private static final String BASE_URL = "http://192.168.1.6:3000"; // link url cua server
       //tao rieng
+
     private RetrofitInstance() {
 
     }
