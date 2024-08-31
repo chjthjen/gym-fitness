@@ -206,6 +206,11 @@
                 android:textSize="15sp"></TextView>
         </LinearLayout>
 
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/white"/>
+
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -236,6 +241,11 @@
                 android:textSize="15sp">
             </TextView>
         </LinearLayout>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/white"/>
 
         <LinearLayout
             android:layout_width="0dp"
