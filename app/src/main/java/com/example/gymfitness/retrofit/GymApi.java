@@ -30,4 +30,10 @@ public interface GymApi {
 
     @POST("api/saveuserinfo")
     Call<ResponseBody> saveUserInfo(@Body UserInfo userInfo);
+
+    @FormUrlEncoded
+    @POST("api/checkExist")
+    Call<ApiResponse> checkExist(@Field("user_email") String userEmail);
+
+
 }
