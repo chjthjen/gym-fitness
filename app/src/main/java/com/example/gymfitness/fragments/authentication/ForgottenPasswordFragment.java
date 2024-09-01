@@ -26,7 +26,7 @@ public class ForgottenPasswordFragment extends Fragment {
     private ForgottenPasswordViewModel viewModel;
     private FragmentForgottenPasswordBinding binding;
     private NavController navController;
-
+    private String email;
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_forgotten_password, container, false);
@@ -42,7 +42,7 @@ public class ForgottenPasswordFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         binding.btnContinue.setOnClickListener(v -> {
-            String email = binding.fpEdtEnterYour.getText().toString().trim();
+            email = binding.fpEdtEnterYour.getText().toString().trim();
             if (TextUtils.isEmpty(email)) {
                 binding.fpTvInput.setText("Please enter your email");
                 return;
@@ -53,7 +53,9 @@ public class ForgottenPasswordFragment extends Fragment {
         binding.btnBack.setOnClickListener(v -> navController.navigate(R.id.action_forgottenPasswordFragment2_to_loginFragment));
 
         viewModel.getEmailExists().observe(getViewLifecycleOwner(), exists -> {
+            email = binding.fpEdtEnterYour.getText().toString().trim();
             if (exists) {
+                viewModel.sendResetPasswordLink(email);
                 navController.navigate(R.id.action_forgottenPasswordFragment2_to_setPasswordFragment);
             }
         });

@@ -1,6 +1,9 @@
 package com.example.gymfitness.activities;
 
+import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -18,7 +21,9 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.example.gymfitness.R;
 import com.example.gymfitness.databinding.ActivityAuthenticateBinding;
 import com.example.gymfitness.fragments.authentication.LoginFragment;
+import com.example.gymfitness.fragments.authentication.SetPasswordFragment;
 import com.example.gymfitness.viewmodels.AuthViewModel;
+import com.google.firebase.dynamiclinks.FirebaseDynamicLinks;
 
 public class AuthenticateActivity extends AppCompatActivity {
 
@@ -29,21 +34,34 @@ public class AuthenticateActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_authenticate);
-     //   ActivityAuthenticateBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_authenticate);
-    //    viewModel = new ViewModelProvider(this).get(AuthViewModel.class);
-       // binding.setViewModel(viewModel);
-       // binding.setLifecycleOwner(this);
-//        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-//            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-//            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-//            return insets;
-//        });
-//        getSupportFragmentManager().beginTransaction()
-//                .replace(R.id.frame_layout, new LoginFragment())
-//                .commit();
-//        viewModel.fragmentName.setValue("Log In");
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView);
+        NavController navController = navHostFragment.getNavController();
+        FirebaseDynamicLinks.getInstance()
+                .getDynamicLink(getIntent())
+                .addOnSuccessListener(this, pendingDynamicLinkData -> {
+                    if (pendingDynamicLinkData != null) {
+                        Uri deepLink = pendingDynamicLinkData.getLink();
+                        if (deepLink != null) {
+                            String oobCode = deepLink.getQueryParameter("oobCode");
+                            if (oobCode != null) {
+                                SharedPreferences prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+                                prefs.edit().putString("oobCode", oobCode).apply();
+                                Log.i("Lấy được rồi nha !!!",oobCode);
+                                navController.navigate(R.id.setPasswordFragment);
+
+                            }
+                        }
+                    }
+                })
+                .addOnFailureListener(this, e -> {
+                    Log.w("AuthenticateActivity", "getDynamicLink:onFailure", e);
+                });
 
 
     }
-
 }
