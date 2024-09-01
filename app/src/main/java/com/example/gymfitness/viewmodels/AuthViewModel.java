@@ -29,9 +29,6 @@ public class AuthViewModel extends ViewModel {
         this.user = new MutableLiveData<>();
 
     }
-    public LiveData<Boolean> getIsLoginSuccessful() {
-        return isLoginSuccessful;
-    }
 
 }
 

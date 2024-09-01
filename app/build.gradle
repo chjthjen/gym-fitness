@@ -89,7 +89,8 @@ dependencies {
     implementation "com.google.android.gms:play-services-auth:21.2.0"
     implementation 'com.facebook.android:facebook-android-sdk:[8,9)'
     implementation 'com.facebook.android:facebook-login:latest.release'
-
+    implementation 'com.google.firebase:firebase-dynamic-links'
+    implementation 'com.google.firebase:firebase-analytics'
     // Facebook SDK với exclude
 //    implementation('com.facebook.android:facebook-android-sdk:5.15.3') {
 //        exclude group: 'androidx.legacy', module: 'legacy-support-v4'

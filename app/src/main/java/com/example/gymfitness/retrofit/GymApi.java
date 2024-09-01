@@ -11,6 +11,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 public interface GymApi {
 
@@ -30,4 +31,17 @@ public interface GymApi {
 
     @POST("api/saveuserinfo")
     Call<ResponseBody> saveUserInfo(@Body UserInfo userInfo);
+
+    @GET("api/checkexist")
+    Call<ApiResponse> checkExist(@Query("user_email") String email);
+
+
+    @FormUrlEncoded
+    @POST("/api/updatePassword")
+    Call<ApiResponse> updatePassword(
+            @Field("user_email") String userEmail,
+            @Field("user_password") String userPassword
+    );
 }
+
+

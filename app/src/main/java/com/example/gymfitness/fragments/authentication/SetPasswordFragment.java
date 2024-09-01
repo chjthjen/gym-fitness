@@ -1,9 +1,13 @@
 package com.example.gymfitness.fragments.authentication;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,11 +18,21 @@ import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.gymfitness.R;
+import com.example.gymfitness.data.ApiResponse;
 import com.example.gymfitness.databinding.FragmentSetPasswordBinding;
+import com.example.gymfitness.retrofit.GymApi;
+import com.example.gymfitness.retrofit.RetrofitInstance;
 import com.example.gymfitness.viewmodels.AuthViewModel;
+import com.example.gymfitness.viewmodels.ResetPasswordViewModel;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SetPasswordFragment extends Fragment {
-    private AuthViewModel viewModel;
+    private ResetPasswordViewModel viewModel;
     private FragmentSetPasswordBinding binding;
     private NavController navController;
     private static final String ARG_PARAM1 = "param1";
@@ -52,7 +66,7 @@ public class SetPasswordFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_set_password, container, false);
-        viewModel = new ViewModelProvider(getActivity()).get(AuthViewModel.class);
+        viewModel = new ViewModelProvider(getActivity()).get(ResetPasswordViewModel.class);
         binding.setViewModel(viewModel);
         binding.setLifecycleOwner(this);
         navController = NavHostFragment.findNavController(SetPasswordFragment.this);
@@ -66,6 +80,32 @@ public class SetPasswordFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 navController.navigate(R.id.action_setPasswordFragment_to_forgottenPasswordFragment2);
+            }
+        });
+
+        binding.btnResetPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String password = binding.edtPassword.getText().toString();
+                String confirmPass = binding.edtConfirmPassword.getText().toString();
+                if (password.isEmpty()) {
+                    Toast.makeText(getContext(), "Please enter password", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (!password.equals(confirmPass)) {
+                    Toast.makeText(getContext(), "Confirmation password does not match", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                SharedPreferences prefs = getActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+                String oobCode = prefs.getString("oobCode", null);
+                viewModel.resetPassword(oobCode, password);
+            }
+        });
+
+        viewModel.getPasswordResetSuccess().observe(getViewLifecycleOwner(), isSuccess ->{
+            if(isSuccess){
+                Toast.makeText(getContext(), "Successfully", Toast.LENGTH_SHORT).show();
+                navController.navigate(R.id.action_setPasswordFragment_to_loginFragment);
             }
         });
     }
