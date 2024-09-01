@@ -53,8 +53,8 @@ public class SignUpFragment extends Fragment {
 
     private void setupProgressDialog() {
         progressDialog = new ProgressDialog(getContext());
-        progressDialog.setTitle("Đăng ký");
-        progressDialog.setMessage("Đang đăng ký...");
+        progressDialog.setTitle("Registration");
+        progressDialog.setMessage("Registering...");
     }
 
     private void initializeEventHandlers() {
@@ -75,7 +75,7 @@ public class SignUpFragment extends Fragment {
             viewModel.setUser(userAccount);
 
             if (viewModel.checkUserStatus()) {
-                Toast.makeText(getActivity(), "Vui lòng đăng xuất tài khoản!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Please log out of your account!", Toast.LENGTH_SHORT).show();
             } else {
                 progressDialog.show();
                 viewModel.signUp(new SignUpCallback() {
@@ -85,9 +85,8 @@ public class SignUpFragment extends Fragment {
                         viewModel.saveDB(new SignUpCallback() {
                             @Override
                             public void onSuccess() {
-                                Toast.makeText(getActivity(), "Đăng kí thành công", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getActivity(), "Registration successful", Toast.LENGTH_LONG).show();
                                 navController.navigate(R.id.action_signUpFragment_to_loginFragment);
-
                             }
 
                             @Override
@@ -95,12 +94,12 @@ public class SignUpFragment extends Fragment {
                                 viewModel.deleteUserFromFirebase(new SignUpCallback() {
                                     @Override
                                     public void onSuccess() {
-                                        Toast.makeText(getActivity(), "Đăng kí thất bại. vui lòng thử lại", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getActivity(), "Registration failed. Please try again.", Toast.LENGTH_LONG).show();
                                     }
 
                                     @Override
                                     public void onFailure(int errorCode) {
-                                        Toast.makeText(getActivity(), "Đăng kí thất bại. vui lòng thử lại", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getActivity(), "Registration failed. Please try again.", Toast.LENGTH_LONG).show();
                                     }
                                 });
                             }
@@ -111,9 +110,9 @@ public class SignUpFragment extends Fragment {
                     public void onFailure(int errorCode) {
                         progressDialog.dismiss();
                         if (errorCode == -999) {
-                            Toast.makeText(getActivity(), "Gmail này đã được dùng cho tài khoản khác", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getActivity(), "This Gmail is already used for another account", Toast.LENGTH_LONG).show();
                         } else {
-                            Toast.makeText(getActivity(), "Đăng kí thất bại. vui lòng thử lại", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getActivity(), "Registration failed. Please try again.", Toast.LENGTH_LONG).show();
                         }
                     }
                 });
@@ -122,11 +121,10 @@ public class SignUpFragment extends Fragment {
     }
 
     private boolean validateInput() {
-
         String usernameOrEmail = binding.edtEmailOrMobile.getText().toString().trim();
         String password = binding.edtPassword.getText().toString().trim();
 
-        // goi kiem tra
+        // Call validation
         return ValidationEmail.validateInputEmail(
                 usernameOrEmail,
                 password,
@@ -155,19 +153,19 @@ public class SignUpFragment extends Fragment {
 
                     @Override
                     public void onFailure(int errorCode) {
-                        Toast.makeText(getContext(), "Xác thực không thành công.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Authentication failed.", Toast.LENGTH_SHORT).show();
                     }
                 });
             }
 
             @Override
             public void onCancel() {
-                Toast.makeText(getContext(), "Đăng ký bị hủy.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Registration canceled.", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onError(FacebookException error) {
-                Toast.makeText(getContext(), "Đăng ký Facebook không thành công.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Facebook registration failed.", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -185,7 +183,7 @@ public class SignUpFragment extends Fragment {
 
                 @Override
                 public void onFailure(int errorCode) {
-                    Toast.makeText(getContext(), "Google SignIn không thành công.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Google Sign-In failed.", Toast.LENGTH_SHORT).show();
                 }
             });
         } else {

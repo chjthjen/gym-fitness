@@ -169,6 +169,8 @@ public class LoginFragment extends Fragment {
                 FirebaseUser user = ((Resource.Success<FirebaseUser>) resource).getData();
                 if (user != null) {
                     saveUserToDatabase(user);
+                    progressDialog.dismiss();
+                    Toast.makeText(getContext(), "Login successful!", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(getActivity(), HomeActivity.class);
                     startActivity(intent);
                     getActivity().finish();
@@ -229,19 +231,25 @@ public class LoginFragment extends Fragment {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful()) {
-                    Log.e("user account:", "Thành công" );
+                    Log.e("user account:", "Success");
                 } else {
                     try {
                         String errorBody = response.errorBody().string();
-                        Log.e("user account", "Lỗi: " + errorBody);
+                        Log.e("user account", "Error: " + errorBody);
                     } catch (IOException e) {
-                        Log.e("SaveUserAccount", "Lỗi", e);
+                        Log.e("SaveUserAccount", "Error", e);
                     }
                 }
             }
 
+
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
+                if (t instanceof IOException) {
+                    Log.e("Network Error", "Please check your connection.");
+                } else {
+                    Log.e("Conversion Error", "An unexpected error occurred.");
+                }
             }
         });
 
@@ -251,22 +259,23 @@ public class LoginFragment extends Fragment {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful()) {
-                    Log.e("User info:", "Thành công" );
+                    Log.e("User info:", "Success");
                 } else {
-
                     try {
                         String errorBody = response.errorBody().string();
-                        Log.e("User info", "Lỗi: " + errorBody);
+                        Log.e("User info", "Error: " + errorBody);
                     } catch (IOException e) {
-                        Log.e("User info", "Lỗi", e);
+                        Log.e("User info", "Error", e);
                     }
                 }
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Log.e("User info", "Failure: " + t.getMessage());
             }
         });
+
     }
 
 
