@@ -30,7 +30,7 @@ public class AuthenticateActivity extends AppCompatActivity {
         super.onStart();
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView);
         NavController navController = navHostFragment.getNavController();
-
+        // get oob code from email
         FirebaseDynamicLinks.getInstance()
                 .getDynamicLink(getIntent())
                 .addOnSuccessListener(this, pendingDynamicLinkData -> {
