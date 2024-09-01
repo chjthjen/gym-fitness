@@ -182,11 +182,10 @@ public class LoginFragment extends Fragment {
 
             progressDialog.dismiss();
         });
-
         viewModel.getErrorMessage().observe(getViewLifecycleOwner(), resource -> {
             if (resource instanceof Resource.Error) {
-                String error = ((Resource.Error<String>) resource).getMessage();
-                Toast.makeText(getContext(), error, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), resource.getMessage(), Toast.LENGTH_SHORT).show();
+                viewModel.clearErrorMessage();
             }
         });
     }
@@ -208,7 +207,7 @@ public class LoginFragment extends Fragment {
                 user.getEmail(),            // user_email
                 "",                         // user_phone (có thể để trống hoặc thêm thông tin nếu có)
                 "",                         // user_password (có thể để trống hoặc thêm thông tin nếu có)
-                true                        // isNormalUser (hoặc false tùy vào logic ứng dụng của bạn)
+                0                        // isNormalUser (hoặc false tùy vào logic ứng dụng của bạn)
         );
 
         // Tạo đối tượng UserInfo
@@ -235,7 +234,6 @@ public class LoginFragment extends Fragment {
                     try {
                         String errorBody = response.errorBody().string();
                         Log.e("user account", "Lỗi: " + errorBody);
-                        Toast.makeText(getContext(), "Lỗi: " + errorBody, Toast.LENGTH_SHORT).show();
                     } catch (IOException e) {
                         Log.e("SaveUserAccount", "Lỗi", e);
                     }
