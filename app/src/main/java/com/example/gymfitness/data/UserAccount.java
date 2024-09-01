@@ -6,7 +6,7 @@ public class UserAccount {
     private String user_email;
     private String user_phone;
     private String user_password;
-    private boolean isNormalUser;
+    private int isNormalUser;
 
     public UserAccount() {
         // Default constructor required for calls to DataSnapshot.getValue(UserAccount.class)
@@ -17,7 +17,7 @@ public class UserAccount {
         this.user_password = password;
         this.user_fullname = fullName;
     }
-    public UserAccount(String user_id, String user_fullname, String user_email, String user_phone, String user_password, boolean isNormalUser) {
+    public UserAccount(String user_id, String user_fullname, String user_email, String user_phone, String user_password, int isNormalUser) {
         this.user_id = user_id;
         this.user_fullname = user_fullname;
         this.user_email = user_email;
@@ -66,11 +66,11 @@ public class UserAccount {
         this.user_password = user_password;
     }
 
-    public boolean isNormalUser() {
+    public int isNormalUser() {
         return isNormalUser;
     }
 
-    public void setNormalUser(boolean normalUser) {
+    public void setNormalUser(int normalUser) {
         isNormalUser = normalUser;
     }
 }

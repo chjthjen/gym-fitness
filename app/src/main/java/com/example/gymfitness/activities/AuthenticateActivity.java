@@ -41,6 +41,7 @@ public class AuthenticateActivity extends AppCompatActivity {
         super.onStart();
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView);
         NavController navController = navHostFragment.getNavController();
+        // get oob code from email
         FirebaseDynamicLinks.getInstance()
                 .getDynamicLink(getIntent())
                 .addOnSuccessListener(this, pendingDynamicLinkData -> {
@@ -53,7 +54,6 @@ public class AuthenticateActivity extends AppCompatActivity {
                                 prefs.edit().putString("oobCode", oobCode).apply();
                                 Log.i("Lấy được rồi nha !!!",oobCode);
                                 navController.navigate(R.id.setPasswordFragment);
-
                             }
                         }
                     }

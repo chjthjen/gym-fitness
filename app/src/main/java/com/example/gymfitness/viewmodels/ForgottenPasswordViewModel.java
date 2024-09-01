@@ -68,10 +68,8 @@ public class ForgottenPasswordViewModel extends ViewModel {
         auth.sendPasswordResetEmail(email, actionCodeSettings)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-                        // Gửi email thành công
                         errorMessage.setValue("Reset password email sent.");
                     } else {
-                        // Xử lý lỗi khi gửi email
                         errorMessage.setValue("Error: " + task.getException().getMessage());
                     }
                 });

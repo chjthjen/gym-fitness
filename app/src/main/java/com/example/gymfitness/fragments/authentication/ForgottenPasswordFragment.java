@@ -56,6 +56,7 @@ public class ForgottenPasswordFragment extends Fragment {
             email = binding.fpEdtEnterYour.getText().toString().trim();
             if (exists) {
                 viewModel.sendResetPasswordLink(email);
+                Toast.makeText(getContext(), "Please check email", Toast.LENGTH_SHORT).show();
                 navController.navigate(R.id.action_forgottenPasswordFragment2_to_setPasswordFragment);
             }
         });

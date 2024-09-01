@@ -28,7 +28,17 @@ public class LoginViewModel extends AndroidViewModel {
     private GoogleSignInClient googleSignInClient;
     private MutableLiveData<Resource<FirebaseUser>> currentUser = new MutableLiveData<>();
     private MutableLiveData<Resource<String>> errorMessage = new MutableLiveData<>();
+    public LiveData<Resource<FirebaseUser>> getCurrentUser() {
+        return currentUser;
+    }
 
+    public LiveData<Resource<String>> getErrorMessage() {
+        return errorMessage;
+    }
+
+    public void clearErrorMessage() {
+        errorMessage.setValue(null);
+    }
     public LoginViewModel(@NonNull Application application) {
         super(application);
         auth = FirebaseAuth.getInstance();
@@ -46,16 +56,11 @@ public class LoginViewModel extends AndroidViewModel {
                     if (task.isSuccessful()) {
                         currentUser.setValue(new Resource.Success<>(auth.getCurrentUser()));
                     } else {
-//                        errorMessage.setValue(new Resource.Error<>("Login failed: " + task.getException().getMessage()));
                         errorMessage.setValue(new Resource.Error<>("Email hoặc password không hợp lệ"));
                     }
                 });
     }
 
-    public void loginWithGoogle() {
-        Intent signInIntent = googleSignInClient.getSignInIntent();
-
-    }
 
     public void handleGoogleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
@@ -78,13 +83,6 @@ public class LoginViewModel extends AndroidViewModel {
                 });
     }
 
-    public LiveData<Resource<FirebaseUser>> getCurrentUser() {
-        return currentUser;
-    }
-
-    public LiveData<Resource<String>> getErrorMessage() {
-        return errorMessage;
-    }
 
     public void handleFacebookAccessToken(AccessToken token) {
         AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
