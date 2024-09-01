@@ -23,6 +23,7 @@ import com.example.gymfitness.databinding.FragmentSetPasswordBinding;
 import com.example.gymfitness.retrofit.GymApi;
 import com.example.gymfitness.retrofit.RetrofitInstance;
 import com.example.gymfitness.viewmodels.AuthViewModel;
+import com.example.gymfitness.viewmodels.ResetPasswordViewModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -31,7 +32,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class SetPasswordFragment extends Fragment {
-    private AuthViewModel viewModel;
+    private ResetPasswordViewModel viewModel;
     private FragmentSetPasswordBinding binding;
     private NavController navController;
     private static final String ARG_PARAM1 = "param1";
@@ -65,7 +66,7 @@ public class SetPasswordFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_set_password, container, false);
-        viewModel = new ViewModelProvider(getActivity()).get(AuthViewModel.class);
+        viewModel = new ViewModelProvider(getActivity()).get(ResetPasswordViewModel.class);
         binding.setViewModel(viewModel);
         binding.setLifecycleOwner(this);
         navController = NavHostFragment.findNavController(SetPasswordFragment.this);
@@ -88,33 +89,24 @@ public class SetPasswordFragment extends Fragment {
                 String password = binding.edtPassword.getText().toString();
                 String confirmPass = binding.edtConfirmPassword.getText().toString();
                 if (password.isEmpty()) {
-                    Toast.makeText(getContext(), "Hãy nhập mật khẩu", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Please enter password", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (!password.equals(confirmPass)) {
-                    Toast.makeText(getContext(), "Mật khẩu xác nhận không khớp", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Confirmation password does not match", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 SharedPreferences prefs = getActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
                 String oobCode = prefs.getString("oobCode", null);
-
-                if (oobCode != null) {
-                    FirebaseAuth auth = FirebaseAuth.getInstance();
-                    auth.confirmPasswordReset(oobCode, password)
-                            .addOnCompleteListener(task -> {
-                                if (task.isSuccessful()) {
-                                    Toast.makeText(getContext(), "Mật khẩu đã được đặt lại", Toast.LENGTH_SHORT).show();
-                                    navController.navigate(R.id.action_setPasswordFragment_to_loginFragment);
-                                } else {
-                                    Toast.makeText(getContext(), "Không thể đặt lại mật khẩu: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                } else {
-                    Toast.makeText(getContext(), "Mã xác thực không hợp lệ", Toast.LENGTH_SHORT).show();
-                }
+                viewModel.resetPassword(oobCode, password);
             }
         });
 
-
+        viewModel.getPasswordResetSuccess().observe(getViewLifecycleOwner(), isSuccess ->{
+            if(isSuccess){
+                Toast.makeText(getContext(), "Successfully", Toast.LENGTH_SHORT).show();
+                navController.navigate(R.id.action_setPasswordFragment_to_loginFragment);
+            }
+        });
     }
 }
