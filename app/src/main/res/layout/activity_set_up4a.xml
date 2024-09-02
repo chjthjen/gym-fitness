@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/black"
     android:orientation="vertical"
-    tools:context=".activities.SetUp_4a">
+    tools:context=".activities.SetUpActivity">
 
     <ImageView
         android:id="@+id/imageView3"

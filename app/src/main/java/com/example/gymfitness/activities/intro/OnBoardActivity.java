@@ -1,6 +1,5 @@
-package com.example.gymfitness.activities;
+package com.example.gymfitness.activities.intro;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,11 +11,10 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.gymfitness.R;
+import com.example.gymfitness.activities.AuthenticateActivity;
 import com.example.gymfitness.adapters.OnboardingVpAdapter;
 import com.example.gymfitness.databinding.ActivityOnBoardBinding;
 import com.example.gymfitness.viewmodels.OnBoardViewmodel;
-import com.zhpan.indicator.enums.IndicatorSlideMode;
-import com.zhpan.indicator.enums.IndicatorStyle;
 
 public class OnBoardActivity extends AppCompatActivity {
     ActivityOnBoardBinding binding;

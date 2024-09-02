@@ -4,8 +4,8 @@ import android.app.Application;
 
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
-
-public class LoginFB extends Application {
+// name
+public class GymFitnessAplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();

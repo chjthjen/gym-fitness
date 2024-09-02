@@ -1,4 +1,4 @@
-package com.example.gymfitness.fragments;
+package com.example.gymfitness.fragments.floatingMenu;
 
 import android.os.Bundle;
 
@@ -12,10 +12,10 @@ import com.example.gymfitness.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link Fragment_6_1_1_A#newInstance} factory method to
+ * Use the {@link ProfileFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Fragment_6_1_1_A extends Fragment {
+public class ProfileFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,7 +26,7 @@ public class Fragment_6_1_1_A extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public Fragment_6_1_1_A() {
+    public ProfileFragment() {
         // Required empty public constructor
     }
 
@@ -36,11 +36,11 @@ public class Fragment_6_1_1_A extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment Fragment_6_1_1_A.
+     * @return A new instance of fragment ProfileFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static Fragment_6_1_1_A newInstance(String param1, String param2) {
-        Fragment_6_1_1_A fragment = new Fragment_6_1_1_A();
+    public static ProfileFragment newInstance(String param1, String param2) {
+        ProfileFragment fragment = new ProfileFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -57,10 +57,12 @@ public class Fragment_6_1_1_A extends Fragment {
         }
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_6_1_1_a, container, false);
+        View view = inflater.inflate(R.layout.fragment_profile, container, false);
+        return view;
     }
 }

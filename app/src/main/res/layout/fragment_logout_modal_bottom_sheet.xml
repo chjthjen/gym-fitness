@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_top_corners"
+        tools:context=".fragments.floatingMenu.LogoutModalBottomSheetFragment">
+        <TextView
+            android:id="@+id/message"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:text="Are you sure want to log out?"
+            android:gravity="center"
+            android:textSize="15sp"
+            android:textColor="#000000"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/poppins"
+            android:textStyle="bold"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/message"
+            android:gravity="center"
+            android:layout_marginTop="20dp"
+            android:paddingBottom="75dp"
+            android:weightSum="2">
+            <Button
+                android:layout_width="130dp"
+                android:layout_height="40dp"
+                android:text="Cancel"
+                android:fontFamily="@font/poppins"
+                android:backgroundTint="@color/white"
+                android:textColor="#896CFE"
+                android:textSize="14sp"
+                android:layout_weight="1"
+                android:layout_marginHorizontal="30dp"
+                android:textStyle="bold"
+                />
+            <Button
+                android:layout_width="130dp"
+                android:layout_height="40dp"
+                android:text="Yes, logout"
+                android:textSize="14sp"
+                android:fontFamily="@font/poppins"
+                android:layout_weight="1"
+                android:layout_marginHorizontal="30dp"
+                android:backgroundTint="@color/limegreen"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

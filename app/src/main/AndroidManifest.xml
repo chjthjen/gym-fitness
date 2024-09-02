@@ -6,7 +6,7 @@
     <application
         android:usesCleartextTraffic="true"
         android:networkSecurityConfig="@xml/network_security_config"
-        android:name=".LoginFB"
+        android:name=".GymFitnessAplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -29,13 +29,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.OnBoardActivity"
+            android:name=".activities.intro.OnBoardActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.OnBroading_2a"
+            android:name=".activities.intro.OnBroading_2a"
             android:exported="false" />
         <activity
-            android:name=".activities.SetUp_4a"
+            android:name=".activities.SetUpActivity"
             android:exported="false" />
         <activity
             android:name=".activities.HomeActivity"
