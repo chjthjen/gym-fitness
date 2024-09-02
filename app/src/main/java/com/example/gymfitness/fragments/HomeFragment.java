@@ -1,4 +1,4 @@
-package com.example.gymfitness.fragments.authentication;
+package com.example.gymfitness.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

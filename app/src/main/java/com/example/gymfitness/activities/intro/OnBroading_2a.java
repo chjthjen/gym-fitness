@@ -1,4 +1,4 @@
-package com.example.gymfitness.activities;
+package com.example.gymfitness.activities.intro;
 
 import android.content.Intent;
 import android.os.Bundle;
