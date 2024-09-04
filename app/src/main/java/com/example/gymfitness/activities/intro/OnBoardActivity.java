@@ -118,7 +118,6 @@ public class OnBoardActivity extends AppCompatActivity {
             binding.button3.setText("Next");
         }
 
-
         switch (position) {
             case 0:
                 binding.getRoot().setBackground(getDrawable(R.drawable.onboarding_bg1));
