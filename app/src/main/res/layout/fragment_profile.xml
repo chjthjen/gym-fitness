@@ -2,7 +2,7 @@
 <layout>
     <data>
         <variable
-            name="profileViewModel"
+            name="viewModel"
             type="com.example.gymfitness.viewmodels.ProfileViewModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -36,6 +36,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="#B3A0FF"
+                            android:paddingTop="20dp"
                             android:paddingBottom="30dp">
 
                             <ImageButton
