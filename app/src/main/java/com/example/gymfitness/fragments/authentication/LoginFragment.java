@@ -254,27 +254,27 @@ public class LoginFragment extends Fragment {
         });
 
         // Lưu UserInfo
-        Call<ResponseBody> infoCall = apiService.saveUserInfo(userInfo);
-        infoCall.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                if (response.isSuccessful()) {
-                    Log.e("User info:", "Success");
-                } else {
-                    try {
-                        String errorBody = response.errorBody().string();
-                        Log.e("User info", "Error: " + errorBody);
-                    } catch (IOException e) {
-                        Log.e("User info", "Error", e);
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Log.e("User info", "Failure: " + t.getMessage());
-            }
-        });
+//        Call<ResponseBody> infoCall = apiService.saveUserInfo(userInfo);
+//        infoCall.enqueue(new Callback<ResponseBody>() {
+//            @Override
+//            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+//                if (response.isSuccessful()) {
+//                    Log.e("User info:", "Success");
+//                } else {
+//                    try {
+//                        String errorBody = response.errorBody().string();
+//                        Log.e("User info", "Error: " + errorBody);
+//                    } catch (IOException e) {
+//                        Log.e("User info", "Error", e);
+//                    }
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ResponseBody> call, Throwable t) {
+//                Log.e("User info", "Failure: " + t.getMessage());
+//            }
+//        });
 
     }
 
