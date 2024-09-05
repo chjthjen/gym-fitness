@@ -122,14 +122,33 @@
                     android:textStyle="bold" />
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="132dp"
-                android:layout_marginTop="53dp"
-                android:orientation="vertical">
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:orientation="vertical"
+                    android:layout_marginTop="53dp">
 
-            </LinearLayout>
+                    <com.shawnlin.numberpicker.NumberPicker
+                        android:id="@+id/np"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        app:np_dividerColor="@android:color/transparent"
+                        app:np_orientation="horizontal"
+                        app:np_textSize="35dp"
+                        app:np_selectedTextSize="40dp"
+                        app:np_wheelItemCount="5"
+                        app:np_min="0"
+                        app:np_formatter="@string/number_picker_formatter"
+                        app:np_value="75"
+                        app:np_max="550"
+                        app:np_wrapSelectorWheel="false"
+                        android:gravity="center"
+                        app:np_typeface="@font/poppins"
+                        app:np_textColor="@color/white"
+                        app:np_selectedTextColor="@color/white"/>
+
+                </LinearLayout>
 
             <ImageView
                 android:id="@+id/iV_polygon"
@@ -148,7 +167,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="15dp"
             android:gravity="center"
-            android:text="95"
+            android:text="75"
             android:textColor="@color/white"
             android:textSize="62sp"
             android:textStyle="bold"
