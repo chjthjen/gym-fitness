@@ -20,6 +20,7 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="2"
+            android:textFontWeight="600"
             android:textSize="20sp"
             android:textColor="#000000"
             android:fontFamily="@font/poppins"
@@ -93,7 +94,7 @@
     </LinearLayout>
 
     <androidx.cardview.widget.CardView
-        android:layout_width="148dp"
+        android:layout_width="150dp"
         android:layout_height="match_parent"
         app:cardCornerRadius="20dp"
         android:layout_weight="1"
@@ -110,6 +111,7 @@
                 android:src="@drawable/woman_helping_man_gym" />
 
             <ImageView
+                android:id="@+id/star"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:src="@drawable/start_small_on"
@@ -119,6 +121,7 @@
                 android:layout_marginRight="10dp"
                 />
             <ImageView
+
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:src="@drawable/ic_play_video"
