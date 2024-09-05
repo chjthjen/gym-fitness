@@ -15,6 +15,9 @@
             android:id="@+id/action_homeFragment_to_profileFragment"
             app:destination="@id/profileFragment"
             />
+        <action
+            android:id="@+id/action_homeFragment_to_forgottenPasswordFragment"
+            app:destination="@id/forgottenPasswordFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -26,4 +29,10 @@
             android:id="@+id/action_profileFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/forgottenPasswordFragment"
+        android:name="com.example.gymfitness.fragments.authentication.ForgottenPasswordFragment"
+        android:label="ForgottenPasswordFragment"
+        tools:layout="@layout/fragment_forgotten_password"
+        />
 </navigation>
