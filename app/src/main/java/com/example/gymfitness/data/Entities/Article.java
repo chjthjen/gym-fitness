@@ -1,12 +1,12 @@
-package com.example.gymfitness.entity;
+package com.example.gymfitness.data.Entities;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
 
-@Entity(tableName = "Artical")
-public class Artical implements Serializable {
+@Entity(tableName = "Article")
+public class Article implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
     private int artical_id;
@@ -16,7 +16,7 @@ public class Artical implements Serializable {
     private String artical_thumbnail;
     private boolean is_favorite;
 
-    public Artical(int artical_id, String artical_title, String artical_content, String artical_thumbnail, boolean is_favorite) {
+    public Article(int artical_id, String artical_title, String artical_content, String artical_thumbnail, boolean is_favorite) {
         this.artical_id = artical_id;
         this.artical_title = artical_title;
         this.artical_content = artical_content;
