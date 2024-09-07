@@ -11,21 +11,23 @@ public class Workout implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
     private int workout_id;
-
     private String workout_name;
-
     private double workout_calories;
-
     private String workout_thumbnail;
+    private String tag;
+    private int is_favorite;
+    private int total_time;
+    private int level;
 
-    private int level_id;
-
-    public Workout(int workout_id, String workout_name, double workout_calories, String workout_thumbnail, int level_id) {
+    public Workout(int workout_id, String workout_name, double workout_calories, String workout_thumbnail, String tag, int is_favorite, int total_time, int level) {
         this.workout_id = workout_id;
         this.workout_name = workout_name;
         this.workout_calories = workout_calories;
         this.workout_thumbnail = workout_thumbnail;
-        this.level_id = level_id;
+        this.tag = tag;
+        this.is_favorite = is_favorite;
+        this.total_time = total_time;
+        this.level = level;
     }
 
     public int getWorkout_id() {
@@ -60,11 +62,35 @@ public class Workout implements Serializable {
         this.workout_thumbnail = workout_thumbnail;
     }
 
-    public int getLevel_id() {
-        return level_id;
+    public String getTag() {
+        return tag;
     }
 
-    public void setLevel_id(int level_id) {
-        this.level_id = level_id;
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
+
+    public int getIs_favorite() {
+        return is_favorite;
+    }
+
+    public void setIs_favorite(int is_favorite) {
+        this.is_favorite = is_favorite;
+    }
+
+    public int getTotal_time() {
+        return total_time;
+    }
+
+    public void setTotal_time(int total_time) {
+        this.total_time = total_time;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
     }
 }

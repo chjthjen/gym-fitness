@@ -4,14 +4,19 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.gymfitness.R;
 import com.example.gymfitness.activities.intro.OnBroading_2a;
+import com.example.gymfitness.data.Entities.Workout;
+import com.example.gymfitness.data.database.FitnessDB;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import java.util.List;
 
 public class LaunchActivity extends AppCompatActivity {
 
@@ -29,6 +34,13 @@ public class LaunchActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_launch);
         addControls();
+        // create database
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                FitnessDB.getInstance(getApplicationContext()).workoutDAO().getAllWorkouts();
+            }
+        }).start();
 
         new Handler().postDelayed(new Runnable() {
             @Override
