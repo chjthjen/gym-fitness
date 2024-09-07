@@ -10,36 +10,34 @@
     <!--Main title-->
     <TextView
         android:id="@+id/fg_tv_main_title"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="76dp"
-        android:layout_marginTop="120dp"
         android:text="@string/what_is_your_goal"
+        android:gravity="center"
         android:textAppearance="@style/fg_tv_main_title"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <!--Sub title-->
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/subtile"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="35dp"
-        android:layout_marginTop="189dp"
         android:gravity="center"
         android:text="@string/lorem_ipsum_dolor_sit_amet_consectetur_adipiscing_elit_n_sed_do_eiusmod_tempor_incididunt_ut_labore_et_dolore_n_magna_aliqua"
         android:textAppearance="@style/fg_tv_sub_title"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/fg_tv_main_title"
+        android:layout_marginTop="25dp"
+        />
 
     <!--Body-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="267dp"
         android:background="#B3A0FF"
         android:orientation="vertical"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/subtile"
+        android:layout_marginTop="35dp"
+        >
 
         <RadioGroup
             android:layout_marginTop="35dp"

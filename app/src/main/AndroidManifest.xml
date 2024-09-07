@@ -19,7 +19,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".activities.SetUp4aActivity"
+            android:name=".activities.setup.SetUpStartActivity"
             android:exported="false" />
         <activity
             android:name=".activities.AuthenticateActivity"
@@ -42,7 +42,7 @@
             android:name=".activities.intro.OnBroading_2a"
             android:exported="false" />
         <activity
-            android:name=".activities.SetUpActivity"
+            android:name=".activities.setup.SetUpActivity"
             android:exported="false" />
         <activity
             android:name=".activities.HomeActivity"

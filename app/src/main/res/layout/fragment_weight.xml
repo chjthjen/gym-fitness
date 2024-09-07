@@ -2,58 +2,24 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-
     <data>
 
         <variable
             name="viewModel"
             type="com.example.gymfitness.viewmodels.AuthViewModel" />
     </data>
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/black"
         android:clipToOutline="true"
-        android:paddingTop="30dp">
-
-        <RelativeLayout
-            android:id="@+id/actionBar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize">
-
-            <ImageButton
-                android:id="@+id/btnBack"
-                android:layout_width="6dp"
-                android:layout_height="11dp"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="35dp"
-                android:background="@null"
-                android:contentDescription="Back to before"
-                android:scaleType="fitCenter"
-                android:src="@drawable/arrow" />
-
-            <TextView
-                android:id="@+id/back"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="9dp"
-                android:layout_toRightOf="@+id/btnBack"
-                android:fontFamily="@font/league_spartan"
-                android:gravity="center"
-                android:lineHeight="14sp"
-                android:text="Back"
-                android:textColor="@color/third" />
-
-        </RelativeLayout>
+        >
 
         <LinearLayout
             android:id="@+id/linear_weight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/actionBar"
+            android:layout_alignParentTop="true"
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
@@ -188,19 +154,6 @@
             android:lineHeight="30sp"
             android:layout_marginTop="53dp"
             android:fontFamily="@font/poppins"/>
-
-        <Button
-            android:layout_width="178.56dp"
-            android:layout_height="44dp"
-            app:backgroundTint="@null"
-            android:background="@drawable/custom_button"
-            android:layout_below="@+id/txt_weight"
-            android:text="@string/continue1"
-            android:textSize="20dp"
-            android:layout_marginTop="100dp"
-            android:layout_centerHorizontal="true"
-            android:fontFamily="@font/poppins"
-            android:textStyle="bold"/>
 
     </RelativeLayout>
 

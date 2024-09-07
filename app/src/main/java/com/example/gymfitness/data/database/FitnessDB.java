@@ -32,7 +32,8 @@ import com.example.gymfitness.utils.Converters;
                         Article.class,
                         Challenge.class
                 },
-        version = 1
+        version = 1,
+        exportSchema = false
 )
 @TypeConverters({Converters.class})
 public abstract class FitnessDB extends RoomDatabase {
