@@ -11,13 +11,17 @@ import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.gymfitness.R;
+import com.example.gymfitness.data.Entities.Workout;
+import com.example.gymfitness.data.database.FitnessDB;
 import com.example.gymfitness.viewmodels.AuthViewModel;
 import com.google.firebase.dynamiclinks.FirebaseDynamicLinks;
+
+import java.util.List;
 
 public class AuthenticateActivity extends AppCompatActivity {
 
     private AuthViewModel viewModel;
-
+    private List<Workout> listBro;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

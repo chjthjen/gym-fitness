@@ -6,37 +6,36 @@ import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
 
-@Entity(tableName = "Challenge",
+@Entity(tableName = "Round",
         foreignKeys = @ForeignKey(entity = Workout.class,
                 parentColumns = "workout_id",
                 childColumns = "workout_id"))
-public class Challenge implements Serializable {
-
+public class Round implements Serializable {
     @PrimaryKey(autoGenerate = true)
-    private int id;
-    private String name;
+    private int round_id;
+    private String round_name;
     private int workout_id;
 
-    public Challenge(int id, String name, int workout_id) {
-        this.id = id;
-        this.name = name;
+    public Round(int round_id, String round_name, int workout_id) {
+        this.round_id = round_id;
+        this.round_name = round_name;
         this.workout_id = workout_id;
     }
 
-    public int getId() {
-        return id;
+    public int getRound_id() {
+        return round_id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setRound_id(int round_id) {
+        this.round_id = round_id;
     }
 
-    public String getName() {
-        return name;
+    public String getRound_name() {
+        return round_name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setRound_name(String round_name) {
+        this.round_name = round_name;
     }
 
     public int getWorkout_id() {
