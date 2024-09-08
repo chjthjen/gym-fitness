@@ -10,8 +10,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.gymfitness.R;
 import com.example.gymfitness.activities.intro.OnBroading_2a;
+import com.example.gymfitness.activities.setup.SetUpStartActivity;
+import com.example.gymfitness.data.database.FitnessDB;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class LaunchActivity extends AppCompatActivity {
 
@@ -29,21 +30,20 @@ public class LaunchActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_launch);
         addControls();
+        // create database
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                FitnessDB.getInstance(getApplicationContext()).workoutDAO().getAllWorkouts();
+            }
+        }).start();
 
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                FirebaseUser currentUser = firebaseAuth.getCurrentUser();
-                if (currentUser != null) {
-
-                    Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-                    startActivity(intent);
-                    finish();
-                } else {
-
-                    int onboarded = sharedPreferences.getInt("status", 0);
+                int onboarded = sharedPreferences.getInt("status", 0);
                     if (onboarded == 1) {
-                        Intent intent = new Intent(getApplicationContext(), AuthenticateActivity.class);
+                        Intent intent = new Intent(getApplicationContext(), SetUpStartActivity.class);
                         startActivity(intent);
                         finish();
                     } else {
@@ -54,8 +54,8 @@ public class LaunchActivity extends AppCompatActivity {
                         startActivity(intent);
                         finish();
                     }
-                }
             }
         }, 2000);
+
     }
 }

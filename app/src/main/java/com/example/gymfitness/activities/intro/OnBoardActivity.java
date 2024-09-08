@@ -12,6 +12,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.gymfitness.R;
 import com.example.gymfitness.activities.AuthenticateActivity;
+import com.example.gymfitness.activities.setup.SetUpStartActivity;
 import com.example.gymfitness.adapters.OnboardingVpAdapter;
 import com.example.gymfitness.databinding.ActivityOnBoardBinding;
 import com.example.gymfitness.viewmodels.OnBoardViewmodel;
@@ -35,18 +36,6 @@ public class OnBoardActivity extends AppCompatActivity {
             binding.viewPager.setCurrentItem(position, true);
             updateUI(position);
         });
-
-        binding.button3.setOnClickListener(v -> {
-            if (binding.viewPager.getCurrentItem() == 2) {
-                Intent intent = new Intent(OnBoardActivity.this, AuthenticateActivity.class);
-                startActivity(intent);
-                finish();
-            } else {
-                viewModel.setCurrentItem(binding.viewPager.getCurrentItem() + 1);
-            }
-        });
-
-        binding.skipbtn.setOnClickListener(v -> viewModel.setCurrentItem(2));
     }
 //tach viewPager
     private void setupViewPager() {
@@ -92,7 +81,7 @@ public class OnBoardActivity extends AppCompatActivity {
 //        binding.button3.getBackground().setAlpha(25);
         binding.button3.setOnClickListener(v -> {
             if (binding.viewPager.getCurrentItem() == 2) {
-                Intent intent = new Intent(OnBoardActivity.this, AuthenticateActivity.class);
+                Intent intent = new Intent(OnBoardActivity.this, SetUpStartActivity.class);
                 startActivity(intent);
                 finish();
             } else {
@@ -117,7 +106,6 @@ public class OnBoardActivity extends AppCompatActivity {
             binding.skipbtn.setVisibility(TextView.VISIBLE);
             binding.button3.setText("Next");
         }
-
 
         switch (position) {
             case 0:

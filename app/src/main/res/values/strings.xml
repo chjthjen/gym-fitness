@@ -51,5 +51,12 @@
     <string name="mobile_number">Mobile Number</string>
     <string name="start">Start</string>
     <string name="my_profile">My Profile</string>
+
+    <string name="generalNotification">General Notification</string>
+    <string name="sound">Sound</string>
+    <string name="dontDisturbMode">Don’t Disturb Mode</string>
+    <string name="vibrate">Vibrate</string>
+    <string name="lockScreen">Lock Screen</string>">
+    <string name="reminders">Reminders</string>
     <string name="search">Search</string>
 </resources>
