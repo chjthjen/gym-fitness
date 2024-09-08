@@ -35,10 +35,8 @@
     <string name="facebook_client_token">c2e2adab3b0e2c7b2a479bcf8a4dcd61</string>
 
 
-
-
-<!--================================================================================================================-->
-<!--Fragment Goal-->
+    <!--================================================================================================================-->
+    <!--Fragment Goal-->
     <string name="lose_weight">Lose Weight</string>
     <string name="gain_weight">Gain Weight</string>
     <string name="muscle_mass_gain">Muscle Mass Gain</string>
@@ -53,4 +51,5 @@
     <string name="mobile_number">Mobile Number</string>
     <string name="start">Start</string>
     <string name="my_profile">My Profile</string>
+    <string name="search">Search</string>
 </resources>
