@@ -4,10 +4,14 @@ import android.annotation.SuppressLint;
 import android.graphics.Typeface;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -52,6 +56,16 @@ public class WeightFragment extends Fragment {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_weight, container, false);
 
+        binding.np.setSelectedTypeface(getString(R.string.number_picker_formatter), Typeface.BOLD);
+        binding.np.setTypeface(getString(R.string.number_picker_formatter), Typeface.BOLD);
+
+
+        return binding.getRoot();
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         binding.txtKg.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("SetTextI18n")
             @Override
@@ -67,8 +81,7 @@ public class WeightFragment extends Fragment {
             }
         });
 
-        binding.np.setSelectedTypeface(getString(R.string.number_picker_formatter), Typeface.BOLD);
-        binding.np.setTypeface(getString(R.string.number_picker_formatter), Typeface.BOLD);
+
         binding.np.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
@@ -76,6 +89,17 @@ public class WeightFragment extends Fragment {
             }
         });
 
-        return binding.getRoot();
+        binding.np.setOnTouchListener((v, event) -> {
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    binding.ruler.setAlpha(0.9f);
+                    break;
+                case MotionEvent.ACTION_UP:
+                case MotionEvent.ACTION_CANCEL:
+                    binding.ruler.setAlpha(1.0f);
+                    break;
+            }
+            return false;
+        });
     }
 }
