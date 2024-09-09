@@ -62,4 +62,5 @@
     <string name="password_setting">Password Setting</string>
     <string name="delete_account">Delete Account</string>
     <string name="search">Search</string>
+    <string name="top_searches">Top Searches</string>
 </resources>

@@ -1,31 +1,161 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/primary"
-    android:paddingEnd="35dp"
-    android:paddingStart="35dp"
+    android:orientation="vertical"
+    android:paddingLeft="35dp"
+    android:paddingRight="35dp"
+    android:paddingTop="10dp"
     tools:context=".fragments.search.NutritionSearchFragment">
 
-    <ImageButton
-        android:id="@+id/btnBack"
-        android:layout_width="10dp"
-        android:layout_height="12dp"
-        android:layout_marginTop="35dp"
-        android:layout_alignParentStart="true"
-        android:contentDescription="@string/arrow"
-        android:src="@drawable/arrow"/>
+    <EditText
+        android:id="@+id/edtSearch"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="@drawable/rounded_edittext_search"
+        android:hint="Search"
+        android:textSize="12sp"
+        android:paddingLeft="10dp"
+        android:textColor="@color/black"
+        android:gravity="center_vertical"/>
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnAll"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_weight="1"
+            android:textAllCaps="false"
+            android:text="All"
+            android:layout_marginRight="8dp"
+            android:textColor="#896CFE"
+            android:fontFamily="@font/league_spartan"
+            android:textSize="17sp"
+            android:backgroundTint="@color/white"
+            android:background="@drawable/rounded_button_search_off"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnWorkout"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_weight="1"
+            android:textAllCaps="false"
+            android:text="Workout"
+            android:layout_marginRight="8dp"
+            android:textColor="#896CFE"
+            android:fontFamily="@font/league_spartan"
+            android:textSize="17sp"
+            android:backgroundTint="@color/white"
+            android:background="@drawable/rounded_button_search_off"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnNutrition"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_weight="1"
+            android:textAllCaps="false"
+            android:text="Nutrition"
+            android:textColor="#896CFE"
+            android:fontFamily="@font/league_spartan"
+            android:textSize="17sp"
+            android:backgroundTint="@color/white"
+            android:background="@drawable/rounded_button_search_on"/>
+    </LinearLayout>
 
     <TextView
-        android:id="@+id/search"
-        android:layout_width="wrap_content"
+        android:id="@+id/tvTopSearches"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:text="@string/top_searches"
+        android:textAppearance="@style/top_searches"
+        android:gravity="center_vertical"
         android:layout_marginTop="25dp"
-        android:text="@string/search"
-        android:textAppearance="@style/search"
-        android:layout_toEndOf="@+id/btnBack"
-        android:textStyle="bold"
-        android:gravity="center_vertical" />
-</RelativeLayout>
+        android:layout_marginBottom="10dp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnBreakfast"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/rounded_button_top_searches"
+        android:drawableStart="@drawable/btn_top_seaches"
+        android:drawablePadding="15dp"
+        android:fontFamily="@font/poppins"
+        android:gravity="center_vertical"
+        android:paddingStart="5dp"
+        android:text="Breakfast"
+        android:textAllCaps="false"
+        android:textColor="#232323"
+        android:textSize="13sp" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnYogurt"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/rounded_button_top_searches"
+        android:drawableStart="@drawable/btn_top_seaches"
+        android:drawablePadding="15dp"
+        android:fontFamily="@font/poppins"
+        android:gravity="center_vertical"
+        android:paddingStart="5dp"
+        android:text="Yogurt"
+        android:textAllCaps="false"
+        android:textColor="#232323"
+        android:textSize="13sp" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnVegetarian"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/rounded_button_top_searches"
+        android:drawableStart="@drawable/btn_top_seaches"
+        android:drawablePadding="15dp"
+        android:fontFamily="@font/poppins"
+        android:gravity="center_vertical"
+        android:paddingStart="5dp"
+        android:text="Vegetarian"
+        android:textAllCaps="false"
+        android:textColor="#232323"
+        android:textSize="13sp" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnSmoothie"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/rounded_button_top_searches"
+        android:drawableStart="@drawable/btn_top_seaches"
+        android:drawablePadding="15dp"
+        android:fontFamily="@font/poppins"
+        android:gravity="center_vertical"
+        android:paddingStart="5dp"
+        android:text="Smoothie"
+        android:textAllCaps="false"
+        android:textColor="#232323"
+        android:textSize="13sp" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnChicken"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/rounded_button_top_searches"
+        android:drawableStart="@drawable/btn_top_seaches"
+        android:drawablePadding="15dp"
+        android:fontFamily="@font/poppins"
+        android:gravity="center_vertical"
+        android:paddingStart="5dp"
+        android:text="Chicken"
+        android:textAllCaps="false"
+        android:textColor="#232323"
+        android:textSize="13sp" />
+</LinearLayout>
