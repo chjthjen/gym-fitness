@@ -24,15 +24,14 @@
         <activity
             android:name=".activities.AuthenticateActivity"
             android:exported="true">
-            <intent-filter>
+            <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <data
-                    android:host="firebaselearnbqd.page.link"
-                    android:scheme="https" />
+                <data android:scheme="https" />
+                <data android:host="firebaselearnbqd.page.link" />
             </intent-filter>
         </activity>
         <activity
@@ -43,7 +42,8 @@
             android:exported="false" />
         <activity
             android:name=".activities.setup.SetUpActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize"/>
         <activity
             android:name=".activities.HomeActivity"
             android:exported="false" />

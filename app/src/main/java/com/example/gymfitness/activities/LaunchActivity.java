@@ -14,14 +14,19 @@ import com.example.gymfitness.activities.setup.SetUpStartActivity;
 import com.example.gymfitness.data.database.FitnessDB;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 public class LaunchActivity extends AppCompatActivity {
 
     private SharedPreferences sharedPreferences;
     private FirebaseAuth firebaseAuth;
+    private ExecutorService executorService;
 
     private void addControls() {
         sharedPreferences = getSharedPreferences("remember", MODE_PRIVATE);
         firebaseAuth = FirebaseAuth.getInstance();
+        executorService = Executors.newSingleThreadExecutor();
     }
 
     @Override
@@ -31,12 +36,9 @@ public class LaunchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_launch);
         addControls();
         // create database
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                FitnessDB.getInstance(getApplicationContext()).workoutDAO().getAllWorkouts();
-            }
-        }).start();
+        executorService.execute(() -> {
+            FitnessDB.getInstance(getApplicationContext()).workoutDAO().getAllWorkouts();
+        });
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -57,5 +59,12 @@ public class LaunchActivity extends AppCompatActivity {
             }
         }, 2000);
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(executorService != null)
+            executorService.shutdown();
     }
 }

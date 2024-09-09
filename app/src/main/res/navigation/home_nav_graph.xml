@@ -28,11 +28,20 @@
         <action
             android:id="@+id/action_profileFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_favoritesFragment"
+            app:destination="@id/favoritesFragment" />
     </fragment>
     <fragment
         android:id="@+id/forgottenPasswordFragment"
         android:name="com.example.gymfitness.fragments.authentication.ForgottenPasswordFragment"
         android:label="ForgottenPasswordFragment"
         tools:layout="@layout/fragment_forgotten_password"
+        />
+    <fragment
+        android:id="@+id/favoritesFragment"
+        android:name="com.example.gymfitness.fragments.floatingMenu.FavoritesFragment"
+        android:label="FavoritesFragment"
+        tools:layout="@layout/fragment_favorites"
         />
 </navigation>
