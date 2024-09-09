@@ -22,9 +22,10 @@
             android:minHeight="?attr/actionBarSize"
             app:menu="@menu/toolbar_home_menu"
             app:title="Hi, Madison"
-            app:titleTextAppearance="@style/ToolbarTitleTextAppearance"
+            app:titleTextAppearance="@style/CustomToolbarTitle"
             android:layout_alignParentStart="true"
             android:layout_marginHorizontal="15dp"
+            app:titleMarginTop="15dp"
             />
 
 
