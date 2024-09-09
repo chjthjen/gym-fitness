@@ -58,4 +58,7 @@
     <string name="vibrate">Vibrate</string>
     <string name="lockScreen">Lock Screen</string>">
     <string name="reminders">Reminders</string>
+    <string name="notification_setting">Notification Setting</string>
+    <string name="password_setting">Password Setting</string>
+    <string name="delete_account">Delete Account</string>
 </resources>
