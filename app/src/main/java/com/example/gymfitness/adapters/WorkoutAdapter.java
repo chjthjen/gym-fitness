@@ -14,19 +14,20 @@ public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.WorkoutV
     @NonNull
     @Override
     public WorkoutViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        // Inflate the item layout
+
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.rcv_workout_item_nonvideo, parent, false);
         return new WorkoutViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull WorkoutViewHolder holder, int position) {
-        // No data binding needed for this example
+
     }
 
     @Override
     public int getItemCount() {
-        return 10; // Show 10 items for testing
+        //so luong item hien thi
+        return 10;
     }
 
     static class WorkoutViewHolder extends RecyclerView.ViewHolder {

@@ -50,6 +50,7 @@
         </LinearLayout>
 
 
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/banner_weekly_challenge"
             android:layout_width="0dp"
@@ -59,6 +60,7 @@
             app:layout_constraintTop_toBottomOf="@id/ln_button"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
+
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardView"
@@ -201,6 +203,13 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@id/banner_weekly_challenge"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
             <LinearLayout
                 android:id="@+id/linear_workout_item"
                 android:layout_width="match_parent"
@@ -235,13 +244,7 @@
                     android:textColor="@color/white"
                     android:textSize="11sp"
                     android:textStyle="bold" />
-                <ScrollView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintStart_toStartOf="@id/linear_workout_item"
-                    app:layout_constraintEnd_toEndOf="@id/linear_workout_item"
-                    app:layout_constraintTop_toBottomOf="@id/linear_workout_item"
-                    >
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_workout_item"
                     android:layout_width="match_parent"
@@ -252,14 +255,11 @@
                     tools:listitem="@layout/rcv_workout_item_nonvideo"
                     />
 
-                </ScrollView>
+
             </LinearLayout>
 
-
+</ScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
 
 </layout>
