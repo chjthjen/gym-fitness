@@ -31,6 +31,9 @@
         <action
             android:id="@+id/action_profileFragment_to_favoritesFragment"
             app:destination="@id/favoritesFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_helpFragment"
+            app:destination="@id/helpFragment" />
     </fragment>
     <fragment
         android:id="@+id/forgottenPasswordFragment"
@@ -43,5 +46,11 @@
         android:name="com.example.gymfitness.fragments.floatingMenu.FavoritesFragment"
         android:label="FavoritesFragment"
         tools:layout="@layout/fragment_favorites"
+        />
+    <fragment
+        android:id="@+id/helpFragment"
+        android:name="com.example.gymfitness.fragments.help.HelpFragment"
+        android:label="HelpFragment"
+        tools:layout="@layout/fragment_help"
         />
 </navigation>
