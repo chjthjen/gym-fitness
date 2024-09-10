@@ -11,7 +11,7 @@ public class UserInformation implements Serializable {
     @PrimaryKey(autoGenerate = true)
     private int id;
     private String gender;
-    private String age;
+    private int age;
     private int weight;
     private int height;
     private String goal;
@@ -35,11 +35,11 @@ public class UserInformation implements Serializable {
         this.gender = gender;
     }
 
-    public String getAge() {
+    public int getAge() {
         return age;
     }
 
-    public void setAge(String age) {
+    public void setAge(int age) {
         this.age = age;
     }
 
