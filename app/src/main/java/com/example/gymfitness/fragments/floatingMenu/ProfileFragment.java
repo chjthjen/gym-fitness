@@ -60,6 +60,7 @@ public class ProfileFragment extends Fragment {
         });
         // open favorite
         binding.favoriteContainer.setOnClickListener( v -> navController.navigate(R.id.action_profileFragment_to_favoritesFragment));
+        binding.helpContainer.setOnClickListener(v -> navController.navigate(R.id.action_profileFragment_to_helpFragment));
     }
     @Override
     public void onDestroyView() {
