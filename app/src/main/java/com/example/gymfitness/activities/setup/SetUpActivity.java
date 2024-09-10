@@ -2,6 +2,7 @@ package com.example.gymfitness.activities.setup;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import androidx.activity.EdgeToEdge;
@@ -15,7 +16,7 @@ import com.example.gymfitness.databinding.ActivitySetUpBinding;
 
 public class SetUpActivity extends AppCompatActivity {
     ActivitySetUpBinding binding;
-
+    NavController navController;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,7 +24,7 @@ public class SetUpActivity extends AppCompatActivity {
         binding = ActivitySetUpBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView);
-        NavController navController = navHostFragment.getNavController();
+        navController = navHostFragment.getNavController();
         binding.btnContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -31,32 +32,28 @@ public class SetUpActivity extends AppCompatActivity {
                 if(currentDestId == R.id.genderFragment)
                 {
                     navController.navigate(R.id.action_genderFragment_to_howOldFragment);
-                    binding.btnContinue.setVisibility(View.VISIBLE);
                 }
                 else if(currentDestId == R.id.howOldFragment)
                 {
                     navController.navigate(R.id.action_howOldFragment_to_weightFragment);
-                    binding.btnContinue.setVisibility(View.VISIBLE);
                 }
                 else if(currentDestId == R.id.weightFragment)
                 {
                     navController.navigate(R.id.action_weightFragment_to_heightFragment);
-                    binding.btnContinue.setVisibility(View.VISIBLE);
                 }
                 else if(currentDestId == R.id.heightFragment)
                 {
                     navController.navigate(R.id.action_heightFragment_to_goalFragment);
-                    binding.btnContinue.setVisibility(View.VISIBLE);
                 }
                 else if(currentDestId == R.id.goalFragment)
                 {
                     navController.navigate(R.id.action_goalFragment_to_physicalActivityLevelFragment);
-                    binding.btnContinue.setVisibility(View.VISIBLE);
                 }
                 else if(currentDestId == R.id.physicalActivityLevelFragment)
                 {
-                    navController.navigate(R.id.action_physicalActivityLevelFragment_to_fillProfileFragment);
+                    Log.d("pickyou", "cai l ma mmmmmmmmm");
                     binding.btnContinue.setVisibility(View.GONE);
+                    navController.navigate(R.id.action_physicalActivityLevelFragment_to_fillProfileFragment);
                 }
                 else
                     return;
@@ -67,6 +64,9 @@ public class SetUpActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (navController.getPreviousBackStackEntry() != null) {
+                    int currentDestId = navController.getCurrentDestination().getId();
+                    if(currentDestId == R.id.fillProfileFragment)
+                        binding.btnContinue.setVisibility(View.VISIBLE);
                     navController.popBackStack();
                 } else {
                     Intent intent = new Intent(SetUpActivity.this,SetUpStartActivity.class);
@@ -75,8 +75,17 @@ public class SetUpActivity extends AppCompatActivity {
                 }
             }
         });
-    }
 
+
+
+    }
+    @Override
+    public void onBackPressed() {
+        int currentDestId = navController.getCurrentDestination().getId();
+        if(currentDestId == R.id.fillProfileFragment)
+            binding.btnContinue.setVisibility(View.VISIBLE);
+        super.onBackPressed();
+    }
     @Override
     protected void onDestroy() {
         super.onDestroy();
