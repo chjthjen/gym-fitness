@@ -10,10 +10,9 @@
         android:layout_height="match_parent"
         android:background="@color/primary">
 
-        <!-- LinearLayout chứa các button hàng ngang -->
         <LinearLayout
             android:id="@+id/ln_button"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_margin="20dp"
@@ -45,12 +44,13 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/white"
                 android:text="Advanced"
+                android:layout_weight="1"
                 android:textColor="@color/purple" />
 
 
         </LinearLayout>
 
-        <!-- ConstraintLayout chứa banner -->
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/banner_weekly_challenge"
             android:layout_width="0dp"
