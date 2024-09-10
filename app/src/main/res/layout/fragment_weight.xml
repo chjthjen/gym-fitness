@@ -14,46 +14,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/black"
-        android:clipToOutline="true"
-        android:paddingTop="30dp">
-
-        <RelativeLayout
-            android:id="@+id/actionBar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize">
-
-            <ImageButton
-                android:id="@+id/btnBack"
-                android:layout_width="6dp"
-                android:layout_height="11dp"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="35dp"
-                android:background="@null"
-                android:contentDescription="Back to before"
-                android:scaleType="fitCenter"
-                android:src="@drawable/arrow" />
-
-            <TextView
-                android:id="@+id/back"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="9dp"
-                android:layout_toRightOf="@+id/btnBack"
-                android:fontFamily="@font/league_spartan"
-                android:gravity="center"
-                android:lineHeight="14sp"
-                android:text="Back"
-                android:textColor="@color/third" />
-
-        </RelativeLayout>
+       >
 
         <LinearLayout
             android:id="@+id/linear_weight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/actionBar"
+            android:layout_alignParentTop="true"
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
@@ -65,7 +32,8 @@
                 android:text="What is Your Weight?"
                 android:textColor="@color/white"
                 android:textSize="28dp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                />
 
             <TextView
                 android:id="@+id/textView10"
@@ -85,9 +53,8 @@
                 android:layout_marginTop="57dp"
                 android:background="@drawable/rounded_weight"
                 android:orientation="horizontal"
-                android:padding="9dp">
-
-
+                android:padding="9dp"
+                android:weightSum="3">
                 <TextView
                     android:id="@+id/txt_kg"
                     android:layout_width="wrap_content"
@@ -104,9 +71,8 @@
                     android:id="@+id/imageView6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="9dp"
-                    android:layout_marginRight="9dp"
-                    tools:srcCompat="@drawable/black_partition" />
+                    android:layout_weight="1"
+                    android:src="@drawable/black_partition" />
 
                 <TextView
                     android:id="@+id/txt_lb"
@@ -123,84 +89,158 @@
             </LinearLayout>
 
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:orientation="vertical"
-                    android:layout_marginTop="53dp">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:orientation="vertical">
 
-                    <com.shawnlin.numberpicker.NumberPicker
-                        android:id="@+id/np"
-                        android:layout_width="match_parent"
-                        android:layout_height="45dp"
-                        app:np_dividerColor="@android:color/transparent"
-                        app:np_orientation="horizontal"
-                        app:np_textSize="35dp"
-                        app:np_selectedTextSize="40dp"
-                        app:np_wheelItemCount="5"
-                        app:np_min="0"
-                        app:np_formatter="@string/number_picker_formatter"
-                        app:np_value="75"
-                        app:np_max="550"
-                        app:np_wrapSelectorWheel="false"
-                        android:gravity="center"
-                        app:np_typeface="@font/poppins"
-                        app:np_textColor="@color/white"
-                        app:np_selectedTextColor="@color/white"/>
+                <com.shawnlin.numberpicker.NumberPicker
+                    android:id="@+id/np"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:np_dividerColor="@android:color/transparent"
+                    app:np_formatter="@string/number_picker_formatter"
+                    app:np_max="550"
+                    app:np_min="0"
+                    app:np_orientation="horizontal"
+                    app:np_selectedTextColor="@color/white"
+                    app:np_selectedTextSize="40dp"
+                    app:np_textColor="@color/white"
+                    app:np_textSize="35dp"
+                    app:np_typeface="@font/poppins"
+                    app:np_value="75"
+                    app:np_wheelItemCount="5"
+                    app:np_wrapSelectorWheel="true"
+                    app:layout_constraintTop_toTopOf="parent"
+                    />
+
+                <LinearLayout
+                    android:id="@+id/ruler"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:background="@color/lightpurple"
+                    android:gravity="center_vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:src="@drawable/line_21" />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:src="@drawable/line_21" />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:src="@drawable/line_21" />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:src="@drawable/line_21" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:src="@drawable/line_21" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:src="@drawable/line_21" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:src="@drawable/line_5" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:src="@drawable/line_21" />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:src="@drawable/line_21" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:src="@drawable/line_21" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:src="@drawable/line_21" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:src="@drawable/line_21" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:src="@drawable/line_21" />
 
                 </LinearLayout>
 
-            <ImageView
-                android:id="@+id/iV_polygon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                tools:srcCompat="@drawable/polygon_1" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
         </LinearLayout>
+        <ImageView
+            android:id="@+id/iV_polygon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_below="@+id/linear_weight"
+            android:src="@drawable/polygon_1" />
+
 
 
         <TextView
             android:id="@+id/txt_weight"
-            android:layout_width="88dp"
+            android:layout_width="wrap_content"
             android:layout_height="74dp"
-            android:layout_below="@+id/linear_weight"
+            android:layout_below="@+id/iV_polygon"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="15dp"
-            android:gravity="center"
+            android:fontFamily="@font/poppins"
             android:text="75"
             android:textColor="@color/white"
             android:textSize="62sp"
-            android:textStyle="bold"
-            android:fontFamily="@font/poppins"/>
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/txt_measurement_unit"
             android:layout_width="wrap_content"
             android:layout_height="36dp"
-            android:layout_below="@id/linear_weight"
+            android:layout_below="@id/iV_polygon"
             android:layout_gravity="bottom"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="53dp"
             android:layout_toRightOf="@id/txt_weight"
             android:alpha="0.65"
+            android:fontFamily="@font/poppins"
+            android:lineHeight="30sp"
             android:text="Kg"
             android:textColor="@color/white"
             android:textSize="27sp"
-            android:textStyle="bold"
-            android:lineHeight="30sp"
-            android:layout_marginTop="53dp"
-            android:fontFamily="@font/poppins"/>
-
-        <Button
-            android:layout_width="178.56dp"
-            android:layout_height="44dp"
-            app:backgroundTint="@null"
-            android:background="@drawable/custom_button"
-            android:layout_below="@+id/txt_weight"
-            android:text="@string/continue1"
-            android:textSize="20dp"
-            android:layout_marginTop="100dp"
-            android:layout_centerHorizontal="true"
-            android:fontFamily="@font/poppins"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
     </RelativeLayout>
 

@@ -22,9 +22,6 @@
         <action
             android:id="@+id/action_howOldFragment_to_weightFragment"
             app:destination="@id/weightFragment" />
-        <action
-            android:id="@+id/action_howOldFragment_to_genderFragment"
-            app:destination="@id/genderFragment" />
     </fragment>
     <fragment
         android:id="@+id/weightFragment"
@@ -34,9 +31,6 @@
         <action
             android:id="@+id/action_weightFragment_to_heightFragment"
             app:destination="@id/heightFragment" />
-        <action
-            android:id="@+id/action_weightFragment_to_howOldFragment"
-            app:destination="@id/howOldFragment" />
     </fragment>
     <fragment
         android:id="@+id/heightFragment"
@@ -46,18 +40,12 @@
         <action
             android:id="@+id/action_heightFragment_to_goalFragment"
             app:destination="@id/goalFragment" />
-        <action
-            android:id="@+id/action_heightFragment_to_weightFragment"
-            app:destination="@id/weightFragment" />
     </fragment>
     <fragment
         android:id="@+id/goalFragment"
         android:name="com.example.gymfitness.fragments.setup.GoalFragment"
         android:label="fragment_goal"
         tools:layout="@layout/fragment_goal" >
-        <action
-            android:id="@+id/action_goalFragment_to_heightFragment"
-            app:destination="@id/heightFragment" />
         <action
             android:id="@+id/action_goalFragment_to_physicalActivityLevelFragment"
             app:destination="@id/physicalActivityLevelFragment" />
@@ -68,9 +56,6 @@
         android:label="PhysicalActivityLevelFragment"
         tools:layout="@layout/fragment_physical_activity_level">
         <action
-            android:id="@+id/action_physicalActivityLevelFragment_to_goalFragment"
-            app:destination="@id/goalFragment" />
-        <action
             android:id="@+id/action_physicalActivityLevelFragment_to_fillProfileFragment"
             app:destination="@id/fillProfileFragment" />
     </fragment>
@@ -78,9 +63,5 @@
         android:id="@+id/fillProfileFragment"
         android:name="com.example.gymfitness.fragments.setup.FillProfileFragment"
         android:label="FillProfileFragment"
-        tools:layout="@layout/fragment_fill_profile">
-        <action
-            android:id="@+id/action_fillProfileFragment_to_physicalActivityLevelFragment"
-            app:destination="@id/physicalActivityLevelFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_fill_profile"/>
 </navigation>

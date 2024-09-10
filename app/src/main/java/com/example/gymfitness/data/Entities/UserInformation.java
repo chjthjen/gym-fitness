@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey;
 import java.io.Serializable;
 import java.util.Date;
 
-@Entity
+@Entity(tableName = "UserInformation")
 public class UserInformation implements Serializable {
     @PrimaryKey(autoGenerate = true)
     private int id;

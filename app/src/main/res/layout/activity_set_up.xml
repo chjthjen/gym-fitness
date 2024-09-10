@@ -6,15 +6,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/primary"
-    tools:context=".activities.SetUpActivity">
+    tools:context=".activities.setup.SetUpActivity">
 
     <LinearLayout
-        android:id="@+id/btn"
-        android:layout_width="match_parent"
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true">
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="35dp"
+        >
         <ImageButton
-            android:id="@+id/btnBack"
             android:layout_width="10dp"
             android:layout_height="12dp"
             android:layout_marginLeft="20dp"
@@ -33,16 +35,22 @@
             android:textStyle="bold" />
     </LinearLayout>
 
-
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentContainerView"
-        android:name="androidx.navigation.fragment.NavHostFragment"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/btnContinue"
-        android:layout_below="@+id/btn"
-        app:defaultNavHost="true"
-        app:navGraph="@navigation/set_up_nav_graph"/>
+        android:layout_below="@+id/btnBack"
+        >
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragmentContainerView"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:defaultNavHost="true"
+            app:navGraph="@navigation/set_up_nav_graph"/>
+    </ScrollView>
+
+
 
     <Button
         android:id="@+id/btnContinue"
@@ -55,6 +63,8 @@
         android:textColor="@color/white"
         android:layout_alignParentBottom="true"
         android:layout_marginHorizontal="100dp"
-        app:backgroundTint="@null"/>
+        android:layout_marginBottom="55dp"
+        app:backgroundTint="@null"
+        />
 
 </RelativeLayout>

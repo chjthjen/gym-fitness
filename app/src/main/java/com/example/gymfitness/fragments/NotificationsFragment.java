@@ -12,12 +12,14 @@ import android.widget.ImageButton;
 
 import com.example.gymfitness.R;
 import com.example.gymfitness.databinding.FragmentNotificationsBinding;
+import com.example.gymfitness.viewmodels.NotificationsViewModel;
 
 public class NotificationsFragment extends Fragment {
 
     FragmentNotificationsBinding binding;
     private boolean isGeneralNotificationOn = true, isSoundOn = true, isDontDisturbOn = true, isVibrateOn = true, isLockScreenOn = true, isRemindersOn = true;
 
+    NotificationsViewModel viewModel;
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -54,54 +56,46 @@ public class NotificationsFragment extends Fragment {
         binding.imgGeneralNotification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                toggleLockScreen(binding.imgGeneralNotification, isGeneralNotificationOn);
+                viewModel.toggleLockScreen(binding.imgGeneralNotification, isGeneralNotificationOn);
             }
             });
 
         binding.imgSound.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                toggleLockScreen(binding.imgSound, isSoundOn);
+                viewModel.toggleLockScreen(binding.imgSound, isSoundOn);
             }
         });
 
         binding.imfDontDisturbMode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                toggleLockScreen(binding.imfDontDisturbMode, isDontDisturbOn);
+                viewModel.toggleLockScreen(binding.imfDontDisturbMode, isDontDisturbOn);
             }
         });
 
         binding.imgVibrate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                toggleLockScreen(binding.imgVibrate, isVibrateOn);
+                viewModel.toggleLockScreen(binding.imgVibrate, isVibrateOn);
             }
         });
 
         binding.imgLockScreen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                toggleLockScreen(binding.imgLockScreen, isLockScreenOn);
+                viewModel.toggleLockScreen(binding.imgLockScreen, isLockScreenOn);
             }
         });
 
         binding.imgReminders.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                toggleLockScreen(binding.imgReminders, isRemindersOn);
+                viewModel.toggleLockScreen(binding.imgReminders, isRemindersOn);
                 }
         });
 
         return binding.getRoot();
     }
 
-    private void toggleLockScreen(ImageButton img, boolean isOn) {
-        if (isOn) {
-            img.setBackgroundResource(R.drawable.component31_off);
-        } else {
-            img.setBackgroundResource(R.drawable.component31_on);
-        }
-        isOn = !isOn;
-    }
 }

@@ -1,26 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
-<item android:title="Home"
-    android:id="@+id/homeFragment"
-      android:icon="@drawable/ic_home"
-    />
-<item android:title="Resources Switch"
-
-    android:id="@+id/resourcesFragment"
-     android:icon="@drawable/ic_resources_icon"
-    />
-    <item android:title="Starts"
-
+    <item
+        android:id="@+id/homeFragment"
+        android:icon="@drawable/ic_home"
+        android:title="Home"
+        app:showAsAction="always"
+        />
+    <item
+        android:id="@+id/resourcesFragment"
+        android:icon="@drawable/ic_resources_icon"
+        android:title="Resources Switch"
+        app:showAsAction="always"
+        />
+    <item
         android:id="@+id/startsFragment"
         android:icon="@drawable/ic_star"
+        android:title="Starts"
+        app:showAsAction="always"
         />
-    <item android:title="Suport"
+    <item
         android:id="@+id/supportFragment"
         android:icon="@drawable/ic_support_help"
+        android:title="Suport"
+        app:showAsAction="always"
         />
-
 
 
 </menu>

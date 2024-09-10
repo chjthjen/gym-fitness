@@ -1,213 +1,207 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/black">
+<layout>
 
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="6dp"
-        android:layout_height="11dp"
-        android:layout_marginStart="35dp"
-        android:layout_marginTop="49dp"
-        android:layout_alignParentStart="true"
-        android:contentDescription="@string/arrow"
-        android:src="@drawable/arrow"/>
-
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="35dp"
-        android:gravity="center"
-        android:textSize="20sp"
-        android:layout_toEndOf="@id/imageView4"
-        android:textColor="@color/limegreen"
-        android:fontFamily="@font/poppins"
-        android:text="@string/back" />
-
-    <TextView
-        android:id="@+id/textView13"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/imageView4"
-        android:layout_marginTop="36dp"
-        android:textSize="25sp"
-        android:textColor="@color/white"
-        android:layout_centerHorizontal="true"
-        android:fontFamily="@font/poppins"
-        android:text="@string/fill_your_profile" />
-
-    <TextView
-        android:id="@+id/textView14"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:layout_below="@id/textView13"
-        android:layout_marginTop="31dp"
-        android:layout_marginHorizontal="35dp"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:fontFamily="@font/league_spartan"
-        android:text="@string/lorem_ipsum_dolor_sit_amet_consectetur_adipiscing_elit_sed_do_eiusmod_tempor_incididunt_ut_labore_et_dolore_magna_aliqua" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="140dp"
-        android:layout_below="@id/textView14"
-        android:layout_marginTop="20dp"
-        android:background="#B3A0FF">
+        android:layout_height="match_parent"
+        android:background="@color/black">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView"
+        <TextView
+            android:id="@+id/textView13"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="13dp"
-            android:background="@color/black"
-            app:cardCornerRadius="500dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="@font/poppins"
+            android:text="@string/fill_your_profile"
+            android:textColor="@color/white"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView13"
+            android:layout_marginHorizontal="35dp"
+            android:layout_marginTop="31dp"
+            android:fontFamily="@font/league_spartan"
+            android:text="@string/lorem_ipsum_dolor_sit_amet_consectetur_adipiscing_elit_sed_do_eiusmod_tempor_incididunt_ut_labore_et_dolore_magna_aliqua"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:layout_below="@id/textView14"
+            android:layout_marginTop="20dp"
+            android:background="#B3A0FF">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="13dp"
+                android:background="@color/black"
+                app:cardCornerRadius="500dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/imageView9"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/avt" />
+            </androidx.cardview.widget.CardView>
 
             <ImageView
-                android:id="@+id/imageView9"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/avt" />
-        </androidx.cardview.widget.CardView>
+                android:id="@+id/imageView7"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:elevation="3dp"
+                app:layout_constraintBottom_toBottomOf="@+id/cardView"
+                app:layout_constraintEnd_toEndOf="@+id/cardView"
+                app:srcCompat="@drawable/ic_edit_profile" />
 
-        <ImageView
-            android:id="@+id/imageView7"
-            android:layout_width="34dp"
-            android:layout_height="34dp"
-            android:elevation="3dp"
-            app:layout_constraintBottom_toBottomOf="@+id/cardView"
-            app:layout_constraintEnd_toEndOf="@+id/cardView"
-            app:srcCompat="@drawable/ic_edit_profile" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/constraintLayout"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/league_spartan"
+            android:text="@string/full_name"
+            android:textColor="#896CFE"
+            android:textSize="18sp" />
 
-    <TextView
-        android:id="@+id/textView15"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="35dp"
-        android:layout_marginTop="20dp"
-        android:textSize="18sp"
-        android:fontFamily="@font/league_spartan"
-        android:textColor="#896CFE"
-        android:layout_below="@id/constraintLayout"
-        android:text="@string/full_name" />
+        <EditText
+            android:id="@+id/edtFullName"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_below="@id/textView15"
+            android:layout_marginHorizontal="35dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/rounded_edittext_signup"
+            android:backgroundTint="@color/white"
+            android:ems="10"
+            android:inputType="text"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:paddingLeft="10dp"
+            android:hint="Full name"
+            />
 
-    <EditText
-        android:id="@+id/edtFullName"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:ems="10"
-        android:inputType="text"
-        android:layout_below="@id/textView15"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:backgroundTint="@color/white"
-        android:background="@drawable/rounded_edittext_signup"
-        android:layout_marginHorizontal="35dp"/>
-    <TextView
-        android:id="@+id/textView16"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="35dp"
-        android:layout_marginTop="14dp"
-        android:textSize="18sp"
-        android:fontFamily="@font/league_spartan"
-        android:textColor="#896CFE"
-        android:layout_below="@id/edtFullName"
-        android:text="@string/nickname" />
+        <TextView
+            android:id="@+id/textView16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/edtFullName"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="14dp"
+            android:fontFamily="@font/league_spartan"
+            android:text="@string/nickname"
+            android:textColor="#896CFE"
+            android:textSize="18sp" />
 
-    <EditText
-        android:id="@+id/edtNickname"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginHorizontal="35dp"
-        android:ems="10"
-        android:textColor="@color/black"
-        android:backgroundTint="@color/white"
-        android:background="@drawable/rounded_edittext_signup"
-        android:inputType="text"
-        android:textSize="20sp"
-        android:layout_below="@id/textView16"/>
+        <EditText
+            android:id="@+id/edtNickname"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_below="@id/textView16"
+            android:layout_marginHorizontal="35dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/rounded_edittext_signup"
+            android:backgroundTint="@color/white"
+            android:ems="10"
+            android:inputType="text"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:paddingLeft="10dp"
+            android:hint="Nick name"
+            />
 
-    <TextView
-        android:id="@+id/textView17"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="35dp"
-        android:layout_marginTop="14dp"
-        android:textSize="18sp"
-        android:fontFamily="@font/league_spartan"
-        android:textColor="#896CFE"
-        android:layout_below="@id/edtNickname"
-        android:text="@string/email" />
+        <TextView
+            android:id="@+id/textView17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/edtNickname"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="14dp"
+            android:fontFamily="@font/league_spartan"
+            android:text="@string/email"
+            android:textColor="#896CFE"
+            android:textSize="18sp" />
 
-    <EditText
-        android:id="@+id/edtEmail"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginHorizontal="35dp"
-        android:ems="10"
-        android:textColor="@color/black"
-        android:backgroundTint="@color/white"
-        android:background="@drawable/rounded_edittext_signup"
-        android:inputType="textEmailAddress"
-        android:textSize="20sp"
-        android:layout_below="@id/textView17"/>
+        <EditText
+            android:id="@+id/edtEmail"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_below="@id/textView17"
+            android:layout_marginHorizontal="35dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/rounded_edittext_signup"
+            android:backgroundTint="@color/white"
+            android:ems="10"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:paddingLeft="10dp"
+            android:hint="Email address"
+            />
 
-    <TextView
-        android:id="@+id/textView18"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="35dp"
-        android:layout_marginTop="14dp"
-        android:textSize="18sp"
-        android:fontFamily="@font/league_spartan"
-        android:textColor="#896CFE"
-        android:layout_below="@id/edtEmail"
-        android:text="@string/mobile_number" />
+        <TextView
+            android:id="@+id/textView18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/edtEmail"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="14dp"
+            android:fontFamily="@font/league_spartan"
+            android:text="@string/mobile_number"
+            android:textColor="#896CFE"
+            android:textSize="18sp" />
 
-    <EditText
-        android:id="@+id/edtMobieNumber"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginHorizontal="35dp"
-        android:ems="10"
-        android:textColor="@color/black"
-        android:backgroundTint="@color/white"
-        android:background="@drawable/rounded_edittext_signup"
-        android:inputType="phone"
-        android:textSize="20sp"
-        android:layout_below="@id/textView18"/>
+        <EditText
+            android:id="@+id/edtMobieNumber"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_below="@id/textView18"
+            android:layout_marginHorizontal="35dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/rounded_edittext_signup"
+            android:backgroundTint="@color/white"
+            android:ems="10"
+            android:inputType="phone"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:paddingLeft="10dp"
+            android:hint="Phone number"
+            />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnStart"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/edtMobieNumber"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="26dp"
-        android:textSize="34sp"
-        android:textAllCaps="false"
-        android:fontFamily="@font/league_spartan"
-        android:background="@drawable/button_start_bg"
-        android:text="@string/start" />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnStart"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/edtMobieNumber"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="26dp"
+            android:background="@drawable/button_start_bg"
+            android:fontFamily="@font/league_spartan"
+            android:text="@string/start"
+            android:textAllCaps="false"
+            android:textColor="#000000"
+            android:textSize="28sp" />
 
-</RelativeLayout>
+    </RelativeLayout>
+</layout>

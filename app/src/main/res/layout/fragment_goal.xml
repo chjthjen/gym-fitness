@@ -1,111 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/black"
-    tools:context=".fragments.setup.GoalFragment">
+<layout>
 
-    <!--Main title-->
-    <TextView
-        android:id="@+id/fg_tv_main_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="76dp"
-        android:layout_marginTop="120dp"
-        android:text="@string/what_is_your_goal"
-        android:textAppearance="@style/fg_tv_main_title"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <!--Sub title-->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="35dp"
-        android:layout_marginTop="189dp"
-        android:gravity="center"
-        android:text="@string/lorem_ipsum_dolor_sit_amet_consectetur_adipiscing_elit_n_sed_do_eiusmod_tempor_incididunt_ut_labore_et_dolore_n_magna_aliqua"
-        android:textAppearance="@style/fg_tv_sub_title"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <!--Body-->
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="267dp"
-        android:background="#B3A0FF"
-        android:orientation="vertical"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent"
+        android:background="@color/black"
+        tools:context=".fragments.setup.GoalFragment">
 
-        <RadioGroup
-            android:layout_marginTop="35dp"
-            android:layout_marginBottom="35dp"
-            android:id="@+id/fg_rbg"
-            android:gravity="center"
+        <!--Main title-->
+        <TextView
+            android:id="@+id/fg_tv_main_title"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/what_is_your_goal"
+            android:textAppearance="@style/fg_tv_main_title"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <RadioButton
-                android:layout_width="323dp"
-                android:layout_height="54dp"
-                android:layout_margin="11dp"
-                android:background="@drawable/fg_custom_radio_selector"
-                android:button="@drawable/transparent_bg_bordered"
-                android:drawableEnd="@drawable/fg_button_icon_selector"
-                android:textColor="@drawable/fg_custom_radio_text_selector"
-                android:textAppearance="@style/fg_tv_body"
-                android:text="@string/lose_weight"
-                />
-            <RadioButton
-                android:layout_width="323dp"
-                android:layout_height="54dp"
-                android:layout_margin="11dp"
-                android:background="@drawable/fg_custom_radio_selector"
-                android:button="@drawable/transparent_bg_bordered"
-                android:drawableEnd="@drawable/fg_button_icon_selector"
-                android:textColor="@drawable/fg_custom_radio_text_selector"
-                android:textAppearance="@style/fg_tv_body"
-                android:text="@string/gain_weight"
-                />
-            <RadioButton
-                android:layout_width="323dp"
-                android:layout_height="54dp"
-                android:layout_margin="11dp"
-                android:background="@drawable/fg_custom_radio_selector"
-                android:button="@drawable/transparent_bg_bordered"
-                android:drawableEnd="@drawable/fg_button_icon_selector"
-                android:textColor="@drawable/fg_custom_radio_text_selector"
-                android:textAppearance="@style/fg_tv_body"
-                android:text="@string/muscle_mass_gain"
-                />
-            <RadioButton
-                android:layout_width="323dp"
-                android:layout_height="54dp"
-                android:layout_margin="11dp"
-                android:background="@drawable/fg_custom_radio_selector"
-                android:button="@drawable/transparent_bg_bordered"
-                android:drawableEnd="@drawable/fg_button_icon_selector"
-                android:textColor="@drawable/fg_custom_radio_text_selector"
-                android:textAppearance="@style/fg_tv_body"
-                android:text="@string/shape_body"
-                />
-            <RadioButton
-                android:layout_width="323dp"
-                android:layout_height="54dp"
-                android:layout_margin="11dp"
-                android:background="@drawable/fg_custom_radio_selector"
-                android:button="@drawable/transparent_bg_bordered"
-                android:drawableEnd="@drawable/fg_button_icon_selector"
-                android:textColor="@drawable/fg_custom_radio_text_selector"
-                android:textAppearance="@style/fg_tv_body"
-                android:text="@string/others"
-                />
+        <!--Sub title-->
+        <TextView
+            android:id="@+id/subtile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:gravity="center"
+            android:text="@string/lorem_ipsum_dolor_sit_amet_consectetur_adipiscing_elit_n_sed_do_eiusmod_tempor_incididunt_ut_labore_et_dolore_n_magna_aliqua"
+            android:textAppearance="@style/fg_tv_sub_title"
+            app:layout_constraintTop_toBottomOf="@+id/fg_tv_main_title" />
+
+        <!--Body-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:background="#B3A0FF"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@+id/subtile">
+
+            <RadioGroup
+                android:id="@+id/fg_rbg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="35dp"
+                android:layout_marginBottom="35dp"
+                android:gravity="center">
+
+                <RadioButton
+                    android:layout_width="323dp"
+                    android:layout_height="54dp"
+                    android:layout_margin="11dp"
+                    android:background="@drawable/fg_custom_radio_selector"
+                    android:button="@drawable/transparent_bg_bordered"
+                    android:drawableEnd="@drawable/fg_button_icon_selector"
+                    android:text="@string/lose_weight"
+                    android:textAppearance="@style/fg_tv_body"
+                    android:textColor="@drawable/fg_custom_radio_text_selector" />
+
+                <RadioButton
+                    android:layout_width="323dp"
+                    android:layout_height="54dp"
+                    android:layout_margin="11dp"
+                    android:background="@drawable/fg_custom_radio_selector"
+                    android:button="@drawable/transparent_bg_bordered"
+                    android:drawableEnd="@drawable/fg_button_icon_selector"
+                    android:text="@string/gain_weight"
+                    android:textAppearance="@style/fg_tv_body"
+                    android:textColor="@drawable/fg_custom_radio_text_selector" />
+
+                <RadioButton
+                    android:layout_width="323dp"
+                    android:layout_height="54dp"
+                    android:layout_margin="11dp"
+                    android:background="@drawable/fg_custom_radio_selector"
+                    android:button="@drawable/transparent_bg_bordered"
+                    android:drawableEnd="@drawable/fg_button_icon_selector"
+                    android:text="@string/muscle_mass_gain"
+                    android:textAppearance="@style/fg_tv_body"
+                    android:textColor="@drawable/fg_custom_radio_text_selector" />
+
+                <RadioButton
+                    android:layout_width="323dp"
+                    android:layout_height="54dp"
+                    android:layout_margin="11dp"
+                    android:background="@drawable/fg_custom_radio_selector"
+                    android:button="@drawable/transparent_bg_bordered"
+                    android:drawableEnd="@drawable/fg_button_icon_selector"
+                    android:text="@string/shape_body"
+                    android:textAppearance="@style/fg_tv_body"
+                    android:textColor="@drawable/fg_custom_radio_text_selector" />
+
+                <RadioButton
+                    android:layout_width="323dp"
+                    android:layout_height="54dp"
+                    android:layout_margin="11dp"
+                    android:background="@drawable/fg_custom_radio_selector"
+                    android:button="@drawable/transparent_bg_bordered"
+                    android:drawableEnd="@drawable/fg_button_icon_selector"
+                    android:text="@string/others"
+                    android:textAppearance="@style/fg_tv_body"
+                    android:textColor="@drawable/fg_custom_radio_text_selector" />
 
 
-        </RadioGroup>
-    </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+            </RadioGroup>
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
