@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.WorkoutSearch_6_3_2_A"
+    android:background="@color/black">
+
+    <include
+        android:id="@+id/commonSearchLayout"
+        layout="@layout/common_search_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+    <LinearLayout
+        android:id="@+id/topSearchLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="25dp"
+        android:layout_below="@id/commonSearchLayout"
+        >
+
+        <TextView
+            android:id="@+id/textView19"
+            style="@style/text_style_poppins"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="15dp"
+            android:text="Top Searches"
+            android:textSize="25sp"
+            android:paddingLeft="25dp"/>
+
+        <ListView
+            android:id="@+id/listView"
+            android:layout_width="323dp"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="10dp"
+            android:padding="1dp"
+            android:layout_gravity="center"/>
+    </LinearLayout>
+
+</RelativeLayout>

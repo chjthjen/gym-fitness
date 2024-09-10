@@ -1,0 +1,60 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/searchTitle"
+        android:layout_width="323dp"
+        android:layout_height="wrap_content"
+        android:hint="Search"
+        android:paddingLeft="5dp"
+        android:textSize="15sp"
+        android:layout_gravity="center_horizontal"
+        android:paddingBottom="8dp"
+        android:fontFamily="@font/poppins"
+        android:background="@drawable/custom_listview"/>
+
+    <LinearLayout
+        android:paddingTop="10dp"
+        android:layout_width="323dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="3"
+        android:layout_gravity="center">
+
+        <Button
+            android:id="@+id/btnAll"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="All"
+            android:textColor="@color/lightpurple"
+            android:textSize="14sp"
+            android:backgroundTint="@color/white"
+            android:layout_marginRight="4dp" />
+
+        <Button
+            android:id="@+id/btnWorkout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Workout"
+            android:textColor="@color/lightpurple"
+            android:textSize="14sp"
+            android:backgroundTint="@color/limegreen"
+            android:layout_marginRight="4dp" />
+
+        <Button
+            android:id="@+id/btnNutrition"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Nutrition"
+            android:textColor="@color/lightpurple"
+            android:textSize="14sp"
+            android:backgroundTint="@color/white" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -18,7 +18,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fitsSystemWindows="true"
-            android:gravity="center_vertical"
             android:minHeight="?attr/actionBarSize"
             app:menu="@menu/toolbar_home_menu"
             app:title="Hi, Madison"
