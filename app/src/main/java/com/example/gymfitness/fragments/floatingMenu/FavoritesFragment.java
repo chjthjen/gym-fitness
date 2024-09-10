@@ -8,12 +8,14 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.gymfitness.R;
+import com.example.gymfitness.adapters.WorkoutAdapter;
 import com.example.gymfitness.databinding.FragmentFavoritesBinding;
 
 public class FavoritesFragment extends Fragment {
@@ -31,6 +33,7 @@ public class FavoritesFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_favorites,container,false);
         return binding.getRoot();
+
     }
 
     @Override
@@ -39,6 +42,10 @@ public class FavoritesFragment extends Fragment {
         binding.btnAll.setOnClickListener(v -> sortChange(0));
         binding.btnVideo.setOnClickListener(v -> sortChange(1));
         binding.btnArticle.setOnClickListener(v -> sortChange(2));
+        WorkoutAdapter workoutAdapter = new WorkoutAdapter();
+        binding.rcvFavorites.setAdapter(workoutAdapter);
+        binding.rcvFavorites.setLayoutManager(new LinearLayoutManager(getContext()));
+
     }
 
     private void sortChange(int pos)
