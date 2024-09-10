@@ -26,6 +26,9 @@ import com.example.gymfitness.data.WorkoutTest;
 import com.example.gymfitness.databinding.FragmentHomeBinding;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 
 public class HomeFragment extends Fragment {
@@ -46,6 +49,8 @@ public class HomeFragment extends Fragment {
     private GoogleSignInClient mGoogleSignInClient;
     private NavController navController;
     Button btnLogout;
+
+    private ExecutorService executorService;
 
 
 
@@ -76,22 +81,31 @@ public class HomeFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false);
         View view = binding.getRoot();
+        executorService = Executors.newFixedThreadPool(3);
         setupRecyclerView();
 
         return view;
     }
     private void setupRecyclerView() {
         WorkoutTest workoutTest = new WorkoutTest();
-        list = workoutTest.makeList();
-        recommendExRCVApdater = new RecommendExRCVApdater(list);
-        layoutManager = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false);
-        binding.rcvRecommendations.setLayoutManager(layoutManager);
-        binding.rcvRecommendations.setAdapter(recommendExRCVApdater);
+        ArrayList<WorkoutTest> list = workoutTest.makeList();
+        executorService.execute(() -> {
+            getActivity().runOnUiThread(() -> {
+                recommendExRCVApdater = new RecommendExRCVApdater(list);
+                layoutManager = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false);
+                binding.rcvRecommendations.setLayoutManager(layoutManager);
+                binding.rcvRecommendations.setAdapter(recommendExRCVApdater);
+            });
+        });
 
-        layoutManager2 = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false);
-        articlesTipsRCVAdapter = new ArticlesTipsRCVAdapter(list);
-        binding.rcvArticlesTips.setLayoutManager(layoutManager2);
-        binding.rcvArticlesTips.setAdapter(articlesTipsRCVAdapter);
+        executorService.execute(() -> {
+            getActivity().runOnUiThread(() -> {
+                articlesTipsRCVAdapter = new ArticlesTipsRCVAdapter(list);
+                layoutManager2 = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false);
+                binding.rcvArticlesTips.setLayoutManager(layoutManager2);
+                binding.rcvArticlesTips.setAdapter(articlesTipsRCVAdapter);
+            });
+        });
     }
 
     @Override
@@ -102,28 +116,4 @@ public class HomeFragment extends Fragment {
 
     }
 
-
-//    @Override
-//    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-//        super.onViewCreated(view, savedInstanceState);
-//
-//        auth = FirebaseAuth.getInstance();
-//        navController = NavHostFragment.findNavController(this);
-//
-//        // Khởi tạo GoogleSignInClient
-//        mGoogleSignInClient = GoogleSignIn.getClient(getActivity(), GoogleSignInOptions.DEFAULT_SIGN_IN);
-//
-//        btnLogout = view.findViewById(R.id.btnLogout);
-//        btnLogout.setOnClickListener(v -> {
-//            // Đăng xuất khỏi Firebase Authentication
-//            auth.signOut();
-//
-//            // Đăng xuất khỏi Google Sign-In
-//            mGoogleSignInClient.signOut().addOnCompleteListener(task -> {
-//                // Sau khi đăng xuất, điều hướng người dùng về màn hình đăng nhập
-//                Toast.makeText(getContext(), "Đã đăng xuất thành công", Toast.LENGTH_SHORT).show();
-//                navController.navigate(R.id.action_homeFragment_to_loginFragment);
-//            });
-//        });
-//    }
 }
