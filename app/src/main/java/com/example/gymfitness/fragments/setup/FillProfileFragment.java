@@ -17,8 +17,14 @@ import android.view.ViewGroup;
 
 import com.example.gymfitness.R;
 import com.example.gymfitness.activities.HomeActivity;
+import com.example.gymfitness.data.DAO.UserInformationDAO;
+import com.example.gymfitness.data.database.FitnessDB;
 import com.example.gymfitness.databinding.FragmentFillProfileBinding;
 import com.example.gymfitness.viewmodels.SetUpViewModel;
+import com.example.gymfitness.viewmodelsfactory.SetUpViewModelFactory;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class FillProfileFragment extends Fragment {
 
@@ -27,6 +33,7 @@ public class FillProfileFragment extends Fragment {
     private String fullname, nickname, email, phonenumber;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
+    private ExecutorService executorService;
 
     public FillProfileFragment() {
         // Required empty public constructor
@@ -36,9 +43,14 @@ public class FillProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_fill_profile, container, false);
+
         setUpViewModel = new ViewModelProvider(requireActivity()).get(SetUpViewModel.class);
+
         sharedPreferences = getActivity().getSharedPreferences("UserInformation", Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
+
+        // thread
+        executorService = Executors.newCachedThreadPool();
         return binding.getRoot();
     }
 
@@ -49,7 +61,10 @@ public class FillProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 setFillProfile();
-                saveToPref();
+                setData();
+                executorService.execute(() -> {
+                    setUpViewModel.saveUserInformation();
+                });
                 Intent intent = new Intent(getContext(), HomeActivity.class);
                 startActivity(intent);
                 getActivity().finish();
@@ -57,12 +72,13 @@ public class FillProfileFragment extends Fragment {
         });
     }
 
-    private void saveToPref()
+    private void setData()
     {
-        editor.putString("fullname",fullname);
-        editor.putString("nickname",nickname);
-        editor.putString("email",email);
-        editor.putString("phonenumber",phonenumber);
+        setUpViewModel.setFullname(fullname);
+        setUpViewModel.setNickname(nickname);
+        setUpViewModel.setEmail(email);
+        setUpViewModel.setPhonenumber(phonenumber);
+        editor.putInt("done",1);
         editor.apply();
     }
 

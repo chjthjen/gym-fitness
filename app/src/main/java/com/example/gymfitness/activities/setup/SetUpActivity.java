@@ -16,15 +16,16 @@ import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.gymfitness.R;
+import com.example.gymfitness.data.DAO.UserInformationDAO;
+import com.example.gymfitness.data.database.FitnessDB;
 import com.example.gymfitness.databinding.ActivitySetUpBinding;
 import com.example.gymfitness.viewmodels.SetUpViewModel;
+import com.example.gymfitness.viewmodelsfactory.SetUpViewModelFactory;
 
 public class SetUpActivity extends AppCompatActivity {
     ActivitySetUpBinding binding;
     NavController navController;
     SetUpViewModel setUpViewModel;
-    SharedPreferences sharedPreferences;
-    SharedPreferences.Editor editor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,10 +34,9 @@ public class SetUpActivity extends AppCompatActivity {
         binding = ActivitySetUpBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         // viewmodel
-        setUpViewModel = new ViewModelProvider(this).get(SetUpViewModel.class);
-        // shared preferences
-        sharedPreferences = getSharedPreferences("UserInformation",MODE_PRIVATE);
-        editor = sharedPreferences.edit();
+        UserInformationDAO userInformationDAO = FitnessDB.getInstance(getApplicationContext()).userInformationDAO();
+        SetUpViewModelFactory factory = new SetUpViewModelFactory(userInformationDAO);
+        setUpViewModel = new ViewModelProvider(this, factory).get(SetUpViewModel.class);
         // nav
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView);
         navController = navHostFragment.getNavController();
@@ -53,88 +53,31 @@ public class SetUpActivity extends AppCompatActivity {
                 int currentDestId = navController.getCurrentDestination().getId();
                 if(currentDestId == R.id.genderFragment)
                 {
-                    setUpViewModel.getGender().observe(SetUpActivity.this, new Observer<String>() {
-                        @Override
-                        public void onChanged(String gender) {
-                            if(gender != null)
-                            {
-                                editor.putString("gender",gender);
-                            }
-
-                        }
-                    });
                     navController.navigate(R.id.action_genderFragment_to_howOldFragment);
                 }
                 else if(currentDestId == R.id.howOldFragment)
                 {
-                    setUpViewModel.getAge().observe(SetUpActivity.this, new Observer<Integer>() {
-                        @Override
-                        public void onChanged(Integer age) {
-                            if(age != null)
-                            {
-                                editor.putInt("age",age);
-                            }
-                        }
-                    });
                     navController.navigate(R.id.action_howOldFragment_to_weightFragment);
                 }
                 else if(currentDestId == R.id.weightFragment)
                 {
-                    setUpViewModel.getWeight().observe(SetUpActivity.this, new Observer<Float>() {
-                        @Override
-                        public void onChanged(Float weight) {
-                            if(weight != null)
-                            {
-                                editor.putFloat("weight",weight);
-                            }
-                        }
-                    });
                     navController.navigate(R.id.action_weightFragment_to_heightFragment);
                 }
                 else if(currentDestId == R.id.heightFragment)
                 {
-                    setUpViewModel.getHeight().observe(SetUpActivity.this, new Observer<Integer>() {
-                        @Override
-                        public void onChanged(Integer height) {
-                            if(height != null)
-                            {
-                                editor.putInt("height",height);
-                            }
-                        }
-                    });
                     navController.navigate(R.id.action_heightFragment_to_goalFragment);
                 }
                 else if(currentDestId == R.id.goalFragment)
                 {
-                    setUpViewModel.getGoal().observe(SetUpActivity.this, new Observer<String>() {
-                        @Override
-                        public void onChanged(String goal) {
-                            if(goal != null)
-                            {
-                                editor.putString("goal",goal);
-                            }
-                        }
-                    });
                     navController.navigate(R.id.action_goalFragment_to_physicalActivityLevelFragment);
                 }
                 else if(currentDestId == R.id.physicalActivityLevelFragment)
                 {
-                    setUpViewModel.getLevel().observe(SetUpActivity.this, new Observer<String>() {
-                        @Override
-                        public void onChanged(String level) {
-                            if(level != null)
-                            {
-                                editor.putString("level",level);
-                            }
-                        }
-                    });
                     binding.btnContinue.setVisibility(View.GONE);
                     navController.navigate(R.id.action_physicalActivityLevelFragment_to_fillProfileFragment);
                 }
                 else
                     return;
-                editor.apply();
-
             }
         });
     }

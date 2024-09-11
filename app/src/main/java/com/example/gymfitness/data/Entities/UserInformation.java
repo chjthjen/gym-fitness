@@ -23,6 +23,8 @@ public class UserInformation implements Serializable {
     private String email;
     private String phonenumber;
 
+    public UserInformation(){}
+
     public UserInformation(int id, String gender, int age, float weight, int height, String goal, Date dob, String img, String level, String fullname, String nickname, String email, String phonenumber) {
         this.id = id;
         this.gender = gender;
