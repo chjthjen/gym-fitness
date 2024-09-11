@@ -9,6 +9,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 
+import com.example.gymfitness.data.DAO.UserInformationDAO;
 import com.example.gymfitness.data.DAO.WorkoutDAO;
 import com.example.gymfitness.data.Entities.Article;
 import com.example.gymfitness.data.Entities.Challenge;
@@ -52,6 +53,7 @@ public abstract class FitnessDB extends RoomDatabase {
     }
 
     public abstract WorkoutDAO workoutDAO();
+    public abstract UserInformationDAO userInformationDAO();
 
 
 }

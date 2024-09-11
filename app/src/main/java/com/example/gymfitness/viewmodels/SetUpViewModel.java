@@ -7,6 +7,9 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.gymfitness.data.DAO.UserInformationDAO;
+import com.example.gymfitness.data.Entities.UserInformation;
+
 public class SetUpViewModel extends ViewModel {
     private final MutableLiveData<String> gender = new MutableLiveData<>();
     private final MutableLiveData<Integer> age = new MutableLiveData<>();
@@ -14,6 +17,31 @@ public class SetUpViewModel extends ViewModel {
     private final MutableLiveData<Integer> height = new MutableLiveData<>();
     private final MutableLiveData<String> goal = new MutableLiveData<>();
     private final MutableLiveData<String> level = new MutableLiveData<>();
+    private final MutableLiveData<String> fullname = new MutableLiveData<>();
+    private final MutableLiveData<String> nickname = new MutableLiveData<>();
+    private final MutableLiveData<String> email = new MutableLiveData<>();
+    private final MutableLiveData<String> phonenumber = new MutableLiveData<>();
+
+    private final UserInformationDAO userInformationDAO;
+
+    public SetUpViewModel(UserInformationDAO userInformationDAO)
+    {
+        this.userInformationDAO = userInformationDAO;
+    }
+
+    public void saveUserInformation()
+    {
+        UserInformation userInformation = new UserInformation();
+        userInformation.setGender(getGender().getValue());
+        userInformation.setAge(getAge().getValue());
+        userInformation.setWeight(getWeight().getValue());
+        userInformation.setHeight(getHeight().getValue());
+        userInformation.setGoal(getGoal().getValue());
+        userInformation.setLevel(getLevel().getValue());
+
+        userInformationDAO.insertWorkout(userInformation);
+
+    }
 
     public void setGender(String gender)
     {
@@ -74,6 +102,48 @@ public class SetUpViewModel extends ViewModel {
     {
         return level;
     }
+
+    public void setFullname(String fullname)
+    {
+        this.fullname.setValue(fullname);
+    }
+
+    public LiveData<String> getFullname()
+    {
+        return fullname;
+    }
+
+    public void setNickname(String nickname)
+    {
+        this.nickname.setValue(nickname);
+    }
+
+    public LiveData<String> getNickname()
+    {
+        return nickname;
+    }
+
+    public void setEmail(String email)
+    {
+        this.email.setValue(email);
+    }
+
+    public LiveData<String> getEmail()
+    {
+        return email;
+    }
+
+    public void setPhonenumber(String phonenumber)
+    {
+        this.phonenumber.setValue(phonenumber);
+    }
+
+    public LiveData<String> getPhonenumber()
+    {
+        return phonenumber;
+    }
+
+
 
 
 }
