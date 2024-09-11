@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.gymfitness.R;
+import com.example.gymfitness.databinding.FragmentNotificationsWorkoutRemindersBinding;
+import com.example.gymfitness.databinding.FragmentNotificationsWorkoutSystemBinding;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -56,11 +58,11 @@ public class NotificationsWorkoutSystemFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
-
+    private FragmentNotificationsWorkoutSystemBinding binding;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_notifications_workout_system, container, false);
+        binding = FragmentNotificationsWorkoutSystemBinding.inflate(inflater, container, false);
+        return binding.getRoot();
     }
 }
