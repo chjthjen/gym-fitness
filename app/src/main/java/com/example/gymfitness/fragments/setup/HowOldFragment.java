@@ -36,6 +36,8 @@ public class HowOldFragment extends Fragment {
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_how_old,container,false);
         setUpViewModel = new ViewModelProvider(requireActivity()).get(SetUpViewModel.class);
         setUpViewModel.setAge(binding.numberPicker.getValue());
+        binding.numberPicker.setSelectedTypeface(getString(R.string.number_picker_formatter), Typeface.BOLD);
+        binding.numberPicker.setTypeface(getString(R.string.number_picker_formatter), Typeface.BOLD);
         binding.numberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
@@ -43,8 +45,7 @@ public class HowOldFragment extends Fragment {
                 setUpViewModel.setAge(newVal);
             }
         });
-        binding.numberPicker.setSelectedTypeface(getString(R.string.number_picker_formatter), Typeface.BOLD);
-        binding.numberPicker.setTypeface(getString(R.string.number_picker_formatter), Typeface.BOLD);
+
 
         return binding.getRoot();
     }

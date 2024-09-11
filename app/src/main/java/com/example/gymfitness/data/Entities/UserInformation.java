@@ -12,12 +12,32 @@ public class UserInformation implements Serializable {
     private int id;
     private String gender;
     private int age;
-    private int weight;
+    private float weight;
     private int height;
     private String goal;
-    private Date DoB;
+    private Date dob;
     private String img;
     private String level;
+    private String fullname;
+    private String nickname;
+    private String email;
+    private String phonenumber;
+
+    public UserInformation(int id, String gender, int age, float weight, int height, String goal, Date dob, String img, String level, String fullname, String nickname, String email, String phonenumber) {
+        this.id = id;
+        this.gender = gender;
+        this.age = age;
+        this.weight = weight;
+        this.height = height;
+        this.goal = goal;
+        this.dob = dob;
+        this.img = img;
+        this.level = level;
+        this.fullname = fullname;
+        this.nickname = nickname;
+        this.email = email;
+        this.phonenumber = phonenumber;
+    }
 
     public int getId() {
         return id;
@@ -43,11 +63,11 @@ public class UserInformation implements Serializable {
         this.age = age;
     }
 
-    public int getWeight() {
+    public float getWeight() {
         return weight;
     }
 
-    public void setWeight(int weight) {
+    public void setWeight(float weight) {
         this.weight = weight;
     }
 
@@ -67,12 +87,12 @@ public class UserInformation implements Serializable {
         this.goal = goal;
     }
 
-    public Date getDoB() {
-        return DoB;
+    public Date getDob() {
+        return dob;
     }
 
-    public void setDoB(Date doB) {
-        DoB = doB;
+    public void setDob(Date dob) {
+        this.dob = dob;
     }
 
     public String getImg() {
@@ -89,5 +109,37 @@ public class UserInformation implements Serializable {
 
     public void setLevel(String level) {
         this.level = level;
+    }
+
+    public String getFullname() {
+        return fullname;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhonenumber() {
+        return phonenumber;
+    }
+
+    public void setPhonenumber(String phonenumber) {
+        this.phonenumber = phonenumber;
     }
 }

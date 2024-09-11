@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
-
+    <data>
+        <variable
+            name="setupViewModel"
+            type="com.example.gymfitness.viewmodels.SetUpViewModel" />
+    </data>
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
@@ -40,7 +44,7 @@
             app:layout_constraintTop_toBottomOf="@+id/subtile">
 
             <RadioGroup
-                android:id="@+id/fg_rbg"
+                android:id="@+id/rd_group"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="35dp"
@@ -48,6 +52,7 @@
                 android:gravity="center">
 
                 <RadioButton
+                    android:id="@+id/loseweight"
                     android:layout_width="323dp"
                     android:layout_height="54dp"
                     android:layout_margin="11dp"
@@ -56,9 +61,11 @@
                     android:drawableEnd="@drawable/fg_button_icon_selector"
                     android:text="@string/lose_weight"
                     android:textAppearance="@style/fg_tv_body"
-                    android:textColor="@drawable/fg_custom_radio_text_selector" />
+                    android:textColor="@drawable/fg_custom_radio_text_selector"
+                    />
 
                 <RadioButton
+                    android:id="@+id/gainweight"
                     android:layout_width="323dp"
                     android:layout_height="54dp"
                     android:layout_margin="11dp"
@@ -67,9 +74,12 @@
                     android:drawableEnd="@drawable/fg_button_icon_selector"
                     android:text="@string/gain_weight"
                     android:textAppearance="@style/fg_tv_body"
-                    android:textColor="@drawable/fg_custom_radio_text_selector" />
+                    android:textColor="@drawable/fg_custom_radio_text_selector"
+                    android:checked="true"
+                    />
 
                 <RadioButton
+                    android:id="@+id/musclemassgain"
                     android:layout_width="323dp"
                     android:layout_height="54dp"
                     android:layout_margin="11dp"
@@ -81,6 +91,7 @@
                     android:textColor="@drawable/fg_custom_radio_text_selector" />
 
                 <RadioButton
+                    android:id="@+id/shapebody"
                     android:layout_width="323dp"
                     android:layout_height="54dp"
                     android:layout_margin="11dp"
@@ -92,6 +103,7 @@
                     android:textColor="@drawable/fg_custom_radio_text_selector" />
 
                 <RadioButton
+                    android:id="@+id/others"
                     android:layout_width="323dp"
                     android:layout_height="54dp"
                     android:layout_margin="11dp"

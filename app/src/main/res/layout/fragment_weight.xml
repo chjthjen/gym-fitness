@@ -2,12 +2,10 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-
     <data>
-
         <variable
             name="viewModel"
-            type="com.example.gymfitness.viewmodels.AuthViewModel" />
+            type="com.example.gymfitness.viewmodels.SetUpViewModel" />
     </data>
 
     <RelativeLayout

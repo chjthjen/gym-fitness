@@ -59,35 +59,82 @@ public class SetUpActivity extends AppCompatActivity {
                             if(gender != null)
                             {
                                 editor.putString("gender",gender);
-                                navController.navigate(R.id.action_genderFragment_to_howOldFragment);
                             }
+
                         }
                     });
+                    navController.navigate(R.id.action_genderFragment_to_howOldFragment);
                 }
                 else if(currentDestId == R.id.howOldFragment)
                 {
+                    setUpViewModel.getAge().observe(SetUpActivity.this, new Observer<Integer>() {
+                        @Override
+                        public void onChanged(Integer age) {
+                            if(age != null)
+                            {
+                                editor.putInt("age",age);
+                            }
+                        }
+                    });
                     navController.navigate(R.id.action_howOldFragment_to_weightFragment);
                 }
                 else if(currentDestId == R.id.weightFragment)
                 {
+                    setUpViewModel.getWeight().observe(SetUpActivity.this, new Observer<Float>() {
+                        @Override
+                        public void onChanged(Float weight) {
+                            if(weight != null)
+                            {
+                                editor.putFloat("weight",weight);
+                            }
+                        }
+                    });
                     navController.navigate(R.id.action_weightFragment_to_heightFragment);
                 }
                 else if(currentDestId == R.id.heightFragment)
                 {
+                    setUpViewModel.getHeight().observe(SetUpActivity.this, new Observer<Integer>() {
+                        @Override
+                        public void onChanged(Integer height) {
+                            if(height != null)
+                            {
+                                editor.putInt("height",height);
+                            }
+                        }
+                    });
                     navController.navigate(R.id.action_heightFragment_to_goalFragment);
                 }
                 else if(currentDestId == R.id.goalFragment)
                 {
+                    setUpViewModel.getGoal().observe(SetUpActivity.this, new Observer<String>() {
+                        @Override
+                        public void onChanged(String goal) {
+                            if(goal != null)
+                            {
+                                editor.putString("goal",goal);
+                            }
+                        }
+                    });
                     navController.navigate(R.id.action_goalFragment_to_physicalActivityLevelFragment);
                 }
                 else if(currentDestId == R.id.physicalActivityLevelFragment)
                 {
+                    setUpViewModel.getLevel().observe(SetUpActivity.this, new Observer<String>() {
+                        @Override
+                        public void onChanged(String level) {
+                            if(level != null)
+                            {
+                                editor.putString("level",level);
+                            }
+                        }
+                    });
                     binding.btnContinue.setVisibility(View.GONE);
                     navController.navigate(R.id.action_physicalActivityLevelFragment_to_fillProfileFragment);
                 }
                 else
                     return;
                 editor.apply();
+
             }
         });
     }
@@ -118,7 +165,15 @@ public class SetUpActivity extends AppCompatActivity {
         int currentDestId = navController.getCurrentDestination().getId();
         if(currentDestId == R.id.fillProfileFragment)
             binding.btnContinue.setVisibility(View.VISIBLE);
-        super.onBackPressed();
+        if (navController.getPreviousBackStackEntry() != null) {
+            if(currentDestId == R.id.fillProfileFragment)
+                binding.btnContinue.setVisibility(View.VISIBLE);
+            navController.popBackStack();
+        } else {
+            Intent intent = new Intent(SetUpActivity.this,SetUpStartActivity.class);
+            startActivity(intent);
+            super.onBackPressed();
+        }
     }
     @Override
     protected void onDestroy() {
