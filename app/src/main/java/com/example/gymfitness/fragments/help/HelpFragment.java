@@ -53,8 +53,12 @@ public class HelpFragment extends Fragment {
         }).attach();
 
         for (int i = 0; i < binding.tabLayout.getTabCount(); i++) {
-            TextView tv = (TextView) LayoutInflater.from(getContext()).inflate(R.layout.tab_title, null);
-            Objects.requireNonNull(binding.tabLayout.getTabAt(i)).setCustomView(tv);
+            TabLayout.Tab tab = binding.tabLayout.getTabAt(i);
+            View tabView = ((ViewGroup) binding.tabLayout.getChildAt(0)).getChildAt(i);
+            ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) tabView.getLayoutParams();
+            layoutParams.setMargins(15, 0, 15, 0);  // Set left and right margins here
+            tabView.setLayoutParams(layoutParams);
+            tabView.requestLayout();
         }
     }
 
