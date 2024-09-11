@@ -74,4 +74,5 @@
     <string name="round_2">Round 2</string>
     <string name="back_to_before">Back to before</string>
     <string name="beginner">Beginner</string>
+    <string name="lorem_ipsum_dolor_sit_amet">Lorem ipsum dolor sit amet?</string>
 </resources>
