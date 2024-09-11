@@ -25,7 +25,7 @@ public class ProfileFragment extends Fragment {
 
     private FragmentProfileBinding binding;
     private ProfileViewModel viewModel;
-
+    private NavController navController;
     public ProfileFragment() {
     }
 
@@ -36,6 +36,7 @@ public class ProfileFragment extends Fragment {
         viewModel = new ViewModelProvider(requireActivity()).get(ProfileViewModel.class);
         binding.setViewModel(viewModel);
         binding.setLifecycleOwner(this);
+        navController = NavHostFragment.findNavController(this);
         return binding.getRoot();
     }
 
@@ -43,7 +44,12 @@ public class ProfileFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).hide();
+        addEvents();
 
+    }
+
+    private void addEvents()
+    {
         // show logout dialog
         binding.logoutContainer.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,9 +58,10 @@ public class ProfileFragment extends Fragment {
                 bottomSheetDialog.show(getChildFragmentManager(), bottomSheetDialog.getTag());
             }
         });
-
+        // open favorite
+        binding.favoriteContainer.setOnClickListener( v -> navController.navigate(R.id.action_profileFragment_to_favoritesFragment));
+        binding.helpContainer.setOnClickListener(v -> navController.navigate(R.id.action_profileFragment_to_helpFragment));
     }
-
     @Override
     public void onDestroyView() {
         super.onDestroyView();

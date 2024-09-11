@@ -1,75 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/black"
-    android:orientation="vertical"
-    tools:context=".fragments.setup.HeightFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/textView2"
+    <data>
+        <variable
+            name="setupViewModel"
+            type="com.example.gymfitness.viewmodels.SetUpViewModel" />
+    </data>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/league_spartan"
-        android:gravity="center"
-        android:lineHeight="38sp"
-        android:text="What is your height"
-        android:textColor="@color/white"
-        android:textSize="25sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="323dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="31dp"
-        android:fontFamily="@font/league_spartan"
-        android:gravity="center"
-        android:text="@string/lorem_ipsum"
-        android:textColor="@color/white" />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="40dp"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:background="@color/black"
+        android:orientation="vertical"
+        tools:context=".fragments.setup.HeightFragment">
 
         <TextView
-            android:id="@+id/textView9"
-            android:layout_width="wrap_content"
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="@font/poppins_bold"
-            android:lineHeight="96sp"
-            android:text="165"
+            android:fontFamily="@font/league_spartan"
+            android:gravity="center"
+            android:lineHeight="38sp"
+            android:text="What is your height"
             android:textColor="@color/white"
-            android:textSize="64sp" />
+            android:textSize="25sp"
+            android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/textView13"
+            android:id="@+id/textView7"
+            android:layout_width="323dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/league_spartan"
+            android:gravity="center"
+            android:text="@string/lorem_ipsum"
+            android:textColor="@color/white" />
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_weight="1"
-            android:fontFamily="@font/poppins_bold"
-            android:text="Cm"
-            android:textColor="@color/white"
-            android:textSize="20sp" />
-    </LinearLayout>
+            android:layout_gravity="center"
+            android:layout_marginTop="25dp"
+            android:orientation="horizontal">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:orientation="horizontal">
-        <NumberPicker
-            android:id="@+id/numberPicker"
+            <TextView
+                android:id="@+id/txt_height"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/poppins_bold"
+                android:lineHeight="96sp"
+                android:text="165"
+                android:textColor="@color/white"
+                android:textSize="64sp" />
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/poppins_bold"
+                android:text="Cm"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+        </LinearLayout>
+        <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
+            android:layout_height="450dp"
 
-</LinearLayout>
+            >
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:background="@drawable/rounded_ruler"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginVertical="20dp"
+                />
+
+            <com.shawnlin.numberpicker.NumberPicker
+                android:id="@+id/number_picker"
+                android:layout_width="115dp"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                app:np_dividerColor="@color/white"
+                app:np_dividerDistance="40dp"
+                app:np_dividerThickness="3dp"
+                app:np_fadingEdgeStrength="0.3"
+                app:np_formatter="@string/number_picker_formatter"
+                app:np_max="225"
+                app:np_min="0"
+                app:np_orientation="vertical"
+                app:np_selectedTextColor="@color/white"
+                app:np_selectedTextSize="33sp"
+                app:np_textColor="#3A3939"
+                app:np_textSize="30sp"
+                app:np_value="165"
+                app:np_wheelItemCount="6"
+                app:np_wrapSelectorWheel="true"
+                />
+
+            <ImageView
+                android:id="@+id/iV_polygon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:src="@drawable/polygon_2"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/textView11"
+                android:layout_marginLeft="50dp"
+                />
+        </RelativeLayout>
+    </LinearLayout>
+</layout>

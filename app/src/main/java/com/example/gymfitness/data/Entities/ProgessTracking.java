@@ -1,24 +1,26 @@
 package com.example.gymfitness.data.Entities;
 
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
-@Entity(tableName = "progress_tracking")
+@Entity(tableName = "ProgressTracking",
+        foreignKeys = @ForeignKey(entity = Exercise.class,
+                parentColumns = "exercise_id",
+                childColumns = "exercise_id"))
 public class ProgessTracking implements Serializable {
     @PrimaryKey(autoGenerate = true)
     int pro_id;
-    String datetime_tracking;
-    String workout_id;
+    LocalDateTime datetime_tracking;
+    String exercise_id;
 
-    public ProgessTracking(int pro_id, String datetime_tracking, String workout_id) {
+    public ProgessTracking(int pro_id, LocalDateTime datetime_tracking, String exercise_id) {
         this.pro_id = pro_id;
         this.datetime_tracking = datetime_tracking;
-        this.workout_id = workout_id;
-    }
-
-    public ProgessTracking() {
+        this.exercise_id = exercise_id;
     }
 
     public int getPro_id() {
@@ -29,19 +31,19 @@ public class ProgessTracking implements Serializable {
         this.pro_id = pro_id;
     }
 
-    public String getDatetime_tracking() {
+    public LocalDateTime getDatetime_tracking() {
         return datetime_tracking;
     }
 
-    public void setDatetime_tracking(String datetime_tracking) {
+    public void setDatetime_tracking(LocalDateTime datetime_tracking) {
         this.datetime_tracking = datetime_tracking;
     }
 
-    public String getWorkout_id() {
-        return workout_id;
+    public String getExercise_id() {
+        return exercise_id;
     }
 
-    public void setWorkout_id(String workout_id) {
-        this.workout_id = workout_id;
+    public void setExercise_id(String exercise_id) {
+        this.exercise_id = exercise_id;
     }
 }

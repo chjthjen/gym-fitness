@@ -1,78 +1,77 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@android:color/black"
-    android:padding="16dp">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="setupViewModel"
+            type="com.example.gymfitness.viewmodels.SetUpViewModel" />
+    </data>
 
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Physical Activity Level"
-        android:textColor="@android:color/white"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="32dp" />
-
-
-    <TextView
-        android:id="@+id/description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/title"
-        android:layout_marginTop="98dp"
-        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-        android:textAlignment="center"
-        android:textColor="@android:color/darker_gray" />
-
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/description"
-        android:layout_marginTop="85dp"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:background="@color/black">
 
-        <Button
-            android:id="@+id/btnBeginner"
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="Physical Activity Level"
+            android:textColor="@android:color/white"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/title"
+            android:layout_marginTop="38dp"
+            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+            android:textAlignment="center"
+            android:textColor="@android:color/darker_gray" />
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="32dp"
-            android:background="@drawable/btn_selector"
-            android:text="Beginner"
-            android:textColor="@color/purple"
-            android:textSize="18sp" />
+            android:layout_below="@id/description"
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginTop="120dp"
+            android:orientation="vertical">
 
-        <Button
-            android:id="@+id/btnIntermediate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="32dp"
-            android:background="@drawable/btn_selector"
-            android:text="Intermediate"
-            android:textColor="@color/purple"
-            android:textSize="18sp" />
+            <Button
+                android:id="@+id/btnBeginner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/limegreen"
+                android:paddingVertical="20dp"
+                android:text="Beginner"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
 
-        <Button
-            android:id="@+id/btnAdvanced"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="32dp"
-            android:background="@drawable/btn_selector"
-            android:text="Advance"
-            android:textColor="@color/purple"
-            android:textSize="18sp" />
-    </LinearLayout>
+            <Button
+                android:id="@+id/btnIntermediate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="30dp"
+                android:backgroundTint="@color/white"
+                android:paddingVertical="20dp"
+                android:text="Intermediate"
+                android:textColor="@color/purple"
+                android:textSize="20sp" />
 
-</RelativeLayout>
+            <Button
+                android:id="@+id/btnAdvanced"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
+                android:paddingVertical="20dp"
+                android:text="Advance"
+                android:textColor="@color/purple"
+                android:textSize="20sp" />
+        </LinearLayout>
 
-
-
-
+    </RelativeLayout>
+</layout>

@@ -1,32 +1,33 @@
 package com.example.gymfitness.data.Entities;
 
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
 
-@Entity(tableName = "challenge")
+@Entity(tableName = "Challenge",
+        foreignKeys = @ForeignKey(entity = Workout.class,
+                parentColumns = "workout_id",
+                childColumns = "workout_id"))
 public class Challenge implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
-    private Long id;
+    private int id;
     private String name;
-    private Long workoutId;
+    private int workout_id;
 
-    public Challenge() {
-    }
-
-    public Challenge(Long id, String name, Long workoutId) {
+    public Challenge(int id, String name, int workout_id) {
         this.id = id;
         this.name = name;
-        this.workoutId = workoutId;
+        this.workout_id = workout_id;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -38,11 +39,11 @@ public class Challenge implements Serializable {
         this.name = name;
     }
 
-    public Long getWorkoutId() {
-        return workoutId;
+    public int getWorkout_id() {
+        return workout_id;
     }
 
-    public void setWorkoutId(Long workoutId) {
-        this.workoutId = workoutId;
+    public void setWorkout_id(int workout_id) {
+        this.workout_id = workout_id;
     }
 }

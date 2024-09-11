@@ -71,15 +71,15 @@
             android:id="@+id/button3"
             android:layout_width="211dp"
             android:layout_height="44dp"
-            android:text="@string/next"
-            android:layout_marginTop="18dp"
             android:layout_gravity="center"
-            app:backgroundTint="@null"
+            android:layout_marginTop="18dp"
             android:background="@drawable/transparent_bg_bordered"
-            android:textColor="@color/white"
             android:fontFamily="@font/poppins_bold"
+            android:text="@string/next"
+            android:textColor="@color/white"
+            app:backgroundTint="@null"
 
-        />
+            />
 
 
     </LinearLayout>

@@ -18,6 +18,9 @@
         <action
             android:id="@+id/action_homeFragment_to_forgottenPasswordFragment"
             app:destination="@id/forgottenPasswordFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_workoutFragment"
+            app:destination="@id/workoutFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -28,11 +31,35 @@
         <action
             android:id="@+id/action_profileFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_favoritesFragment"
+            app:destination="@id/favoritesFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_helpFragment"
+            app:destination="@id/helpFragment" />
     </fragment>
     <fragment
         android:id="@+id/forgottenPasswordFragment"
         android:name="com.example.gymfitness.fragments.authentication.ForgottenPasswordFragment"
         android:label="ForgottenPasswordFragment"
         tools:layout="@layout/fragment_forgotten_password"
+        />
+    <fragment
+        android:id="@+id/favoritesFragment"
+        android:name="com.example.gymfitness.fragments.floatingMenu.FavoritesFragment"
+        android:label="FavoritesFragment"
+        tools:layout="@layout/fragment_favorites"
+        />
+    <fragment
+        android:id="@+id/helpFragment"
+        android:name="com.example.gymfitness.fragments.help.HelpFragment"
+        android:label="HelpFragment"
+        tools:layout="@layout/fragment_help"
+        />
+    <fragment
+        android:id="@+id/workoutFragment"
+        android:name="com.example.gymfitness.fragments.WorkoutFragment"
+        android:label="WorkoutFragment"
+        tools:layout="@layout/fragment_workout"
         />
 </navigation>

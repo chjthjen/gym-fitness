@@ -42,7 +42,7 @@ public class WorkoutTest {
         this.kcal = kcal;
     }
 
-    public ArrayList<WorkoutTest> makeList()
+    public static ArrayList<WorkoutTest> makeList()
     {
         ArrayList<WorkoutTest> list = new ArrayList<>();
         list.add(new WorkoutTest("Squat Exercise",12,120));
