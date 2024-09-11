@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
+    <data>
+        <variable
+            name="setupViewModel"
+            type="com.example.gymfitness.viewmodels.SetUpViewModel" />
+    </data>
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -25,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/textView13"
             android:layout_marginHorizontal="35dp"
-            android:layout_marginTop="31dp"
+            android:layout_marginTop="25dp"
             android:fontFamily="@font/league_spartan"
             android:text="@string/lorem_ipsum_dolor_sit_amet_consectetur_adipiscing_elit_sed_do_eiusmod_tempor_incididunt_ut_labore_et_dolore_magna_aliqua"
             android:textAlignment="center"
@@ -79,7 +84,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/constraintLayout"
             android:layout_marginStart="35dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:fontFamily="@font/league_spartan"
             android:text="@string/full_name"
             android:textColor="#896CFE"
