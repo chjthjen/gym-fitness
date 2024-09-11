@@ -22,17 +22,26 @@
             android:gravity="center"
             android:fontFamily="@font/league_spartan"
             android:textColor="@color/white"
-            android:textSize="20sp"/>
+            android:textSize="20sp"
+            android:layout_marginTop="49dp"/>
+
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/tab_bg"
-            app:tabGravity="center"
+            android:layout_height="28dp"
+            android:background="@color/black"
+            app:tabIndicatorColor="@color/white"
+            app:tabSelectedTextColor="@color/black"
+            app:tabTextColor="@color/lightpurple"
             app:tabIndicatorHeight="0dp"
             app:tabMode="fixed"
-            app:tabRippleColor="@null"/>
+            app:tabGravity="fill"
+            app:tabBackground="@drawable/tab_selector"
+            app:tabRippleColor="@null"
+            android:layout_marginLeft="33dp"
+            android:layout_marginRight="33dp"
+            android:layout_marginVertical="12dp"/>
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/viewPager"
