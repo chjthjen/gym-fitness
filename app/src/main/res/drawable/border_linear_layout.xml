@@ -1,0 +1,7 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#E2F163" /> <!-- Nền của LinearLayout -->
+    <corners android:radius="16dp" /> <!-- Bo tròn 16dp -->
+    <stroke
+        android:width="2dp"
+        android:color="#E2F163" /> <!-- Độ rộng và màu của viền -->
+</shape>

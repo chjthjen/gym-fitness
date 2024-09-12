@@ -1,0 +1,9 @@
+<!-- res/drawable/white_bg_rounded_border.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#FFFFFF" />
+    <corners android:radius="30dp" />
+
+    <stroke
+        android:width="2dp"
+        android:color="#FFFFFF" />
+</shape>
