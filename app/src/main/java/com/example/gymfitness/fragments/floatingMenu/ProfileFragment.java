@@ -72,4 +72,6 @@ public class ProfileFragment extends Fragment {
         Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).show();
         binding = null;
     }
+
+
 }

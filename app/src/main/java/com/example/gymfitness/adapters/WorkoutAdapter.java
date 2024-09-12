@@ -27,7 +27,7 @@ public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.WorkoutV
     @Override
     public int getItemCount() {
         //so luong item hien thi
-        return 10;
+        return 5;
     }
 
     static class WorkoutViewHolder extends RecyclerView.ViewHolder {
