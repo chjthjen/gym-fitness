@@ -1,66 +1,107 @@
 package com.example.gymfitness.fragments.setup;
 
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.gymfitness.R;
+import com.example.gymfitness.databinding.FragmentPhysicalActivityLevelBinding;
+import com.example.gymfitness.viewmodels.SetUpViewModel;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link PhysicalActivityLevelFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class PhysicalActivityLevelFragment extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
+    private FragmentPhysicalActivityLevelBinding binding;
+    private static int level_is = 1;
+    private SetUpViewModel setUpViewModel;
+    private ColorStateList colorStateList;
     public PhysicalActivityLevelFragment() {
         // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment PhysicalActivityLevelFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static PhysicalActivityLevelFragment newInstance(String param1, String param2) {
-        PhysicalActivityLevelFragment fragment = new PhysicalActivityLevelFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_physical_activity_level, container, false);
+        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_physical_activity_level,container,false);
+        setUpViewModel = new ViewModelProvider(requireActivity()).get(SetUpViewModel.class);
+        setUpViewModel.setLevel("beginner");
+        return binding.getRoot();
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        binding.btnBeginner.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                level_is = 0;
+                selecteGool(level_is);
+                setUpViewModel.setLevel("beginner");
+            }
+        });
+        binding.btnIntermediate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                level_is = 1;
+                selecteGool(level_is);
+                setUpViewModel.setLevel("intermediate");
+            }
+        });
+        binding.btnAdvanced.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                level_is = 2;
+                selecteGool(level_is);
+                setUpViewModel.setLevel("advance");
+            }
+        });
+
+    }
+
+    private void selecteGool(int level_is)
+    {
+        if(level_is == 0)
+        {
+            colorStateList = ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.limegreen));
+            binding.btnBeginner.setBackgroundTintList(colorStateList);
+            binding.btnBeginner.setTextColor(ContextCompat.getColor(getContext(), R.color.black));
+            colorStateList = ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.white));
+            binding.btnIntermediate.setBackgroundTintList(colorStateList);
+            binding.btnIntermediate.setTextColor(ContextCompat.getColor(getContext(), R.color.purple));
+            binding.btnAdvanced.setBackgroundTintList(colorStateList);
+            binding.btnAdvanced.setTextColor(ContextCompat.getColor(getContext(), R.color.purple));
+        }
+        else if(level_is == 1)
+        {
+            colorStateList = ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.limegreen));
+            binding.btnIntermediate.setBackgroundTintList(colorStateList);
+            binding.btnIntermediate.setTextColor(ContextCompat.getColor(getContext(), R.color.black));
+            colorStateList = ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.white));
+            binding.btnBeginner.setBackgroundTintList(colorStateList);
+            binding.btnBeginner.setTextColor(ContextCompat.getColor(getContext(), R.color.purple));
+            binding.btnAdvanced.setBackgroundTintList(colorStateList);
+            binding.btnAdvanced.setTextColor(ContextCompat.getColor(getContext(), R.color.purple));
+        }
+        else
+        {
+            colorStateList = ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.limegreen));
+            binding.btnAdvanced.setBackgroundTintList(colorStateList);
+            binding.btnAdvanced.setTextColor(ContextCompat.getColor(getContext(), R.color.black));
+            colorStateList = ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.white));
+            binding.btnBeginner.setBackgroundTintList(colorStateList);
+            binding.btnBeginner.setTextColor(ContextCompat.getColor(getContext(), R.color.purple));
+            binding.btnIntermediate.setBackgroundTintList(colorStateList);
+            binding.btnIntermediate.setTextColor(ContextCompat.getColor(getContext(), R.color.purple));
+        }
     }
 }

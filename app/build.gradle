@@ -17,6 +17,11 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
     }
 
     buildTypes {
@@ -40,8 +45,8 @@ def nav_version = "2.7.7"
 def core_version = "1.13.1"
 def appcompat_version = "1.7.0"
 def lifecycle_version = "2.8.4"
-def room_version = "2.6.1"
 dependencies {
+    def room_version = "2.6.1"
 
     implementation libs.appcompat
     implementation libs.material
@@ -64,8 +69,8 @@ dependencies {
     // ViewModel
     implementation("androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version")
     // room
-    implementation ("androidx.room:room-runtime:$room_version")
-    annotationProcessor ("androidx.room:room-compiler:$room_version")
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
     // Retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")

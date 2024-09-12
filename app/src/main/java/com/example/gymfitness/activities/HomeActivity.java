@@ -21,19 +21,51 @@ public class HomeActivity extends AppCompatActivity {
     private ActivityHomeBinding binding;
     private NavHostFragment navHostFragment;
     private NavController navController;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         binding = ActivityHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
+        ViewCompat.setOnApplyWindowInsetsListener(binding.toolbar, (v, insets) -> {
+            v.setPadding(insets.getSystemWindowInsetLeft(),
+                    insets.getSystemWindowInsetTop(),
+                    insets.getSystemWindowInsetRight(),
+                    0);
+            return insets;
+        });
         setSupportActionBar(binding.toolbar);
+
 
         navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentMainContainerView);
         navController = navHostFragment.getNavController();
+
+
+        // setting toolbar
+        navController.addOnDestinationChangedListener(((navController, navDestination, bundle) -> {
+            if(navDestination.getId() == R.id.homeFragment)
+            {
+                getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+                binding.toolbar.setTitle("Hi, Madison");
+            }
+            else
+            {
+                binding.toolbar.setNavigationIcon(R.drawable.arrow);
+                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            }
+        }));
+
+
+        addEvents();
     }
 
+
+    private void addEvents()
+    {
+        binding.toolbar.setNavigationOnClickListener(v -> onBackPressed());
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

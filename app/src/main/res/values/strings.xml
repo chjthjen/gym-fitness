@@ -51,4 +51,28 @@
     <string name="mobile_number">Mobile Number</string>
     <string name="start">Start</string>
     <string name="my_profile">My Profile</string>
+
+    <string name="generalNotification">General Notification</string>
+    <string name="sound">Sound</string>
+    <string name="dontDisturbMode">Don’t Disturb Mode</string>
+    <string name="vibrate">Vibrate</string>
+    <string name="lockScreen">Lock Screen</string>">
+    <string name="reminders">Reminders</string>
+    <string name="notification_setting">Notification Setting</string>
+    <string name="password_setting">Password Setting</string>
+    <string name="delete_account">Delete Account</string>
+    <string name="search">Search</string>
+    <string name="top_searches">Top Searches</string>
+    <string name="how_can_we_help_you">How can we help you?</string>
+    <string name="_00_30">00:30</string>
+    <string name="dumbbell_rows">Dumbbell Rows</string>
+    <string name="repetition_3x">repetition 3x</string>
+    <string name="icon_search">icon search</string>
+    <string name="icon_notify">icon notify</string>
+    <string name="icon_user">icon user</string>
+    <string name="round_1">Round 1</string>
+    <string name="round_2">Round 2</string>
+    <string name="back_to_before">Back to before</string>
+    <string name="beginner">Beginner</string>
+    <string name="lorem_ipsum_dolor_sit_amet">Lorem ipsum dolor sit amet?</string>
 </resources>
