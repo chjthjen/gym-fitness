@@ -17,7 +17,7 @@ import com.example.gymfitness.R;
 import com.example.gymfitness.databinding.FragmentSignUpBinding;
 import com.example.gymfitness.data.SignUpCallback;
 import com.example.gymfitness.data.UserAccount;
-import com.example.gymfitness.helpers.ValidationEmail;
+import com.example.gymfitness.helpers.ValidationHelpers;
 import com.example.gymfitness.viewmodels.SignUpViewModel;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -125,7 +125,7 @@ public class SignUpFragment extends Fragment {
         String password = binding.edtPassword.getText().toString().trim();
 
         // Call validation
-        return ValidationEmail.validateInputEmail(
+        return ValidationHelpers.validateInputEmail(
                 usernameOrEmail,
                 password,
                 binding.edtEmailOrMobile,
