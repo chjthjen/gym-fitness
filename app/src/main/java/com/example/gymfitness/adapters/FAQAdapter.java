@@ -1,11 +1,13 @@
 package com.example.gymfitness.adapters;
 
-import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
+import android.app.Notification;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -39,18 +41,18 @@ public class FAQAdapter extends RecyclerView.Adapter<FAQAdapter.FAQViewHolder> {
         String title = titles.get(position);
         String content = contents.get(position);
 
-        holder.tvTitle.setText(title);
-        holder.tvContent.setText(content);
+        holder.linearContent.setVisibility(View.GONE);
+        holder.bottomDivider.setVisibility(View.GONE);
 
         holder.headerLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (holder.tvContent.getVisibility() == View.GONE) {
-                    holder.tvContent.setVisibility(View.VISIBLE);
-                    rotateArrow(holder.arrowImage, 0f, 180f);
+                if (holder.linearContent.getVisibility() == View.GONE) {
+                    expandContent(holder.linearContent);
+                    holder.bottomDivider.setVisibility(View.VISIBLE);
                 } else {
-                    holder.tvContent.setVisibility(View.GONE);
-                    rotateArrow(holder.arrowImage, 180f, 0f);
+                    collapseContent(holder.linearContent);
+                    holder.bottomDivider.setVisibility(View.GONE);
                 }
             }
         });
@@ -63,21 +65,53 @@ public class FAQAdapter extends RecyclerView.Adapter<FAQAdapter.FAQViewHolder> {
 
     public static class FAQViewHolder extends RecyclerView.ViewHolder {
         TextView tvTitle, tvContent;
-        ImageView arrowImage;
-        View headerLayout;
+        LinearLayout linearContent, headerLayout, bottomDivider;
 
         public FAQViewHolder(@NonNull View itemView) {
             super(itemView);
             tvTitle = itemView.findViewById(R.id.tvTitle);
             tvContent = itemView.findViewById(R.id.tvContent);
-            arrowImage = itemView.findViewById(R.id.arrowImage);
+            linearContent = itemView.findViewById(R.id.linear_content);
             headerLayout = itemView.findViewById(R.id.headerLayout);
+            bottomDivider = itemView.findViewById(R.id.bottomDivider);
         }
     }
 
-    private void rotateArrow(ImageView arrow, float fromDegree, float toDegree) {
-        ObjectAnimator rotateAnimation = ObjectAnimator.ofFloat(arrow, "rotation", fromDegree, toDegree);
-        rotateAnimation.setDuration(300);
-        rotateAnimation.start();
+    private void expandContent(LinearLayout linearContent) {
+        linearContent.measure(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        int targetHeight = linearContent.getMeasuredHeight();
+
+        ValueAnimator animator = ValueAnimator.ofInt(0, targetHeight);
+        animator.addUpdateListener(animation -> {
+            linearContent.getLayoutParams().height = (int) animation.getAnimatedValue();
+            linearContent.requestLayout();
+        });
+
+        animator.setDuration(500);
+        animator.setInterpolator(new AccelerateDecelerateInterpolator());
+        animator.start();
+
+        linearContent.setVisibility(View.VISIBLE);
+    }
+
+    private void collapseContent(LinearLayout linearContent) {
+        int initialHeight = linearContent.getMeasuredHeight();
+
+        ValueAnimator animator = ValueAnimator.ofInt(initialHeight, 0);
+        animator.addUpdateListener(animation -> {
+            linearContent.getLayoutParams().height = (int) animation.getAnimatedValue();
+            linearContent.requestLayout();
+        });
+
+        animator.setDuration(500);
+        animator.setInterpolator(new AccelerateDecelerateInterpolator());
+        animator.start();
+
+        animator.addListener(new android.animation.AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(android.animation.Animator animation) {
+                linearContent.setVisibility(View.GONE);
+            }
+        });
     }
 }
