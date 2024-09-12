@@ -23,6 +23,8 @@ import com.example.gymfitness.utils.WeightConverter;
 import com.example.gymfitness.viewmodels.SetUpViewModel;
 import com.shawnlin.numberpicker.NumberPicker;
 
+import java.util.Objects;
+
 public class WeightFragment extends Fragment {
 
     private FragmentWeightBinding binding;
@@ -76,7 +78,7 @@ public class WeightFragment extends Fragment {
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
                 binding.txtWeight.setText(String.valueOf(newVal));
                 weight = (float) newVal;
-                if(measurement == "Lb")
+                if(Objects.equals(measurement, "Lb"))
                     setUpViewModel.setWeight(WeightConverter.lbToKg(weight));
                 else
                     setUpViewModel.setWeight((float) weight);
