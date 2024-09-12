@@ -104,4 +104,7 @@ dependencies {
 //    implementation 'com.facebook.android:facebook-login:17.0.1'  // Thay latest_version bằng phiên bản mới nhất.
     implementation 'androidx.browser:browser:1.5.0'
 
+    implementation 'com.squareup.picasso:picasso:2.8'
+
+
 }

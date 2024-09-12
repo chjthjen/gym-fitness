@@ -42,7 +42,7 @@ public class SetUpViewModel extends ViewModel {
         userInformation.setEmail(getEmail().getValue());
         userInformation.setPhonenumber(getPhonenumber().getValue());
 
-        userInformationDAO.insertWorkout(userInformation);
+        userInformationDAO.upsertWorkout(userInformation);
 
     }
 
