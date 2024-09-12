@@ -58,6 +58,8 @@ public class ProfileFragment extends Fragment {
                 bottomSheetDialog.show(getChildFragmentManager(), bottomSheetDialog.getTag());
             }
         });
+
+        binding.btnBack.setOnClickListener(v -> requireActivity().onBackPressed());
         // open favorite
         binding.favoriteContainer.setOnClickListener( v -> navController.navigate(R.id.action_profileFragment_to_favoritesFragment));
         binding.helpContainer.setOnClickListener(v -> navController.navigate(R.id.action_profileFragment_to_helpFragment));
