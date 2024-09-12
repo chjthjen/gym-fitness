@@ -21,22 +21,24 @@ public class EditProfileFragment extends Fragment {
 
     FragmentEditprofileBinding binding;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_editprofile, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_editprofile, container, false);
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).hide();
+        return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).hide();
+
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).show();
-
+        binding = null;
     }
 }
