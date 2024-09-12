@@ -37,7 +37,10 @@ public class SetUpViewModel extends ViewModel {
         userInformation.setWeight(getWeight().getValue());
         userInformation.setHeight(getHeight().getValue());
         userInformation.setGoal(getGoal().getValue());
-        userInformation.setLevel(getLevel().getValue());
+        userInformation.setFullname(getFullname().getValue());
+        userInformation.setNickname(getNickname().getValue());
+        userInformation.setEmail(getEmail().getValue());
+        userInformation.setPhonenumber(getPhonenumber().getValue());
 
         userInformationDAO.insertWorkout(userInformation);
 
