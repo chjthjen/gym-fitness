@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+ <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/home_nav_graph"
@@ -37,6 +37,12 @@
         <action
             android:id="@+id/action_profileFragment_to_helpFragment"
             app:destination="@id/helpFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_fragment_6_1_1_a2"
+            app:destination="@id/fragment_6_1_1_a" />
+        <action
+            android:id="@+id/action_profileFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
     </fragment>
     <fragment
         android:id="@+id/forgottenPasswordFragment"
@@ -62,4 +68,17 @@
         android:label="WorkoutFragment"
         tools:layout="@layout/fragment_workout"
         />
+    <fragment
+        android:id="@+id/fragment_6_1_1_a"
+        android:name="com.example.gymfitness.fragments.floatingMenu.EditProfileFragment"
+        android:label="fragment_6_1_1_a"
+        tools:layout="@layout/fragment_6_1_1_a"
+        />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.gymfitness.fragments.SettingsFragment"
+        android:label="SettingsFragment"
+        tools:layout="@layout/fragment_settings"
+        />
+
 </navigation>
