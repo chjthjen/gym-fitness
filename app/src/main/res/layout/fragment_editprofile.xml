@@ -96,15 +96,6 @@
 
                             </RelativeLayout>
 
-                            <ImageView
-                                android:id="@+id/imgPenCil"
-                                android:layout_width="40dp"
-                                android:layout_height="25dp"
-                                android:src="@drawable/pencil_icon"
-                                tools:ignore="MissingConstraints,NotSibling"
-                                tools:layout_editor_absoluteX="90dp"
-                                tools:layout_editor_absoluteY="90dp"></ImageView>
-
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
