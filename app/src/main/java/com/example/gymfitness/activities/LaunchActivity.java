@@ -23,10 +23,13 @@ public class LaunchActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private ExecutorService executorService;
 
+    private SharedPreferences setupPrefs;
+
     private void addControls() {
         sharedPreferences = getSharedPreferences("remember", MODE_PRIVATE);
         firebaseAuth = FirebaseAuth.getInstance();
         executorService = Executors.newSingleThreadExecutor();
+        setupPrefs = getSharedPreferences("UserInformation", MODE_PRIVATE);
     }
 
     @Override
@@ -44,18 +47,29 @@ public class LaunchActivity extends AppCompatActivity {
             @Override
             public void run() {
                 int onboarded = sharedPreferences.getInt("status", 0);
-                    if (onboarded == 1) {
-                        Intent intent = new Intent(getApplicationContext(), SetUpStartActivity.class);
-                        startActivity(intent);
-                        finish();
-                    } else {
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putInt("status", 1);
-                        editor.apply();
-                        Intent intent = new Intent(getApplicationContext(), OnBroading_2a.class);
+                int doneSetUp = setupPrefs.getInt("done", 0);
+                if (onboarded == 1) {
+                    if(doneSetUp == 1)
+                    {
+                        Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                         startActivity(intent);
                         finish();
                     }
+                    else
+                    {
+                        Intent intent = new Intent(getApplicationContext(), SetUpStartActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+
+                } else {
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putInt("status", 1);
+                    editor.apply();
+                    Intent intent = new Intent(getApplicationContext(), OnBroading_2a.class);
+                    startActivity(intent);
+                    finish();
+                }
             }
         }, 2000);
 
@@ -64,7 +78,7 @@ public class LaunchActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if(executorService != null)
+        if (executorService != null)
             executorService.shutdown();
     }
 }
