@@ -23,14 +23,12 @@
         public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
             binding = DataBindingUtil.inflate(inflater, R.layout.fragment_workout, container, false);
-            View view = binding.getRoot();
-           // test du lieu chua hien thi
-            //tao adapter
+
             WorkoutAdapter workoutAdapter = new WorkoutAdapter();
             binding.rvWorkoutItem.setAdapter(workoutAdapter);
-            // bo cuc
             binding.rvWorkoutItem.setLayoutManager(new LinearLayoutManager(getContext()));
-            return  view;
+
+            return  binding.getRoot();
         }
 
     }

@@ -62,15 +62,11 @@ public class ProfileFragment extends Fragment {
         // open favorite
         binding.favoriteContainer.setOnClickListener( v -> navController.navigate(R.id.action_profileFragment_to_favoritesFragment));
         binding.helpContainer.setOnClickListener(v -> navController.navigate(R.id.action_profileFragment_to_helpFragment));
-        binding.profileContainer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).hide();
-                navController.navigate(R.id.action_profileFragment_to_fragment_6_1_1_a2);
-            }
-        });
+        binding.profileContainer.setOnClickListener(v -> navController.navigate(R.id.action_profileFragment_to_editProfileFragment));
         binding.settingsContainer.setOnClickListener(v -> navController.navigate(R.id.action_profileFragment_to_settingsFragment));
     }
+
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();

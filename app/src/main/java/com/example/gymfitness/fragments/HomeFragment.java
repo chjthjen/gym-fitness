@@ -35,45 +35,16 @@ public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
     private RecommendExRCVApdater recommendExRCVApdater;
-    private ArrayList<WorkoutTest> list;
     private RecyclerView.LayoutManager layoutManager;
     private RecyclerView.LayoutManager layoutManager2;
     private ArticlesTipsRCVAdapter articlesTipsRCVAdapter;
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-    private String mParam1;
-    private String mParam2;
 
 
-    private FirebaseAuth auth;
-    private GoogleSignInClient mGoogleSignInClient;
     private NavController navController;
-    Button btnLogout;
-
     private ExecutorService executorService;
-
-
-
-    public static HomeFragment newInstance(String param1, String param2) {
-        HomeFragment fragment = new HomeFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     public HomeFragment() {
 
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
