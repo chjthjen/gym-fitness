@@ -42,10 +42,9 @@ public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.WorkoutV
             binding.setItem(workout);
             binding.executePendingBindings();
 
-            // Tải hình ảnh từ URL vào ImageView bằng Glide
             Glide.with(binding.thumbnail.getContext())
-                    .load(workout.getThumbnail()) // Sử dụng URL từ trường thumbnail
-                    .placeholder(R.drawable.woman_helping_man_gym) // Hình ảnh placeholder (tùy chọn)
+                    .load(workout.getThumbnail())
+                    .placeholder(R.drawable.woman_helping_man_gym)
                     .error(R.drawable.woman_helping_man_gym)
                     .into(binding.thumbnail);
         }

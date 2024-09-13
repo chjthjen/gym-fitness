@@ -1,37 +1,34 @@
 package com.example.gymfitness.data.entities;
 
 
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
-
 import java.io.Serializable;
+import java.util.ArrayList;
 
-@Entity(tableName = "Workout")
 public class Workout implements Serializable {
 
-    @PrimaryKey(autoGenerate = true)
     private int workout_id;
     private String workout_name;
-    private int Kcal;
+    private int kcal;
     private int exerciseCount;
     private String level;
     private String tag;
     private String thumbnail;
     private int totalTime;
-
+    private ArrayList<Round> round;
     public Workout() {
 
     }
 
-    public Workout(int workout_id, String workout_name, int kcal, int exerciseCount, String level, String tag, String thumbnail, int totalTime) {
+    public Workout(int workout_id, String workout_name, int kcal, int exerciseCount, String level, String tag, String thumbnail, int totalTime, ArrayList<Round> round) {
         this.workout_id = workout_id;
         this.workout_name = workout_name;
-        Kcal = kcal;
+        this.kcal = kcal;
         this.exerciseCount = exerciseCount;
         this.level = level;
         this.tag = tag;
         this.thumbnail = thumbnail;
         this.totalTime = totalTime;
+        this.round = round;
     }
 
     public int getWorkout_id() {
@@ -51,11 +48,11 @@ public class Workout implements Serializable {
     }
 
     public int getKcal() {
-        return Kcal;
+        return kcal;
     }
 
     public void setKcal(int kcal) {
-        Kcal = kcal;
+        this.kcal = kcal;
     }
 
     public int getExerciseCount() {
@@ -97,4 +94,13 @@ public class Workout implements Serializable {
     public void setTotalTime(int totalTime) {
         this.totalTime = totalTime;
     }
+
+    public void setRound(ArrayList<Round> round) {
+        this.round = round;
+    }
+
+    public ArrayList<Round> getRound(){
+        return round;
+    }
+
 }

@@ -40,7 +40,7 @@ public class LaunchActivity extends AppCompatActivity {
         addControls();
         // create database
         executorService.execute(() -> {
-            FitnessDB.getInstance(getApplicationContext()).workoutDAO().getAllWorkouts();
+            FitnessDB.getInstance(getApplicationContext()).userInformationDAO().getUserInformation();
         });
 
         new Handler().postDelayed(new Runnable() {

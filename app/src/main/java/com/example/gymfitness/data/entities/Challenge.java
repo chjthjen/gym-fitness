@@ -6,10 +6,7 @@ import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
 
-@Entity(tableName = "Challenge",
-        foreignKeys = @ForeignKey(entity = Workout.class,
-                parentColumns = "workout_id",
-                childColumns = "workout_id"))
+@Entity
 public class Challenge implements Serializable {
 
     @PrimaryKey(autoGenerate = true)

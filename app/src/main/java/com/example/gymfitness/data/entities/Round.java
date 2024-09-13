@@ -1,25 +1,24 @@
 package com.example.gymfitness.data.entities;
 
-import androidx.room.Entity;
-import androidx.room.ForeignKey;
-import androidx.room.PrimaryKey;
-
 import java.io.Serializable;
+import java.util.ArrayList;
 
-@Entity(tableName = "Round",
-        foreignKeys = @ForeignKey(entity = Workout.class,
-                parentColumns = "workout_id",
-                childColumns = "workout_id"))
+
 public class Round implements Serializable {
-    @PrimaryKey(autoGenerate = true)
     private int round_id;
     private String round_name;
-    private int workout_id;
+    private ArrayList<Exercise> exercises;
 
-    public Round(int round_id, String round_name, int workout_id) {
+
+    public Round()
+    {
+
+    }
+
+    public Round(int round_id, String round_name, ArrayList<Exercise> exercises) {
         this.round_id = round_id;
         this.round_name = round_name;
-        this.workout_id = workout_id;
+        this.exercises = exercises;
     }
 
     public int getRound_id() {
@@ -38,11 +37,11 @@ public class Round implements Serializable {
         this.round_name = round_name;
     }
 
-    public int getWorkout_id() {
-        return workout_id;
+    public ArrayList<Exercise> getExercises() {
+        return exercises;
     }
 
-    public void setWorkout_id(int workout_id) {
-        this.workout_id = workout_id;
+    public void setExercises(ArrayList<Exercise> exercises) {
+        this.exercises = exercises;
     }
 }
