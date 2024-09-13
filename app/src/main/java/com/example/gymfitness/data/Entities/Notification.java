@@ -9,7 +9,7 @@ import java.io.Serializable;
 public class Notification implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
-    private Long id;
+    private int id;
     private String name;
     private String type;
     private String content;
@@ -17,18 +17,18 @@ public class Notification implements Serializable {
     public Notification() {
     }
 
-    public Notification(Long id, String name, String type, String content) {
+    public Notification(int id, String name, String type, String content) {
         this.id = id;
         this.name = name;
         this.type = type;
         this.content = content;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
