@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gymfitness.R;
-import com.example.gymfitness.adapters.RecommendationAdapter;
+import com.example.gymfitness.adapters.search.RecommendationAdapter;
 import com.example.gymfitness.adapters.search.RecommendationVideoAdapter;
 import com.example.gymfitness.data.WorkoutTest;
 

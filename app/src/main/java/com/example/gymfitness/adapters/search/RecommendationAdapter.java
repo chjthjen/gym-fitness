@@ -1,4 +1,4 @@
-package com.example.gymfitness.adapters;
+package com.example.gymfitness.adapters.search;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
