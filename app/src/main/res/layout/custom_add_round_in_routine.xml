@@ -33,6 +33,4 @@
             android:src="@drawable/ic_delete"
             android:background="@color/black"/>
     </LinearLayout>
-
-
 </LinearLayout>
