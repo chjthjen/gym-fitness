@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gymfitness.R;
-import com.example.gymfitness.data.Entities.Notification;
+import com.example.gymfitness.data.entities.Notification;
 
 import java.util.List;
 

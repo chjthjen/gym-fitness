@@ -1,39 +1,65 @@
 package com.example.gymfitness.adapters;
 
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gymfitness.R;
+import com.example.gymfitness.data.entities.Workout;
+import com.example.gymfitness.databinding.ItemWorkoutNonvideoBinding;
+
+import java.util.ArrayList;
 
 public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.WorkoutViewHolder> {
+
+    ArrayList<Workout> listWorkout = new ArrayList<>();
+
+    public WorkoutAdapter(ArrayList<Workout> list){
+        this.listWorkout = list;
+    }
 
     @NonNull
     @Override
     public WorkoutViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.rcv_workout_item_nonvideo, parent, false);
-        return new WorkoutViewHolder(view);
+        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
+        ItemWorkoutNonvideoBinding binding = DataBindingUtil.inflate(layoutInflater,R.layout.item_workout_nonvideo, parent, false);
+        return new WorkoutViewHolder(binding);
     }
 
+
+
+    static class WorkoutViewHolder extends RecyclerView.ViewHolder {
+        private ItemWorkoutNonvideoBinding binding;
+        public WorkoutViewHolder(@NonNull ItemWorkoutNonvideoBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
+        }
+        public void bind(Workout workout) {
+            binding.setItem(workout);
+            binding.executePendingBindings();
+        }
+    }
+
+    @NonNull
     @Override
     public void onBindViewHolder(@NonNull WorkoutViewHolder holder, int position) {
-
+        Workout workout = listWorkout.get(position);
+        holder.bind(workout);
     }
 
     @Override
     public int getItemCount() {
-        //so luong item hien thi
-        return 5;
+        return listWorkout == null ? 0 : listWorkout.size();
     }
 
-    static class WorkoutViewHolder extends RecyclerView.ViewHolder {
-        public WorkoutViewHolder(@NonNull View itemView) {
-            super(itemView);
-        }
+
+    public void setWorkoutList(ArrayList<Workout> workouts) {
+        this.listWorkout.clear();
+        this.listWorkout.addAll(workouts);
+        notifyDataSetChanged();
     }
 }
 

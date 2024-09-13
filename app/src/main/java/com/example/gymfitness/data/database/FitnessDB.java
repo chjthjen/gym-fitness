@@ -3,7 +3,6 @@ package com.example.gymfitness.data.database;
 import android.content.Context;
 import android.util.Log;
 
-import androidx.room.AutoMigration;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
@@ -11,14 +10,14 @@ import androidx.room.TypeConverters;
 
 import com.example.gymfitness.data.DAO.UserInformationDAO;
 import com.example.gymfitness.data.DAO.WorkoutDAO;
-import com.example.gymfitness.data.Entities.Article;
-import com.example.gymfitness.data.Entities.Challenge;
-import com.example.gymfitness.data.Entities.Exercise;
-import com.example.gymfitness.data.Entities.Notification;
-import com.example.gymfitness.data.Entities.ProgessTracking;
-import com.example.gymfitness.data.Entities.Round;
-import com.example.gymfitness.data.Entities.UserInformation;
-import com.example.gymfitness.data.Entities.Workout;
+import com.example.gymfitness.data.entities.Article;
+import com.example.gymfitness.data.entities.Challenge;
+import com.example.gymfitness.data.entities.Exercise;
+import com.example.gymfitness.data.entities.Notification;
+import com.example.gymfitness.data.entities.ProgessTracking;
+import com.example.gymfitness.data.entities.Round;
+import com.example.gymfitness.data.entities.UserInformation;
+import com.example.gymfitness.data.entities.Workout;
 import com.example.gymfitness.utils.Converters;
 
 @Database(

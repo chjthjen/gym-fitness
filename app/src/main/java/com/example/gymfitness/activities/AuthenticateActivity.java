@@ -11,8 +11,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.gymfitness.R;
-import com.example.gymfitness.data.Entities.Workout;
-import com.example.gymfitness.data.database.FitnessDB;
+import com.example.gymfitness.data.entities.Workout;
 import com.example.gymfitness.viewmodels.AuthViewModel;
 import com.google.firebase.dynamiclinks.FirebaseDynamicLinks;
 
