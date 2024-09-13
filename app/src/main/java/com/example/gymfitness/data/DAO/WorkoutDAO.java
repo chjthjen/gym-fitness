@@ -1,11 +1,10 @@
 package com.example.gymfitness.data.DAO;
 
-import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
 
-import com.example.gymfitness.data.Entities.Workout;
+import com.example.gymfitness.data.entities.Workout;
 
 import java.util.List;
 

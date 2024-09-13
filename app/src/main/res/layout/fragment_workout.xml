@@ -258,7 +258,7 @@
                         android:layout_marginHorizontal="20dp"
                         android:layout_marginTop="10dp"
                         app:layout_constraintTop_toBottomOf="@id/tv_text"
-                        tools:listitem="@layout/rcv_workout_item_nonvideo" />
+                        tools:listitem="@layout/item_workout_nonvideo" />
                 </LinearLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>

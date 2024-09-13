@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.gymfitness.data.Entities.Workout;
+import com.example.gymfitness.data.entities.Workout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -35,7 +35,6 @@ public class WorkoutViewModel extends ViewModel {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                // Xử lý lỗi ở đây
             }
         });
     }

@@ -42,9 +42,9 @@ public class FavoritesFragment extends Fragment {
         binding.btnAll.setOnClickListener(v -> sortChange(0));
         binding.btnVideo.setOnClickListener(v -> sortChange(1));
         binding.btnArticle.setOnClickListener(v -> sortChange(2));
-        WorkoutAdapter workoutAdapter = new WorkoutAdapter();
-        binding.rcvFavorites.setAdapter(workoutAdapter);
-        binding.rcvFavorites.setLayoutManager(new LinearLayoutManager(getContext()));
+//        WorkoutAdapter workoutAdapter = new WorkoutAdapter();
+//        binding.rcvFavorites.setAdapter(workoutAdapter);
+//        binding.rcvFavorites.setLayoutManager(new LinearLayoutManager(getContext()));
 
     }
 

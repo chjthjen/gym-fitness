@@ -3,8 +3,8 @@ package com.example.gymfitness.data.relations;
 import androidx.room.Embedded;
 import androidx.room.Relation;
 
-import com.example.gymfitness.data.Entities.Exercise;
-import com.example.gymfitness.data.Entities.Round;
+import com.example.gymfitness.data.entities.Exercise;
+import com.example.gymfitness.data.entities.Round;
 
 import java.util.List;
 

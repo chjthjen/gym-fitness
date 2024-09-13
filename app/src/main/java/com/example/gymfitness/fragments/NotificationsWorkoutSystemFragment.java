@@ -14,8 +14,7 @@ import android.view.ViewGroup;
 
 import com.example.gymfitness.R;
 import com.example.gymfitness.adapters.NotificationWorkoutRCVAdapter;
-import com.example.gymfitness.data.Entities.Notification;
-import com.example.gymfitness.databinding.FragmentNotificationsWorkoutRemindersBinding;
+import com.example.gymfitness.data.entities.Notification;
 import com.example.gymfitness.databinding.FragmentNotificationsWorkoutSystemBinding;
 
 import java.util.ArrayList;
