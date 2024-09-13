@@ -27,8 +27,6 @@ import java.util.Objects;
 public class EditProfileFragment extends Fragment {
 
     FragmentEditprofileBinding binding;
-    private ProfileViewModel profileViewModel;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -40,30 +38,7 @@ public class EditProfileFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        profileViewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
 
-        profileViewModel.getUserInformation().observe(this, new Observer<UserInformation>() {
-            @Override
-            public void onChanged(UserInformation userInfo) {
-                if (userInfo != null) {
-                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
-                    String dateOfBirth= sdf.format(userInfo.getDob());
-
-                    binding.tvNameProfile.setText(userInfo.getFullname());
-                    binding.tvEmail.setText(userInfo.getEmail());
-                    binding.tvDateOfBirth.setText(dateOfBirth);
-                    binding.tvWeight.setText(String.valueOf(userInfo.getWeight()));
-                    binding.tvOld.setText(String.valueOf(userInfo.getAge()));
-                    binding.tvHeigh.setText(String.valueOf(userInfo.getHeight()));
-                    binding.editFullname.setText(userInfo.getFullname());
-                    binding.edtEmail.setText(userInfo.getEmail());
-                    binding.edtPhoneNumber.setText(userInfo.getPhonenumber());
-                    binding.edtDateOfBirth.setText(dateOfBirth);
-                    binding.edtWeight.setText(String.valueOf(userInfo.getWeight()));
-                    binding.edtHeigh.setText(String.valueOf(userInfo.getHeight()));
-                }
-            }
-        });
     }
 
     @Override
