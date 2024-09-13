@@ -5,7 +5,7 @@
     <data>
         <variable
             name="ownRoutineViewModel"
-            type="com.example.gymfitness.viewmodels.WorkoutViewModel" />
+            type="com.example.gymfitness.viewmodels.OwnRoutineViewModel" />
     </data>
 
     <LinearLayout
@@ -14,7 +14,10 @@
         android:orientation="vertical"
         android:background="@color/black">
 
-
+        <Button
+            android:id="@+id/btnCreateRound"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 
 </layout>

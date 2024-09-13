@@ -1,2 +1,6 @@
-package com.example.gymfitness.viewmodels;public class OwnRoutineViewModel {
+package com.example.gymfitness.viewmodels;
+
+import androidx.lifecycle.ViewModel;
+
+public class OwnRoutineViewModel extends ViewModel {
 }
