@@ -21,6 +21,9 @@
         <action
             android:id="@+id/action_homeFragment_to_workoutFragment"
             app:destination="@id/workoutFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_workoutSearch_6_3_2_A"
+            app:destination="@id/workoutSearch_6_3_2_A" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -94,4 +97,9 @@
             android:id="@+id/action_notificationFrag_to_settingsFragment"
             app:destination="@id/settingsFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/workoutSearch_6_3_2_A"
+        android:name="com.example.gymfitness.fragments.WorkoutSearch_6_3_2_A"
+        android:label="fragment_workout_search_6_3_2__a"
+        tools:layout="@layout/fragment_workout_search_6_3_2__a" />
 </navigation>

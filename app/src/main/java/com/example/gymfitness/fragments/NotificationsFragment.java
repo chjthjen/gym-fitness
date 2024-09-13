@@ -4,12 +4,15 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -18,38 +21,23 @@ import com.example.gymfitness.R;
 import com.example.gymfitness.databinding.FragmentNotificationsBinding;
 import com.example.gymfitness.viewmodels.NotificationsViewModel;
 
+import java.util.Objects;
+
 public class NotificationsFragment extends Fragment {
 
     FragmentNotificationsBinding binding;
     private boolean isGeneralNotificationOn = true, isSoundOn = true, isDontDisturbOn = true, isVibrateOn = true, isLockScreenOn = true, isRemindersOn = true;
 
     NotificationsViewModel viewModel;
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    private String mParam1;
-    private String mParam2;
-
     public NotificationsFragment() {
         // Required empty public constructor
     }
 
-    public static NotificationsFragment newInstance(String param1, String param2) {
-        NotificationsFragment fragment = new NotificationsFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        setHasOptionsMenu(true);
+
     }
 
     @Override
@@ -136,5 +124,27 @@ public class NotificationsFragment extends Fragment {
                 }
             }
         });
+    }
+
+    @Override
+    public void onPrepareOptionsMenu(@NonNull Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+        MenuItem itemsSearch = menu.findItem(R.id.ic_search);
+        MenuItem itemsNotif = menu.findItem(R.id.ic_notif);
+        MenuItem itemsProfile = menu.findItem(R.id.ic_profile);
+        if(itemsSearch != null && itemsNotif != null && itemsProfile != null)
+        {
+            itemsSearch.setVisible(false);
+            itemsNotif.setVisible(false);
+            itemsProfile.setVisible(false);
+
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle("Notifications Settings");
+
     }
 }
