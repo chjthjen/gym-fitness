@@ -6,7 +6,7 @@ public class Exercise {
     private String time;
     private String roundedRepetition;
 
-    public Exercise() {
+    public Exercise(String dumbbellRows, String time, String s, int ic_play_video) {
     }
 
     public Exercise(int icon, String title, String time, String roundedRepetition) {
