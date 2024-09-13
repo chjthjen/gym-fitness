@@ -33,4 +33,9 @@
             android:src="@drawable/ic_delete"
             android:background="@color/black"/>
     </LinearLayout>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnCreateNewRoutine"
+        android:text="Create new"/>
 </LinearLayout>
