@@ -28,6 +28,7 @@ public class WorkoutViewModel extends ViewModel {
                 ArrayList<Workout> workoutList = new ArrayList<>();
                 for (DataSnapshot workoutSnapshot : dataSnapshot.getChildren()) {
                     Workout workout = workoutSnapshot.getValue(Workout.class);
+                    workout.setWorkout_name(workoutSnapshot.getKey());
                     workoutList.add(workout);
                 }
                 workoutsLiveData.setValue(workoutList);

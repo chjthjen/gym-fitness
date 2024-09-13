@@ -11,21 +11,22 @@ public class Workout implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
     private int workout_id;
-    private int kcal;
+    private String workout_name;
+    private int Kcal;
     private int exerciseCount;
     private String level;
     private String tag;
     private String thumbnail;
     private int totalTime;
 
-    public Workout()
-    {
+    public Workout() {
 
     }
 
-    public Workout(int workout_id, int kcal, int exerciseCount, String level, String tag, String thumbnail, int totalTime) {
+    public Workout(int workout_id, String workout_name, int kcal, int exerciseCount, String level, String tag, String thumbnail, int totalTime) {
         this.workout_id = workout_id;
-        this.kcal = kcal;
+        this.workout_name = workout_name;
+        Kcal = kcal;
         this.exerciseCount = exerciseCount;
         this.level = level;
         this.tag = tag;
@@ -41,12 +42,20 @@ public class Workout implements Serializable {
         this.workout_id = workout_id;
     }
 
+    public String getWorkout_name() {
+        return workout_name;
+    }
+
+    public void setWorkout_name(String workout_name) {
+        this.workout_name = workout_name;
+    }
+
     public int getKcal() {
-        return kcal;
+        return Kcal;
     }
 
     public void setKcal(int kcal) {
-        this.kcal = kcal;
+        Kcal = kcal;
     }
 
     public int getExerciseCount() {
