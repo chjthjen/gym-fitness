@@ -18,19 +18,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.gymfitness.R;
 import com.example.gymfitness.adapters.WorkoutAdapter;
+import com.example.gymfitness.data.entities.Round;
 import com.example.gymfitness.data.entities.Workout;
 import com.example.gymfitness.databinding.FragmentWorkoutBinding;
 import com.example.gymfitness.viewmodels.WorkoutViewModel;
 
 import java.util.ArrayList;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public class WorkoutFragment extends Fragment {
     private FragmentWorkoutBinding binding;
     private WorkoutViewModel workoutViewModel;
     private ArrayList<Workout> list = new ArrayList<>();
-    private ExecutorService executorService;
     private WorkoutAdapter workoutAdapter;
     @Nullable
     @Override
@@ -45,11 +43,17 @@ public class WorkoutFragment extends Fragment {
         workoutViewModel.getWorkouts().observe(getViewLifecycleOwner(), new Observer<ArrayList<Workout>>() {
             @Override
             public void onChanged(ArrayList<Workout> workouts) {
+                int count = 1;
                 if (workouts != null && !workouts.isEmpty()) {
-                    workoutAdapter.setWorkoutList(workouts);  // Update the adapter's data
-                    workoutAdapter.notifyDataSetChanged();  // Notify adapter of data change
+                    workoutAdapter.setWorkoutList(workouts);
+                    workoutAdapter.notifyDataSetChanged();
                     for (Workout w : workouts) {
                         Log.d(TAG, w.getThumbnail() + " " + w.getKcal() + " " + w.getTotalTime());
+                        for (Round r : w.getRound())
+                        {
+                            Log.d("round_duration",String.valueOf(count));
+                            count++;
+                        }
                     }
                 } else {
                     Log.d(TAG, "List is empty or null");

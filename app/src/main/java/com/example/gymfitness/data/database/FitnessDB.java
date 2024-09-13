@@ -9,23 +9,16 @@ import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 
 import com.example.gymfitness.data.DAO.UserInformationDAO;
-import com.example.gymfitness.data.DAO.WorkoutDAO;
 import com.example.gymfitness.data.entities.Article;
 import com.example.gymfitness.data.entities.Challenge;
-import com.example.gymfitness.data.entities.Exercise;
 import com.example.gymfitness.data.entities.Notification;
 import com.example.gymfitness.data.entities.ProgessTracking;
-import com.example.gymfitness.data.entities.Round;
 import com.example.gymfitness.data.entities.UserInformation;
-import com.example.gymfitness.data.entities.Workout;
 import com.example.gymfitness.utils.Converters;
 
 @Database(
         entities =
                 {
-                        Workout.class,
-                        Round.class,
-                        Exercise.class,
                         Notification.class,
                         ProgessTracking.class,
                         UserInformation.class,
@@ -51,7 +44,6 @@ public abstract class FitnessDB extends RoomDatabase {
         return instance;
     }
 
-    public abstract WorkoutDAO workoutDAO();
     public abstract UserInformationDAO userInformationDAO();
 
 

@@ -6,32 +6,25 @@ import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
 
-@Entity(tableName = "Exercise",
-        foreignKeys = @ForeignKey(entity = Round.class,
-                parentColumns = "round_id",
-                childColumns = "round_id"))
 public class Exercise implements Serializable {
-    @PrimaryKey(autoGenerate = true)
     private int exercise_id;
     private String exercise_name;
-    private int rep;
-    private String video_url;
-    private String thumbnail;
-    private int is_favorite;
+    private int duration;
+    private String exerciseThumb;
     private String level;
-    private int is_trained;
-    private int round_id;
+    private String link;
+    private int rep;
 
-    public Exercise(int exercise_id, String exercise_name, int rep, String video_url, String thumbnail, int is_favorite, String level, int is_trained, int round_id) {
+    public Exercise(){}
+
+    public Exercise(int exercise_id, String exercise_name, int duration, String exerciseThumb, String level, String link, int rep) {
         this.exercise_id = exercise_id;
         this.exercise_name = exercise_name;
-        this.rep = rep;
-        this.video_url = video_url;
-        this.thumbnail = thumbnail;
-        this.is_favorite = is_favorite;
+        this.duration = duration;
+        this.exerciseThumb = exerciseThumb;
         this.level = level;
-        this.is_trained = is_trained;
-        this.round_id = round_id;
+        this.link = link;
+        this.rep = rep;
     }
 
     public int getExercise_id() {
@@ -50,36 +43,20 @@ public class Exercise implements Serializable {
         this.exercise_name = exercise_name;
     }
 
-    public int getRep() {
-        return rep;
+    public int getDuration() {
+        return duration;
     }
 
-    public void setRep(int rep) {
-        this.rep = rep;
+    public void setDuration(int duration) {
+        this.duration = duration;
     }
 
-    public String getVideo_url() {
-        return video_url;
+    public String getExerciseThumb() {
+        return exerciseThumb;
     }
 
-    public void setVideo_url(String video_url) {
-        this.video_url = video_url;
-    }
-
-    public String getThumbnail() {
-        return thumbnail;
-    }
-
-    public void setThumbnail(String thumbnail) {
-        this.thumbnail = thumbnail;
-    }
-
-    public int getIs_favorite() {
-        return is_favorite;
-    }
-
-    public void setIs_favorite(int is_favorite) {
-        this.is_favorite = is_favorite;
+    public void setExerciseThumb(String exerciseThumb) {
+        this.exerciseThumb = exerciseThumb;
     }
 
     public String getLevel() {
@@ -90,19 +67,19 @@ public class Exercise implements Serializable {
         this.level = level;
     }
 
-    public int getIs_trained() {
-        return is_trained;
+    public String getLink() {
+        return link;
     }
 
-    public void setIs_trained(int is_trained) {
-        this.is_trained = is_trained;
+    public void setLink(String link) {
+        this.link = link;
     }
 
-    public int getRound_id() {
-        return round_id;
+    public int getRep() {
+        return rep;
     }
 
-    public void setRound_id(int round_id) {
-        this.round_id = round_id;
+    public void setRep(int rep) {
+        this.rep = rep;
     }
 }
