@@ -73,12 +73,25 @@
         android:name="com.example.gymfitness.fragments.SettingsFragment"
         android:label="SettingsFragment"
         tools:layout="@layout/fragment_settings"
-        />
+        >
+        <action
+            android:id="@+id/action_settingsFragment_to_notificationFrag"
+            app:destination="@id/notificationFrag" />
+    </fragment>
     <fragment
         android:id="@+id/editProfileFragment"
         android:name="com.example.gymfitness.fragments.floatingMenu.EditProfileFragment"
         android:label="EditProfileFragment"
         tools:layout="@layout/fragment_editprofile"
         />
-
+    <fragment
+        android:id="@+id/notificationFrag"
+        android:name="com.example.gymfitness.fragments.NotificationsFragment"
+        android:label="SettingsFragment"
+        tools:layout="@layout/fragment_notifications"
+        >
+        <action
+            android:id="@+id/action_notificationFrag_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+    </fragment>
 </navigation>

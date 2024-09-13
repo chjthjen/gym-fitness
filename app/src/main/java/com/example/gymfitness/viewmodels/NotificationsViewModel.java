@@ -14,6 +14,5 @@ public class NotificationsViewModel extends ViewModel {
         } else {
             img.setBackgroundResource(R.drawable.component31_on);
         }
-        isOn = !isOn;
     }
 }
