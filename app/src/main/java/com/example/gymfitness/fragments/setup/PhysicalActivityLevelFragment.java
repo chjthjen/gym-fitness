@@ -26,7 +26,6 @@ public class PhysicalActivityLevelFragment extends Fragment {
     private SetUpViewModel setUpViewModel;
     private ColorStateList colorStateList;
     public PhysicalActivityLevelFragment() {
-        // Required empty public constructor
     }
 
     @Override
