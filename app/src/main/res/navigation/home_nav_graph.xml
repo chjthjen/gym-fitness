@@ -46,6 +46,9 @@
         <action
             android:id="@+id/action_profileFragment_to_editProfileFragment"
             app:destination="@id/editProfileFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_ownRoutineFragment"
+            app:destination="@id/ownRoutineFragment" />
     </fragment>
     <fragment
         android:id="@+id/forgottenPasswordFragment"
@@ -102,4 +105,10 @@
         android:name="com.example.gymfitness.fragments.WorkoutSearch_6_3_2_A"
         android:label="fragment_workout_search_6_3_2__a"
         tools:layout="@layout/fragment_workout_search_6_3_2__a" />
+    <fragment
+        android:id="@+id/ownRoutineFragment"
+        android:name="com.example.gymfitness.fragments.routine.OwnRoutineFragment"
+        android:label="OwnRoutineFragment"
+        tools:layout="@layout/fragment_own_routine"
+        />
 </navigation>
