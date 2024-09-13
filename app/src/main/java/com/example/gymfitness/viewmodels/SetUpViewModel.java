@@ -1,14 +1,11 @@
 package com.example.gymfitness.viewmodels;
 
-import android.content.SharedPreferences;
-import android.util.Log;
-
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.gymfitness.data.DAO.UserInformationDAO;
-import com.example.gymfitness.data.Entities.UserInformation;
+import com.example.gymfitness.data.entities.UserInformation;
 
 public class SetUpViewModel extends ViewModel {
     private final MutableLiveData<String> gender = new MutableLiveData<>();
@@ -37,6 +34,7 @@ public class SetUpViewModel extends ViewModel {
         userInformation.setWeight(getWeight().getValue());
         userInformation.setHeight(getHeight().getValue());
         userInformation.setGoal(getGoal().getValue());
+        userInformation.setLevel(getLevel().getValue());
         userInformation.setFullname(getFullname().getValue());
         userInformation.setNickname(getNickname().getValue());
         userInformation.setEmail(getEmail().getValue());

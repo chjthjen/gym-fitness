@@ -1,19 +1,17 @@
-package com.example.gymfitness.data.Entities;
+package com.example.gymfitness.data.entities;
 
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
-import java.util.List;
-import java.util.Map;
 
 @Entity(tableName = "Workout")
 public class Workout implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
     private int workout_id;
-    private int Kcal;
+    private int kcal;
     private int exerciseCount;
     private String level;
     private String tag;
@@ -27,7 +25,7 @@ public class Workout implements Serializable {
 
     public Workout(int workout_id, int kcal, int exerciseCount, String level, String tag, String thumbnail, int totalTime) {
         this.workout_id = workout_id;
-        Kcal = kcal;
+        this.kcal = kcal;
         this.exerciseCount = exerciseCount;
         this.level = level;
         this.tag = tag;
@@ -44,11 +42,11 @@ public class Workout implements Serializable {
     }
 
     public int getKcal() {
-        return Kcal;
+        return kcal;
     }
 
     public void setKcal(int kcal) {
-        Kcal = kcal;
+        this.kcal = kcal;
     }
 
     public int getExerciseCount() {
