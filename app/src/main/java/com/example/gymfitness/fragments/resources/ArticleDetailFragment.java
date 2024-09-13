@@ -7,8 +7,15 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 import com.example.gymfitness.R;
+import com.example.gymfitness.adapters.ArticleDetailAdapter;
+import com.example.gymfitness.viewmodels.ArticleDetailViewModel;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,6 +32,9 @@ public class ArticleDetailFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private ListView listView;
+    private List<ArticleDetailViewModel> articleDetailList;
+    private ArticleDetailAdapter adapter;
 
     public ArticleDetailFragment() {
         // Required empty public constructor
@@ -60,7 +70,14 @@ public class ArticleDetailFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_article_detail, container, false);
+        View view = inflater.inflate(R.layout.fragment_article_detail, container, false);
+
+        articleDetailList = new ArrayList<>();
+        articleDetailList.add(new ArticleDetailViewModel("Plan Your Routine:", "Before starting any workout, plan your routine for the week. Focus on different muscle groups on different days to allow for adequate rest and recovery."));
+        articleDetailList.add(new ArticleDetailViewModel("Warm-Up:", "Begin your workout with a proper warm-up session. This could include light cardio exercises like jogging or jumping jacks, as well as dynamic stretches to prepare your muscles for the upcoming workout."));
+
+        adapter = new ArticleDetailAdapter(requireContext(), articleDetailList);
+        listView.setAdapter(adapter);
+        return view;
     }
 }

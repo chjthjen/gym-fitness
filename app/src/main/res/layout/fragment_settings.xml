@@ -15,6 +15,7 @@
 
         <!-- TODO: Update blank fragment layout -->
         <LinearLayout
+            android:id="@+id/ln_notif"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
@@ -38,6 +39,7 @@
                 android:fontFamily="@font/league_spartan"/>
 
             <ImageView
+                android:id="@+id/btnNotification"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right|center"

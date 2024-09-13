@@ -23,14 +23,14 @@
             android:layout_height="match_parent"
             android:layout_centerHorizontal="true"
             android:orientation="vertical"
-            android:paddingTop="39dp"
-            android:paddingHorizontal="35dp">
+            android:paddingTop="39dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:paddingHorizontal="35dp">
 
                 <TextView
                     android:id="@+id/txtArticleName"
@@ -53,7 +53,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:paddingHorizontal="35dp">
 
                 <ImageView
                     android:id="@+id/imgPurpleClock"
@@ -72,6 +73,7 @@
                     android:textColor="@color/white"
                     android:textSize="14sp" />
 
+
             </LinearLayout>
 
             <LinearLayout
@@ -87,10 +89,10 @@
                     android:id="@+id/imgArticle"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:src="@drawable/woman_help_home"
                     android:background="@drawable/article_detail_img_bg"
+                    android:clipToOutline="true"
                     android:scaleType="centerCrop"
-                    android:clipToOutline="true" />
+                    android:src="@drawable/woman_help_home" />
 
             </LinearLayout>
 
@@ -98,9 +100,24 @@
                 android:id="@+id/txtArticleSummary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="27dp"/>
+                android:layout_marginTop="27dp"
+                android:ellipsize="none"
+                android:fontFamily="@font/league_spartan"
+                android:lineHeight="14sp"
+                android:paddingHorizontal="35dp"
+                android:singleLine="false"
+                android:text="Discover essential Strength Training Tips to maximize your workouts and achieve your fitness goals efficiently. Learn how to optimize your routine, prevent injuries, and unlock your full potential in the gym."
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="25sp"
+                android:paddingHorizontal="35dp" />
 
         </LinearLayout>
+
 
     </RelativeLayout>
 
