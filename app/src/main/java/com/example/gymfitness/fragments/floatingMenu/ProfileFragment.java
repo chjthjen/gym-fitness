@@ -1,5 +1,6 @@
 package com.example.gymfitness.fragments.floatingMenu;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,10 +16,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bumptech.glide.Glide;
 import com.example.gymfitness.R;
+import com.example.gymfitness.data.database.FitnessDB;
+import com.example.gymfitness.data.entities.UserInformation;
 import com.example.gymfitness.databinding.FragmentProfileBinding;
 import com.example.gymfitness.viewmodels.ProfileViewModel;
 
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 import java.util.Objects;
 
 public class ProfileFragment extends Fragment {
@@ -26,6 +32,8 @@ public class ProfileFragment extends Fragment {
     private FragmentProfileBinding binding;
     private ProfileViewModel viewModel;
     private NavController navController;
+    private FitnessDB db;
+
     public ProfileFragment() {
     }
 
@@ -37,6 +45,7 @@ public class ProfileFragment extends Fragment {
         binding.setViewModel(viewModel);
         binding.setLifecycleOwner(this);
         navController = NavHostFragment.findNavController(this);
+        db = FitnessDB.getInstance(requireContext());
         return binding.getRoot();
     }
 
@@ -44,7 +53,53 @@ public class ProfileFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).hide();
+
+        loadUserData();
         addEvents();
+    }
+
+    private void loadUserData() {
+        // Use AsyncTask to run the database query on a background thread
+        new AsyncTask<Void, Void, UserInformation>() {
+            @Override
+            protected UserInformation doInBackground(Void... voids) {
+                return db.userInformationDAO().getUserInformation();
+            }
+
+            @Override
+            protected void onPostExecute(UserInformation userInformation) {
+                super.onPostExecute(userInformation);
+                if (userInformation != null) {
+
+                    int imageResId;
+                    if ("male".equalsIgnoreCase(userInformation.getGender())) {
+                        imageResId = R.drawable.man_profile;
+                    } else if ("female".equalsIgnoreCase(userInformation.getGender())) {
+                        imageResId = R.drawable.wonman_profile;
+                    } else {
+                        imageResId = R.drawable.account_image;
+                    }
+
+                    Glide.with(requireContext())
+                            .load(userInformation.getImg() != null ? userInformation.getImg() : imageResId)
+                            .placeholder(R.drawable.bgr_onboarding_2d)
+                            .error(R.drawable.arrow_next)
+                            .into(binding.imageNguoiDung);
+
+                    // Set values to TextView
+                    binding.tvName.setText(userInformation.getFullname());
+                    binding.tvEmail.setText(userInformation.getEmail());
+
+//                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+//                    String formattedDate = dateFormat.format(userInformation.getDob());
+//                    binding.tvBirth.setText("Birthday: " + formattedDate);
+
+                    binding.tvWeight.setText(userInformation.getWeight() + "");
+                    binding.tvYearold.setText(userInformation.getAge()+ "");
+                    binding.tvHeigh.setText(userInformation.getHeight() + "");
+                }
+            }
+        }.execute();
     }
 
     private void addEvents()

@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/id_all_search"
+    android:background="@color/black"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -14,6 +15,7 @@
         />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="26dp"
         android:id="@+id/rcv_favorites"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
