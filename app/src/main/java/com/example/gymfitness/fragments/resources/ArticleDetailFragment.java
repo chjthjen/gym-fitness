@@ -72,6 +72,8 @@ public class ArticleDetailFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_article_detail, container, false);
 
+        listView = view.findViewById(R.id.lvArticleDetail);
+
         articleDetailList = new ArrayList<>();
         articleDetailList.add(new ArticleDetailViewModel("Plan Your Routine:", "Before starting any workout, plan your routine for the week. Focus on different muscle groups on different days to allow for adequate rest and recovery."));
         articleDetailList.add(new ArticleDetailViewModel("Warm-Up:", "Begin your workout with a proper warm-up session. This could include light cardio exercises like jogging or jumping jacks, as well as dynamic stretches to prepare your muscles for the upcoming workout."));
