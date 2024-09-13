@@ -100,23 +100,21 @@
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <TextView
-                            android:id="@+id/tvNameProfile6_1"
+                            android:id="@+id/tvNameProfile"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:gravity="center"
-                            android:text="Madison Smith"
                             android:textColor="@color/white"
                             android:textSize="26dp"
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/textView20"
+                            android:id="@+id/tvEmail"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:gravity="center"
-                            android:text="madison@example.com"
                             android:textColor="@color/white"
 
                             android:textSize="18dp" />
@@ -131,17 +129,15 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="135dp"
-                                android:text="BirthDay:"
                                 android:textColor="@color/white"
                                 android:textSize="18dp"
                                 android:textStyle="bold" />
 
                             <TextView
-                                android:id="@+id/textView22"
+                                android:id="@+id/tvDateOfBirth"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="1dp"
-                                android:text="April 1st"
                                 android:textColor="@color/white"
                                 android:textSize="18dp" />
                         </LinearLayout>
@@ -179,7 +175,6 @@
                                     android:layout_height="match_parent"
                                     android:fontFamily="@font/league_spartan"
                                     android:gravity="center"
-                                    android:text="75kg"
                                     android:textColor="@color/white"
                                     android:textSize="15sp"
                                     android:textStyle="bold">
@@ -215,7 +210,6 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:gravity="center"
-                                    android:text="28"
                                     android:textColor="@color/white"
                                     android:textSize="15sp"
                                     android:textStyle="bold"></TextView>
@@ -247,7 +241,6 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:gravity="center"
-                                    android:text="1.65 CM"
                                     android:textColor="@color/white"
                                     android:textSize="15sp"
                                     android:textStyle="bold">
@@ -305,8 +298,7 @@
                                     android:background="@drawable/rounded_background_edit"
                                     android:ems="10"
                                     android:inputType="text"
-                                    android:padding="6dp"
-                                    android:text="Madison Smith" />
+                                    android:padding="6dp" />
                             </LinearLayout>
 
                             <TextView
@@ -327,7 +319,6 @@
                                 android:ems="10"
                                 android:inputType="textEmailAddress"
                                 android:padding="7dp"
-                                android:text="madisons@example.com"
                                 android:textColor="@color/black" />
 
                             <TextView
@@ -347,8 +338,7 @@
                                 android:background="@drawable/rounded_background_edit"
                                 android:ems="10"
                                 android:inputType="datetime"
-                                android:padding="7dp"
-                                android:text="09091509" />
+                                android:padding="7dp" />
 
 
                             <TextView
@@ -369,8 +359,7 @@
                                 android:background="@drawable/rounded_background_edit"
                                 android:ems="10"
                                 android:inputType="datetime"
-                                android:padding="7dp"
-                                android:text="01/ 04/ 199x" />
+                                android:padding="7dp" />
 
                             <TextView
                                 android:id="@+id/textView26"
@@ -389,8 +378,7 @@
                                 android:layout_marginRight="31dp"
                                 android:background="@drawable/rounded_background_edit"
                                 android:inputType="text"
-                                android:padding="7dp"
-                                android:text="75 Kg" />
+                                android:padding="7dp" />
 
                             <TextView
                                 android:id="@+id/textView27"
@@ -408,8 +396,7 @@
                                 android:background="@drawable/rounded_background_edit"
                                 android:ems="10"
                                 android:inputType="text"
-                                android:padding="7dp"
-                                android:text="1.65 CM" />
+                                android:padding="7dp" />
 
                             <Button
                                 android:id="@+id/btnUpDate"
