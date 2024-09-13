@@ -104,14 +104,6 @@ public class ProfileFragment extends Fragment {
 
     private void addEvents()
     {
-        // show logout dialog
-        binding.logoutContainer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                LogoutModalBottomSheetFragment bottomSheetDialog = new LogoutModalBottomSheetFragment();
-                bottomSheetDialog.show(getChildFragmentManager(), bottomSheetDialog.getTag());
-            }
-        });
 
         binding.btnBack.setOnClickListener(v -> requireActivity().onBackPressed());
         // open favorite
@@ -119,6 +111,7 @@ public class ProfileFragment extends Fragment {
         binding.helpContainer.setOnClickListener(v -> navController.navigate(R.id.action_profileFragment_to_helpFragment));
         binding.profileContainer.setOnClickListener(v -> navController.navigate(R.id.action_profileFragment_to_editProfileFragment));
         binding.settingsContainer.setOnClickListener(v -> navController.navigate(R.id.action_profileFragment_to_settingsFragment));
+        binding.yourRoutineContainer.setOnClickListener(v -> navController.navigate(R.id.action_profileFragment_to_ownRoutineFragment));
     }
 
 
