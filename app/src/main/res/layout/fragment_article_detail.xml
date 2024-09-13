@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.gymfitness.viewmodels.AuthViewModel" />
+            type="com.example.gymfitness.viewmodels.ArticleDetailViewModel" />
     </data>
 
     <RelativeLayout
