@@ -12,21 +12,21 @@ public class PhysicalActivityViewModel extends ViewModel {
     private final MutableLiveData<Integer> advancedButtonColor = new MutableLiveData<>(Color.WHITE);
 
     public void onBeginnerClicked() {
-        beginnerButtonColor.setValue(Color.parseColor("#32CD32")); // limegreen
+        beginnerButtonColor.setValue(Color.parseColor("#32CD32"));
         intermediateButtonColor.setValue(Color.WHITE);
         advancedButtonColor.setValue(Color.WHITE);
     }
 
     public void onIntermediateClicked() {
         beginnerButtonColor.setValue(Color.WHITE);
-        intermediateButtonColor.setValue(Color.parseColor("#32CD32")); // limegreen
+        intermediateButtonColor.setValue(Color.parseColor("#32CD32"));
         advancedButtonColor.setValue(Color.WHITE);
     }
 
     public void onAdvancedClicked() {
         beginnerButtonColor.setValue(Color.WHITE);
         intermediateButtonColor.setValue(Color.WHITE);
-        advancedButtonColor.setValue(Color.parseColor("#32CD32")); // limegreen
+        advancedButtonColor.setValue(Color.parseColor("#32CD32"));
     }
 
     public LiveData<Integer> getBeginnerButtonColor() {
