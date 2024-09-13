@@ -7,10 +7,7 @@ import androidx.room.PrimaryKey;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-@Entity(tableName = "ProgressTracking",
-        foreignKeys = @ForeignKey(entity = Exercise.class,
-                parentColumns = "exercise_id",
-                childColumns = "exercise_id"))
+@Entity
 public class ProgessTracking implements Serializable {
     @PrimaryKey(autoGenerate = true)
     int pro_id;

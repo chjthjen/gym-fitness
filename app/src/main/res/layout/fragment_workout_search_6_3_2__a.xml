@@ -19,7 +19,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingLeft="25dp"
         android:layout_below="@id/commonSearchLayout"
         >
 
@@ -31,11 +30,11 @@
             android:paddingBottom="15dp"
             android:text="Top Searches"
             android:textSize="25sp"
-            android:paddingLeft="25dp"/>
+            />
 
         <ListView
             android:id="@+id/listView"
-            android:layout_width="323dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clipToPadding="false"
             android:divider="@android:color/transparent"
