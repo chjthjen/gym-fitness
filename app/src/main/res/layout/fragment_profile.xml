@@ -80,6 +80,7 @@
                                     android:id="@+id/imageNguoiDung"
                                     android:layout_width="125dp"
                                     android:layout_height="125dp"
+                                    android:scaleType="centerCrop"
                                     android:src="@drawable/account_image" />
                             </androidx.cardview.widget.CardView>
 
@@ -146,6 +147,7 @@
                                     android:orientation="vertical">
 
                                     <TextView
+                                        android:id="@+id/tvWeight"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:fontFamily="@font/league_spartan"
@@ -179,6 +181,7 @@
                                     android:orientation="vertical">
 
                                     <TextView
+                                        android:id="@+id/tvYearold"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:fontFamily="@font/league_spartan"
@@ -212,6 +215,7 @@
                                     android:orientation="vertical">
 
                                     <TextView
+                                        android:id="@+id/tvHeigh"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:fontFamily="@font/league_spartan"
