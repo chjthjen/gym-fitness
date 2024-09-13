@@ -48,6 +48,7 @@
                 android:orientation="vertical"
                 tools:ignore="UseCompoundDrawables">
                 <TextView
+                    android:id="@+id/hours"
                     android:textSize="14sp"
                     android:layout_gravity="center"
                     android:layout_width="wrap_content"
@@ -67,6 +68,7 @@
                 android:padding="12dp"
                 android:orientation="vertical">
                 <TextView
+                    android:id="@+id/calorie"
                     android:textSize="14sp"
                     android:layout_gravity="center"
                     android:layout_width="wrap_content"
@@ -86,6 +88,7 @@
                 android:padding="12dp"
                 android:orientation="vertical">
                 <TextView
+                    android:id="@+id/moderate"
                     android:textSize="14sp"
                     android:layout_gravity="center"
                     android:layout_width="wrap_content"

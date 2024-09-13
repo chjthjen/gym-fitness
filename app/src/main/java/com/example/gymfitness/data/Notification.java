@@ -1,14 +1,6 @@
-package com.example.gymfitness.data.Entities;
+package com.example.gymfitness.data;
 
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
-
-import java.io.Serializable;
-
-@Entity(tableName = "Notification")
-public class Notification implements Serializable {
-
-    @PrimaryKey(autoGenerate = true)
+public class Notification {
     private int id;
     private String name;
     private String type;

@@ -2,15 +2,23 @@ package com.example.gymfitness.fragments;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.gymfitness.R;
-import com.example.gymfitness.databinding.FragmentNotificationsWorkoutBinding;
+import com.example.gymfitness.adapters.NotificationWorkoutRCVAdapter;
+import com.example.gymfitness.data.Entities.Notification;
 import com.example.gymfitness.databinding.FragmentNotificationsWorkoutRemindersBinding;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,6 +35,8 @@ public class NotificationsWorkoutRemindersFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private NotificationWorkoutRCVAdapter todayNotificationWorkoutRCVAdapter;
+    private NotificationWorkoutRCVAdapter yesterdayNotificationWorkoutRCVAdapter;
 
     public NotificationsWorkoutRemindersFragment() {
         // Required empty public constructor
@@ -64,6 +74,47 @@ public class NotificationsWorkoutRemindersFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentNotificationsWorkoutRemindersBinding.inflate(inflater, container, false);
+
         return binding.getRoot();
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        //rcv today
+        todayNotificationWorkoutRCVAdapter = new NotificationWorkoutRCVAdapter(getContext());
+        LinearLayoutManager todayLinearLayoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
+
+        binding.rcvTodayNotificationWorkoutReminders.setLayoutManager(todayLinearLayoutManager);
+        todayNotificationWorkoutRCVAdapter.setData(getListTodayNotificaionWorkout());
+        binding.rcvTodayNotificationWorkoutReminders.setAdapter(todayNotificationWorkoutRCVAdapter);
+
+        //rcv yesterday
+        yesterdayNotificationWorkoutRCVAdapter = new NotificationWorkoutRCVAdapter(getContext());
+        LinearLayoutManager yesterdayLinearLayoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
+
+        binding.rcvYesterdayNotificationWorkoutReminders.setLayoutManager(yesterdayLinearLayoutManager);
+        yesterdayNotificationWorkoutRCVAdapter.setData(getListYesterdayNotificaionWorkout());
+        binding.rcvYesterdayNotificationWorkoutReminders.setAdapter(yesterdayNotificationWorkoutRCVAdapter);
+    }
+
+    private List<Notification> getListYesterdayNotificaionWorkout() {
+        // Create some example data
+        List<Notification> notificationList = new ArrayList<>();
+        notificationList.add(new Notification(R.drawable.cup_on, "Upper Body Workout Completed!", "yesterday", "June 09 - 6:00 pM"));
+        notificationList.add(new Notification(R.drawable.bulb_off, "Remember Your Exercise Session", "yesterday", "June 09 - 3:00 PM"));
+        notificationList.add(new Notification(R.drawable.list_off, "new Article & Tip posted!", "yesterday", "June 09 - 11:00 aM"));
+
+        return notificationList;
+    }
+
+    private List<Notification> getListTodayNotificaionWorkout() {
+        // Create some example data
+        List<Notification> notificationList = new ArrayList<>();
+        notificationList.add(new Notification(R.drawable.star_big_star_off, "New Workout Is Available", "today", "June 10 - 10:00 AM"));
+        notificationList.add(new Notification(R.drawable.bulb_on, "Dont't Forget To Drink Water", "today", "June 10 - 8:00 AM"));
+
+        return notificationList;
     }
 }
