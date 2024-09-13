@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/black"
+    tools:context=".fragments.CreateYourOwnRoutine">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/parentLayout7_1_1_1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/headerLayout7_1_1_1"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:background="@color/lightblue"
+            android:layout_marginTop="60dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="330dp"
+                android:layout_height="450dp"
+                app:cardCornerRadius="25dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:ignore="MissingConstraints"
+                android:layout_marginTop="45dp"
+                android:layout_marginBottom="45dp">
+
+
+                <ImageView
+                    android:id="@+id/imgSquats"
+                    android:layout_width="340dp"
+                    android:layout_height="460dp"
+                    android:scaleType="centerCrop"
+                    android:translationY="0dp"
+                    android:translationX="-3dp"
+                    android:src="@drawable/create_your_routine" />
+
+                <ImageView
+                    android:id="@+id/imgSmallStar"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="right"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="15dp"
+                    android:src="@drawable/start_small_on" />
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    app:cardCornerRadius="100dp"
+                    >
+
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/imgbtnSquats"
+                            android:layout_width="157dp"
+                            android:layout_height="157dp"
+                            android:src="@drawable/ic_play_video" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+
+            </androidx.cardview.widget.CardView>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="128dp"
+            app:cardCornerRadius="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_margin="25dp"
+            android:backgroundTint="@color/limegreen"
+            app:layout_constraintTop_toBottomOf="@id/headerLayout7_1_1_1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:ignore="MissingConstraints">
+
+
+            <TextView
+                android:id="@+id/textView19"
+                android:layout_width="71dp"
+                android:layout_height="30dp"
+                android:layout_marginBottom="40dp"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                android:text="Squats" />
+
+            <TextView
+                android:id="@+id/textView28"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="10dp"
+                android:text="Lorem Ipun Doclor Sit Amet, Consecture Adipiscing Elit. Sed Cursus Libero Eget." />
+
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:layout_marginTop="80dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                app:cardCornerRadius="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/imageView8"
+                            android:layout_width="10dp"
+                            android:layout_height="10dp"
+                             android:layout_gravity="center"
+                           android:layout_marginLeft="10dp"
+                            android:src="@drawable/ic_time" />
+
+                        <TextView
+                            android:id="@+id/textView29"
+                            android:layout_width="65dp"
+                            android:layout_height="13dp"
+                            android:textSize="10dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_gravity="center"
+                            android:text="30 Seconds" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="27dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/imageView10"
+                            android:layout_width="10dp"
+                            android:layout_height="10dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_calories" />
+
+                        <TextView
+                            android:layout_marginLeft="5dp"
+                            android:id="@+id/textView30"
+                            android:layout_width="65dp"
+                            android:layout_height="13dp"
+                            android:layout_gravity="center"
+                            android:textSize="10dp"
+                            android:text="3 Rep" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="20dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/imageView11"
+                            android:layout_width="10dp"
+                            android:layout_height="10dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_workout" />
+
+                        <TextView
+                            android:id="@+id/textView31"
+                            android:layout_width="65dp"
+                            android:layout_height="13dp"
+                            android:textSize="10dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="5dp"
+                            android:text="Beginner" />
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</FrameLayout>

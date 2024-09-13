@@ -5,29 +5,34 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.Map;
 
 @Entity(tableName = "Workout")
 public class Workout implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
     private int workout_id;
-    private String workout_name;
-    private int workout_calories;
-    private String workout_thumbnail;
+    private int Kcal;
+    private int exerciseCount;
+    private String level;
     private String tag;
-    private int is_favorite;
-    private int total_time;
-    private int level;
+    private String thumbnail;
+    private int totalTime;
 
-    public Workout(int workout_id, String workout_name, int workout_calories, String workout_thumbnail, String tag, int is_favorite, int total_time, int level) {
+    public Workout()
+    {
+
+    }
+
+    public Workout(int workout_id, int kcal, int exerciseCount, String level, String tag, String thumbnail, int totalTime) {
         this.workout_id = workout_id;
-        this.workout_name = workout_name;
-        this.workout_calories = workout_calories;
-        this.workout_thumbnail = workout_thumbnail;
-        this.tag = tag;
-        this.is_favorite = is_favorite;
-        this.total_time = total_time;
+        Kcal = kcal;
+        this.exerciseCount = exerciseCount;
         this.level = level;
+        this.tag = tag;
+        this.thumbnail = thumbnail;
+        this.totalTime = totalTime;
     }
 
     public int getWorkout_id() {
@@ -38,28 +43,28 @@ public class Workout implements Serializable {
         this.workout_id = workout_id;
     }
 
-    public String getWorkout_name() {
-        return workout_name;
+    public int getKcal() {
+        return Kcal;
     }
 
-    public void setWorkout_name(String workout_name) {
-        this.workout_name = workout_name;
+    public void setKcal(int kcal) {
+        Kcal = kcal;
     }
 
-    public int getWorkout_calories() {
-        return workout_calories;
+    public int getExerciseCount() {
+        return exerciseCount;
     }
 
-    public void setWorkout_calories(int workout_calories) {
-        this.workout_calories = workout_calories;
+    public void setExerciseCount(int exerciseCount) {
+        this.exerciseCount = exerciseCount;
     }
 
-    public String getWorkout_thumbnail() {
-        return workout_thumbnail;
+    public String getLevel() {
+        return level;
     }
 
-    public void setWorkout_thumbnail(String workout_thumbnail) {
-        this.workout_thumbnail = workout_thumbnail;
+    public void setLevel(String level) {
+        this.level = level;
     }
 
     public String getTag() {
@@ -70,27 +75,19 @@ public class Workout implements Serializable {
         this.tag = tag;
     }
 
-    public int getIs_favorite() {
-        return is_favorite;
+    public String getThumbnail() {
+        return thumbnail;
     }
 
-    public void setIs_favorite(int is_favorite) {
-        this.is_favorite = is_favorite;
+    public void setThumbnail(String thumbnail) {
+        this.thumbnail = thumbnail;
     }
 
-    public int getTotal_time() {
-        return total_time;
+    public int getTotalTime() {
+        return totalTime;
     }
 
-    public void setTotal_time(int total_time) {
-        this.total_time = total_time;
-    }
-
-    public int getLevel() {
-        return level;
-    }
-
-    public void setLevel(int level) {
-        this.level = level;
+    public void setTotalTime(int totalTime) {
+        this.totalTime = totalTime;
     }
 }

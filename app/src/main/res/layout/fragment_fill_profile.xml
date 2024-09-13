@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
             name="setupViewModel"
             type="com.example.gymfitness.viewmodels.SetUpViewModel" />
     </data>
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/black">
@@ -178,27 +179,25 @@
             android:textSize="18sp" />
 
         <EditText
-            android:id="@+id/edtMobieNumber"
+            android:id="@+id/edtPhoneNumber"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_below="@id/textView18"
             android:layout_marginHorizontal="35dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="11dp"
             android:background="@drawable/rounded_edittext_signup"
             android:backgroundTint="@color/white"
             android:ems="10"
-            android:inputType="phone"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:paddingLeft="10dp"
             android:hint="Phone number"
-            />
+            android:paddingLeft="10dp"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnStart"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_below="@id/edtMobieNumber"
+            android:layout_below="@id/edtPhoneNumber"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="26dp"
             android:background="@drawable/button_start_bg"

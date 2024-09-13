@@ -7,8 +7,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import com.example.gymfitness.fragments.floatingMenu.FAQFragment;
 import com.example.gymfitness.fragments.help.ContactUsFragment;
+import com.example.gymfitness.fragments.help.FAQFragment;
 import com.example.gymfitness.fragments.help.HelpFragment;
 
 public class HelpViewpagerAdapter extends FragmentStateAdapter {

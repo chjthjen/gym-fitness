@@ -25,7 +25,7 @@ import com.example.gymfitness.data.UserInfo;
 import com.example.gymfitness.data.Users;
 import com.example.gymfitness.activities.HomeActivity;
 import com.example.gymfitness.databinding.FragmentLoginBinding;
-import com.example.gymfitness.helpers.ValidationEmail;
+import com.example.gymfitness.helpers.ValidationHelpers;
 import com.example.gymfitness.retrofit.RetrofitInstance;
 import com.example.gymfitness.utils.Resource;
 import com.example.gymfitness.viewmodels.LoginViewModel;
@@ -47,13 +47,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.io.IOException;
 import java.util.Arrays;
 
-import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LoginFragment extends Fragment {
 
@@ -159,7 +156,7 @@ public class LoginFragment extends Fragment {
         btnLogin.setOnClickListener(v -> {
             String usernameOrEmail = binding.edtUsername.getText().toString().trim();
             String password = binding.edtPassword.getText().toString().trim();
-            if (ValidationEmail.validateInputEmail(usernameOrEmail, password, binding.edtUsername, binding.edtPassword)) {
+            if (ValidationHelpers.validateInputEmail(usernameOrEmail, password, binding.edtUsername, binding.edtPassword)) {
                 viewModel.loginWithEmail(usernameOrEmail, password);
             }
         });

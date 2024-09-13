@@ -45,7 +45,6 @@ public class ProfileFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).hide();
         addEvents();
-
     }
 
     private void addEvents()
@@ -58,14 +57,22 @@ public class ProfileFragment extends Fragment {
                 bottomSheetDialog.show(getChildFragmentManager(), bottomSheetDialog.getTag());
             }
         });
+
+        binding.btnBack.setOnClickListener(v -> requireActivity().onBackPressed());
         // open favorite
         binding.favoriteContainer.setOnClickListener( v -> navController.navigate(R.id.action_profileFragment_to_favoritesFragment));
         binding.helpContainer.setOnClickListener(v -> navController.navigate(R.id.action_profileFragment_to_helpFragment));
+        binding.profileContainer.setOnClickListener(v -> navController.navigate(R.id.action_profileFragment_to_editProfileFragment));
+        binding.settingsContainer.setOnClickListener(v -> navController.navigate(R.id.action_profileFragment_to_settingsFragment));
     }
+
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).show();
         binding = null;
     }
+
+
 }

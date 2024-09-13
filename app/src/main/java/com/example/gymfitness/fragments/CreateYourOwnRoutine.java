@@ -1,4 +1,4 @@
-package com.example.gymfitness.fragments.floatingMenu;
+package com.example.gymfitness.fragments;
 
 import android.os.Bundle;
 
@@ -12,10 +12,10 @@ import com.example.gymfitness.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link FAQFragment#newInstance} factory method to
+ * Use the {@link CreateYourOwnRoutine#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FAQFragment extends Fragment {
+public class CreateYourOwnRoutine extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,7 +26,7 @@ public class FAQFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public FAQFragment() {
+    public CreateYourOwnRoutine() {
         // Required empty public constructor
     }
 
@@ -36,11 +36,11 @@ public class FAQFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment FAQFragment.
+     * @return A new instance of fragment CreateYourOwnRoutine.
      */
     // TODO: Rename and change types and number of parameters
-    public static FAQFragment newInstance(String param1, String param2) {
-        FAQFragment fragment = new FAQFragment();
+    public static CreateYourOwnRoutine newInstance(String param1, String param2) {
+        CreateYourOwnRoutine fragment = new CreateYourOwnRoutine();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -61,6 +61,6 @@ public class FAQFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_faq, container, false);
+        return inflater.inflate(R.layout.fragment_create_your_own_routine, container, false);
     }
 }

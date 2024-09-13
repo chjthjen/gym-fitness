@@ -20,6 +20,7 @@ import com.example.gymfitness.activities.HomeActivity;
 import com.example.gymfitness.data.DAO.UserInformationDAO;
 import com.example.gymfitness.data.database.FitnessDB;
 import com.example.gymfitness.databinding.FragmentFillProfileBinding;
+import com.example.gymfitness.helpers.ValidationHelpers;
 import com.example.gymfitness.viewmodels.SetUpViewModel;
 import com.example.gymfitness.viewmodelsfactory.SetUpViewModelFactory;
 
@@ -61,23 +62,38 @@ public class FillProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 setFillProfile();
-                setData();
-                executorService.execute(() -> {
-                    setUpViewModel.saveUserInformation();
-                });
-                Intent intent = new Intent(getContext(), HomeActivity.class);
-                startActivity(intent);
-                getActivity().finish();
+                boolean validateRS = validateFields();
+                if(validateRS)
+                {
+                    setData();
+                    executorService.execute(() -> {
+                        setUpViewModel.saveUserInformation();
+                    });
+                    Intent intent = new Intent(getContext(), HomeActivity.class);
+                    startActivity(intent);
+                    getActivity().finish();
+                }
             }
         });
     }
 
+    private boolean validateFields()
+    {
+        boolean fullnameVLD = ValidationHelpers.validateEmpty(fullname,binding.edtFullName,"Fullname cannot be empty");
+        boolean nicknameVLD = ValidationHelpers.validateEmpty(nickname,binding.edtNickname,"Nickname cannot be empty");
+        boolean emailVLD = ValidationHelpers.validateEmail(email,binding.edtEmail);
+        boolean phoneNBVLD = ValidationHelpers.validatePhoneNumber(phonenumber,binding.edtPhoneNumber);
+        if (!fullnameVLD || !nicknameVLD || !emailVLD || !phoneNBVLD)
+            return false;
+        return true;
+    }
+
     private void setData()
     {
-        setUpViewModel.setFullname(fullname);
-        setUpViewModel.setNickname(nickname);
-        setUpViewModel.setEmail(email);
-        setUpViewModel.setPhonenumber(phonenumber);
+        setUpViewModel.setFullname(fullname.trim());
+        setUpViewModel.setNickname(nickname.trim());
+        setUpViewModel.setEmail(email.trim());
+        setUpViewModel.setPhonenumber(phonenumber.trim());
         editor.putInt("done",1);
         editor.apply();
     }
@@ -87,6 +103,6 @@ public class FillProfileFragment extends Fragment {
         fullname = binding.edtFullName.getText().toString();
         nickname = binding.edtNickname.getText().toString();
         email = binding.edtEmail.getText().toString();
-        phonenumber = binding.edtMobieNumber.getText().toString();
+        phonenumber = binding.edtPhoneNumber.getText().toString();
     }
 }
