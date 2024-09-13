@@ -79,6 +79,8 @@ public class HomeActivity extends AppCompatActivity {
         if(id == R.id.ic_profile){
             navController.navigate(R.id.profileFragment);
             return true;
+        } else if (id==R.id.ic_notif) {
+            navController.navigate(R.id.action_weightFragment_to_heightFragment);
         }
 
         return super.onOptionsItemSelected(item);
