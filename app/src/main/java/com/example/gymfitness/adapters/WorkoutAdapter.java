@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.gymfitness.R;
 import com.example.gymfitness.data.entities.Workout;
 import com.example.gymfitness.databinding.ItemWorkoutNonvideoBinding;
@@ -40,6 +41,13 @@ public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.WorkoutV
         public void bind(Workout workout) {
             binding.setItem(workout);
             binding.executePendingBindings();
+
+            // Tải hình ảnh từ URL vào ImageView bằng Glide
+            Glide.with(binding.thumbnail.getContext())
+                    .load(workout.getThumbnail()) // Sử dụng URL từ trường thumbnail
+                    .placeholder(R.drawable.woman_helping_man_gym) // Hình ảnh placeholder (tùy chọn)
+                    .error(R.drawable.woman_helping_man_gym)
+                    .into(binding.thumbnail);
         }
     }
 
