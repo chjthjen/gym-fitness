@@ -51,8 +51,7 @@ public class HomeFragment extends Fragment {
         recommendExRCVApdater = new RecommendExRCVApdater(new ArrayList<>());
         articlesTipsRCVAdapter = new ArticlesTipsRCVAdapter(new ArrayList<>());
 
-        setupRecyclerView();
-        setupArticlesRecyclerView();
+
 
         return binding.getRoot();
     }
@@ -68,7 +67,12 @@ public class HomeFragment extends Fragment {
         recyclerView.setAdapter(articlesTipsRCVAdapter);
     }
 
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        setupRecyclerView();
+        setupArticlesRecyclerView();
+    }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
