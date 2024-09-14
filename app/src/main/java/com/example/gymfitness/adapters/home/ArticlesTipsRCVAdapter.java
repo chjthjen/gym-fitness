@@ -13,7 +13,7 @@ import com.example.gymfitness.databinding.ArticlesTipsRvItemBinding;
 
 import java.util.ArrayList;
 
-public class ArticlesTipsRCVAdapter extends RecyclerView.Adapter<ArticlesTipsRCVAdapter.MyViewHolder> {
+public class  ArticlesTipsRCVAdapter extends RecyclerView.Adapter<ArticlesTipsRCVAdapter.MyViewHolder> {
     private ArrayList<WorkoutTest> list;
 
     public ArticlesTipsRCVAdapter(ArrayList<WorkoutTest> list) {
