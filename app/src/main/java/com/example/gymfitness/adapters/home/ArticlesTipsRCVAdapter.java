@@ -7,16 +7,17 @@ import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.gymfitness.R;
-import com.example.gymfitness.data.WorkoutTest;
+import com.example.gymfitness.data.entities.Article;
 import com.example.gymfitness.databinding.ArticlesTipsRvItemBinding;
 
 import java.util.ArrayList;
 
 public class ArticlesTipsRCVAdapter extends RecyclerView.Adapter<ArticlesTipsRCVAdapter.MyViewHolder> {
-    private ArrayList<WorkoutTest> list;
+    private ArrayList<Article> list;
 
-    public ArticlesTipsRCVAdapter(ArrayList<WorkoutTest> list) {
+    public ArticlesTipsRCVAdapter(ArrayList<Article> list) {
         this.list = list;
     }
 
@@ -24,14 +25,21 @@ public class ArticlesTipsRCVAdapter extends RecyclerView.Adapter<ArticlesTipsRCV
     @Override
     public ArticlesTipsRCVAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        ArticlesTipsRvItemBinding binding = DataBindingUtil.inflate(layoutInflater, R.layout.articles_tips_rv_item,parent,false);
+        ArticlesTipsRvItemBinding binding = DataBindingUtil.inflate(layoutInflater, R.layout.articles_tips_rv_item, parent, false);
         return new ArticlesTipsRCVAdapter.MyViewHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ArticlesTipsRCVAdapter.MyViewHolder holder, int position) {
-        WorkoutTest workoutItem = list.get(position);
-        holder.bind(workoutItem);
+        Article article = list.get(position);
+        holder.binding.setItem(article);
+
+
+        Glide.with(holder.itemView.getContext())
+                .load(article.getArticle_thumbnail())
+                .into(holder.binding.imgWomanHelp);
+
+        holder.binding.executePendingBindings();
     }
 
     @Override
@@ -39,13 +47,21 @@ public class ArticlesTipsRCVAdapter extends RecyclerView.Adapter<ArticlesTipsRCV
         return list.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder{
+    public void setArticleList(ArrayList<Article> articles) {
+        this.list.clear();
+        this.list.addAll(articles);
+        notifyDataSetChanged();
+    }
+
+    public class MyViewHolder extends RecyclerView.ViewHolder {
         private ArticlesTipsRvItemBinding binding;
+
         public MyViewHolder(ArticlesTipsRvItemBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
         }
-        public void bind(WorkoutTest item) {
+
+        public void bind(Article item) {
             binding.setItem(item);
             binding.executePendingBindings();
         }
