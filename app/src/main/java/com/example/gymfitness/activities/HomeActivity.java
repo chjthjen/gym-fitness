@@ -42,18 +42,14 @@ public class HomeActivity extends AppCompatActivity {
         navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentMainContainerView);
         navController = navHostFragment.getNavController();
 
-
         // setting toolbar
         navController.addOnDestinationChangedListener(((navController, navDestination, bundle) -> {
-            if(navDestination.getId() == R.id.homeFragment)
-            {
+            if(navDestination.getId() == R.id.homeFragment) {
                 getSupportActionBar().setDisplayHomeAsUpEnabled(false);
                 binding.toolbar.setTitle("Hi, Madison");
-            }
-            else
-            {
-                binding.toolbar.setNavigationIcon(R.drawable.arrow);
+            } else {
                 getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                binding.toolbar.setNavigationIcon(R.drawable.arrow); // Đặt icon ở đây khi không phải là homeFragment
             }
         }));
 
@@ -79,8 +75,8 @@ public class HomeActivity extends AppCompatActivity {
         if(id == R.id.ic_profile){
             navController.navigate(R.id.profileFragment);
             return true;
-        } else if (id==R.id.ic_notif) {
-            navController.navigate(R.id.action_weightFragment_to_heightFragment);
+        } else if(id == R.id.ic_search){
+            navController.navigate(R.id.workoutSearch_6_3_2_A);
         }
 
         return super.onOptionsItemSelected(item);

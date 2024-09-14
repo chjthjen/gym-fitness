@@ -59,8 +59,10 @@
             android:layout_marginBottom="19dp"
             android:gravity="center_vertical"
             android:text="@string/lorem_ipsum_dolor_sit_amet_consectetur_adipiscing_elit_sed_do_eiusmod_tempor_incididunt_ut_labore_et_dolore_magna_aliqua"
-            android:textColor="#000"
-            android:textSize="14sp" />
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:singleLine="false"
+            android:ellipsize="none"/>
 
     </LinearLayout>
 </LinearLayout>

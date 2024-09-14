@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gymfitness.R;
-import com.example.gymfitness.adapters.RecommendationAdapter;
+import com.example.gymfitness.adapters.search.RecommendationAdapter;
 import com.example.gymfitness.adapters.search.RecommendationVideoAdapter;
 import com.example.gymfitness.data.WorkoutTest;
 
@@ -42,9 +42,6 @@ public class AllSearchFragment extends Fragment {
         // Giả lập dữ liệu cho danh sách workout
         workoutList = WorkoutTest.makeList();
 
-        // Khởi tạo adapter và gắn vào RecyclerView recommendations
-        recommendationAdapter = new RecommendationAdapter(workoutList);
-        recyclerViewRecommendations.setAdapter(recommendationAdapter);
 
         // Khởi tạo RecyclerView cho favorites
         recyclerViewFavorites = view.findViewById(R.id.rcv_favorites);
