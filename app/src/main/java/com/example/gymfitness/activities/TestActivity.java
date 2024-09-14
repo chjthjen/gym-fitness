@@ -26,10 +26,10 @@ public class TestActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-//        ProgressTrackingFragment fragment=new ProgressTrackingFragment();
-        ExerciseRoutineFragment fra=new ExerciseRoutineFragment();
+        ProgressTrackingFragment fragment=new ProgressTrackingFragment();
+//        ExerciseRoutineFragment fra=new ExerciseRoutineFragment();
         FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.frame_layout,fra);
+        transaction.replace(R.id.frame_layout,fragment);
         transaction.commit();
     }
 }
