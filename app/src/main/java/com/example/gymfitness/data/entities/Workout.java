@@ -14,9 +14,8 @@ public class Workout implements Serializable {
     private String tag;
     private String thumbnail;
     private int totalTime;
-    private ArrayList<Round> round;
+    private ArrayList<Round> round = new ArrayList<>();
     public Workout() {
-
     }
 
     public Workout(int workout_id, String workout_name, int kcal, int exerciseCount, String level, String tag, String thumbnail, int totalTime, ArrayList<Round> round) {
@@ -96,7 +95,11 @@ public class Workout implements Serializable {
     }
 
     public void setRound(ArrayList<Round> round) {
-        this.round = round;
+        if (round != null) {
+            this.round = round;
+        } else {
+            this.round = new ArrayList<>();
+        }
     }
 
     public ArrayList<Round> getRound(){

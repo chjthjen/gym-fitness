@@ -1,9 +1,14 @@
 package com.example.gymfitness.viewmodels;
 
+import android.app.ProgressDialog;
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.gymfitness.data.entities.Exercise;
+import com.example.gymfitness.data.entities.Round;
 import com.example.gymfitness.data.entities.Workout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -22,13 +27,27 @@ public class WorkoutViewModel extends ViewModel {
     }
 
     public void loadWorkouts() {
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 ArrayList<Workout> workoutList = new ArrayList<>();
                 for (DataSnapshot workoutSnapshot : dataSnapshot.getChildren()) {
                     Workout workout = workoutSnapshot.getValue(Workout.class);
                     workout.setWorkout_name(workoutSnapshot.getKey());
+                    ArrayList<Round> roundsList = new ArrayList<>();
+                    for (DataSnapshot roundSnapshot : workoutSnapshot.child("round").getChildren()) {
+                        Round round = roundSnapshot.getValue(Round.class);
+                        round.setRound_name(roundSnapshot.getKey());
+                        ArrayList<Exercise> exercisesList = new ArrayList<>();
+                        for (DataSnapshot exerciseSnapshot : roundSnapshot.getChildren()) {
+                            Exercise exercise = exerciseSnapshot.getValue(Exercise.class);
+                            exercise.setExercise_name(exerciseSnapshot.getKey());
+                            exercisesList.add(exercise);
+                        }
+                        round.setExercises(exercisesList);
+                        roundsList.add(round);
+                    }
+                    workout.setRound(roundsList);
                     workoutList.add(workout);
                 }
                 workoutsLiveData.setValue(workoutList);
@@ -36,7 +55,10 @@ public class WorkoutViewModel extends ViewModel {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
+                Log.e("WorkoutViewModel", "Database error: " + databaseError.getMessage());
             }
+
+
         });
     }
 
