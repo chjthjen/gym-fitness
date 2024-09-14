@@ -109,7 +109,6 @@
                         android:layout_weight="1"
                         android:scaleX="-1"
                         android:src="@drawable/arrow" />
-                    />
                 </LinearLayout>
             </RelativeLayout>
 

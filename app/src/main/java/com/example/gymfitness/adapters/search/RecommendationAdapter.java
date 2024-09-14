@@ -9,15 +9,16 @@ import androidx.databinding.DataBindingUtil;
 
 import com.example.gymfitness.R;
 import com.example.gymfitness.data.WorkoutTest;
+import com.example.gymfitness.data.entities.Workout;
 import com.example.gymfitness.databinding.RecommandRvcItemBinding;
 
 import java.util.List;
 
 public class RecommendationAdapter extends RecyclerView.Adapter<RecommendationAdapter.RecommendationViewHolder> {
 
-    private List<WorkoutTest> recommendations;
+    private List<Workout> recommendations;
 
-    public RecommendationAdapter(List<WorkoutTest> recommendations) {
+    public RecommendationAdapter(List<Workout> recommendations) {
         this.recommendations = recommendations;
     }
 
@@ -31,7 +32,7 @@ public class RecommendationAdapter extends RecyclerView.Adapter<RecommendationAd
 
     @Override
     public void onBindViewHolder(@NonNull RecommendationViewHolder holder, int position) {
-        WorkoutTest item = recommendations.get(position);
+        Workout item = recommendations.get(position);
         holder.bind(item);
     }
 
@@ -48,7 +49,7 @@ public class RecommendationAdapter extends RecyclerView.Adapter<RecommendationAd
             this.binding = binding;
         }
 
-        public void bind(WorkoutTest item) {
+        public void bind(Workout item) {
             binding.setItem(item);
             binding.executePendingBindings(); // This will bind the data immediately
         }

@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -24,6 +25,7 @@ import com.example.gymfitness.databinding.FragmentWorkoutBinding;
 import com.example.gymfitness.viewmodels.WorkoutViewModel;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class WorkoutFragment extends Fragment {
     private FragmentWorkoutBinding binding;
@@ -64,6 +66,12 @@ public class WorkoutFragment extends Fragment {
 
 
         return binding.getRoot();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle("Workout");
     }
 
     @Override

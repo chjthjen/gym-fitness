@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.gymfitness.viewmodels.AuthViewModel" />
+            type="com.example.gymfitness.viewmodels.ArticleDetailViewModel" />
     </data>
 
     <RelativeLayout
@@ -111,6 +111,7 @@
                 android:textSize="14sp" />
 
             <ListView
+                android:id="@+id/lvArticleDetail"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="25sp"

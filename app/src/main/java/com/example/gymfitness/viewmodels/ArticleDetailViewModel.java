@@ -1,6 +1,8 @@
 package com.example.gymfitness.viewmodels;
 
-public class ArticleDetailViewModel {
+import androidx.lifecycle.ViewModel;
+
+public class ArticleDetailViewModel extends ViewModel {
     private String header;
     private String content;
 
@@ -25,4 +27,3 @@ public class ArticleDetailViewModel {
         this.content = content;
     }
 }
-

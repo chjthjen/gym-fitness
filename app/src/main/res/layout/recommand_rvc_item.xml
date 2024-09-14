@@ -4,7 +4,7 @@
     <data>
         <variable
             name="item"
-            type="com.example.gymfitness.data.WorkoutTest" />
+            type="com.example.gymfitness.data.entities.Workout" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -24,6 +24,7 @@
                 android:layout_height="match_parent"
                 >
                 <ImageView
+                    android:id="@+id/thumbnail"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:scaleType="fitXY"
@@ -60,7 +61,7 @@
                             android:ellipsize="end"
                             android:fontFamily="@font/poppins"
                             android:maxLines="1"
-                            android:text="@{item.name}"
+                            android:text="@{item.workout_name}"
                             android:textColor="@color/third"
                             android:textSize="14sp"
                             android:textStyle="bold" />
@@ -80,7 +81,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="3dp"
                                 android:fontFamily="@font/poppins"
-                                android:text="@{String.valueOf(item.duration)}"
+                                android:text='@{String.valueOf(item.totalTime) + " Minutes"}'
                                 android:textColor="@color/white"
                                 android:textSize="10sp" />
                             <ImageView
@@ -93,7 +94,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="6dp"
                                 android:fontFamily="@font/poppins"
-                                android:text="@{String.valueOf(item.kcal)}"
+                                android:text='@{String.valueOf(item.kcal) + " Kcal"}'
                                 android:textColor="@color/white"
                                 android:textSize="10sp" />
                         </LinearLayout>
