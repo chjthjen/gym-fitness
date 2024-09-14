@@ -9,10 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.gymfitness.R;
-import com.example.gymfitness.adapters.WorkoutAdapter;
-import com.example.gymfitness.data.WorkoutTest;
 import com.example.gymfitness.data.entities.Workout;
-import com.example.gymfitness.databinding.ItemWorkoutNonvideoBinding;
 import com.example.gymfitness.databinding.RecommandRvcItemBinding;
 
 import java.util.ArrayList;

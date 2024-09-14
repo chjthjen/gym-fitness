@@ -2,10 +2,7 @@ package com.example.gymfitness.adapters.WeeklyChallenge;
 
 import android.content.Context;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
@@ -31,14 +28,13 @@ public class RoundAdapter extends RecyclerView.Adapter<RoundAdapter.RoundViewHol
     @Override
     public RoundViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        RoundItemBinding binding = DataBindingUtil.inflate(inflater, R.layout.round_item, parent, false);
+        RoundItemBinding binding = DataBindingUtil.inflate(inflater, R.layout.exercise_item, parent, false);
         return new RoundViewHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull RoundViewHolder holder, int position) {
         Exercise exercise = exercises.get(position);
-        holder.binding.setExercise(exercise); // Bind the exercise data to the layout
         holder.binding.executePendingBindings();
     }
 

@@ -73,7 +73,11 @@
         android:name="com.example.gymfitness.fragments.WorkoutFragment"
         android:label="WorkoutFragment"
         tools:layout="@layout/fragment_workout"
-        />
+        >
+        <action
+            android:id="@+id/action_workoutFragment_to_exerciseRoutineFragment"
+            app:destination="@id/exerciseRoutineFragment" />
+    </fragment>
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.example.gymfitness.fragments.SettingsFragment"
@@ -110,5 +114,11 @@
         android:name="com.example.gymfitness.fragments.routine.OwnRoutineFragment"
         android:label="OwnRoutineFragment"
         tools:layout="@layout/fragment_own_routine"
+        />
+    <fragment
+        android:id="@+id/exerciseRoutineFragment"
+        android:name="com.example.gymfitness.fragments.ExerciseRoutineFragment"
+        android:label="ExerciseRoutineFragment"
+        tools:layout="@layout/fragment_exercise_routine"
         />
 </navigation>

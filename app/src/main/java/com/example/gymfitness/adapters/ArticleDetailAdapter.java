@@ -8,17 +8,17 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.example.gymfitness.R;
-import com.example.gymfitness.viewmodels.ArticleDetailViewModel;
+import com.example.gymfitness.data.entities.ArticleDetail;
 
 import java.util.List;
 
 public class ArticleDetailAdapter extends BaseAdapter {
 
     private Context context;
-    private List<ArticleDetailViewModel> articleDetails;
+    private List<ArticleDetail> articleDetails;
     private LayoutInflater inflater;
 
-    public ArticleDetailAdapter(Context context, List<ArticleDetailViewModel> articleDetails) {
+    public ArticleDetailAdapter(Context context, List<ArticleDetail> articleDetails) {
         this.context = context;
         this.articleDetails = articleDetails;
         this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -52,8 +52,7 @@ public class ArticleDetailAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        ArticleDetailViewModel articleDetail = articleDetails.get(position);
-
+        ArticleDetail articleDetail = articleDetails.get(position);
         holder.txtHeader.setText(articleDetail.getHeader());
         holder.txtContent.setText(articleDetail.getContent());
 

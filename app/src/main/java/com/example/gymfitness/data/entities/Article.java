@@ -15,6 +15,7 @@ public class Article implements Serializable {
     private String article_content;
     private String article_thumbnail;
     private int is_favorite;
+
     public Article() {
     }
     public Article(int article_id, String article_title, String article_content, String article_thumbnail, int is_favorite) {
