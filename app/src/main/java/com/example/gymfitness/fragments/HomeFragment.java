@@ -18,6 +18,7 @@ import androidx.navigation.NavController;
 
 import com.example.gymfitness.R;
 import com.example.gymfitness.adapters.home.ArticlesTipsRCVAdapter;
+import com.example.gymfitness.data.entities.Article;
 import com.example.gymfitness.data.entities.Round;
 import com.example.gymfitness.data.entities.Workout;
 import com.example.gymfitness.viewmodels.HomeViewModel;
@@ -83,6 +84,24 @@ public class HomeFragment extends Fragment {
             }
         });
     }
+    private void setupArticlesRecyclerView() {
+        RecyclerView recyclerView = binding.rcvArticlesTips;
+        articlesTipsRCVAdapter = new ArticlesTipsRCVAdapter(new ArrayList<>());
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        recyclerView.setAdapter(articlesTipsRCVAdapter);
+
+        homeViewModel.getArticles().observe(getViewLifecycleOwner(), new Observer<ArrayList<Article>>() {
+            @Override
+            public void onChanged(ArrayList<Article> articles) {
+                if (articles != null && !articles.isEmpty()) {
+                    articlesTipsRCVAdapter.setArticleList(articles);
+                } else {
+                    Log.d("hello", "List is empty or null");
+                }
+            }
+        });
+    }
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -90,7 +109,11 @@ public class HomeFragment extends Fragment {
         navController = Navigation.findNavController(view);
         binding.imgWorkout.setOnClickListener(v -> navController.navigate(R.id.action_homeFragment_to_workoutFragment));
         homeViewModel.loadWorkoutsByLevel();
+        homeViewModel.loadArticles();
+
         setupRecyclerView();
+        setupArticlesRecyclerView();
+
 
 
     }

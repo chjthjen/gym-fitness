@@ -7,12 +7,11 @@ import java.util.ArrayList;
 public class Round implements Serializable {
     private int round_id;
     private String round_name;
-    private ArrayList<Exercise> exercises;
+    private ArrayList<Exercise> exercises = new ArrayList<>();
 
 
     public Round()
     {
-
     }
 
     public Round(int round_id, String round_name, ArrayList<Exercise> exercises) {
@@ -42,6 +41,10 @@ public class Round implements Serializable {
     }
 
     public void setExercises(ArrayList<Exercise> exercises) {
-        this.exercises = exercises;
+        if (exercises != null) {
+            this.exercises = exercises;
+        } else {
+            this.exercises = new ArrayList<>();
+        }
     }
 }
