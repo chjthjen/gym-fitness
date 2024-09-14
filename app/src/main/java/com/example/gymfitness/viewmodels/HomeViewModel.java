@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModel;
 import com.example.gymfitness.data.database.FitnessDB;
 import com.example.gymfitness.data.entities.Article;
 import com.example.gymfitness.data.entities.Workout;
+import com.example.gymfitness.utils.Resource;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,13 +25,13 @@ import java.util.concurrent.Executors;
 public class HomeViewModel extends ViewModel {
     private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Workout");
     private DatabaseReference databaseArticles = FirebaseDatabase.getInstance().getReference("Articles");
-    private MutableLiveData <ArrayList<Workout>> workoutsLiveData = new MutableLiveData<>();
-    public LiveData<ArrayList<Workout>> getWorkouts() {
+    private MutableLiveData<Resource<ArrayList<Workout>>> workoutsLiveData = new MutableLiveData<>();
+    public LiveData<Resource<ArrayList<Workout>>> getWorkouts() {
         return workoutsLiveData;
     }
-    private MutableLiveData<ArrayList<Article>> articlesLiveData = new MutableLiveData<>();
 
-    public LiveData<ArrayList<Article>> getArticles() {
+    private MutableLiveData<Resource<ArrayList<Article>>> articlesLiveData = new MutableLiveData<>();
+    public LiveData<Resource<ArrayList<Article>>> getArticles() {
         return articlesLiveData;
     }
     private FitnessDB fitnessDB;
@@ -45,6 +46,7 @@ public class HomeViewModel extends ViewModel {
     }
 
     public void loadWorkoutsByLevel() {
+        workoutsLiveData.setValue(new Resource.Loading<>());
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -52,20 +54,21 @@ public class HomeViewModel extends ViewModel {
                 for (DataSnapshot workoutSnapshot : dataSnapshot.getChildren()) {
                     Workout workout = workoutSnapshot.getValue(Workout.class);
                     workout.setWorkout_name(workoutSnapshot.getKey());
-                    if(Objects.equals(workout.getLevel(),userLevel))
-                    {
+                    if (Objects.equals(workout.getLevel(), userLevel)) {
                         workoutList.add(workout);
                     }
                 }
-                workoutsLiveData.setValue(workoutList);
+                workoutsLiveData.setValue(new Resource.Success<>(workoutList));
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
+                workoutsLiveData.setValue(new Resource.Error<>(databaseError.getMessage()));
             }
         });
     }
     public void loadArticles() {
+        articlesLiveData.setValue(new Resource.Loading<>());
         databaseArticles.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -80,12 +83,12 @@ public class HomeViewModel extends ViewModel {
                     Log.d("Article Thumbnail", thumbnailUrl);
                     articleList.add(article);
                 }
-                articlesLiveData.setValue(articleList);
+                articlesLiveData.setValue(new Resource.Success<>(articleList));
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                // Handle error if needed
+                articlesLiveData.setValue(new Resource.Error<>(databaseError.getMessage()));
             }
         });
     }
