@@ -1,7 +1,4 @@
 package com.example.gymfitness.fragments;
-
-
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,26 +7,18 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import com.example.gymfitness.R;
 import com.example.gymfitness.adapters.home.ArticlesTipsRCVAdapter;
-import com.example.gymfitness.data.entities.Article;
-import com.example.gymfitness.data.entities.Workout;
 import com.example.gymfitness.viewmodels.HomeViewModel;
-
 import androidx.databinding.DataBindingUtil;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.gymfitness.adapters.home.RecommendExRCVApdater;
-
 import com.example.gymfitness.databinding.FragmentHomeBinding;
-
 import java.util.ArrayList;
-
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -58,7 +47,6 @@ public class HomeFragment extends Fragment {
         homeViewModel = new ViewModelProvider(requireActivity()).get(HomeViewModel.class);
         homeViewModel.setUserLevel(getContext());
         executorService = Executors.newFixedThreadPool(3);
-
 
         recommendExRCVApdater = new RecommendExRCVApdater(new ArrayList<>());
         articlesTipsRCVAdapter = new ArticlesTipsRCVAdapter(new ArrayList<>());
