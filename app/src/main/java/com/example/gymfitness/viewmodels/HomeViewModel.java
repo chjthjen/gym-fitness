@@ -8,6 +8,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.gymfitness.data.database.FitnessDB;
+import com.example.gymfitness.data.entities.Article;
 import com.example.gymfitness.data.entities.Workout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -22,9 +23,15 @@ import java.util.concurrent.Executors;
 
 public class HomeViewModel extends ViewModel {
     private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Workout");
-    private MutableLiveData<ArrayList<Workout>> workoutsLiveData = new MutableLiveData<>();
+    private DatabaseReference databaseArticles = FirebaseDatabase.getInstance().getReference("Articles");
+    private MutableLiveData <ArrayList<Workout>> workoutsLiveData = new MutableLiveData<>();
     public LiveData<ArrayList<Workout>> getWorkouts() {
         return workoutsLiveData;
+    }
+    private MutableLiveData<ArrayList<Article>> articlesLiveData = new MutableLiveData<>();
+
+    public LiveData<ArrayList<Article>> getArticles() {
+        return articlesLiveData;
     }
     private FitnessDB fitnessDB;
     private ExecutorService executorService = Executors.newSingleThreadExecutor();
@@ -58,4 +65,29 @@ public class HomeViewModel extends ViewModel {
             }
         });
     }
+    public void loadArticles() {
+        databaseArticles.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                ArrayList<Article> articleList = new ArrayList<>();
+                for (DataSnapshot articleSnapshot : dataSnapshot.getChildren()) {
+                    Article article = articleSnapshot.getValue(Article.class);
+                    String articleTitle = articleSnapshot.getKey();
+                    article.setArticle_title(articleTitle);
+                    String thumbnailUrl = articleSnapshot.child("thumbnail").getValue(String.class);
+                    article.setArticle_thumbnail(thumbnailUrl);
+
+                    Log.d("Article Thumbnail", thumbnailUrl);
+                    articleList.add(article);
+                }
+                articlesLiveData.setValue(articleList);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Handle error if needed
+            }
+        });
+    }
+
 }
