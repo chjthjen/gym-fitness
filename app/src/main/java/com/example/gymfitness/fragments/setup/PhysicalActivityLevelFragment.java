@@ -33,7 +33,7 @@ public class PhysicalActivityLevelFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_physical_activity_level,container,false);
         setUpViewModel = new ViewModelProvider(requireActivity()).get(SetUpViewModel.class);
-        setUpViewModel.setLevel("beginner");
+        setUpViewModel.setLevel("Beginner");
         return binding.getRoot();
     }
 
@@ -45,7 +45,7 @@ public class PhysicalActivityLevelFragment extends Fragment {
             public void onClick(View v) {
                 level_is = 0;
                 selecteGool(level_is);
-                setUpViewModel.setLevel("beginner");
+                setUpViewModel.setLevel("Beginner");
             }
         });
         binding.btnIntermediate.setOnClickListener(new View.OnClickListener() {
@@ -53,7 +53,7 @@ public class PhysicalActivityLevelFragment extends Fragment {
             public void onClick(View v) {
                 level_is = 1;
                 selecteGool(level_is);
-                setUpViewModel.setLevel("intermediate");
+                setUpViewModel.setLevel("Intermediate");
             }
         });
         binding.btnAdvanced.setOnClickListener(new View.OnClickListener() {
@@ -61,7 +61,7 @@ public class PhysicalActivityLevelFragment extends Fragment {
             public void onClick(View v) {
                 level_is = 2;
                 selecteGool(level_is);
-                setUpViewModel.setLevel("advance");
+                setUpViewModel.setLevel("Advance");
             }
         });
 

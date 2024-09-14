@@ -1,6 +1,9 @@
 package com.example.gymfitness.fragments;
 
+import static android.content.ContentValues.TAG;
+
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,10 +12,15 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 
 import com.example.gymfitness.R;
 import com.example.gymfitness.adapters.home.ArticlesTipsRCVAdapter;
+import com.example.gymfitness.data.entities.Round;
+import com.example.gymfitness.data.entities.Workout;
+import com.example.gymfitness.viewmodels.HomeViewModel;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -39,6 +47,7 @@ public class HomeFragment extends Fragment {
     private RecyclerView.LayoutManager layoutManager2;
     private ArticlesTipsRCVAdapter articlesTipsRCVAdapter;
 
+    private HomeViewModel homeViewModel;
 
     private NavController navController;
     private ExecutorService executorService;
@@ -51,31 +60,24 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false);
-        View view = binding.getRoot();
+        homeViewModel = new ViewModelProvider(requireActivity()).get(HomeViewModel.class);
+        homeViewModel.setUserLevel(getContext());
         executorService = Executors.newFixedThreadPool(3);
-        setupRecyclerView();
 
-        return view;
+        return binding.getRoot();
     }
     private void setupRecyclerView() {
-        WorkoutTest workoutTest = new WorkoutTest();
-        ArrayList<WorkoutTest> list = workoutTest.makeList();
-        executorService.execute(() -> {
-            getActivity().runOnUiThread(() -> {
-                recommendExRCVApdater = new RecommendExRCVApdater(list);
-                layoutManager = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false);
-                binding.rcvRecommendations.setLayoutManager(layoutManager);
-                binding.rcvRecommendations.setAdapter(recommendExRCVApdater);
-            });
-        });
-
-        executorService.execute(() -> {
-            getActivity().runOnUiThread(() -> {
-                articlesTipsRCVAdapter = new ArticlesTipsRCVAdapter(list);
-                layoutManager2 = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false);
-                binding.rcvArticlesTips.setLayoutManager(layoutManager2);
-                binding.rcvArticlesTips.setAdapter(articlesTipsRCVAdapter);
-            });
+        homeViewModel.getWorkouts().observe(getViewLifecycleOwner(), new Observer<ArrayList<Workout>>() {
+            @Override
+            public void onChanged(ArrayList<Workout> workouts) {
+                if (workouts != null && !workouts.isEmpty()) {
+                    for (Workout w : workouts) {
+                        Log.d("hello", w.getThumbnail() + " " + w.getKcal() + " " + w.getTotalTime());
+                    }
+                } else {
+                    Log.d("hello", "List is empty or null");
+                }
+            }
         });
     }
 
@@ -84,6 +86,10 @@ public class HomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         navController = Navigation.findNavController(view);
         binding.imgWorkout.setOnClickListener(v -> navController.navigate(R.id.action_homeFragment_to_workoutFragment));
+        homeViewModel.loadWorkoutsByLevel();
+        setupRecyclerView();
+
+
     }
 
 }
