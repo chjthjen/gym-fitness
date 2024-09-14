@@ -73,14 +73,7 @@
                     android:layout_weight="1"
                     android:src="@drawable/community_off" />
             </LinearLayout>
-            <ProgressBar
-                android:id="@+id/progressBarRecommendations"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                app:layout_constraintStart_toStartOf="@id/recommend"
-                app:layout_constraintTop_toBottomOf="@id/recommend"
-                />
+
             <RelativeLayout
                 android:id="@+id/recommend"
                 android:layout_width="match_parent"
@@ -127,7 +120,16 @@
                 app:layout_constraintTop_toBottomOf="@+id/recommend"
                 />
 
-
+            <ProgressBar
+                android:id="@+id/progressBarRecommendations"
+                android:layout_width="wrap_content"
+                android:layout_height="200dp"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@+id/recommend"
+                app:layout_constraintBottom_toTopOf="@+id/banner_weekly_challenge"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                />
             <RelativeLayout
                 android:id="@+id/banner_weekly_challenge"
                 android:layout_width="match_parent"

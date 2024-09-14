@@ -47,10 +47,6 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.MyView
             this.binding=binding;
         }
         public void bindData(Exercise exercise){
-            binding.icRound.setImageResource(exercise.getIcon());
-            binding.tvTitle.setText(exercise.getTitle());
-            binding.tvTime.setText(exercise.getTime());
-            binding.tvRepetition.setText(exercise.getRoundedRepetition());
         }
     }
 }

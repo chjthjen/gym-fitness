@@ -1,6 +1,7 @@
 package com.example.gymfitness.adapters;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -21,7 +22,15 @@ public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.WorkoutV
     public WorkoutAdapter(ArrayList<Workout> list){
         this.listWorkout = list;
     }
+    private OnWorkoutListener listener;
 
+    public interface OnWorkoutListener {
+        void onItemClick(Workout workout);
+    }
+
+    public void setOnItemClickListener(OnWorkoutListener listener) {
+        this.listener = listener;
+    }
     @NonNull
     @Override
     public WorkoutViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -38,7 +47,7 @@ public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.WorkoutV
             super(binding.getRoot());
             this.binding = binding;
         }
-        public void bind(Workout workout) {
+        public void bind(Workout workout , OnWorkoutListener listener) {
             binding.setItem(workout);
             binding.executePendingBindings();
 
@@ -47,6 +56,10 @@ public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.WorkoutV
                     .placeholder(R.drawable.woman_helping_man_gym)
                     .error(R.drawable.woman_helping_man_gym)
                     .into(binding.thumbnail);
+            // set on click
+            if (listener != null) {
+                itemView.setOnClickListener(v -> listener.onItemClick(workout));
+            }
         }
     }
 
@@ -54,7 +67,8 @@ public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.WorkoutV
     @Override
     public void onBindViewHolder(@NonNull WorkoutViewHolder holder, int position) {
         Workout workout = listWorkout.get(position);
-        holder.bind(workout);
+        holder.bind(workout,listener);
+
     }
 
     @Override
@@ -68,5 +82,9 @@ public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.WorkoutV
         this.listWorkout.addAll(workouts);
         notifyDataSetChanged();
     }
+
+
+
+
 }
 

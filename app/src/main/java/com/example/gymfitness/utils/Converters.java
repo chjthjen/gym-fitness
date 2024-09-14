@@ -31,4 +31,10 @@ public class Converters {
         return date == null ? null : date.getTime();
     }
 
+    public static String convertSecondsToTimeFormat(int seconds) {
+        int minutes = seconds / 60;
+        int remainingSeconds = seconds % 60;
+        return String.format("%02d:%02d", minutes, remainingSeconds);
+    }
+
 }

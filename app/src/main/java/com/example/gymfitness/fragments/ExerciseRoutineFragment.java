@@ -3,41 +3,42 @@ package com.example.gymfitness.fragments;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bumptech.glide.Glide;
 import com.example.gymfitness.R;
-import com.example.gymfitness.adapters.ExerciseAdapter;
-import com.example.gymfitness.data.Exercise;
+import com.example.gymfitness.adapters.home.RoundRCVAdapter;
+import com.example.gymfitness.data.entities.Round;
+import com.example.gymfitness.data.entities.Workout;
 import com.example.gymfitness.databinding.FragmentExerciseRoutineBinding;
-import com.example.gymfitness.helpers.SpacesItemDecoration;
 import com.example.gymfitness.viewmodels.ExerciseRoutineViewModel;
+import com.example.gymfitness.viewmodels.SharedViewModel;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class ExerciseRoutineFragment extends Fragment {
 
-    private ExerciseRoutineViewModel viewModel;
     private FragmentExerciseRoutineBinding binding;
-
+    private ExerciseRoutineViewModel viewModel;
+    private SharedViewModel sharedViewModel;
+    private Workout getWorkout;
+    private ArrayList<Round> listRound = new ArrayList<>();
+    private RoundRCVAdapter roundAdapter;
     public ExerciseRoutineFragment() {
         // Required empty public constructor
     }
 
-
-    public static ExerciseRoutineFragment newInstance(String param1, String param2) {
-        return new ExerciseRoutineFragment();
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -47,29 +48,46 @@ public class ExerciseRoutineFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         binding= DataBindingUtil.inflate(inflater, R.layout.fragment_exercise_routine, container, false);
-        View view=binding.getRoot();
-        viewModel=new ViewModelProvider(this).get(ExerciseRoutineViewModel.class);
+        viewModel=new ViewModelProvider(requireActivity()).get(ExerciseRoutineViewModel.class);
+        sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
+        sharedViewModel.getSelected().observe(getViewLifecycleOwner(), new Observer<Workout>() {
+            @Override
+            public void onChanged(Workout workout) {
+                getWorkout = workout;
+                Glide.with(binding.imgBanner.getContext())
+                        .load(workout.getThumbnail())
+                        .placeholder(R.drawable.woman_helping_man_gym)
+                        .error(R.drawable.woman_helping_man_gym)
+                        .into(binding.imgBanner);
+                binding.totalTime.setText(getWorkout.getTotalTime() + " Minutes");
+                binding.kcal.setText(getWorkout.getKcal() + " Kcal");
+                binding.level.setText(getWorkout.getExerciseCount() + " Exercises");
+                for (Round round : workout.getRound())
+                {
+                    Log.d("ditconmem", round.getRound_name());
+                    listRound.add(round);
+                }
+            }
+        });
 
 
-        List<Exercise> exercises1=new ArrayList<>();
-        List<Exercise> exercises2=new ArrayList<>();
-        exercises1.add(new Exercise(R.drawable.ic_round,"Kettlebell swing","00:30","repetition 3x"));
-        exercises1.add(new Exercise(R.drawable.ic_round,"Kettlebell swing","00:30","repetition 3x"));
-        exercises1.add(new Exercise(R.drawable.ic_round,"Kettlebell swing","00:30","repetition 3x"));
-        exercises1.add(new Exercise(R.drawable.ic_round,"Kettlebell swing","00:30","repetition 3x"));
-        exercises2.add(new Exercise(R.drawable.ic_round,"Kettlebell swing","00:30","repetition 3x"));
-        exercises2.add(new Exercise(R.drawable.ic_round,"Kettlebell swing","00:30","repetition 3x"));
+        roundAdapter = new RoundRCVAdapter(listRound);
 
-        ExerciseAdapter adapter1=new ExerciseAdapter(exercises1);
-        ExerciseAdapter adapter2=new ExerciseAdapter(exercises2);
-        binding.rvRound1.setAdapter(adapter1);
-        binding.rvRound1.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL,false));
-        binding.rvRound1.addItemDecoration(new SpacesItemDecoration(16));
-        binding.rvRound2.setAdapter(adapter2);
-        binding.rvRound2.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL,false));
-        binding.rvRound2.addItemDecoration(new SpacesItemDecoration(16));
-        return view;
+        binding.rcvRound.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding.rcvRound.setAdapter(roundAdapter);
+
+        return binding.getRoot();
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+//        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle("Workout");
     }
 }
