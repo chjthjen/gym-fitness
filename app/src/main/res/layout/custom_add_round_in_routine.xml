@@ -10,7 +10,7 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/idRound"
+            android:id="@+id/tvRound"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Round"
@@ -38,4 +38,12 @@
         android:layout_height="wrap_content"
         android:id="@+id/btnCreateNewRoutine"
         android:text="Create new"/>
+    <GridView
+        android:id="@+id/gvExercises"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:numColumns="2"
+        android:verticalSpacing="10dp"
+        android:horizontalSpacing="10dp" />
+
 </LinearLayout>
