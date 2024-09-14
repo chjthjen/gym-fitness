@@ -1,29 +1,30 @@
 package com.example.gymfitness.viewmodels;
 
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 public class ArticleDetailViewModel extends ViewModel {
-    private String header;
-    private String content;
+    private final MutableLiveData<String> header = new MutableLiveData<>();
+    private final MutableLiveData<String> content = new MutableLiveData<>();
 
-    public ArticleDetailViewModel(String header, String content) {
-        this.header = header;
-        this.content = content;
+    public ArticleDetailViewModel() {
+
     }
 
-    public String getHeader() {
+    public LiveData<String> getHeader() {
         return header;
     }
 
     public void setHeader(String header) {
-        this.header = header;
+        this.header.setValue(header);
     }
 
-    public String getContent() {
+    public LiveData<String> getContent() {
         return content;
     }
 
     public void setContent(String content) {
-        this.content = content;
+        this.content.setValue(content);
     }
 }

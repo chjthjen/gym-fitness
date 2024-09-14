@@ -44,7 +44,6 @@ public class HomeViewModel extends ViewModel {
             userLevel = fitnessDB.userInformationDAO().getUserInformation().getLevel();
         });
     }
-
     public void loadWorkoutsByLevel() {
         workoutsLiveData.setValue(new Resource.Loading<>());
         databaseReference.addValueEventListener(new ValueEventListener() {

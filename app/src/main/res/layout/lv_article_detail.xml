@@ -1,32 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    >
 
-    <TextView
-        android:id="@+id/txtHeader"
+    <data>
+        <variable
+            name="item"
+            type="com.example.gymfitness.data.entities.ArticleDetail" />
+    </data>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ellipsize="none"
-        android:fontFamily="@font/poppins"
-        android:lineHeight="21sp"
-        android:singleLine="false"
-        android:text="TextView"
-        android:textColor="@color/limegreen"
-        android:textSize="14sp" />
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/txtContent"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="20dp"
-        android:ellipsize="none"
-        android:fontFamily="@font/league_spartan"
-        android:lineHeight="14sp"
-        android:singleLine="false"
-        android:text="TextView"
-        android:textColor="@color/white"
-        android:textSize="14sp" />
-</LinearLayout>
+        <TextView
+            android:id="@+id/txtHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="none"
+            android:fontFamily="@font/poppins"
+            android:lineHeight="21sp"
+            android:singleLine="false"
+            android:text="@{item.header}"
+            android:textColor="@color/limegreen"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/txtContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="20dp"
+            android:ellipsize="none"
+            android:fontFamily="@font/league_spartan"
+            android:lineHeight="14sp"
+            android:singleLine="false"
+            android:text="@{item.content}"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+    </LinearLayout>
+</layout>

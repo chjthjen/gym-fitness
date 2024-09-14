@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.gymfitness.R;
 import com.example.gymfitness.adapters.ArticleDetailAdapter;
+import com.example.gymfitness.data.entities.ArticleDetail;
 import com.example.gymfitness.databinding.FragmentArticleDetailBinding;
 import com.example.gymfitness.viewmodels.ArticleDetailViewModel;
 
@@ -32,9 +33,9 @@ public class ArticleDetailFragment extends Fragment {
         binding.setViewModel(articleDetailViewModel);
         binding.setLifecycleOwner(this);
 
-        List<ArticleDetailViewModel> articleDetailList = new ArrayList<>();
-        articleDetailList.add(new ArticleDetailViewModel("Plan Your Routine:", "Before starting any workout, plan your routine for the week. Focus on different muscle groups on different days to allow for adequate rest and recovery."));
-        articleDetailList.add(new ArticleDetailViewModel("Warm-Up:", "Begin your workout with a proper warm-up session. This could include light cardio exercises like jogging or jumping jacks, as well as dynamic stretches to prepare your muscles for the upcoming workout."));
+        List<ArticleDetail> articleDetailList = new ArrayList<>();
+        // Convert ArticleDetailViewModel instances to ArticleDetail instances
+        articleDetailList.add(new ArticleDetail(articleDetailViewModel.getContent().getValue(), articleDetailViewModel.getHeader().getValue()));
 
         adapter = new ArticleDetailAdapter(requireContext(), articleDetailList);
         binding.lvArticleDetail.setAdapter(adapter);
