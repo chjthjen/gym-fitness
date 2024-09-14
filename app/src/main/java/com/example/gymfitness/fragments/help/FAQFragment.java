@@ -35,10 +35,9 @@ public class FAQFragment extends Fragment {
         viewPager2.setAdapter(adapter);
 
         new TabLayoutMediator(tabLayout, viewPager2, (tab, position) -> {
-            // Tạo tab tùy chỉnh
             View customTab = LayoutInflater.from(getContext()).inflate(R.layout.faq_tab, null);
             TextView textView = customTab.findViewById(R.id.tabTextView);
-
+            customTab.setBackgroundResource(R.drawable.faq_type_selected);
             switch (position) {
                 case 0:
                     textView.setText("General");
@@ -50,8 +49,9 @@ public class FAQFragment extends Fragment {
                     textView.setText("Services");
                     break;
             }
-
-            tab.setCustomView(customTab);
+            textView.setBackgroundResource(R.drawable.faq_type_no_selected);
+            textView.setTextColor(getResources().getColor(R.color.lightpurple));
+            tab.setCustomView(textView);
         }).attach();
 
         setInitialTabStyle();
@@ -69,21 +69,30 @@ public class FAQFragment extends Fragment {
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
+                // Optionally handle reselection
             }
         });
 
+        // Set tab spacing
         setTabSpacing(tabLayout);
         return view;
     }
 
     private void setInitialTabStyle() {
-        TabLayout.Tab firstTab = tabLayout.getTabAt(0);
-        if (firstTab != null) {
-            View customView = firstTab.getCustomView();
-            if (customView != null) {
-                TextView textView = customView.findViewById(R.id.tabTextView);
-                textView.setBackgroundResource(R.drawable.faq_type_selected);
-                textView.setTextColor(getResources().getColor(R.color.black));
+        for (int i = 0; i < tabLayout.getTabCount(); i++) {
+            TabLayout.Tab tab = tabLayout.getTabAt(i);
+            if (tab != null) {
+                View customView = tab.getCustomView();
+                if (customView != null) {
+                    TextView textView = customView.findViewById(R.id.tabTextView);
+                    if (i == 0) {
+                        textView.setBackgroundResource(R.drawable.faq_type_selected);
+                        textView.setTextColor(getResources().getColor(R.color.black));
+                    } else {
+                        textView.setBackgroundResource(R.drawable.faq_type_no_selected);
+                        textView.setTextColor(getResources().getColor(R.color.lightpurple));
+                    }
+                }
             }
         }
     }
@@ -125,9 +134,9 @@ public class FAQFragment extends Fragment {
             }
         }
     }
+
     public int dpToPx(int dp) {
         Resources resources = getResources();
         return Math.round(dp * (resources.getDisplayMetrics().xdpi / DisplayMetrics.DENSITY_DEFAULT));
     }
-
 }
