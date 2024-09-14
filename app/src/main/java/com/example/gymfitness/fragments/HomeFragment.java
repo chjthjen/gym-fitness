@@ -67,13 +67,16 @@ public class HomeFragment extends Fragment {
         return binding.getRoot();
     }
     private void setupRecyclerView() {
+        RecyclerView recyclerView = binding.rcvRecommendations;
+        recommendExRCVApdater = new RecommendExRCVApdater(new ArrayList<>());
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        recyclerView.setAdapter(recommendExRCVApdater);
+
         homeViewModel.getWorkouts().observe(getViewLifecycleOwner(), new Observer<ArrayList<Workout>>() {
             @Override
             public void onChanged(ArrayList<Workout> workouts) {
                 if (workouts != null && !workouts.isEmpty()) {
-                    for (Workout w : workouts) {
-                        Log.d("hello", w.getThumbnail() + " " + w.getKcal() + " " + w.getTotalTime());
-                    }
+                    recommendExRCVApdater.setWorkoutList(workouts);
                 } else {
                     Log.d("hello", "List is empty or null");
                 }
