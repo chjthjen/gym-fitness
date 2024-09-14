@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gymfitness.R;
-import com.example.gymfitness.adapters.RoundAdapter;
+import com.example.gymfitness.adapters.WeeklyChallenge.RoundAdapter;
 import com.example.gymfitness.data.Exercise;
 
 import java.util.ArrayList;

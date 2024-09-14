@@ -8,7 +8,9 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 
+import com.example.gymfitness.data.DAO.RoutineRoundDAO;
 import com.example.gymfitness.data.DAO.UserInformationDAO;
+import com.example.gymfitness.data.entities.RoutineRound;
 import com.example.gymfitness.data.entities.Article;
 import com.example.gymfitness.data.entities.Challenge;
 import com.example.gymfitness.data.entities.Notification;
@@ -23,7 +25,8 @@ import com.example.gymfitness.utils.Converters;
                         ProgessTracking.class,
                         UserInformation.class,
                         Article.class,
-                        Challenge.class
+                        Challenge.class,
+                        RoutineRound.class
                 },
         version = 1,
         exportSchema = false
@@ -45,6 +48,6 @@ public abstract class FitnessDB extends RoomDatabase {
     }
 
     public abstract UserInformationDAO userInformationDAO();
-
+    public abstract RoutineRoundDAO routineRoundDAO();
 
 }

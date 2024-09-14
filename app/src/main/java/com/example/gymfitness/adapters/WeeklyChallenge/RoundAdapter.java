@@ -1,4 +1,4 @@
-package com.example.gymfitness.adapters;
+package com.example.gymfitness.adapters.WeeklyChallenge;
 
 import android.content.Context;
 import android.view.LayoutInflater;
