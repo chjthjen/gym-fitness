@@ -18,6 +18,7 @@
         android:theme="@style/Theme.GymFitness"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+
         <activity
             android:name=".activities.setup.SetUpStartActivity"
             android:exported="false" />
