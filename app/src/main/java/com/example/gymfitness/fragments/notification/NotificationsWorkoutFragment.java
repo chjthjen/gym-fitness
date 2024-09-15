@@ -1,10 +1,9 @@
-package com.example.gymfitness.fragments;
+package com.example.gymfitness.fragments.notification;
 
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.viewpager2.widget.ViewPager2;
 
 import android.view.LayoutInflater;
 import android.view.View;

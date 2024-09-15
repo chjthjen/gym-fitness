@@ -1,6 +1,7 @@
 package com.example.gymfitness.adapters.home;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -16,9 +17,18 @@ import java.util.ArrayList;
 
 public class ArticlesTipsRCVAdapter extends RecyclerView.Adapter<ArticlesTipsRCVAdapter.MyViewHolder> {
     private ArrayList<Article> list;
+    private OnItemClickListener listener;
 
     public ArticlesTipsRCVAdapter(ArrayList<Article> list) {
         this.list = list;
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(Article article);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
     }
 
     @NonNull
@@ -32,14 +42,19 @@ public class ArticlesTipsRCVAdapter extends RecyclerView.Adapter<ArticlesTipsRCV
     @Override
     public void onBindViewHolder(@NonNull ArticlesTipsRCVAdapter.MyViewHolder holder, int position) {
         Article article = list.get(position);
-        holder.binding.setItem(article);
-
+        holder.bind(article);
 
         Glide.with(holder.itemView.getContext())
                 .load(article.getArticle_thumbnail())
                 .into(holder.binding.imgWomanHelp);
 
         holder.binding.executePendingBindings();
+
+        holder.itemView.setOnClickListener(v -> {
+            if (listener != null) {
+                listener.onItemClick(article);
+            }
+        });
     }
 
     @Override

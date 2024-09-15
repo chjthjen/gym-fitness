@@ -14,14 +14,19 @@ import java.util.List;
 
 public class ArticleDetailAdapter extends BaseAdapter {
 
-    private Context context;
+    private final Context context;
     private List<ArticleDetail> articleDetails;
-    private LayoutInflater inflater;
+    private final LayoutInflater inflater;
 
     public ArticleDetailAdapter(Context context, List<ArticleDetail> articleDetails) {
         this.context = context;
         this.articleDetails = articleDetails;
-        this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        this.inflater = LayoutInflater.from(context);
+    }
+
+    public void setArticleDetails(List<ArticleDetail> articleDetails) {
+        this.articleDetails = articleDetails;
+        notifyDataSetChanged();
     }
 
     @Override

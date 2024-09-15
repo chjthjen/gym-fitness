@@ -4,8 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import com.example.gymfitness.fragments.NotificationsWorkoutRemindersFragment;
-import com.example.gymfitness.fragments.NotificationsWorkoutSystemFragment;
+import com.example.gymfitness.fragments.notification.NotificationsWorkoutRemindersFragment;
+import com.example.gymfitness.fragments.notification.NotificationsWorkoutSystemFragment;
 
 public class NotificationsWorkoutVpAdapter extends FragmentStateAdapter {
 
