@@ -6,7 +6,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:background="@color/black"
-        tools:context=".fragments.NotificationsWorkoutSystemFragment">
+        tools:context=".fragments.notification.NotificationsWorkoutSystemFragment">
 
         <!-- TODO: Update blank fragment layout -->
         <TextView

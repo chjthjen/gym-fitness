@@ -1,4 +1,4 @@
-package com.example.gymfitness.fragments;
+package com.example.gymfitness.fragments.notification;
 
 import android.os.Bundle;
 
@@ -15,17 +15,17 @@ import android.view.ViewGroup;
 import com.example.gymfitness.R;
 import com.example.gymfitness.adapters.NotificationWorkoutRCVAdapter;
 import com.example.gymfitness.data.entities.Notification;
-import com.example.gymfitness.databinding.FragmentNotificationsWorkoutRemindersBinding;
+import com.example.gymfitness.databinding.FragmentNotificationsWorkoutSystemBinding;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link NotificationsWorkoutRemindersFragment#newInstance} factory method to
+ * Use the {@link NotificationsWorkoutSystemFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class NotificationsWorkoutRemindersFragment extends Fragment {
+public class NotificationsWorkoutSystemFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -38,7 +38,7 @@ public class NotificationsWorkoutRemindersFragment extends Fragment {
     private NotificationWorkoutRCVAdapter todayNotificationWorkoutRCVAdapter;
     private NotificationWorkoutRCVAdapter yesterdayNotificationWorkoutRCVAdapter;
 
-    public NotificationsWorkoutRemindersFragment() {
+    public NotificationsWorkoutSystemFragment() {
         // Required empty public constructor
     }
 
@@ -48,11 +48,11 @@ public class NotificationsWorkoutRemindersFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment NotificationsWorkoutRemindersFragment.
+     * @return A new instance of fragment NotificationsWorkoutSystemFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static NotificationsWorkoutRemindersFragment newInstance(String param1, String param2) {
-        NotificationsWorkoutRemindersFragment fragment = new NotificationsWorkoutRemindersFragment();
+    public static NotificationsWorkoutSystemFragment newInstance(String param1, String param2) {
+        NotificationsWorkoutSystemFragment fragment = new NotificationsWorkoutSystemFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -68,16 +68,13 @@ public class NotificationsWorkoutRemindersFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
-
-    private FragmentNotificationsWorkoutRemindersBinding binding;
+    private FragmentNotificationsWorkoutSystemBinding binding;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentNotificationsWorkoutRemindersBinding.inflate(inflater, container, false);
-
+        binding = FragmentNotificationsWorkoutSystemBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -86,25 +83,23 @@ public class NotificationsWorkoutRemindersFragment extends Fragment {
         todayNotificationWorkoutRCVAdapter = new NotificationWorkoutRCVAdapter(getContext());
         LinearLayoutManager todayLinearLayoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
 
-        binding.rcvTodayNotificationWorkoutReminders.setLayoutManager(todayLinearLayoutManager);
+        binding.rcvTodayNotificationWorkoutSystem.setLayoutManager(todayLinearLayoutManager);
         todayNotificationWorkoutRCVAdapter.setData(getListTodayNotificaionWorkout());
-        binding.rcvTodayNotificationWorkoutReminders.setAdapter(todayNotificationWorkoutRCVAdapter);
+        binding.rcvTodayNotificationWorkoutSystem.setAdapter(todayNotificationWorkoutRCVAdapter);
 
         //rcv yesterday
         yesterdayNotificationWorkoutRCVAdapter = new NotificationWorkoutRCVAdapter(getContext());
         LinearLayoutManager yesterdayLinearLayoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
 
-        binding.rcvYesterdayNotificationWorkoutReminders.setLayoutManager(yesterdayLinearLayoutManager);
+        binding.rcvTodayNotificationWorkoutSystem.setLayoutManager(yesterdayLinearLayoutManager);
         yesterdayNotificationWorkoutRCVAdapter.setData(getListYesterdayNotificaionWorkout());
-        binding.rcvYesterdayNotificationWorkoutReminders.setAdapter(yesterdayNotificationWorkoutRCVAdapter);
+        binding.rcvTodayNotificationWorkoutSystem.setAdapter(yesterdayNotificationWorkoutRCVAdapter);
     }
-
     private List<Notification> getListYesterdayNotificaionWorkout() {
         // Create some example data
         List<Notification> notificationList = new ArrayList<>();
-        notificationList.add(new Notification(R.drawable.cup_on, "Upper Body Workout Completed!", "yesterday", "June 09 - 6:00 pM"));
-        notificationList.add(new Notification(R.drawable.bulb_off, "Remember Your Exercise Session", "yesterday", "June 09 - 3:00 PM"));
-        notificationList.add(new Notification(R.drawable.list_off, "new Article & Tip posted!", "yesterday", "June 09 - 11:00 aM"));
+        notificationList.add(new Notification(R.drawable.list_off, "We've updated our privacy policy", "yesterday", "June 09 - 1:00 PM"));
+        notificationList.add(new Notification(R.drawable.star_big_star_off, "You have a new message!", "yesterday", "June 09 - 9:00 AM"));
 
         return notificationList;
     }
@@ -112,8 +107,9 @@ public class NotificationsWorkoutRemindersFragment extends Fragment {
     private List<Notification> getListTodayNotificaionWorkout() {
         // Create some example data
         List<Notification> notificationList = new ArrayList<>();
-        notificationList.add(new Notification(R.drawable.star_big_star_off, "New Workout Is Available", "today", "June 10 - 10:00 AM"));
-        notificationList.add(new Notification(R.drawable.bulb_on, "Dont't Forget To Drink Water", "today", "June 10 - 8:00 AM"));
+        notificationList.add(new Notification(R.drawable.star_big_star_on, "You have a new message!", "today", "June 10 - 2:00 PM"));
+        notificationList.add(new Notification(R.drawable.list_on, "scheduled maintenance.", "today", "June 10 - 8:00 AM"));
+        notificationList.add(new Notification(R.drawable.notification_off_circle, "We've detected a login  from a new device", "today", "June 10 - 5:00 AM"));
 
         return notificationList;
     }

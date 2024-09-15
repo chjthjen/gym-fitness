@@ -13,7 +13,7 @@
         android:orientation="vertical"
         android:background="@color/black"
         android:padding="20dp"
-        tools:context=".fragments.NotificationsFragment">
+        tools:context=".fragments.notification.NotificationsFragment">
 
 
         <LinearLayout

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.WorkoutSearch_6_3_2_A"
+    tools:context=".fragments.search.WorkoutSearch_6_3_2_A"
     android:background="@color/black">
 
     <include
