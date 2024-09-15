@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="60dp"
     android:gravity="center"
+    android:layout_marginHorizontal="25dp"
     android:background="@drawable/bg_chart_item">
 
     <LinearLayout
@@ -14,7 +15,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textView22"
+            android:id="@+id/tvDayOfWeek"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="13sp"
@@ -22,7 +23,7 @@
             android:text="Thu" />
 
         <TextView
-            android:id="@+id/textView32"
+            android:id="@+id/tvDayOfMonth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="25sp"
@@ -57,7 +58,7 @@
             android:text="Steps" />
 
         <TextView
-            android:id="@+id/textView36"
+            android:id="@+id/tvSteps"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="25sp"
@@ -83,7 +84,7 @@
             android:text="Duration" />
 
         <TextView
-            android:id="@+id/textView38"
+            android:id="@+id/tvDuration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="14sp"
