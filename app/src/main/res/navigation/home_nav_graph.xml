@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
- <navigation xmlns:android="http://schemas.android.com/apk/res/android"
+  <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/home_nav_graph"
@@ -27,6 +27,9 @@
         <action
             android:id="@+id/action_homeFragment_to_articleDetailFragment2"
             app:destination="@id/articleDetailFragment2" />
+        <action
+            android:id="@+id/action_homeFragment_to_communityFragment2"
+            app:destination="@id/communityFragment2" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -148,4 +151,50 @@
         android:label="CreateExerciseForOwnRoutineFragment"
         tools:layout="@layout/fragment_create_exercise_for_own_routine"
         />
+    <fragment
+        android:id="@+id/communityFragment2"
+        android:name="com.example.gymfitness.fragments.challenge.CommunityFragment"
+        android:label="fragment_community"
+        tools:layout="@layout/fragment_community" >
+        <action
+            android:id="@+id/action_communityFragment2_to_fragmentWeeklyChallengeA"
+            app:destination="@id/fragmentWeeklyChallengeA" />
+    </fragment>
+    <fragment
+        android:id="@+id/congratulationFragment"
+        android:name="com.example.gymfitness.fragments.challenge.CongratulationFragment"
+        android:label="CongratulationFragment"
+        tools:layout="@layout/fragment_congratulation"
+        />
+    <fragment
+        android:id="@+id/fragmentWeeklyChallengeA"
+        android:name="com.example.gymfitness.fragments.challenge.FragmentWeeklyChallengeA"
+        android:label="FragmentWeeklyChallengeA"
+        tools:layout="@layout/fragment_weekly_challenge_a"
+        >
+        <action
+            android:id="@+id/action_fragmentWeeklyChallengeA_to_fragmentWeeklyChallengeB"
+            app:destination="@id/fragmentWeeklyChallengeB" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentWeeklyChallengeB"
+        android:name="com.example.gymfitness.fragments.challenge.FragmentWeeklyChallengeB"
+        android:label="FragmentWeeklyChallengeB"
+        tools:layout="@layout/fragment_exercise_routine"
+        >
+        <action
+            android:id="@+id/action_fragmentWeeklyChallengeB_to_fragmentWeeklyChallengeC"
+            app:destination="@id/fragmentWeeklyChallengeC" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentWeeklyChallengeC"
+        android:name="com.example.gymfitness.fragments.challenge.FragmentWeeklyChallengeC"
+        android:label="FragmentWeeklyChallengeC"
+        tools:layout="@layout/fragment_exercise_detail"
+
+        >
+        <action
+            android:id="@+id/action_fragmentWeeklyChallengeC_to_congratulationFragment"
+            app:destination="@id/congratulationFragment" />
+    </fragment>
 </navigation>
