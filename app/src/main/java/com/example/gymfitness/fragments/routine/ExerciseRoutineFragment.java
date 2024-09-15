@@ -1,4 +1,4 @@
-package com.example.gymfitness.fragments;
+package com.example.gymfitness.fragments.routine;
 
 import android.os.Bundle;
 
@@ -18,7 +18,6 @@ import android.view.ViewGroup;
 import com.bumptech.glide.Glide;
 import com.example.gymfitness.R;
 import com.example.gymfitness.adapters.home.RoundRCVAdapter;
-import com.example.gymfitness.data.database.FitnessDB;
 import com.example.gymfitness.data.entities.Round;
 import com.example.gymfitness.data.entities.Workout;
 import com.example.gymfitness.databinding.FragmentExerciseRoutineBinding;
@@ -28,9 +27,6 @@ import com.example.gymfitness.viewmodels.SharedViewModel;
 
 import java.util.ArrayList;
 import java.util.Objects;
-import java.util.concurrent.Executor;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 
 public class ExerciseRoutineFragment extends Fragment {

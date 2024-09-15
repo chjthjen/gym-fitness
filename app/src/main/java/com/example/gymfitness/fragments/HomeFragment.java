@@ -1,4 +1,5 @@
 package com.example.gymfitness.fragments;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,22 +23,16 @@ import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
     private RecommendExRCVApdater recommendExRCVApdater;
-    private RecyclerView.LayoutManager layoutManager;
-    private RecyclerView.LayoutManager layoutManager2;
     private ArticlesTipsRCVAdapter articlesTipsRCVAdapter;
-
     private HomeViewModel homeViewModel;
-
     private NavController navController;
     private ExecutorService executorService;
 
     public HomeFragment() {
-
     }
 
     @Override
@@ -51,10 +46,9 @@ public class HomeFragment extends Fragment {
         recommendExRCVApdater = new RecommendExRCVApdater(new ArrayList<>());
         articlesTipsRCVAdapter = new ArticlesTipsRCVAdapter(new ArrayList<>());
 
-
-
         return binding.getRoot();
     }
+
     private void setupRecyclerView() {
         RecyclerView recyclerView = binding.rcvRecommendations;
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
@@ -112,8 +106,10 @@ public class HomeFragment extends Fragment {
             }
         });
 
-
-
+        articlesTipsRCVAdapter.setOnItemClickListener(article -> {
+            Bundle bundle = new Bundle();
+            bundle.putString("articleTitle", article.getArticle_title());
+            navController.navigate(R.id.action_homeFragment_to_articleDetailFragment2, bundle);
+        });
     }
-
 }

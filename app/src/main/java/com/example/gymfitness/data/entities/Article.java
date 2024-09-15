@@ -15,15 +15,20 @@ public class Article implements Serializable {
     private String article_content;
     private String article_thumbnail;
     private int is_favorite;
+    private String publish_date;
+    private String description;
 
-    public Article() {
-    }
-    public Article(int article_id, String article_title, String article_content, String article_thumbnail, int is_favorite) {
+    public Article(int article_id, String article_title, String article_thumbnail, String article_content, int is_favorite, String publish_date, String description) {
         this.article_id = article_id;
         this.article_title = article_title;
-        this.article_content = article_content;
         this.article_thumbnail = article_thumbnail;
+        this.article_content = article_content;
         this.is_favorite = is_favorite;
+        this.publish_date = publish_date;
+        this.description = description;
+    }
+
+    public Article() {
     }
 
     public int getArticle_id() {
@@ -64,5 +69,21 @@ public class Article implements Serializable {
 
     public void setIs_favorite(int is_favorite) {
         this.is_favorite = is_favorite;
+    }
+
+    public String getPublish_date() {
+        return publish_date;
+    }
+
+    public void setPublish_date(String publish_date) {
+        this.publish_date = publish_date;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
