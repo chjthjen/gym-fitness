@@ -120,5 +120,14 @@
         android:name="com.example.gymfitness.fragments.ExerciseRoutineFragment"
         android:label="ExerciseRoutineFragment"
         tools:layout="@layout/fragment_exercise_routine"
+        >
+        <action
+            android:id="@+id/action_exerciseRoutineFragment_to_exerciseDetail"
+            app:destination="@id/exerciseDetail" />
+    </fragment>
+    <fragment
+        android:id="@+id/exerciseDetail"
+        android:name="com.example.gymfitness.fragments.ExerciseDetailFragment"
+        tools:layout="@layout/fragment_exercise_detail"
         />
 </navigation>

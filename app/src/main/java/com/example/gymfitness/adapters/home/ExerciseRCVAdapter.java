@@ -8,7 +8,9 @@ import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.gymfitness.adapters.WorkoutAdapter;
 import com.example.gymfitness.data.entities.Exercise;
+import com.example.gymfitness.data.entities.Workout;
 import com.example.gymfitness.databinding.ExerciseItemBinding;
 import com.example.gymfitness.R;
 import com.example.gymfitness.utils.Converters;
@@ -18,6 +20,16 @@ import java.util.ArrayList;
 public class ExerciseRCVAdapter extends RecyclerView.Adapter<ExerciseRCVAdapter.ExerciseHolder> {
 
     private ArrayList<Exercise> exercisesList;
+
+    // on click listener
+    private OnExerciseListener listener;
+    public interface OnExerciseListener {
+        void onItemClick(Exercise exercise);
+    }
+    public void setOnItemClickListener(ExerciseRCVAdapter.OnExerciseListener listener) {
+        this.listener = listener;
+    }
+
 
     public ExerciseRCVAdapter(ArrayList<Exercise> list)
     {
@@ -36,10 +48,15 @@ public class ExerciseRCVAdapter extends RecyclerView.Adapter<ExerciseRCVAdapter.
             super(binding.getRoot());
             this.binding = binding;
         }
-        public void bind(Exercise exercise) {
+        public void bind(Exercise exercise, OnExerciseListener listener) {
             binding.setExercise(exercise);
             binding.executePendingBindings();
             binding.tvTime.setText(Converters.convertSecondsToTimeFormat(exercise.getDuration()));
+
+            // set on click
+            if (listener != null) {
+                itemView.setOnClickListener(v -> listener.onItemClick(exercise));
+            }
         }
     }
 
@@ -47,7 +64,7 @@ public class ExerciseRCVAdapter extends RecyclerView.Adapter<ExerciseRCVAdapter.
     @Override
     public void onBindViewHolder(@NonNull ExerciseRCVAdapter.ExerciseHolder holder, int position) {
         Exercise exercise = exercisesList.get(position);
-        holder.bind(exercise);
+        holder.bind(exercise,listener);
     }
 
     @Override
@@ -55,7 +72,7 @@ public class ExerciseRCVAdapter extends RecyclerView.Adapter<ExerciseRCVAdapter.
         return exercisesList == null ? 0 : exercisesList.size();
     }
 
-    public void setWorkoutList(ArrayList<Exercise> exercises) {
+    public void setExercisesList(ArrayList<Exercise> exercises) {
         this.exercisesList.clear();
         this.exercisesList.addAll(exercises);
         notifyDataSetChanged();
