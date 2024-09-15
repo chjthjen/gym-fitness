@@ -72,7 +72,11 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         navController = Navigation.findNavController(view);
+
+        // navigate
         binding.imgWorkout.setOnClickListener(v -> navController.navigate(R.id.action_homeFragment_to_workoutFragment));
+        binding.imgCommunity.setOnClickListener(v -> navController.navigate(R.id.action_homeFragment_to_communityFragment2));
+
         homeViewModel.loadWorkoutsByLevel();
         homeViewModel.loadArticles();
         homeViewModel.getWorkouts().observe(getViewLifecycleOwner(), resource -> {
@@ -111,5 +115,7 @@ public class HomeFragment extends Fragment {
             bundle.putString("articleTitle", article.getArticle_title());
             navController.navigate(R.id.action_homeFragment_to_articleDetailFragment2, bundle);
         });
+
+
     }
 }
