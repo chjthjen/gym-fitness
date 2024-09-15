@@ -3,9 +3,11 @@ package com.example.gymfitness.adapters;
 import android.animation.ValueAnimator;
 import android.app.Notification;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -41,17 +43,17 @@ public class FAQAdapter extends RecyclerView.Adapter<FAQAdapter.FAQViewHolder> {
         String title = titles.get(position);
         String content = contents.get(position);
 
-        holder.linearContent.setVisibility(View.GONE);
+        holder.tvContent.setVisibility(View.GONE);
         holder.bottomDivider.setVisibility(View.GONE);
 
         holder.headerLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (holder.linearContent.getVisibility() == View.GONE) {
-                    expandContent(holder.linearContent);
+                if (holder.tvContent.getVisibility() == View.GONE) {
+                    expandContent(holder.tvContent);
                     holder.bottomDivider.setVisibility(View.VISIBLE);
                 } else {
-                    collapseContent(holder.linearContent);
+                    collapseContent(holder.tvContent);
                     holder.bottomDivider.setVisibility(View.GONE);
                 }
             }
@@ -65,42 +67,60 @@ public class FAQAdapter extends RecyclerView.Adapter<FAQAdapter.FAQViewHolder> {
 
     public static class FAQViewHolder extends RecyclerView.ViewHolder {
         TextView tvTitle, tvContent;
-        LinearLayout linearContent, headerLayout, bottomDivider;
+        LinearLayout headerLayout, bottomDivider;
 
         public FAQViewHolder(@NonNull View itemView) {
             super(itemView);
             tvTitle = itemView.findViewById(R.id.tvTitle);
             tvContent = itemView.findViewById(R.id.tvContent);
-            linearContent = itemView.findViewById(R.id.linear_content);
             headerLayout = itemView.findViewById(R.id.headerLayout);
             bottomDivider = itemView.findViewById(R.id.bottomDivider);
         }
     }
 
-    private void expandContent(LinearLayout linearContent) {
-        linearContent.measure(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        int targetHeight = linearContent.getMeasuredHeight();
+    private void expandContent(TextView tvContent) {
+        // Đảm bảo TextView được hiện để có thể đo đạc chính xác
+        tvContent.setVisibility(View.VISIBLE);
 
-        ValueAnimator animator = ValueAnimator.ofInt(0, targetHeight);
-        animator.addUpdateListener(animation -> {
-            linearContent.getLayoutParams().height = (int) animation.getAnimatedValue();
-            linearContent.requestLayout();
+        // Sử dụng ViewTreeObserver để đảm bảo rằng TextView đã hoàn thành việc đo đạc
+        tvContent.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                tvContent.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+
+                int widthSpec = View.MeasureSpec.makeMeasureSpec(tvContent.getWidth(), View.MeasureSpec.EXACTLY);
+                int heightSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
+                tvContent.measure(widthSpec, heightSpec);
+
+                int targetHeight = tvContent.getMeasuredHeight();
+
+                Log.d("ExpandContent", "Measured height of TextView: " + targetHeight);
+
+                ValueAnimator animator = ValueAnimator.ofInt(0, targetHeight);
+                animator.addUpdateListener(animation -> {
+                    int animatedValue = (int) animation.getAnimatedValue();
+                    tvContent.getLayoutParams().height = animatedValue;
+                    tvContent.requestLayout();
+                    Log.d("ExpandContent", "Current animated height: " + animatedValue);
+                });
+
+                animator.setDuration(500);
+                animator.setInterpolator(new AccelerateDecelerateInterpolator());
+                animator.start();
+            }
         });
-
-        animator.setDuration(500);
-        animator.setInterpolator(new AccelerateDecelerateInterpolator());
-        animator.start();
-
-        linearContent.setVisibility(View.VISIBLE);
     }
 
-    private void collapseContent(LinearLayout linearContent) {
-        int initialHeight = linearContent.getMeasuredHeight();
+
+
+
+    private void collapseContent(TextView tvContent) {
+        int initialHeight = tvContent.getMeasuredHeight();
 
         ValueAnimator animator = ValueAnimator.ofInt(initialHeight, 0);
         animator.addUpdateListener(animation -> {
-            linearContent.getLayoutParams().height = (int) animation.getAnimatedValue();
-            linearContent.requestLayout();
+            tvContent.getLayoutParams().height = (int) animation.getAnimatedValue();
+            tvContent.requestLayout();
         });
 
         animator.setDuration(500);
@@ -110,8 +130,10 @@ public class FAQAdapter extends RecyclerView.Adapter<FAQAdapter.FAQViewHolder> {
         animator.addListener(new android.animation.AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(android.animation.Animator animation) {
-                linearContent.setVisibility(View.GONE);
+                tvContent.setVisibility(View.GONE);
+                tvContent.getLayoutParams().height = ViewGroup.LayoutParams.WRAP_CONTENT;
             }
         });
     }
+
 }
