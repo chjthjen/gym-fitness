@@ -5,13 +5,17 @@ import android.os.Bundle;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.gymfitness.R;
+import com.example.gymfitness.adapters.DayOverviewAdapter;
+import com.example.gymfitness.data.DayOverview;
 import com.example.gymfitness.databinding.FragmentProgressTrackingBinding;
+import com.example.gymfitness.helpers.SpacesItemDecoration;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
@@ -19,6 +23,7 @@ import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -120,7 +125,16 @@ public class ProgressTrackingFragment extends Fragment {
         binding.barChart.getLegend().setEnabled(false);
         binding.barChart.invalidate();
 
-
+        List<DayOverview> dayOverviews=new ArrayList<>();
+        dayOverviews.add(new DayOverview(LocalDateTime.now(),"3,679","1hr40m"));
+        dayOverviews.add(new DayOverview(LocalDateTime.now(),"3,679","1hr40m"));
+        dayOverviews.add(new DayOverview(LocalDateTime.now(),"3,679","1hr40m"));
+        dayOverviews.add(new DayOverview(LocalDateTime.now(),"3,679","1hr40m"));
+        dayOverviews.add(new DayOverview(LocalDateTime.now(),"3,679","1hr40m"));
+        DayOverviewAdapter adapter=new DayOverviewAdapter(dayOverviews);
+        binding.rvDayOverview.setAdapter(adapter);
+        binding.rvDayOverview.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding.rvDayOverview.addItemDecoration(new SpacesItemDecoration(getResources().getDimensionPixelSize(R.dimen.spacing)));
         return binding.getRoot();
     }
 }
