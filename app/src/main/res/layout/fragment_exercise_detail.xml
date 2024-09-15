@@ -9,23 +9,19 @@
         tools:context=".fragments.ExerciseDetailFragment">
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            >
+            android:layout_height="match_parent">
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/parentLayout7_1_1_1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
-                >
+                android:layout_marginTop="10dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/headerLayout"
                     android:layout_width="match_parent"
                     android:layout_height="500dp"
                     android:background="@color/lightblue"
-                    app:layout_constraintTop_toTopOf="parent"
-
-                    >
+                    app:layout_constraintTop_toTopOf="parent">
 
                     <androidx.media3.ui.PlayerView
                         android:id="@+id/videoView"
@@ -34,9 +30,7 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
-                        android:visibility="gone"
-                        />
-
+                        android:visibility="gone" />
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/cardView"
@@ -75,7 +69,6 @@
                             android:layout_gravity="center"
                             app:cardCornerRadius="100dp">
 
-
                             <androidx.constraintlayout.widget.ConstraintLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content">
@@ -89,40 +82,7 @@
 
                         </androidx.cardview.widget.CardView>
 
-
                     </androidx.cardview.widget.CardView>
-
-                    <LinearLayout
-                        android:id="@+id/controlButtons"
-                        android:layout_width="match_parent"
-                        android:layout_height="100dp"
-                        android:orientation="horizontal"
-                        android:gravity="center"
-                        app:layout_constraintTop_toBottomOf="@id/videoView"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        android:visibility="gone">
-                        <ImageButton
-                            android:id="@+id/rewindButton"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:src="@drawable/ic_play_video"
-                            android:contentDescription="Rewind" />
-                        <ImageButton
-                            android:id="@+id/playPauseButton"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:src="@drawable/ic_play_video"
-                            android:contentDescription="Play/Pause" />
-                        <ImageButton
-                            android:id="@+id/fastForwardButton"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:src="@drawable/ic_play_video"
-                            android:contentDescription="Fast Forward" />
-
-                    </LinearLayout>
-
-
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -140,8 +100,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        >
+                        android:orientation="vertical">
                         <TextView
                             android:id="@+id/exercise_name"
                             android:layout_width="wrap_content"
@@ -162,7 +121,6 @@
                             android:gravity="center"
                             android:textColor="@color/black"
                             android:text="Lorem Ipun Doclor Sit Amet, Consecture Adipiscing Elit. Sed Cursus Libero Eget." />
-
 
                         <androidx.cardview.widget.CardView
                             android:layout_width="match_parent"
@@ -261,14 +219,8 @@
                             </LinearLayout>
                         </androidx.cardview.widget.CardView>
                     </LinearLayout>
-
-
                 </androidx.cardview.widget.CardView>
-
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 </layout>
