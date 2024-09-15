@@ -1,4 +1,4 @@
-package com.example.gymfitness.fragments;
+package com.example.gymfitness.fragments.setting;
 
 import android.os.Bundle;
 

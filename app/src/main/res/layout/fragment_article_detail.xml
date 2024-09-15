@@ -7,6 +7,8 @@
         <variable
             name="viewModel"
             type="com.example.gymfitness.viewmodels.ArticleDetailViewModel" />
+
+
     </data>
 
     <RelativeLayout
@@ -36,7 +38,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/poppins"
-                    android:text="Strength Training Tips"
+                    android:text="@{viewModel.title}"
                     android:textColor="@color/limegreen"
                     android:textSize="20sp" />
 
@@ -67,7 +69,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="6dp"
                     android:fontFamily="@font/league_spartan"
-                    android:text="Published on September 15"
+                    android:text="@{viewModel.publishDate}"
                     android:textColor="@color/white"
                     android:textSize="14sp" />
             </LinearLayout>
@@ -88,7 +90,7 @@
                     android:background="@drawable/article_detail_img_bg"
                     android:clipToOutline="true"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/woman_help_home" />
+                    android:src="@{viewModel.thumbnail}" />
             </LinearLayout>
 
             <TextView
@@ -101,7 +103,7 @@
                 android:lineHeight="14sp"
                 android:paddingHorizontal="35dp"
                 android:singleLine="false"
-                android:text="Discover essential Strength Training Tips to maximize your workouts and achieve your fitness goals efficiently. Learn how to optimize your routine, prevent injuries, and unlock your full potential in the gym."
+                android:text="@{viewModel.description}"
                 android:textColor="@color/white"
                 android:textSize="14sp" />
 

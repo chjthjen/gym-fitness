@@ -24,6 +24,9 @@
         <action
             android:id="@+id/action_homeFragment_to_workoutSearch_6_3_2_A"
             app:destination="@id/workoutSearch_6_3_2_A" />
+        <action
+            android:id="@+id/action_homeFragment_to_articleDetailFragment2"
+            app:destination="@id/articleDetailFragment2" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -80,7 +83,7 @@
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.example.gymfitness.fragments.SettingsFragment"
+        android:name="com.example.gymfitness.fragments.setting.SettingsFragment"
         android:label="SettingsFragment"
         tools:layout="@layout/fragment_settings"
         >
@@ -96,7 +99,7 @@
         />
     <fragment
         android:id="@+id/notificationFrag"
-        android:name="com.example.gymfitness.fragments.NotificationsFragment"
+        android:name="com.example.gymfitness.fragments.notification.NotificationsFragment"
         android:label="SettingsFragment"
         tools:layout="@layout/fragment_notifications"
         >
@@ -106,7 +109,7 @@
     </fragment>
     <fragment
         android:id="@+id/workoutSearch_6_3_2_A"
-        android:name="com.example.gymfitness.fragments.WorkoutSearch_6_3_2_A"
+        android:name="com.example.gymfitness.fragments.search.WorkoutSearch_6_3_2_A"
         android:label="fragment_workout_search_6_3_2__a"
         tools:layout="@layout/fragment_workout_search_6_3_2__a" />
     <fragment
@@ -120,9 +123,24 @@
     </fragment>
     <fragment
         android:id="@+id/exerciseRoutineFragment"
-        android:name="com.example.gymfitness.fragments.ExerciseRoutineFragment"
+        android:name="com.example.gymfitness.fragments.routine.ExerciseRoutineFragment"
         android:label="ExerciseRoutineFragment"
         tools:layout="@layout/fragment_exercise_routine"
+        >
+        <action
+            android:id="@+id/action_exerciseRoutineFragment_to_exerciseDetail"
+            app:destination="@id/exerciseDetail" />
+    </fragment>
+    <fragment
+        android:id="@+id/exerciseDetail"
+        android:name="com.example.gymfitness.fragments.ExerciseDetailFragment"
+        tools:layout="@layout/fragment_exercise_detail"
+        />
+    <fragment
+        android:id="@+id/articleDetailFragment2"
+        android:name="com.example.gymfitness.fragments.resources.ArticleDetailFragment"
+        android:label="ArticleDetailFragment"
+        tools:layout="@layout/fragment_article_detail"
         />
     <fragment
         android:id="@+id/createExerciseForOwnRoutineFragment"

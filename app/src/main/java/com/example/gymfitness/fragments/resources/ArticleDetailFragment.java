@@ -1,6 +1,8 @@
 package com.example.gymfitness.fragments.resources;
 
 import android.os.Bundle;
+import android.util.Log;
+import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
@@ -8,14 +10,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.bumptech.glide.Glide;
 import com.example.gymfitness.R;
 import com.example.gymfitness.adapters.ArticleDetailAdapter;
-import com.example.gymfitness.data.entities.ArticleDetail;
 import com.example.gymfitness.databinding.FragmentArticleDetailBinding;
 import com.example.gymfitness.viewmodels.ArticleDetailViewModel;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class ArticleDetailFragment extends Fragment {
 
@@ -33,12 +34,21 @@ public class ArticleDetailFragment extends Fragment {
         binding.setViewModel(articleDetailViewModel);
         binding.setLifecycleOwner(this);
 
-        List<ArticleDetail> articleDetailList = new ArrayList<>();
-        // Convert ArticleDetailViewModel instances to ArticleDetail instances
-        articleDetailList.add(new ArticleDetail(articleDetailViewModel.getContent().getValue(), articleDetailViewModel.getHeader().getValue()));
-
-        adapter = new ArticleDetailAdapter(requireContext(), articleDetailList);
+        adapter = new ArticleDetailAdapter(requireContext(), new ArrayList<>());
         binding.lvArticleDetail.setAdapter(adapter);
+
+        if (getArguments() != null) {
+            String articleTitle = getArguments().getString("articleTitle");
+            articleDetailViewModel.loadArticleDetails(articleTitle);
+        }
+
+        articleDetailViewModel.getArticleDetails().observe(getViewLifecycleOwner(), details -> {
+            adapter.setArticleDetails(details);
+        });
+
+        articleDetailViewModel.getThumbnail().observe(getViewLifecycleOwner(), thumbnail -> {
+            Glide.with(requireContext()).load(thumbnail).into(binding.imgArticle);
+        });
 
         return binding.getRoot();
     }

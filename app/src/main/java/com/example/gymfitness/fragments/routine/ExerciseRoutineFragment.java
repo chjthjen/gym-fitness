@@ -1,4 +1,4 @@
-package com.example.gymfitness.fragments;
+package com.example.gymfitness.fragments.routine;
 
 import android.os.Bundle;
 
@@ -18,7 +18,6 @@ import android.view.ViewGroup;
 import com.bumptech.glide.Glide;
 import com.example.gymfitness.R;
 import com.example.gymfitness.adapters.home.RoundRCVAdapter;
-import com.example.gymfitness.data.database.FitnessDB;
 import com.example.gymfitness.data.entities.Round;
 import com.example.gymfitness.data.entities.Workout;
 import com.example.gymfitness.databinding.FragmentExerciseRoutineBinding;
@@ -28,9 +27,6 @@ import com.example.gymfitness.viewmodels.SharedViewModel;
 
 import java.util.ArrayList;
 import java.util.Objects;
-import java.util.concurrent.Executor;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 
 public class ExerciseRoutineFragment extends Fragment {
@@ -38,7 +34,6 @@ public class ExerciseRoutineFragment extends Fragment {
     private FragmentExerciseRoutineBinding binding;
     private ExerciseRoutineViewModel viewModel;
     private SharedViewModel sharedViewModel;
-    private Workout getWorkout;
     private ArrayList<Round> listRound = new ArrayList<>();
     private RoundRCVAdapter roundAdapter;
     private String level;
@@ -67,15 +62,14 @@ public class ExerciseRoutineFragment extends Fragment {
         sharedViewModel.getSelected().observe(getViewLifecycleOwner(), new Observer<Workout>() {
             @Override
             public void onChanged(Workout workout) {
-                getWorkout = workout;
                 Glide.with(binding.imgBanner.getContext())
                         .load(workout.getThumbnail())
                         .placeholder(R.drawable.woman_helping_man_gym)
                         .error(R.drawable.woman_helping_man_gym)
                         .into(binding.imgBanner);
-                binding.totalTime.setText(getWorkout.getTotalTime() + " Minutes");
-                binding.kcal.setText(getWorkout.getKcal() + " Kcal");
-                binding.level.setText(getWorkout.getExerciseCount() + " Exercises");
+                binding.totalTime.setText(workout.getTotalTime() + " Minutes");
+                binding.kcal.setText(workout.getKcal() + " Kcal");
+                binding.level.setText(workout.getExerciseCount() + " Exercises");
                 for (Round round : workout.getRound())
                     listRound.add(round);
             }
