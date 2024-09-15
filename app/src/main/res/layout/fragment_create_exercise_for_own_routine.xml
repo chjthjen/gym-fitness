@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="ownRoutineViewModel"
+            type="com.example.gymfitness.viewmodels.OwnRoutineViewModel" />
+    </data>
+
+    <GridView
+        android:id="@+id/gridViewExercise"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:numColumns="2"
+        android:verticalSpacing="10dp"
+        android:horizontalSpacing="10dp"
+        android:stretchMode="columnWidth"
+        android:paddingStart="35dp"
+        android:paddingEnd="35dp"
+        android:background="@color/black">
+    </GridView>
+
+</layout>

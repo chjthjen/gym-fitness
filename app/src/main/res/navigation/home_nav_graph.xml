@@ -113,12 +113,21 @@
         android:id="@+id/ownRoutineFragment"
         android:name="com.example.gymfitness.fragments.routine.OwnRoutineFragment"
         android:label="OwnRoutineFragment"
-        tools:layout="@layout/fragment_own_routine"
-        />
+        tools:layout="@layout/fragment_own_routine">
+        <action
+            android:id="@+id/action_ownRoutineFragment_to_createExerciseForOwnRoutineFragment"
+            app:destination="@id/createExerciseForOwnRoutineFragment" />
+    </fragment>
     <fragment
         android:id="@+id/exerciseRoutineFragment"
         android:name="com.example.gymfitness.fragments.ExerciseRoutineFragment"
         android:label="ExerciseRoutineFragment"
         tools:layout="@layout/fragment_exercise_routine"
+        />
+    <fragment
+        android:id="@+id/createExerciseForOwnRoutineFragment"
+        android:name="com.example.gymfitness.fragments.routine.CreateExerciseForOwnRoutineFragment"
+        android:label="CreateExerciseForOwnRoutineFragment"
+        tools:layout="@layout/fragment_create_exercise_for_own_routine"
         />
 </navigation>
