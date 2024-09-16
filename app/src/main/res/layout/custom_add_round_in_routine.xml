@@ -38,6 +38,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/btnCreateNewRoutine"
         android:text="Create new"/>
+
     <GridView
         android:id="@+id/gvExercises"
         android:layout_width="match_parent"

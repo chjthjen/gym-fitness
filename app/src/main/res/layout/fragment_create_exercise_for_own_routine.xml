@@ -20,5 +20,4 @@
         android:paddingEnd="35dp"
         android:background="@color/black">
     </GridView>
-
 </layout>

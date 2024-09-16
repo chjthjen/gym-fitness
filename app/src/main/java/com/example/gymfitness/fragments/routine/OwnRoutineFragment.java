@@ -13,11 +13,11 @@ import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.GridView;
 import android.widget.TextView;
 
 import com.example.gymfitness.R;
-import com.example.gymfitness.adapters.WeeklyChallenge.RoundAdapter;
+import com.example.gymfitness.adapters.ExerciseInOwnRoutineAdapter;
 import com.example.gymfitness.data.entities.RoutineRound;
 import com.example.gymfitness.databinding.FragmentOwnRoutineBinding;
 import com.example.gymfitness.viewmodels.OwnRoutineViewModel;
@@ -29,9 +29,7 @@ public class OwnRoutineFragment extends Fragment {
     private OwnRoutineViewModel ownRoutineViewModel;
     private NavController navController;
 
-    public OwnRoutineFragment() {
-
-    }
+    public OwnRoutineFragment() {}
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -48,7 +46,7 @@ public class OwnRoutineFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         navController = Navigation.findNavController(view);
 
-        ownRoutineViewModel.getRoutineRounds().observe(getViewLifecycleOwner(), new Observer<List<RoutineRound>>() {
+        ownRoutineViewModel.getRoutineRoundsLiveData().observe(getViewLifecycleOwner(), new Observer<List<RoutineRound>>() {
             @Override
             public void onChanged(List<RoutineRound> routineRounds) {
                 binding.roundContainer.removeAllViews();
@@ -92,8 +90,16 @@ public class OwnRoutineFragment extends Fragment {
         newRoundView.findViewById(R.id.btnCreateNewRoutine).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                navController.navigate(R.id.action_ownRoutineFragment_to_createExerciseForOwnRoutineFragment);
+                Bundle bundle = new Bundle();
+                bundle.putInt("roundId", roundId);
+                navController.navigate(R.id.action_ownRoutineFragment_to_createExerciseForOwnRoutineFragment, bundle);
             }
+        });
+;
+        GridView gvExercises = newRoundView.findViewById(R.id.gvExercises);
+        ownRoutineViewModel.getExercisesForRound(roundId).observe(getViewLifecycleOwner(), exercises -> {
+            ExerciseInOwnRoutineAdapter adapter = new ExerciseInOwnRoutineAdapter(getContext(), exercises);
+            gvExercises.setAdapter(adapter);
         });
     }
 }
