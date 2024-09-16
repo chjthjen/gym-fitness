@@ -224,4 +224,10 @@
         android:label="HomeExerciseDetailFragment"
         tools:layout="@layout/fragment_exercise_detail"
         />
+    <fragment
+        android:id="@+id/articleResourceFragment"
+        android:name="com.example.gymfitness.fragments.resources.ArticleResourceFragment"
+        android:label="ArticleResourceFragment"
+        tools:layout="@layout/fragment_article_resource"
+        />
 </navigation>
