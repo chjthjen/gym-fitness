@@ -29,7 +29,7 @@ public class ProgressTrackingMainFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-
+        setUpTabs();
     }
 
     private void setUpTabs() {

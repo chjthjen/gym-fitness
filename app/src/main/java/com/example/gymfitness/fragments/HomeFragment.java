@@ -80,6 +80,7 @@ public class HomeFragment extends Fragment {
         // navigate
         binding.imgWorkout.setOnClickListener(v -> navController.navigate(R.id.action_homeFragment_to_workoutFragment));
         binding.imgCommunity.setOnClickListener(v -> navController.navigate(R.id.action_homeFragment_to_communityFragment2));
+        binding.imgProgess.setOnClickListener(v -> navController.navigate(R.id.action_homeFragment_to_progressTrackingMainFragment));
 
         homeViewModel.loadWorkoutsByLevel();
         homeViewModel.loadArticlesItem();
