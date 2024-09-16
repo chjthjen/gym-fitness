@@ -33,6 +33,9 @@
         <action
             android:id="@+id/action_homeFragment_to_resourcesFragment2"
             app:destination="@id/resourcesFragment2" />
+        <action
+            android:id="@+id/action_homeFragment_to_homeRoundFragment"
+            app:destination="@id/homeRoundFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -205,4 +208,20 @@
         android:name="com.example.gymfitness.fragments.resources.ResourcesFragment"
         android:label="fragment_resources"
         tools:layout="@layout/fragment_resources" />
+    <fragment
+        android:id="@+id/homeRoundFragment"
+        android:name="com.example.gymfitness.fragments.home.HomeRoundFragment"
+        android:label="HomeRoundFragment"
+        tools:layout="@layout/fragment_exercise_routine"
+        >
+        <action
+            android:id="@+id/action_homeRoundFragment_to_homeExerciseDetailFragment"
+            app:destination="@id/homeExerciseDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeExerciseDetailFragment"
+        android:name="com.example.gymfitness.fragments.home.HomeExerciseDetailFragment"
+        android:label="HomeExerciseDetailFragment"
+        tools:layout="@layout/fragment_exercise_detail"
+        />
 </navigation>
