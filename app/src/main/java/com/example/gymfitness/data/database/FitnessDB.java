@@ -10,6 +10,8 @@ import androidx.room.TypeConverters;
 
 import com.example.gymfitness.data.DAO.RoutineRoundDAO;
 import com.example.gymfitness.data.DAO.UserInformationDAO;
+import com.example.gymfitness.data.entities.FavoriteExercise;
+import com.example.gymfitness.data.entities.FavoriteWorkout;
 import com.example.gymfitness.data.entities.RoutineRound;
 import com.example.gymfitness.data.entities.Article;
 import com.example.gymfitness.data.entities.Challenge;
@@ -26,7 +28,9 @@ import com.example.gymfitness.utils.Converters;
                         UserInformation.class,
                         Article.class,
                         Challenge.class,
-                        RoutineRound.class
+                        RoutineRound.class,
+                        FavoriteExercise.class,
+                        FavoriteWorkout.class
                 },
         version = 1,
         exportSchema = false
