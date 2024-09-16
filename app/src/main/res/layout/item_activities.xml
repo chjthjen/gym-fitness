@@ -6,7 +6,7 @@
             name="notification"
             type="com.example.gymfitness.data.Notification" />
     </data>
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:background="@drawable/bg_round"

@@ -13,9 +13,9 @@ import com.example.gymfitness.databinding.ExerciseInRoutineItemBinding;
 
 import java.util.List;
 
-public class ExerciseInOwnRoutineAdapter extends BaseAdapter {
-    private List<Exercise> exerciseList;
-    private LayoutInflater inflater;
+public class ExerciseInOwnRoutineAdapter extends BaseAdapter { // adapter cho exercise_in_routine_item.xml
+    private final List<Exercise> exerciseList;
+    private final LayoutInflater inflater;
 
     public ExerciseInOwnRoutineAdapter(Context context, List<Exercise> exerciseList) {
         this.exerciseList = exerciseList;

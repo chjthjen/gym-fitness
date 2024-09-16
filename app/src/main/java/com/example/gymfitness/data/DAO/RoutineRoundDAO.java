@@ -33,7 +33,7 @@ public interface RoutineRoundDAO {
     void update(RoutineRound routineRound);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    int insertExercise(Exercise exercise);
+    long insertExercise(Exercise exercise);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertRoutineRoundExerciseCrossRef(RoutineRoundExerciseCrossRef crossRef);

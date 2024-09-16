@@ -12,7 +12,7 @@ import com.example.gymfitness.databinding.ExerciseForRoutineItemBinding;
 
 import java.util.List;
 
-public class ExerciseForOwnRoutineAdapter extends BaseAdapter {
+public class ExerciseForOwnRoutineAdapter extends BaseAdapter { // adapter cho exercise_for_routine_item.xml
     private final List<Exercise> exerciseList;
     private final LayoutInflater inflater;
     private final ExerciseAddListener exerciseAddListener;
@@ -62,9 +62,8 @@ public class ExerciseForOwnRoutineAdapter extends BaseAdapter {
         binding.btnAddExercise.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (exerciseAddListener != null) {
-                    exerciseAddListener.onExerciseAdded(exercise);
-                }
+                Exercise exercise = exerciseList.get(position);
+                exerciseAddListener.onExerciseAdded(exercise);
             }
         });
         return view;

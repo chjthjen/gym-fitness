@@ -129,7 +129,7 @@ public class OwnRoutineViewModel extends AndroidViewModel {
 
                 if (existingExercise == null) {
                     // Nếu Exercise chưa tồn tại, thêm nó vào cơ sở dữ liệu
-                    exerciseId = routineRoundDAO.insertExercise(exercise);
+                    exerciseId = (int) routineRoundDAO.insertExercise(exercise);
                 } else {
                     // Nếu Exercise đã tồn tại, lấy exerciseId
                     exerciseId = existingExercise.getExercise_id();
@@ -140,6 +140,7 @@ public class OwnRoutineViewModel extends AndroidViewModel {
                 routineRoundDAO.insertRoutineRoundExerciseCrossRef(crossRef);
             }
         });
+
     }
 
     // Lấy dữ liệu Exercises từ Firebase

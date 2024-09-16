@@ -18,7 +18,6 @@ import android.widget.TextView;
 
 import com.example.gymfitness.R;
 import com.example.gymfitness.adapters.ExerciseInOwnRoutineAdapter;
-import com.example.gymfitness.data.entities.Exercise;
 import com.example.gymfitness.data.entities.RoutineRound;
 import com.example.gymfitness.databinding.FragmentOwnRoutineBinding;
 import com.example.gymfitness.viewmodels.OwnRoutineViewModel;
@@ -95,10 +94,10 @@ public class OwnRoutineFragment extends Fragment {
             public void onClick(View view) {
                 Bundle bundle = new Bundle();
                 bundle.putInt("roundId", roundId);
-                navController.navigate(R.id.action_ownRoutineFragment_to_createExerciseForOwnRoutineFragment);
+                navController.navigate(R.id.action_ownRoutineFragment_to_createExerciseForOwnRoutineFragment, bundle);
             }
         });
-
+;
         GridView gvExercises = newRoundView.findViewById(R.id.gvExercises);
         ownRoutineViewModel.getExercisesForRound(roundId).observe(getViewLifecycleOwner(), exercises -> {
             ExerciseInOwnRoutineAdapter adapter = new ExerciseInOwnRoutineAdapter(getContext(), exercises);
