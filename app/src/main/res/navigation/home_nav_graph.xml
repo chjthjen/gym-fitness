@@ -176,7 +176,7 @@
         android:id="@+id/fragmentWeeklyChallengeA"
         android:name="com.example.gymfitness.fragments.challenge.FragmentWeeklyChallengeA"
         android:label="FragmentWeeklyChallengeA"
-        tools:layout="@layout/fragment_weekly_challenge_a"
+        tools:layout="@layout/fragment_challenge_competitions_b"
         >
         <action
             android:id="@+id/action_fragmentWeeklyChallengeA_to_fragmentWeeklyChallengeB"
