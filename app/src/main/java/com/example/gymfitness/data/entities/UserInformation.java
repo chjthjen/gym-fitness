@@ -4,6 +4,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 
 @Entity(tableName = "UserInformation")
@@ -144,4 +145,5 @@ public class UserInformation implements Serializable {
     public void setPhonenumber(String phonenumber) {
         this.phonenumber = phonenumber;
     }
+
 }
