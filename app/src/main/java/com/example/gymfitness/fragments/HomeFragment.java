@@ -11,7 +11,9 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import com.example.gymfitness.R;
+import com.example.gymfitness.adapters.WorkoutAdapter;
 import com.example.gymfitness.adapters.home.ArticlesTipsRCVAdapter;
+import com.example.gymfitness.data.entities.Workout;
 import com.example.gymfitness.viewmodels.HomeViewModel;
 import androidx.databinding.DataBindingUtil;
 import androidx.navigation.Navigation;
@@ -19,6 +21,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.gymfitness.adapters.home.RecommendExRCVApdater;
 import com.example.gymfitness.databinding.FragmentHomeBinding;
+import com.example.gymfitness.viewmodels.SharedViewModel;
+
 import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -31,7 +35,7 @@ public class HomeFragment extends Fragment {
     private HomeViewModel homeViewModel;
     private NavController navController;
     private ExecutorService executorService;
-
+    private SharedViewModel sharedViewModel;
     public HomeFragment() {
     }
 
@@ -42,7 +46,7 @@ public class HomeFragment extends Fragment {
         homeViewModel = new ViewModelProvider(requireActivity()).get(HomeViewModel.class);
         homeViewModel.setUserLevel(getContext());
         executorService = Executors.newFixedThreadPool(3);
-
+        sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
         recommendExRCVApdater = new RecommendExRCVApdater(new ArrayList<>());
         articlesTipsRCVAdapter = new ArticlesTipsRCVAdapter(new ArrayList<>());
 
@@ -114,6 +118,14 @@ public class HomeFragment extends Fragment {
             Bundle bundle = new Bundle();
             bundle.putString("articleTitle", article.getArticle_title());
             navController.navigate(R.id.action_homeFragment_to_articleDetailFragment2, bundle);
+        });
+
+        recommendExRCVApdater.setOnItemClickListener(new RecommendExRCVApdater.OnWorkoutRCMListener() {
+            @Override
+            public void onItemClick(Workout workout) {
+                sharedViewModel.select(workout);
+                navController.navigate(R.id.action_homeFragment_to_homeRoundFragment);
+            }
         });
 
 
