@@ -18,4 +18,7 @@ public interface FavoriteWorkoutDAO {
 
     @Query("DELETE FROM FavoriteWorkout WHERE workout_name = :workout_name")
     void delete(String workout_name);
+
+    @Query("SELECT * FROM FavoriteWorkout WHERE workout_name = :workout_name")
+    FavoriteWorkout getWorkout(String workout_name);
 }

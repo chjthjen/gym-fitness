@@ -18,4 +18,7 @@ public interface FavoriteArticleDAO {
 
     @Insert
     void insert(FavoriteArticle favoriteArticle);
+
+    @Query("SELECT * FROM FavoriteArticle WHERE article_name = :article_name")
+    FavoriteArticle getArticle(String article_name);
 }

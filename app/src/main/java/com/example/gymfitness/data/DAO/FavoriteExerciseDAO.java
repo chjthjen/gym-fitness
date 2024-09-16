@@ -10,11 +10,14 @@ import java.util.List;
 @Dao
 public interface FavoriteExerciseDAO {
     @Query("SELECT * FROM FavoriteExercise")
-    abstract List<FavoriteExercise> getAll();
+    List<FavoriteExercise> getAll();
 
     @Insert
-    abstract void insert(FavoriteExercise favoriteExercise);
+    void insert(FavoriteExercise favoriteExercise);
 
     @Query("DELETE FROM FavoriteExercise WHERE exercise_name = :exercise_name")
-    abstract void delete(String exercise_name);
+    void delete(String exercise_name);
+
+    @Query("SELECT * FROM FavoriteExercise WHERE exercise_name = :exercise_name")
+    FavoriteExercise getExercise(String exercise_name);
 }
