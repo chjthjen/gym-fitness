@@ -79,7 +79,6 @@ public class ArticleResourceFragment extends Fragment {
         articleResourceAdapter.setOnItemClickListener(article -> {
             Bundle bundle = new Bundle();
             bundle.putString("articleTitle", article.getArticle_title());
-
         });
     }
 
