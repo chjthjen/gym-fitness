@@ -20,7 +20,7 @@ import android.view.ViewGroup;
 import com.example.gymfitness.R;
 import com.example.gymfitness.adapters.home.ArticlesTipsRCVAdapter;
 import com.example.gymfitness.adapters.resources.ArticleResourceAdapter;
-import com.example.gymfitness.databinding.FragmentArticleBinding;
+
 import com.example.gymfitness.databinding.FragmentArticleResourceBinding;
 import com.example.gymfitness.viewmodels.HomeViewModel;
 
@@ -59,7 +59,7 @@ public class ArticleResourceFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        homeViewModel.loadArticles();
+       // homeViewModel.loadArticles();
         homeViewModel.getArticles().observe(getViewLifecycleOwner(), resource -> {
             switch (resource.getClass().getSimpleName()) {
                 case "Loading":
@@ -79,7 +79,7 @@ public class ArticleResourceFragment extends Fragment {
         articleResourceAdapter.setOnItemClickListener(article -> {
             Bundle bundle = new Bundle();
             bundle.putString("articleTitle", article.getArticle_title());
-            navController.navigate(R.id.action_articleResourceFragment_to_articleDetailFragment2, bundle);
+
         });
     }
 
