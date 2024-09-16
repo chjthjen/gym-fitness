@@ -1,8 +1,7 @@
 package com.example.gymfitness.fragments.resources;
 
 import android.os.Bundle;
-import android.util.Log;
-import androidx.annotation.NonNull;
+
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
@@ -12,7 +11,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.bumptech.glide.Glide;
 import com.example.gymfitness.R;
-import com.example.gymfitness.adapters.ArticleDetailAdapter;
+import com.example.gymfitness.adapters.resources.ArticleDetailAdapter;
 import com.example.gymfitness.databinding.FragmentArticleDetailBinding;
 import com.example.gymfitness.viewmodels.ArticleDetailViewModel;
 

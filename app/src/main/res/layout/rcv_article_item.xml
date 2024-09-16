@@ -1,75 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="140dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/custom_background_item_workout"
-    android:weightSum="3">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.example.gymfitness.data.entities.Article" />
+    </data>
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_weight="2"
-        android:layout_marginLeft="20dp"
-        >
-        <TextView
-            android:id="@+id/article_title"
-            android:layout_width="175dp"
-            android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:maxLines="2"
-            android:textSize="20sp"
-            android:textFontWeight="600"
-            android:textColor="#000000"
-            android:fontFamily="@font/poppins"
-            android:layout_marginTop="10dp"
-            android:text="Boost Energy and Vitality" />
-        <TextView
-            android:id="@+id/article_content"
-            android:layout_width="180dp"
-            android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:maxLines="3"
-            android:textSize="13sp"
-            android:textColor="@color/black"
-            android:lineSpacingExtra="2sp"
-            android:text="Incorporating physical exercise into your daily routine can boost..." />
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:layout_marginBottom="19dp"
+        android:background="@drawable/custom_background_item_workout"
+        android:weightSum="3">
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="20dp"
+            android:layout_weight="2"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/article_title"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/poppins"
+                android:lineHeight="18dp"
+                android:maxLines="2"
+                android:text="@{item.article_title}"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/article_content"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:lineHeight="14sp"
+                android:lineSpacingExtra="2sp"
+                android:maxLines="3"
+                android:text="@{item.description}"
+                android:textColor="@color/black"
+                android:textSize="13sp" />
+
+
+        </LinearLayout>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:cardCornerRadius="20dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/thumbnail"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@{item.article_thumbnail}" />
+
+                <ImageView
+                    android:id="@+id/star"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:src="@drawable/start_small_on"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
 
     </LinearLayout>
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="150dp"
-        android:layout_height="match_parent"
-        app:cardCornerRadius="20dp"
-        android:layout_weight="1"
-        >
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            >
-            <ImageView
-                android:id="@+id/thumbnail"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                android:src="@drawable/woman_helping_man_gym" />
-
-            <ImageView
-                android:id="@+id/star"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/start_small_on"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.cardview.widget.CardView>
-
-</LinearLayout>
-
+</layout>
