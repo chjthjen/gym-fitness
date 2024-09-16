@@ -1,5 +1,6 @@
     package com.example.gymfitness.adapters;
 
+    import android.util.Log;
     import android.view.LayoutInflater;
     import android.view.View;
     import android.view.ViewGroup;
@@ -12,6 +13,7 @@
     import com.example.gymfitness.R;
     import com.example.gymfitness.data.entities.Workout;
     import com.example.gymfitness.databinding.ItemWorkoutNonvideoBinding;
+    import com.example.gymfitness.helpers.FavoriteHelper;
 
     import java.util.ArrayList;
 
@@ -56,6 +58,12 @@
                         .placeholder(R.drawable.woman_helping_man_gym)
                         .error(R.drawable.woman_helping_man_gym)
                         .into(binding.thumbnail);
+                binding.star.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        FavoriteHelper.setFavorite(workout,v.getContext());
+                    }
+                });
 
                 if (listener != null) {
                     itemView.setOnClickListener(v -> listener.onItemClick(workout));
