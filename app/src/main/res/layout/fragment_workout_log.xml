@@ -160,13 +160,20 @@
             android:layout_margin="10dp"
             android:layout_gravity="center_vertical"
             />
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/listActi"
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            />
+            android:layout_below="@+id/sort_layout"
+            >
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/listActi"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                tools:listitem="@layout/item_activities"
+                />
+        </ScrollView>
     </LinearLayout>
 
 </layout>
