@@ -1,6 +1,7 @@
 package com.example.gymfitness.helpers;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.example.gymfitness.data.database.FitnessDB;
 import com.example.gymfitness.data.entities.Article;
@@ -27,13 +28,15 @@ public class FavoriteHelper {
         AtomicBoolean is_favorite = new AtomicBoolean(false);
         executorService = Executors.newSingleThreadExecutor();
         if (object instanceof Workout) {
+            Log.d("dcm","zo duoc em oi");
+
             Workout workout = (Workout) object;
             executorService.execute(() -> {
                 FavoriteWorkout favWorkout = FitnessDB.getInstance(context).favoriteWorkoutDAO().getWorkout(workout.getWorkout_name());
                 if (favWorkout != null) {
                     is_favorite.set(true);
                 }
-                if (is_favorite.get()) {
+                if (!is_favorite.get()) {
                     executorService.execute(() -> {
                         FavoriteWorkout favoriteWorkout = new FavoriteWorkout();
                         favoriteWorkout.setWorkout_name(workout.getWorkout_name());
@@ -53,7 +56,7 @@ public class FavoriteHelper {
                 if (favExercise != null) {
                     is_favorite.set(true);
                 }
-                if (is_favorite.get()) {
+                if (!is_favorite.get()) {
                     executorService.execute(() -> {
                         FavoriteExercise favoriteExercise = new FavoriteExercise();
                         favoriteExercise.setExercise_name(exercise.getExercise_name());
@@ -73,7 +76,7 @@ public class FavoriteHelper {
                 if (favArticle != null) {
                     is_favorite.set(true);
                 }
-                if (is_favorite.get()) {
+                if (!is_favorite.get()) {
                     executorService.execute(() -> {
                         FavoriteArticle favoriteArticle = new FavoriteArticle();
                         favoriteArticle.setArticle_name(article.getArticle_title());
