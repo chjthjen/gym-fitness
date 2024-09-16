@@ -19,11 +19,11 @@ import com.example.gymfitness.viewmodels.OwnRoutineViewModel;
 
 public class CreateExerciseForOwnRoutineFragment extends Fragment {
     private ExerciseForOwnRoutineAdapter adapter;
+    private int roundId = 0;
 
     public CreateExerciseForOwnRoutineFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -32,18 +32,24 @@ public class CreateExerciseForOwnRoutineFragment extends Fragment {
                 .inflate(inflater, R.layout.fragment_create_exercise_for_own_routine, container, false);
         OwnRoutineViewModel ownRoutineViewModel = new ViewModelProvider(this).get(OwnRoutineViewModel.class);
 
-        binding.setOwnRoutineViewModel(ownRoutineViewModel);
-        binding.setLifecycleOwner(this);
+//        binding.setOwnRoutineViewModel(ownRoutineViewModel);
+//        binding.setLifecycleOwner(this);
+
+        // Nhận RoundId tu Bundle
+        Bundle bundle = getArguments();
+
+        if (bundle != null) {
+            roundId = bundle.getInt("roundId", 0);
+        }
 
         // Lấy Exercises từ Firebase
         ownRoutineViewModel.getExercisesFromFirebase();
-
         ownRoutineViewModel.getExercises().observe(getViewLifecycleOwner(), exercises -> {
             // Cập nhật GridView
             adapter = new ExerciseForOwnRoutineAdapter(exercises, inflater, new ExerciseForOwnRoutineAdapter.ExerciseAddListener() {
                 @Override
                 public void onExerciseAdded(Exercise exercise) {
-
+                    ownRoutineViewModel.addExerciseToRound(exercise, roundId);
                 }
             });
 

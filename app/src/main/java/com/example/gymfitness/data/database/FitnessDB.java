@@ -16,11 +16,13 @@ import com.example.gymfitness.data.DAO.UserInformationDAO;
 import com.example.gymfitness.data.entities.FavoriteArticle;
 import com.example.gymfitness.data.entities.FavoriteExercise;
 import com.example.gymfitness.data.entities.FavoriteWorkout;
+import com.example.gymfitness.data.entities.Exercise;
 import com.example.gymfitness.data.entities.RoutineRound;
 import com.example.gymfitness.data.entities.Article;
 import com.example.gymfitness.data.entities.Challenge;
 import com.example.gymfitness.data.entities.Notification;
 import com.example.gymfitness.data.entities.ProgessTracking;
+import com.example.gymfitness.data.entities.RoutineRoundExerciseCrossRef;
 import com.example.gymfitness.data.entities.UserInformation;
 import com.example.gymfitness.utils.Converters;
 
@@ -35,6 +37,8 @@ import com.example.gymfitness.utils.Converters;
                         RoutineRound.class,
                         FavoriteExercise.class,
                         FavoriteWorkout.class,
+                        Exercise.class,
+                        RoutineRoundExerciseCrossRef.class,
                         FavoriteArticle.class
                 },
         version = 1,
@@ -55,7 +59,6 @@ public abstract class FitnessDB extends RoomDatabase {
         Log.d("Database", "Database already exists");
         return instance;
     }
-
     public abstract UserInformationDAO userInformationDAO();
     public abstract RoutineRoundDAO routineRoundDAO();
     public abstract FavoriteWorkoutDAO favoriteWorkoutDAO();

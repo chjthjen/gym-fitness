@@ -9,13 +9,12 @@ import com.bumptech.glide.Glide;
 import com.example.gymfitness.R;
 import com.example.gymfitness.data.entities.Exercise;
 import com.example.gymfitness.databinding.ExerciseForRoutineItemBinding;
-
 import java.util.List;
 
-public class ExerciseForOwnRoutineAdapter extends BaseAdapter {
-    private List<Exercise> exerciseList;
-    private LayoutInflater inflater;
-    private ExerciseAddListener exerciseAddListener;
+public class ExerciseForOwnRoutineAdapter extends BaseAdapter { // adapter cho exercise_for_routine_item.xml
+    private final List<Exercise> exerciseList;
+    private final LayoutInflater inflater;
+    private final ExerciseAddListener exerciseAddListener;
 
     public ExerciseForOwnRoutineAdapter(List<Exercise> exerciseList, LayoutInflater inflater, ExerciseAddListener exerciseAddListener) {
         this.exerciseList = exerciseList;
@@ -62,9 +61,8 @@ public class ExerciseForOwnRoutineAdapter extends BaseAdapter {
         binding.btnAddExercise.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (exerciseAddListener != null) {
-                    exerciseAddListener.onExerciseAdded(exercise);
-                }
+                Exercise exercise = exerciseList.get(position);
+                exerciseAddListener.onExerciseAdded(exercise);
             }
         });
         return view;
