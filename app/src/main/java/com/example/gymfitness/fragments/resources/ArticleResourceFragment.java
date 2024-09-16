@@ -23,6 +23,7 @@ import com.example.gymfitness.adapters.resources.ArticleResourceAdapter;
 
 import com.example.gymfitness.databinding.FragmentArticleResourceBinding;
 import com.example.gymfitness.viewmodels.HomeViewModel;
+import com.example.gymfitness.viewmodels.SharedViewModel;
 
 import java.util.ArrayList;
 
@@ -31,7 +32,7 @@ public class ArticleResourceFragment extends Fragment {
     private FragmentArticleResourceBinding binding;
     private NavController navController;
     private HomeViewModel homeViewModel;
-
+    private SharedViewModel sharedViewModel;
     public ArticleResourceFragment() {
     }
 
@@ -41,6 +42,7 @@ public class ArticleResourceFragment extends Fragment {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_article_resource, container, false);
         articleResourceAdapter = new ArticleResourceAdapter(new ArrayList<>());
         homeViewModel = new ViewModelProvider(requireActivity()).get(HomeViewModel.class);
+        sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
 
         return binding.getRoot();
     }
@@ -60,6 +62,7 @@ public class ArticleResourceFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
        // homeViewModel.loadArticles();
+        navController = Navigation.findNavController(view);
         homeViewModel.getArticles().observe(getViewLifecycleOwner(), resource -> {
             switch (resource.getClass().getSimpleName()) {
                 case "Loading":
@@ -77,8 +80,8 @@ public class ArticleResourceFragment extends Fragment {
         });
 
         articleResourceAdapter.setOnItemClickListener(article -> {
-            Bundle bundle = new Bundle();
-            bundle.putString("articleTitle", article.getArticle_title());
+            sharedViewModel.setSelectedArticle(article.getArticle_title());
+            navController.navigate(R.id.action_articleResourceFragment_to_articleResourceDetailFragment);
         });
     }
 
