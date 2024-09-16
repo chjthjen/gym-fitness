@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
     <data>
         <import type="android.view.View" />
         <variable
             name="notification"
             type="com.example.gymfitness.data.Notification" />
     </data>
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <LinearLayout
+
         android:layout_width="match_parent"
         android:background="@drawable/bg_round"
         android:layout_height="wrap_content"
