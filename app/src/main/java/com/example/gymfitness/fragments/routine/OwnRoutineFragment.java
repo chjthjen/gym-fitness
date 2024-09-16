@@ -29,9 +29,7 @@ public class OwnRoutineFragment extends Fragment {
     private OwnRoutineViewModel ownRoutineViewModel;
     private NavController navController;
 
-    public OwnRoutineFragment() {
-
-    }
+    public OwnRoutineFragment() {}
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,

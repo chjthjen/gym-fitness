@@ -1,9 +1,7 @@
 package com.example.gymfitness.data.entities;
 
 import androidx.room.Entity;
-import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
-
 import java.io.Serializable;
 
 @Entity(tableName = "Exercises")

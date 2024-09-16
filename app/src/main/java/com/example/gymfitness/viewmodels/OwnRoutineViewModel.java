@@ -140,7 +140,6 @@ public class OwnRoutineViewModel extends AndroidViewModel {
                 routineRoundDAO.insertRoutineRoundExerciseCrossRef(crossRef);
             }
         });
-
     }
 
     // Lấy dữ liệu Exercises từ Firebase

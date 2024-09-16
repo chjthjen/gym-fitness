@@ -47,4 +47,5 @@ public interface RoutineRoundDAO {
     @Transaction
     @Query("SELECT * FROM Exercises INNER JOIN RoutineRoundExerciseCrossRef ON Exercises.exercise_id = RoutineRoundExerciseCrossRef.exerciseId WHERE RoutineRoundExerciseCrossRef.routineRoundId = :roundId")
     LiveData<List<Exercise>> getExercisesForRoutineRound(int roundId);
+
 }

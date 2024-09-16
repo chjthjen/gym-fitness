@@ -110,7 +110,6 @@
                     android:src="@drawable/ic_play_video" />
             </RelativeLayout>
 
-
         </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

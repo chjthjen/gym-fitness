@@ -9,7 +9,6 @@ import com.bumptech.glide.Glide;
 import com.example.gymfitness.R;
 import com.example.gymfitness.data.entities.Exercise;
 import com.example.gymfitness.databinding.ExerciseForRoutineItemBinding;
-
 import java.util.List;
 
 public class ExerciseForOwnRoutineAdapter extends BaseAdapter { // adapter cho exercise_for_routine_item.xml

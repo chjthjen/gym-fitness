@@ -59,7 +59,6 @@ public abstract class FitnessDB extends RoomDatabase {
         Log.d("Database", "Database already exists");
         return instance;
     }
-
     public abstract UserInformationDAO userInformationDAO();
     public abstract RoutineRoundDAO routineRoundDAO();
     public abstract FavoriteWorkoutDAO favoriteWorkoutDAO();

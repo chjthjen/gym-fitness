@@ -11,4 +11,5 @@ public class RoutineRoundExerciseCrossRef {
         this.routineRoundId = routineRoundId;
         this.exerciseId = exerciseId;
     }
+
 }
