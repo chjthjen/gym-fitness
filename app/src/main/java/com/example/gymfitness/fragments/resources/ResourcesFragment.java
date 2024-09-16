@@ -38,10 +38,10 @@ public class ResourcesFragment extends Fragment {
         new TabLayoutMediator(binding.tabLayout, binding.viewPager, (tab, position) -> {
             switch (position){
                 case 0:
-                    tab.setText("FAQ");
+                    tab.setText("Workout Videos");
                     break;
                 case 1:
-                    tab.setText("Contact Us");
+                    tab.setText("Articles & Tips");
                     break;
             }
         }).attach();

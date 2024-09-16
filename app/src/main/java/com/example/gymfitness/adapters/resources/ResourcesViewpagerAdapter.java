@@ -8,6 +8,8 @@ import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.example.gymfitness.fragments.resources.ArticleDetailFragment;
+import com.example.gymfitness.fragments.resources.ArticleResourceFragment;
+import com.example.gymfitness.fragments.resources.WorkoutResourceFragment;
 
 public class ResourcesViewpagerAdapter extends FragmentStateAdapter {
     public ResourcesViewpagerAdapter(@NonNull FragmentActivity fragmentActivity) {
@@ -27,11 +29,11 @@ public class ResourcesViewpagerAdapter extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         switch (position){
             case 0:
-                return new ArticleDetailFragment();
+                return new WorkoutResourceFragment();
             case 1:
-                return new ArticleDetailFragment();
+                return new ArticleResourceFragment();
             default:
-                return new ArticleDetailFragment();
+                return new WorkoutResourceFragment();
         }
     }
 
