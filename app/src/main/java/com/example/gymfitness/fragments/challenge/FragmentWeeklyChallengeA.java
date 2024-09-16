@@ -15,6 +15,6 @@ public class FragmentWeeklyChallengeA extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_weekly_challenge_a, container, false);
+        return inflater.inflate(R.layout.fragment_challenge_competitions_b, container, false);
     }
 }
