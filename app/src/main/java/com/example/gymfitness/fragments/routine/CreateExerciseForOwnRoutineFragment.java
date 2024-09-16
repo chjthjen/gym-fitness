@@ -35,15 +35,23 @@ public class CreateExerciseForOwnRoutineFragment extends Fragment {
         binding.setOwnRoutineViewModel(ownRoutineViewModel);
         binding.setLifecycleOwner(this);
 
+        // Nhận RoundId tu Bundle
+        Bundle bundle = getArguments();
+        int roundId = 0;
+        if (bundle != null) {
+            roundId = bundle.getInt("roundId", 0);
+        }
+
         // Lấy Exercises từ Firebase
         ownRoutineViewModel.getExercisesFromFirebase();
 
+        int finalRoundId = roundId;
         ownRoutineViewModel.getExercises().observe(getViewLifecycleOwner(), exercises -> {
             // Cập nhật GridView
             adapter = new ExerciseForOwnRoutineAdapter(exercises, inflater, new ExerciseForOwnRoutineAdapter.ExerciseAddListener() {
                 @Override
                 public void onExerciseAdded(Exercise exercise) {
-
+                    ownRoutineViewModel.addExerciseToRound(exercise, finalRoundId);
                 }
             });
 

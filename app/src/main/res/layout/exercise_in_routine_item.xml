@@ -61,7 +61,8 @@
                             android:ellipsize="end"
                             android:fontFamily="@font/poppins"
                             android:maxLines="1"
-                            android:text='@{item.exercise_name}'                            android:textColor="@color/third"
+                            android:text="@{item.exercise_name}"
+                            android:textColor="@color/third"
                             android:textSize="14sp"
                             android:textStyle="bold" />
                         <LinearLayout
@@ -100,14 +101,13 @@
                     </LinearLayout>
                 </LinearLayout>
                 <ImageView
-                    android:id="@+id/btnAddExercise"
+                    android:id="@+id/img_playvideo"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:layout_marginRight="10dp"
                     android:layout_alignParentRight="true"
                     android:layout_marginTop="90dp"
-                    android:src="@drawable/bot_video_add" />
-
+                    android:layout_marginRight="10dp"
+                    android:src="@drawable/ic_play_video" />
             </RelativeLayout>
 
 
