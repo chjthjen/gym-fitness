@@ -11,17 +11,16 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import com.example.gymfitness.R;
-import com.example.gymfitness.adapters.WorkoutAdapter;
 import com.example.gymfitness.adapters.home.ArticlesTipsRCVAdapter;
+import com.example.gymfitness.adapters.home.RecommendExRCVApdater;
 import com.example.gymfitness.data.entities.Workout;
+import com.example.gymfitness.databinding.FragmentHomeBinding;
 import com.example.gymfitness.viewmodels.HomeViewModel;
+import com.example.gymfitness.viewmodels.SharedViewModel;
 import androidx.databinding.DataBindingUtil;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.example.gymfitness.adapters.home.RecommendExRCVApdater;
-import com.example.gymfitness.databinding.FragmentHomeBinding;
-import com.example.gymfitness.viewmodels.SharedViewModel;
 
 import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
@@ -36,6 +35,7 @@ public class HomeFragment extends Fragment {
     private NavController navController;
     private ExecutorService executorService;
     private SharedViewModel sharedViewModel;
+
     public HomeFragment() {
     }
 
@@ -82,7 +82,8 @@ public class HomeFragment extends Fragment {
         binding.imgCommunity.setOnClickListener(v -> navController.navigate(R.id.action_homeFragment_to_communityFragment2));
 
         homeViewModel.loadWorkoutsByLevel();
-        homeViewModel.loadArticles();
+        homeViewModel.loadArticlesItem();
+         homeViewModel.loadRoundExercise();
         homeViewModel.getWorkouts().observe(getViewLifecycleOwner(), resource -> {
             switch (resource.getClass().getSimpleName()) {
                 case "Loading":
@@ -123,11 +124,10 @@ public class HomeFragment extends Fragment {
         recommendExRCVApdater.setOnItemClickListener(new RecommendExRCVApdater.OnWorkoutRCMListener() {
             @Override
             public void onItemClick(Workout workout) {
+                Log.d("HomeFragment", "Selected workout: " + workout.toString());
                 sharedViewModel.select(workout);
                 navController.navigate(R.id.action_homeFragment_to_homeRoundFragment);
             }
         });
-
-
     }
 }
