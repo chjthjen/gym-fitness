@@ -50,6 +50,10 @@
             app:itemTextColor="@color/white"
             app:itemIconTint="@color/white"
             app:itemIconSize="30dp"
+            app:itemTextAppearanceActiveBoldEnabled="false"
+            app:itemActiveIndicatorStyle="@null"
+            app:labelVisibilityMode="selected"
+
             />
 
 

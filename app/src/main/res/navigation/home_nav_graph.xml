@@ -30,6 +30,9 @@
         <action
             android:id="@+id/action_homeFragment_to_communityFragment2"
             app:destination="@id/communityFragment2" />
+        <action
+            android:id="@+id/action_homeFragment_to_resourcesFragment2"
+            app:destination="@id/resourcesFragment2" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -197,4 +200,9 @@
             android:id="@+id/action_fragmentWeeklyChallengeC_to_congratulationFragment"
             app:destination="@id/congratulationFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/resourcesFragment2"
+        android:name="com.example.gymfitness.fragments.resources.ResourcesFragment"
+        android:label="fragment_resources"
+        tools:layout="@layout/fragment_resources" />
 </navigation>
