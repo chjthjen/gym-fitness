@@ -3,6 +3,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.gymfitness.viewmodels.EditProfileViewModel" />
+    </data>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -86,17 +92,6 @@
                                     android:clipToOutline="true"
                                     android:scaleType="centerCrop"
                                     android:src="@drawable/wonman_profile" />
-
-                                <ImageView
-                                    android:id="@+id/imageView7"
-                                    android:layout_width="34dp"
-                                    android:layout_height="34dp"
-                                    android:elevation="3dp"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    android:translationX="90dp"
-                                    android:translationY="90dp"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:srcCompat="@drawable/ic_edit_profile" />
 
                             </FrameLayout>
 
@@ -371,7 +366,8 @@
                                 android:background="@drawable/rounded_background_edit"
                                 android:ems="10"
                                 android:inputType="datetime"
-                                android:padding="7dp" />
+                                android:padding="7dp"
+                                android:hint="01/01/1990"/>
 
                             <TextView
                                 android:id="@+id/textView26"
