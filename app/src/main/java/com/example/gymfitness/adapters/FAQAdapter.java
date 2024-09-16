@@ -79,10 +79,8 @@ public class FAQAdapter extends RecyclerView.Adapter<FAQAdapter.FAQViewHolder> {
     }
 
     private void expandContent(TextView tvContent) {
-        // Đảm bảo TextView được hiện để có thể đo đạc chính xác
         tvContent.setVisibility(View.VISIBLE);
 
-        // Sử dụng ViewTreeObserver để đảm bảo rằng TextView đã hoàn thành việc đo đạc
         tvContent.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
