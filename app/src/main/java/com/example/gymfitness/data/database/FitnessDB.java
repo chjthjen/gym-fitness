@@ -8,8 +8,12 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 
+import com.example.gymfitness.data.DAO.FavoriteArticleDAO;
+import com.example.gymfitness.data.DAO.FavoriteExerciseDAO;
+import com.example.gymfitness.data.DAO.FavoriteWorkoutDAO;
 import com.example.gymfitness.data.DAO.RoutineRoundDAO;
 import com.example.gymfitness.data.DAO.UserInformationDAO;
+import com.example.gymfitness.data.entities.FavoriteArticle;
 import com.example.gymfitness.data.entities.FavoriteExercise;
 import com.example.gymfitness.data.entities.FavoriteWorkout;
 import com.example.gymfitness.data.entities.Exercise;
@@ -34,7 +38,8 @@ import com.example.gymfitness.utils.Converters;
                         FavoriteExercise.class,
                         FavoriteWorkout.class,
                         Exercise.class,
-                        RoutineRoundExerciseCrossRef.class
+                        RoutineRoundExerciseCrossRef.class,
+                        FavoriteArticle.class
                 },
         version = 1,
         exportSchema = false
@@ -57,5 +62,7 @@ public abstract class FitnessDB extends RoomDatabase {
 
     public abstract UserInformationDAO userInformationDAO();
     public abstract RoutineRoundDAO routineRoundDAO();
-
+    public abstract FavoriteWorkoutDAO favoriteWorkoutDAO();
+    public abstract FavoriteExerciseDAO favoriteExerciseDAO();
+    public abstract FavoriteArticleDAO favoriteArticleDAO();
 }

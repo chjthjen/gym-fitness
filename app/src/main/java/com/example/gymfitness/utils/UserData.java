@@ -3,6 +3,7 @@ package com.example.gymfitness.utils;
 import android.content.Context;
 
 import com.example.gymfitness.data.database.FitnessDB;
+import com.example.gymfitness.data.entities.UserInformation;
 
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;

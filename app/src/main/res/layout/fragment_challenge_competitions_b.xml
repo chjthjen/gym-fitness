@@ -1,72 +1,76 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout>
 
-    <ImageView
-        android:id="@+id/background_image"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:src="@drawable/challenge_competitions_b" />
+        android:layout_height="match_parent">
 
-    <LinearLayout
-        android:id="@+id/linear"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:orientation="vertical"
-        android:background="@color/lightpurple"
-        android:padding="16dp">
+        <ImageView
+            android:id="@+id/background_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/challenge_competitions_b" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:id="@+id/linear"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:orientation="horizontal">
+            android:layout_centerInParent="true"
+            android:background="@color/lightpurple"
+            android:orientation="vertical"
+            android:padding="16dp">
 
-            <ImageView
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_marginEnd="8dp"
-                android:src="@drawable/ic_workout"
-                app:tint="@color/limegreen" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/ic_workout"
+                    app:tint="@color/limegreen" />
+
+                <TextView
+                    android:id="@+id/tv_name_challenges_competitons"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Cycling Challenge"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Cycling Challenge"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_marginTop="8dp"/>
+                android:layout_gravity="center"
+                android:layout_marginTop="8dp"
+                android:text="@string/lorem_ipsum"
+                android:textAlignment="center"
+                android:textColor="@color/white" />
         </LinearLayout>
 
-        <TextView
+        <Button
+            android:id="@+id/button_start_now"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_gravity="center"
-            android:text="@string/lorem_ipsum"
+            android:layout_below="@id/linear"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/transparent_bg_bordered"
+            android:paddingStart="32dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="32dp"
+            android:paddingBottom="8dp"
+            android:text="Start Now"
+            android:textAllCaps="false"
             android:textColor="@color/white"
-            android:textAlignment="center" />
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/button_start_now"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/linear"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/transparent_bg_bordered"
-        android:text="Start Now"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:paddingStart="32dp"
-        android:paddingEnd="32dp"
-        android:paddingTop="8dp"
-        android:paddingBottom="8dp"
-        android:textAllCaps="false"
-        app:backgroundTint="@null" />
-</RelativeLayout>
+            android:textStyle="bold"
+            app:backgroundTint="@null" />
+    </RelativeLayout>
+</layout>

@@ -1,5 +1,6 @@
 package com.example.gymfitness.adapters.home;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -15,31 +16,26 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.gymfitness.R;
 import com.example.gymfitness.data.entities.Exercise;
 import com.example.gymfitness.data.entities.Round;
-import com.example.gymfitness.data.entities.Workout;
 import com.example.gymfitness.databinding.RoundItemBinding;
 import com.example.gymfitness.viewmodels.SharedViewModel;
 
 import java.util.ArrayList;
 
 public class RoundRCVAdapter extends RecyclerView.Adapter<RoundRCVAdapter.RoundHolder> {
-
     private ArrayList<Round> listRound;
 
-    public RoundRCVAdapter(ArrayList<Round> list)
-    {
+    public RoundRCVAdapter(ArrayList<Round> list) {
         this.listRound = list;
     }
 
-
-
     @NonNull
     @Override
-    public RoundRCVAdapter.RoundHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public RoundHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         RoundItemBinding binding = DataBindingUtil.inflate(layoutInflater, R.layout.round_item, parent, false);
         NavController navController = Navigation.findNavController(parent);
         SharedViewModel sharedViewModel = new ViewModelProvider((ViewModelStoreOwner) parent.getContext()).get(SharedViewModel.class);
-        return new RoundRCVAdapter.RoundHolder(binding, navController,sharedViewModel);
+        return new RoundHolder(binding, navController, sharedViewModel);
     }
 
     static class RoundHolder extends RecyclerView.ViewHolder {
@@ -53,25 +49,28 @@ public class RoundRCVAdapter extends RecyclerView.Adapter<RoundRCVAdapter.RoundH
             this.navController = navController;
             this.sharedViewModel = sharedViewModel;
         }
+
         public void bind(Round round) {
             binding.setRound(round);
             binding.executePendingBindings();
-            ExerciseRCVAdapter exerciseAdapter = new ExerciseRCVAdapter(round.getExercises());
-            binding.rcvExecercise.setLayoutManager(new LinearLayoutManager(binding.getRoot().getContext()));
-            binding.rcvExecercise.setAdapter(exerciseAdapter);
-            exerciseAdapter.setOnItemClickListener(new ExerciseRCVAdapter.OnExerciseListener() {
-                @Override
-                public void onItemClick(Exercise exercise) {
+            if (round != null && round.getExercises() != null) {
+                ExerciseRCVAdapter exerciseAdapter = new ExerciseRCVAdapter(round.getExercises());
+                binding.rcvExecercise.setLayoutManager(new LinearLayoutManager(binding.getRoot().getContext()));
+                binding.rcvExecercise.setAdapter(exerciseAdapter);
+
+                exerciseAdapter.setOnItemClickListener(exercise -> {
                     sharedViewModel.selectExercise(exercise);
                     navController.navigate(R.id.action_exerciseRoutineFragment_to_exerciseDetail);
-                }
-            });
+                });
+            } else {
+                Log.d("RoundHolder", "Round or Exercises are null.");
+            }
         }
     }
 
     @NonNull
     @Override
-    public void onBindViewHolder(@NonNull RoundRCVAdapter.RoundHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RoundHolder holder, int position) {
         Round round = listRound.get(position);
         holder.bind(round);
     }
@@ -80,5 +79,4 @@ public class RoundRCVAdapter extends RecyclerView.Adapter<RoundRCVAdapter.RoundH
     public int getItemCount() {
         return listRound == null ? 0 : listRound.size();
     }
-
 }
