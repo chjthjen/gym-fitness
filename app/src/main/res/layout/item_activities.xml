@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="notification"
+            type="com.example.gymfitness.data.Notification" />
+    </data>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:background="@drawable/bg_round"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+        <RelativeLayout
+            android:layout_width="80dp"
+            android:layout_height="80dp">
+            <ImageView
+                android:id="@+id/imageView12"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+
+                android:layout_alignParentEnd="false"
+                android:layout_alignParentBottom="false"
+                android:layout_centerInParent="true"
+                android:background="@drawable/button_mau_xanh" />
+
+            <ImageView
+                android:id="@+id/imageView13"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:padding="20dp"
+                tools:srcCompat="@drawable/ic_work_out_wc" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="25dp"
+                    android:layout_height="25dp">
+                    <ImageView
+                        android:id="@+id/imgkcal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerInParent="true"
+                        tools:srcCompat="@drawable/ic_calories_home" />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/textView32"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="120 Kcal"
+                    android:fontFamily="@font/league_spartan"/>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView22"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Upper Body Workout"
+                android:fontFamily="@font/poppins_bold"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/textView36"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="June 09"
+                android:fontFamily="@font/poppins"
+                android:textColor="@color/purple"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/imageView15"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginRight="5dp"
+            android:layout_gravity="center"
+            tools:srcCompat="@drawable/purple_clock" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView37"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Duration"
+                android:textColor="@color/purple"
+                android:textSize="15sp"
+                android:fontFamily="@font/poppins"/>
+
+            <TextView
+                android:id="@+id/textView38"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="25 Mins"
+                android:fontFamily="@font/poppins"
+                android:textColor="@color/purple"
+                android:textSize="17sp"/>
+        </LinearLayout>
+    </LinearLayout>
+</layout>
