@@ -44,25 +44,17 @@
         android:orientation="horizontal"
         android:visibility="gone" />
 
-    <LinearLayout
-        android:id="@+id/linear_content"
+    <TextView
+        android:id="@+id/tvContent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_marginBottom="19dp"
+        android:gravity="center_vertical"
         android:paddingTop="12dp"
-        android:visibility="gone">
+        android:text="@string/lorem_ipsum_dolor_sit_amet_consectetur_adipiscing_elit_sed_do_eiusmod_tempor_incididunt_ut_labore_et_dolore_magna_aliqua"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:visibility="gone"
+        android:ellipsize="none"/>
 
-        <TextView
-            android:id="@+id/tvContent"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="19dp"
-            android:gravity="center_vertical"
-            android:text="@string/lorem_ipsum_dolor_sit_amet_consectetur_adipiscing_elit_sed_do_eiusmod_tempor_incididunt_ut_labore_et_dolore_magna_aliqua"
-            android:textColor="@color/white"
-            android:textSize="14sp"
-            android:singleLine="false"
-            android:ellipsize="none"/>
-
-    </LinearLayout>
 </LinearLayout>

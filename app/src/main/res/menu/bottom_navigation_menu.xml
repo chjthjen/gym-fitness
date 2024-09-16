@@ -4,29 +4,25 @@
 
 
     <item
-        android:id="@+id/homeFragment"
+        android:id="@+id/ic_homeFragment"
         android:icon="@drawable/ic_home"
         android:title="Home"
-        app:showAsAction="always"
-        />
+        app:showAsAction="withText"/>
     <item
-        android:id="@+id/resourcesFragment"
+        android:id="@+id/ic_resourcesFragment"
         android:icon="@drawable/ic_resources_icon"
         android:title="Resources Switch"
-        app:showAsAction="always"
-        />
+        app:showAsAction="withText"/>
     <item
-        android:id="@+id/startsFragment"
+        android:id="@+id/ic_startsFragment"
         android:icon="@drawable/ic_star"
         android:title="Starts"
-        app:showAsAction="always"
-        />
+        app:showAsAction="withText"/>
     <item
-        android:id="@+id/supportFragment"
+        android:id="@+id/ic_supportFragment"
         android:icon="@drawable/ic_support_help"
         android:title="Suport"
-        app:showAsAction="always"
-        />
+        app:showAsAction="withText"/>
 
 
 </menu>

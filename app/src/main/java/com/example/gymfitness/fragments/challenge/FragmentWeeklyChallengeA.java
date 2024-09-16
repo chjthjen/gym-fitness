@@ -1,4 +1,4 @@
-package com.example.gymfitness.fragments.WeeklyChallenge;
+package com.example.gymfitness.fragments.challenge;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

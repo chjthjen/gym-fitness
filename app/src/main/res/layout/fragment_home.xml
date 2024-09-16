@@ -32,43 +32,45 @@
 
                 <ImageView
                     android:id="@+id/img_Workout"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:src="@drawable/workout_on" />
+                    android:src="@drawable/workout_off" />
 
                 <ImageView
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:src="@drawable/ic_vertical_line" />
 
                 <ImageView
-                    android:layout_width="0dp"
+                    android:id="@+id/img_progess"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:src="@drawable/progress_off" />
 
                 <ImageView
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:src="@drawable/ic_vertical_line" />
 
                 <ImageView
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:src="@drawable/nutrition_off" />
 
                 <ImageView
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:src="@drawable/ic_vertical_line" />
 
                 <ImageView
-                    android:layout_width="0dp"
+                    android:id="@+id/img_community"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:src="@drawable/community_off" />

@@ -19,27 +19,62 @@
 
 
         <LinearLayout
-            android:layout_width="322sp"
+            android:layout_width="321.11sp"
             android:layout_height="match_parent"
             android:layout_centerHorizontal="true"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="27.83dp"
                 android:gravity="center"
                 android:orientation="horizontal">
 
+                <TextView
+                    android:id="@+id/tabTextView1"
+                    android:layout_width="102.37dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/faq_type_selected"
+                    android:fontFamily="@font/league_spartan"
+                    android:gravity="center"
+                    android:paddingHorizontal="12dp"
+                    android:lineHeight="20dp"
+                    android:text="General"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:backgroundTint="@null" />
 
-                <com.google.android.material.tabs.TabLayout
-                    android:id="@+id/tabLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="27.83dp"
-                    android:background="@color/black"
-                    app:tabGravity="fill"
-                    app:tabIndicator="@null"
-                    app:tabMode="fixed"
-                    app:tabRippleColor="@null" />
+                <TextView
+                    android:paddingHorizontal="12dp"
+                    android:lineHeight="20dp"
+                    android:id="@+id/tabTextView2"
+                    android:layout_width="102.37dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/faq_type_no_selected"
+                    android:fontFamily="@font/league_spartan"
+                    android:gravity="center"
+                    android:layout_marginHorizontal="8dp"
+                    android:text="Account"
+                    android:textColor="@color/lightpurple"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:backgroundTint="@null" />
+
+                <TextView
+                    android:id="@+id/tabTextView3"
+                    android:layout_width="102.37dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/faq_type_no_selected"
+                    android:fontFamily="@font/league_spartan"
+                    android:gravity="center"
+                    android:paddingHorizontal="12dp"
+                    android:lineHeight="20dp"
+                    android:text="Services"
+                    android:textColor="@color/lightpurple"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:backgroundTint="@null" />
 
 
             </LinearLayout>
