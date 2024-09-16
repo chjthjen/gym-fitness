@@ -18,6 +18,8 @@ public class Workout implements Serializable {
     public Workout() {
     }
 
+
+
     public Workout(int workout_id, String workout_name, int kcal, int exerciseCount, String level, String tag, String thumbnail, int totalTime, ArrayList<Round> round) {
         this.workout_id = workout_id;
         this.workout_name = workout_name;

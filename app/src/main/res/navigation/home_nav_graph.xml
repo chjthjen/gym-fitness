@@ -36,6 +36,9 @@
         <action
             android:id="@+id/action_homeFragment_to_homeRoundFragment"
             app:destination="@id/homeRoundFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_progressTrackingMainFragment"
+            app:destination="@id/progressTrackingMainFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -230,4 +233,9 @@
         android:label="ArticleResourceFragment"
         tools:layout="@layout/fragment_article_resource"
         />
+    <fragment
+        android:id="@+id/progressTrackingMainFragment"
+        android:name="com.example.gymfitness.fragments.ProgressTrackingMainFragment"
+        android:label="fragment_progress_tracking_main"
+        tools:layout="@layout/fragment_progress_tracking_main" />
 </navigation>

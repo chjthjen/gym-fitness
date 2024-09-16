@@ -38,6 +38,7 @@ public class WorkoutFragment extends Fragment {
     private NavController navController;
     private SharedViewModel sharedViewModel;
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
