@@ -2,7 +2,9 @@ package com.example.gymfitness.helpers;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.ImageView;
 
+import com.example.gymfitness.R;
 import com.example.gymfitness.data.database.FitnessDB;
 import com.example.gymfitness.data.entities.Article;
 import com.example.gymfitness.data.entities.Exercise;
@@ -24,7 +26,7 @@ public class FavoriteHelper {
         return instance;
     }
     static ExecutorService executorService;
-    public static void setFavorite(Object object, Context context) {
+    public static void setFavorite(Object object, Context context, ImageView star) {
         AtomicBoolean is_favorite = new AtomicBoolean(false);
         executorService = Executors.newSingleThreadExecutor();
         if (object instanceof Workout) {
@@ -41,10 +43,13 @@ public class FavoriteHelper {
                         FavoriteWorkout favoriteWorkout = new FavoriteWorkout();
                         favoriteWorkout.setWorkout_name(workout.getWorkout_name());
                         FitnessDB.getInstance(context).favoriteWorkoutDAO().insert(favoriteWorkout);
+                        // change icon
+                        star.setImageResource(R.drawable.start_small_on);
                     });
                 } else {
                     executorService.execute(() -> {
                         FitnessDB.getInstance(context).favoriteWorkoutDAO().delete(workout.getWorkout_name());
+                        star.setImageResource(R.drawable.start_small_off);
                     });
                 }
             });
@@ -61,10 +66,12 @@ public class FavoriteHelper {
                         FavoriteExercise favoriteExercise = new FavoriteExercise();
                         favoriteExercise.setExercise_name(exercise.getExercise_name());
                         FitnessDB.getInstance(context).favoriteExerciseDAO().insert(favoriteExercise);
+                        star.setImageResource(R.drawable.start_small_on);
                     });
                 } else {
                     executorService.execute(() -> {
                         FitnessDB.getInstance(context).favoriteExerciseDAO().delete(exercise.getExercise_name());
+                        star.setImageResource(R.drawable.start_small_off);
                     });
                 }
             });
@@ -81,13 +88,17 @@ public class FavoriteHelper {
                         FavoriteArticle favoriteArticle = new FavoriteArticle();
                         favoriteArticle.setArticle_name(article.getArticle_title());
                         FitnessDB.getInstance(context).favoriteArticleDAO().insert(favoriteArticle);
+                        star.setImageResource(R.drawable.start_small_on);
+
                     });
                 } else {
                     executorService.execute(() -> {
                         FitnessDB.getInstance(context).favoriteArticleDAO().delete(article.getArticle_title());
+                        star.setImageResource(R.drawable.start_small_off);
                     });
                 }
             });
         }
     }
+
 }
