@@ -1,20 +1,19 @@
 package com.example.gymfitness.data.entities;
 
 import androidx.room.Entity;
-import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Entity
-public class ProgessTracking implements Serializable {
+public class ProgressTracking implements Serializable {
     @PrimaryKey(autoGenerate = true)
     int pro_id;
     LocalDateTime datetime_tracking;
     String exercise_id;
 
-    public ProgessTracking(int pro_id, LocalDateTime datetime_tracking, String exercise_id) {
+    public ProgressTracking(int pro_id, LocalDateTime datetime_tracking, String exercise_id) {
         this.pro_id = pro_id;
         this.datetime_tracking = datetime_tracking;
         this.exercise_id = exercise_id;
