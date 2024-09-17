@@ -19,8 +19,9 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.DayVie
     private int previousSelectedPosition = -1;
     private List<String> days;
 
-    public CalendarAdapter(List<String> days) {
+    public CalendarAdapter(List<String> days, int selectedPosition) {
         this.days = days;
+        this.selectedPosition = selectedPosition;
     }
 
     @NonNull
@@ -40,6 +41,11 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.DayVie
         return days.size();
     }
 
+    public void setSelectedPosition(int position) {
+        this.selectedPosition = position;
+        notifyDataSetChanged();
+    }
+
     class DayViewHolder extends RecyclerView.ViewHolder{
         TextView dayTextView;
         public DayViewHolder(@NonNull View itemView) {
@@ -49,13 +55,22 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.DayVie
         public void bind(String day, int position) {
             dayTextView.setText(day);
 
+
+
             if (selectedPosition == position) {
-                dayTextView.setBackgroundResource(R.drawable.day_background);
-                dayTextView.setTextColor(Color.WHITE);
-                dayTextView.setSelected(true);
+                if(dayTextView.getText().toString().equals(""))
+                {
+                    dayTextView.setBackgroundResource(android.R.color.transparent);
+                    dayTextView.setSelected(false);
+                }
+                else {
+                    dayTextView.setBackgroundResource(R.drawable.day_background);
+                    dayTextView.setTextColor(Color.WHITE);
+                    dayTextView.setSelected(true);
+                }
             } else {
                 dayTextView.setBackgroundResource(android.R.color.transparent);
-                dayTextView.setTextColor(Color.GRAY);
+                dayTextView.setTextColor(Color.BLACK);
                 dayTextView.setSelected(false);
             }
 
