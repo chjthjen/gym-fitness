@@ -42,8 +42,7 @@ import com.example.gymfitness.utils.Converters;
                         Exercise.class,
                         RoutineRoundExerciseCrossRef.class,
                         FavoriteArticle.class,
-                        WorkoutLog.class,
-                        ProgressTracking.class
+                        WorkoutLog.class
                 },
         version = 1,
         exportSchema = false
