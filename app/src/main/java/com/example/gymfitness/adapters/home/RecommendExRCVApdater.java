@@ -1,6 +1,8 @@
 package com.example.gymfitness.adapters.home;
 
+import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -12,6 +14,7 @@ import com.example.gymfitness.R;
 import com.example.gymfitness.adapters.WorkoutAdapter;
 import com.example.gymfitness.data.entities.Workout;
 import com.example.gymfitness.databinding.RecommandRvcItemBinding;
+import com.example.gymfitness.helpers.FavoriteHelper;
 
 import java.util.ArrayList;
 
@@ -46,7 +49,7 @@ public class RecommendExRCVApdater extends RecyclerView.Adapter<RecommendExRCVAp
             super(binding.getRoot());
             this.binding = binding;
         }
-        public void bind(Workout workout, OnWorkoutRCMListener listener) {
+        public void bind(Workout workout, OnWorkoutRCMListener listener, Context context) {
             binding.setItem(workout);
             binding.executePendingBindings();
 
@@ -55,6 +58,14 @@ public class RecommendExRCVApdater extends RecyclerView.Adapter<RecommendExRCVAp
                     .placeholder(R.drawable.woman_helping_man_gym)
                     .error(R.drawable.woman_helping_man_gym)
                     .into(binding.thumbnail);
+
+            FavoriteHelper.checkFavorite(workout, context, binding.imgStar);
+            binding.imgStar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    FavoriteHelper.setFavorite(workout,v.getContext(), binding.imgStar);
+                }
+            });
 
             if (listener != null) {
                 itemView.setOnClickListener(v -> listener.onItemClick(workout));
@@ -66,7 +77,8 @@ public class RecommendExRCVApdater extends RecyclerView.Adapter<RecommendExRCVAp
     @Override
     public void onBindViewHolder(@NonNull WorkoutRCMViewHolder holder, int position) {
         Workout workout = listWorkout.get(position);
-        holder.bind(workout,listener);
+        Context context = holder.itemView.getContext();
+        holder.bind(workout,listener,context);
     }
 
     @Override

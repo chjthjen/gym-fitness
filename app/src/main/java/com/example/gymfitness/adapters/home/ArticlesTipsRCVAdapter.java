@@ -12,6 +12,7 @@ import com.bumptech.glide.Glide;
 import com.example.gymfitness.R;
 import com.example.gymfitness.data.entities.Article;
 import com.example.gymfitness.databinding.ArticlesTipsRvItemBinding;
+import com.example.gymfitness.helpers.FavoriteHelper;
 
 import java.util.ArrayList;
 
@@ -49,7 +50,13 @@ public class ArticlesTipsRCVAdapter extends RecyclerView.Adapter<ArticlesTipsRCV
                 .into(holder.binding.imgWomanHelp);
 
         holder.binding.executePendingBindings();
-
+        FavoriteHelper.checkFavorite(article, holder.itemView.getContext(), holder.binding.imgStar);
+        holder.binding.imgStar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FavoriteHelper.setFavorite(article,v.getContext(), holder.binding.imgStar);
+            }
+        });
         holder.itemView.setOnClickListener(v -> {
             if (listener != null) {
                 listener.onItemClick(article);

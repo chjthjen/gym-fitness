@@ -24,21 +24,24 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <Button
-                android:id="@+id/btnUpDate"
+                android:id="@+id/btnBeginner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
-                android:backgroundTint="@color/limegreen"
+                android:backgroundTint="@color/white"
                 android:text="Beginner"
-                android:textColor="@color/black" />
+                android:textSize="12sp"
+                android:textColor="@color/purple" />
 
             <Button
+                android:id="@+id/btnIntermediate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
-                android:backgroundTint="@color/limegreen"
+                android:backgroundTint="@color/white"
                 android:text="Intermediate"
-                android:textColor="@color/black" />
+                android:textSize="12sp"
+                android:textColor="@color/purple" />
 
             <Button
                 android:id="@+id/btnAdvanced"
@@ -47,6 +50,7 @@
                 android:layout_weight="1"
                 android:backgroundTint="@color/white"
                 android:text="Advanced"
+                android:textSize="12sp"
                 android:textColor="@color/purple" />
 
 

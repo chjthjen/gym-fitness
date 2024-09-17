@@ -2,6 +2,7 @@ package com.example.gymfitness.fragments;
 
 import static android.content.ContentValues.TAG;
 
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -24,6 +26,7 @@ import com.example.gymfitness.adapters.WorkoutAdapter;
 import com.example.gymfitness.data.entities.Round;
 import com.example.gymfitness.data.entities.Workout;
 import com.example.gymfitness.databinding.FragmentWorkoutBinding;
+import com.example.gymfitness.utils.UserData;
 import com.example.gymfitness.viewmodels.SharedViewModel;
 import com.example.gymfitness.viewmodels.WorkoutViewModel;
 
@@ -45,7 +48,8 @@ public class WorkoutFragment extends Fragment {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_workout, container, false);
         workoutViewModel = new ViewModelProvider(requireActivity()).get(WorkoutViewModel.class);
-        workoutViewModel.loadWorkouts();
+        workoutViewModel.setUserLevel(getContext());
+        workoutViewModel.loadWorkoutsByLevel();
         workoutAdapter = new WorkoutAdapter(new ArrayList<>());
         binding.rvWorkoutItem.setAdapter(workoutAdapter);
         binding.rvWorkoutItem.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -71,6 +75,15 @@ public class WorkoutFragment extends Fragment {
     public void onResume() {
         super.onResume();
         Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle("Workout");
+        String userLevel = UserData.getUserLevel(getContext());
+        ColorStateList colorStateList = ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.limegreen));
+        if(Objects.equals(userLevel,"Beginner"))
+            binding.btnBeginner.setBackgroundTintList(colorStateList);
+        else if(Objects.equals(userLevel,"Intermediate"))
+            binding.btnIntermediate.setBackgroundTintList(colorStateList);
+        else
+            binding.btnAdvanced.setBackgroundTintList(colorStateList);
+
     }
 
     @Override

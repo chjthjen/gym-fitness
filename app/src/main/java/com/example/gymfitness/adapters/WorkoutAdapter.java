@@ -1,5 +1,6 @@
     package com.example.gymfitness.adapters;
 
+    import android.content.Context;
     import android.util.Log;
     import android.view.LayoutInflater;
     import android.view.View;
@@ -49,7 +50,7 @@
                 super(binding.getRoot());
                 this.binding = binding;
             }
-            public void bind(Workout workout , OnWorkoutListener listener) {
+            public void bind(Workout workout , OnWorkoutListener listener, Context context) {
                 binding.setItem(workout);
                 binding.executePendingBindings();
 
@@ -65,6 +66,8 @@
                     }
                 });
 
+                FavoriteHelper.checkFavorite(workout, context, binding.star);
+
                 if (listener != null) {
                     itemView.setOnClickListener(v -> listener.onItemClick(workout));
                 }
@@ -75,7 +78,8 @@
         @Override
         public void onBindViewHolder(@NonNull WorkoutViewHolder holder, int position) {
             Workout workout = listWorkout.get(position);
-            holder.bind(workout,listener);
+            Context context = holder.itemView.getContext();
+            holder.bind(workout, listener, context);
 
         }
 
