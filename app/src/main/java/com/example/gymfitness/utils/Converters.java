@@ -2,8 +2,14 @@ package com.example.gymfitness.utils;
 
 import androidx.room.TypeConverter;
 
+import com.example.gymfitness.data.entities.Exercise;
+import com.google.common.reflect.TypeToken;
+import com.google.gson.Gson;
+
+import java.lang.reflect.Type;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Converters {
@@ -36,5 +42,4 @@ public class Converters {
         int remainingSeconds = seconds % 60;
         return String.format("%02d:%02d", minutes, remainingSeconds);
     }
-
 }

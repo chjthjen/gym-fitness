@@ -1,12 +1,12 @@
 package com.example.gymfitness.data.entities;
 
 import androidx.room.Entity;
-import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
-
 import java.io.Serializable;
 
+@Entity(tableName = "Exercises")
 public class Exercise implements Serializable {
+    @PrimaryKey(autoGenerate = true)
     private int exercise_id;
     private String exercise_name;
     private int duration;

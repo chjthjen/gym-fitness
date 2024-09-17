@@ -42,14 +42,28 @@ public class FirebaseRepository {
     }
 
     public void getWorkoutsByLevel(String userLevel, WorkoutCallback callback) {
-        workoutReference.addValueEventListener(new ValueEventListener() {
+        workoutReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 List<Workout> workoutList = new ArrayList<>();
                 for (DataSnapshot workoutSnapshot : dataSnapshot.getChildren()) {
                     Workout workout = workoutSnapshot.getValue(Workout.class);
                     workout.setWorkout_name(workoutSnapshot.getKey());
-                    if (workout.getLevel().equals(userLevel)) {
+                    if (workout.getLevel() != null && workout.getLevel().equals(userLevel)) {
+                        List<Round> roundsList = new ArrayList<>();
+                        for (DataSnapshot roundSnapshot : workoutSnapshot.child("round").getChildren()) {
+                            Round round = roundSnapshot.getValue(Round.class);
+                            round.setRound_name(roundSnapshot.getKey());
+                            List<Exercise> exercisesList = new ArrayList<>();
+                            for (DataSnapshot exerciseSnapshot : roundSnapshot.getChildren()) {
+                                Exercise exercise = exerciseSnapshot.getValue(Exercise.class);
+                                exercise.setExercise_name(exerciseSnapshot.getKey());
+                                exercisesList.add(exercise);
+                            }
+                            round.setExercises(new ArrayList<>(exercisesList));
+                            roundsList.add(round);
+                        }
+                        workout.setRound(new ArrayList<>(roundsList));
                         workoutList.add(workout);
                     }
                 }

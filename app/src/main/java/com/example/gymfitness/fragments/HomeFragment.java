@@ -84,7 +84,7 @@ public class HomeFragment extends Fragment {
 
         homeViewModel.loadWorkoutsByLevel();
         homeViewModel.loadArticlesItem();
-         homeViewModel.loadRoundExercise();
+        //homeViewModel.loadRoundExercise();
         homeViewModel.getWorkouts().observe(getViewLifecycleOwner(), resource -> {
             switch (resource.getClass().getSimpleName()) {
                 case "Loading":

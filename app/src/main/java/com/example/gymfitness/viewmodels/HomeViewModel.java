@@ -23,6 +23,12 @@ public class HomeViewModel extends ViewModel {
     private final FirebaseRepository repository;
     private final MutableLiveData<Resource<ArrayList<Workout>>> workoutsLiveData = new MutableLiveData<>();
     private final MutableLiveData<Resource<ArrayList<Article>>> articlesLiveData = new MutableLiveData<>();
+    private final MutableLiveData<Resource<ArrayList<Workout>>> roundExerciseLiveData = new MutableLiveData<>();
+
+    public LiveData<Resource<ArrayList<Workout>>> getRoundExercise() {
+        return roundExerciseLiveData;
+    }
+
     private FitnessDB fitnessDB;
     private final ExecutorService executorService = Executors.newSingleThreadExecutor();
     private String userLevel;
@@ -43,20 +49,27 @@ public class HomeViewModel extends ViewModel {
         fitnessDB = FitnessDB.getInstance(context);
         executorService.execute(() -> {
             userLevel = fitnessDB.userInformationDAO().getUserInformation().getLevel();
+
+            if (userLevel != null) {
+                loadWorkoutsByLevel();
+            } else {
+
+                workoutsLiveData.setValue(new Resource.Error<>("User level not found"));
+            }
         });
     }
 
     public void loadWorkoutsByLevel() {
-        workoutsLiveData.setValue(new Resource.Loading<>());
+        workoutsLiveData.postValue(new Resource.Loading<>());
         repository.getWorkoutsByLevel(userLevel, new FirebaseRepository.WorkoutCallback() {
             @Override
             public void onCallback(List<Workout> workouts) {
-                workoutsLiveData.setValue(new Resource.Success<>(new ArrayList<>(workouts)));
+                workoutsLiveData.postValue(new Resource.Success<>(new ArrayList<>(workouts)));
             }
 
             @Override
             public void onError(DatabaseError error) {
-                workoutsLiveData.setValue(new Resource.Error<>(error.getMessage()));
+                workoutsLiveData.postValue(new Resource.Error<>(error.getMessage()));
             }
         });
     }
