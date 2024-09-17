@@ -11,6 +11,7 @@ import androidx.room.TypeConverters;
 import com.example.gymfitness.data.DAO.FavoriteArticleDAO;
 import com.example.gymfitness.data.DAO.FavoriteExerciseDAO;
 import com.example.gymfitness.data.DAO.FavoriteWorkoutDAO;
+import com.example.gymfitness.data.DAO.ProgressTrackingDAO;
 import com.example.gymfitness.data.DAO.RoutineRoundDAO;
 import com.example.gymfitness.data.DAO.UserInformationDAO;
 import com.example.gymfitness.data.DAO.WorkoutLogDAO;
@@ -68,4 +69,5 @@ public abstract class FitnessDB extends RoomDatabase {
     public abstract FavoriteExerciseDAO favoriteExerciseDAO();
     public abstract FavoriteArticleDAO favoriteArticleDAO();
     public abstract WorkoutLogDAO workoutLogDAO();
+    public abstract ProgressTrackingDAO progressTrackingDAO();
 }
