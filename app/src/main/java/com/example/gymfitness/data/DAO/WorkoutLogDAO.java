@@ -18,6 +18,6 @@ public interface WorkoutLogDAO {
     void insertWorkoutLog(WorkoutLog workoutLog);
 
     //check if the workout is already in the database on the same date
-    @Query("SELECT COUNT(*) FROM WorkoutLog WHERE workout_name = :workout_name AND date = :date")
+    @Query("SELECT * FROM WorkoutLog WHERE workout_name = :workout_name AND date = :date LIMIT 1")
     WorkoutLog checkWorkout(String workout_name, Date date);
 }
