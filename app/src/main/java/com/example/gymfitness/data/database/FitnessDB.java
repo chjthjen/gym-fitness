@@ -22,7 +22,7 @@ import com.example.gymfitness.data.entities.RoutineRound;
 import com.example.gymfitness.data.entities.Article;
 import com.example.gymfitness.data.entities.Challenge;
 import com.example.gymfitness.data.entities.Notification;
-import com.example.gymfitness.data.entities.ProgessTracking;
+import com.example.gymfitness.data.entities.ProgressTracking;
 import com.example.gymfitness.data.entities.RoutineRoundExerciseCrossRef;
 import com.example.gymfitness.data.entities.UserInformation;
 import com.example.gymfitness.data.entities.WorkoutLog;
@@ -32,7 +32,7 @@ import com.example.gymfitness.utils.Converters;
         entities =
                 {
                         Notification.class,
-                        ProgessTracking.class,
+                        ProgressTracking.class,
                         UserInformation.class,
                         Article.class,
                         Challenge.class,
@@ -42,7 +42,8 @@ import com.example.gymfitness.utils.Converters;
                         Exercise.class,
                         RoutineRoundExerciseCrossRef.class,
                         FavoriteArticle.class,
-                        WorkoutLog.class
+                        WorkoutLog.class,
+                        ProgressTracking.class
                 },
         version = 1,
         exportSchema = false
