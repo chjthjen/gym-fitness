@@ -232,10 +232,20 @@
         android:name="com.example.gymfitness.fragments.resources.ArticleResourceFragment"
         android:label="ArticleResourceFragment"
         tools:layout="@layout/fragment_article_resource"
-        />
+        >
+        <action
+            android:id="@+id/action_articleResourceFragment_to_articleResourceDetailFragment"
+            app:destination="@id/articleResourceDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/progressTrackingMainFragment"
         android:name="com.example.gymfitness.fragments.ProgressTrackingMainFragment"
         android:label="fragment_progress_tracking_main"
         tools:layout="@layout/fragment_progress_tracking_main" />
+    <fragment
+        android:id="@+id/articleResourceDetailFragment"
+        android:name="com.example.gymfitness.fragments.resources.ArticleResourceDetailFragment"
+        android:label="ArticleResourceDetailFragment"
+        tools:layout="@layout/fragment_article_detail"/>
+
 </navigation>

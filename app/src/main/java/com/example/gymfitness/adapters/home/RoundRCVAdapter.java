@@ -60,7 +60,11 @@ public class RoundRCVAdapter extends RecyclerView.Adapter<RoundRCVAdapter.RoundH
 
                 exerciseAdapter.setOnItemClickListener(exercise -> {
                     sharedViewModel.selectExercise(exercise);
-                    navController.navigate(R.id.action_exerciseRoutineFragment_to_exerciseDetail);
+                    if (navController.getCurrentDestination().getId() == R.id.exerciseRoutineFragment) {
+                        navController.navigate(R.id.action_exerciseRoutineFragment_to_exerciseDetail);
+                    } else if (navController.getCurrentDestination().getId() == R.id.homeRoundFragment) {
+                        navController.navigate(R.id.action_homeRoundFragment_to_homeExerciseDetailFragment);
+                    }
                 });
             } else {
                 Log.d("RoundHolder", "Round or Exercises are null.");

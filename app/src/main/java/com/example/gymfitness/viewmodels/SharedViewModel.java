@@ -30,4 +30,13 @@ public class SharedViewModel extends ViewModel {
         return this.exerciseSelected;
     }
 
+    private final MutableLiveData<String> selectedArticleTitle = new MutableLiveData<>();
+
+    public void setSelectedArticle(String articleTitle) {
+        selectedArticleTitle.setValue(articleTitle);
+    }
+
+    public LiveData<String> getSelectedArticle() {
+        return selectedArticleTitle;
+    }
 }

@@ -23,15 +23,15 @@ import com.example.gymfitness.adapters.resources.ArticleResourceAdapter;
 
 import com.example.gymfitness.databinding.FragmentArticleResourceBinding;
 import com.example.gymfitness.viewmodels.HomeViewModel;
+import com.example.gymfitness.viewmodels.SharedViewModel;
 
 import java.util.ArrayList;
 
 public class ArticleResourceFragment extends Fragment {
     private ArticleResourceAdapter articleResourceAdapter;
     private FragmentArticleResourceBinding binding;
-    private NavController navController;
     private HomeViewModel homeViewModel;
-
+    private SharedViewModel sharedViewModel;
     public ArticleResourceFragment() {
     }
 
@@ -41,6 +41,7 @@ public class ArticleResourceFragment extends Fragment {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_article_resource, container, false);
         articleResourceAdapter = new ArticleResourceAdapter(new ArrayList<>());
         homeViewModel = new ViewModelProvider(requireActivity()).get(HomeViewModel.class);
+        sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
 
         return binding.getRoot();
     }
@@ -77,9 +78,9 @@ public class ArticleResourceFragment extends Fragment {
         });
 
         articleResourceAdapter.setOnItemClickListener(article -> {
-            Bundle bundle = new Bundle();
-            bundle.putString("articleTitle", article.getArticle_title());
-
+            sharedViewModel.setSelectedArticle(article.getArticle_title());
+            NavController navController = Navigation.findNavController(requireView());
+            navController.navigate(R.id.articleResourceDetailFragment);
         });
     }
 
