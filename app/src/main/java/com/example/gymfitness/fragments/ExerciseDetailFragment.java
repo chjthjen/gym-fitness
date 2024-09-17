@@ -1,15 +1,23 @@
 package com.example.gymfitness.fragments;
 
+import android.app.Dialog;
+import android.app.ProgressDialog;
+import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.OptIn;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.media3.common.MediaItem;
+import androidx.media3.common.util.UnstableApi;
 import androidx.media3.exoplayer.ExoPlayer;
+import androidx.media3.ui.AspectRatioFrameLayout;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +36,8 @@ public class ExerciseDetailFragment extends Fragment {
     private String level;
     private String urlVideo;
     private ExoPlayer player;
+    private Dialog progressDialog;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -55,6 +65,14 @@ public class ExerciseDetailFragment extends Fragment {
     private void playVideo(String url) {
         if (url != null && !url.isEmpty()) {
             player = new ExoPlayer.Builder(getContext()).build();
+            player.addListener(new ExoPlayer.Listener() {
+                @Override
+                public void onPlaybackStateChanged(int state) {
+                    if (state == ExoPlayer.STATE_READY && progressDialog != null) {
+                        progressDialog.dismiss();
+                    }
+                }
+            });
             binding.videoView.setPlayer(player);
             player.setMediaItem(MediaItem.fromUri(url));
             player.prepare();
@@ -69,8 +87,15 @@ public class ExerciseDetailFragment extends Fragment {
             binding.cardView.setVisibility(View.GONE);
             binding.headerLayout.setBackgroundColor(Color.parseColor("#FF000000"));
             binding.videoView.setVisibility(View.VISIBLE);
+            // Show custom loading dialog
+            progressDialog = new Dialog(getContext());
+            progressDialog.setContentView(R.layout.custom_progess_dialog);
+            progressDialog.setCancelable(false); // Optional
+            progressDialog.show();
             playVideo(urlVideo);
         });
+
+
     }
 
     @Override
