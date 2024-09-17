@@ -16,6 +16,7 @@ import java.util.List;
 public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.DayViewHolder>{
 
     private int selectedPosition = -1;
+    private int previousSelectedPosition = -1;
     private List<String> days;
 
     public CalendarAdapter(List<String> days) {
@@ -59,8 +60,14 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.DayVie
             }
 
             itemView.setOnClickListener(v -> {
-                selectedPosition = position;
-                notifyDataSetChanged();
+                if (selectedPosition != position) {
+                    previousSelectedPosition = selectedPosition;
+                    selectedPosition = position;
+
+                    // Chỉ cập nhật lại mục đã chọn và mục trước đó
+                    notifyItemChanged(previousSelectedPosition);
+                    notifyItemChanged(selectedPosition);
+                }
             });
         }
 
