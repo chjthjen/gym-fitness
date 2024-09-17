@@ -13,6 +13,7 @@ import com.example.gymfitness.data.DAO.FavoriteExerciseDAO;
 import com.example.gymfitness.data.DAO.FavoriteWorkoutDAO;
 import com.example.gymfitness.data.DAO.RoutineRoundDAO;
 import com.example.gymfitness.data.DAO.UserInformationDAO;
+import com.example.gymfitness.data.DAO.WorkoutLogDAO;
 import com.example.gymfitness.data.entities.FavoriteArticle;
 import com.example.gymfitness.data.entities.FavoriteExercise;
 import com.example.gymfitness.data.entities.FavoriteWorkout;
@@ -24,6 +25,7 @@ import com.example.gymfitness.data.entities.Notification;
 import com.example.gymfitness.data.entities.ProgessTracking;
 import com.example.gymfitness.data.entities.RoutineRoundExerciseCrossRef;
 import com.example.gymfitness.data.entities.UserInformation;
+import com.example.gymfitness.data.entities.WorkoutLog;
 import com.example.gymfitness.utils.Converters;
 
 @Database(
@@ -39,7 +41,8 @@ import com.example.gymfitness.utils.Converters;
                         FavoriteWorkout.class,
                         Exercise.class,
                         RoutineRoundExerciseCrossRef.class,
-                        FavoriteArticle.class
+                        FavoriteArticle.class,
+                        WorkoutLog.class
                 },
         version = 1,
         exportSchema = false
@@ -64,4 +67,5 @@ public abstract class FitnessDB extends RoomDatabase {
     public abstract FavoriteWorkoutDAO favoriteWorkoutDAO();
     public abstract FavoriteExerciseDAO favoriteExerciseDAO();
     public abstract FavoriteArticleDAO favoriteArticleDAO();
+    public abstract WorkoutLogDAO workoutLogDAO();
 }
