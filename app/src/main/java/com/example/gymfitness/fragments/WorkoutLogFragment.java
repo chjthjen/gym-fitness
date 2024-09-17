@@ -69,11 +69,32 @@ public class WorkoutLogFragment extends Fragment {
         });
 
         viewModel.getDaysOfMonth().observe(getViewLifecycleOwner(), daysOfMonth -> {
-            calendarAdapter = new CalendarAdapter(daysOfMonth);
-            GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 7);
-            binding.calendarRecyclerView.setLayoutManager(gridLayoutManager);
-            binding.calendarRecyclerView.setAdapter(calendarAdapter);
+            if (daysOfMonth != null) {
+                int currentDay = LocalDate.now().getDayOfMonth();
+                int currentMonth = LocalDate.now().getMonthValue();
+                int selectedPosition = -1;
+
+                // Nếu ngày nằm trong tháng hiện tại
+                if (viewModel.getMonth().getValue() == currentMonth) {
+                    selectedPosition = daysOfMonth.indexOf(String.valueOf(currentDay));
+                }
+
+                // Nếu không thuộc tháng hiện tại chọn ngày 1
+                if (selectedPosition == -1) {
+                    selectedPosition = daysOfMonth.indexOf("1");
+                    if (selectedPosition == -1) {
+                        selectedPosition = 0;
+                    }
+                }
+
+                calendarAdapter = new CalendarAdapter(daysOfMonth, selectedPosition);
+
+                GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 7);
+                binding.calendarRecyclerView.setLayoutManager(gridLayoutManager);
+                binding.calendarRecyclerView.setAdapter(calendarAdapter);
+            }
         });
+
 
         binding.spnMonth.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
