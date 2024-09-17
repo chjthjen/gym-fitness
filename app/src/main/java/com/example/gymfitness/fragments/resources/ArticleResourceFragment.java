@@ -30,7 +30,6 @@ import java.util.ArrayList;
 public class ArticleResourceFragment extends Fragment {
     private ArticleResourceAdapter articleResourceAdapter;
     private FragmentArticleResourceBinding binding;
-    private NavController navController;
     private HomeViewModel homeViewModel;
     private SharedViewModel sharedViewModel;
     public ArticleResourceFragment() {
@@ -62,7 +61,6 @@ public class ArticleResourceFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
        // homeViewModel.loadArticles();
-        navController = Navigation.findNavController(view);
         homeViewModel.getArticles().observe(getViewLifecycleOwner(), resource -> {
             switch (resource.getClass().getSimpleName()) {
                 case "Loading":
@@ -81,7 +79,8 @@ public class ArticleResourceFragment extends Fragment {
 
         articleResourceAdapter.setOnItemClickListener(article -> {
             sharedViewModel.setSelectedArticle(article.getArticle_title());
-            navController.navigate(R.id.action_articleResourceFragment_to_articleResourceDetailFragment);
+            NavController navController = Navigation.findNavController(requireView());
+            navController.navigate(R.id.articleResourceDetailFragment);
         });
     }
 
