@@ -61,7 +61,7 @@
                 binding.star.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        FavoriteHelper.setFavorite(workout,v.getContext());
+                        FavoriteHelper.setFavorite(workout,v.getContext(), binding.star);
                     }
                 });
 
