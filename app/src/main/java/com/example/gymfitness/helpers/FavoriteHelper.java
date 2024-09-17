@@ -101,43 +101,50 @@ public class FavoriteHelper {
         }
     }
 
-    public static void checkFavorite(Object object, Context context, ImageView star) {
+    public static boolean checkFavorite(Object object, Context context, ImageView star) {
         AtomicBoolean is_favorite = new AtomicBoolean(false);
         ExecutorService executorService = Executors.newSingleThreadExecutor();
         if (object instanceof Workout) {
             Workout workout = (Workout) object;
             executorService.execute(() -> {
                 FavoriteWorkout favWorkout = FitnessDB.getInstance(context).favoriteWorkoutDAO().getWorkout(workout.getWorkout_name());
-                if (favWorkout != null) {
-                    is_favorite.set(true);
-                    star.setImageResource(R.drawable.start_small_on);
-                } else {
-                    star.setImageResource(R.drawable.start_small_off);
-                }
+                star.post(() -> {
+                    if (favWorkout != null) {
+                        is_favorite.set(true);
+                        star.setImageResource(R.drawable.start_small_on);
+                    } else {
+                        star.setImageResource(R.drawable.start_small_off);
+                    }
+                });
             });
         } else if (object instanceof Exercise) {
             Exercise exercise = (Exercise) object;
             executorService.execute(() -> {
                 FavoriteExercise favExercise = FitnessDB.getInstance(context).favoriteExerciseDAO().getExercise(exercise.getExercise_name());
-                if (favExercise != null) {
-                    is_favorite.set(true);
-                    star.setImageResource(R.drawable.start_small_on);
-                } else {
-                    star.setImageResource(R.drawable.start_small_off);
-                }
+                star.post(() -> {
+                    if (favExercise != null) {
+                        is_favorite.set(true);
+                        star.setImageResource(R.drawable.start_small_on);
+                    } else {
+                        star.setImageResource(R.drawable.start_small_off);
+                    }
+                });
             });
         } else if (object instanceof Article) {
             Article article = (Article) object;
             executorService.execute(() -> {
                 FavoriteArticle favArticle = FitnessDB.getInstance(context).favoriteArticleDAO().getArticle(article.getArticle_title());
-                if (favArticle != null) {
-                    is_favorite.set(true);
-                    star.setImageResource(R.drawable.start_small_on);
-                } else {
-                    star.setImageResource(R.drawable.start_small_off);
-                }
+                star.post(() -> {
+                    if (favArticle != null) {
+                        is_favorite.set(true);
+                        star.setImageResource(R.drawable.start_small_on);
+                    } else {
+                        star.setImageResource(R.drawable.start_small_off);
+                    }
+                });
             });
         }
+        return is_favorite.get();
     }
 
 }
