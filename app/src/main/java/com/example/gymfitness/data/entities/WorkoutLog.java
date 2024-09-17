@@ -1,6 +1,7 @@
 package com.example.gymfitness.data.entities;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
@@ -18,6 +19,7 @@ public class WorkoutLog implements Serializable {
     public WorkoutLog() {
     }
 
+    @Ignore
     public WorkoutLog(int workout_id, String workout_name, int kcal, Date date, int totalTime) {
         this.workout_id = workout_id;
         this.workout_name = workout_name;

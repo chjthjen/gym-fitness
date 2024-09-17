@@ -25,6 +25,7 @@ import com.example.gymfitness.data.entities.Notification;
 import com.example.gymfitness.data.entities.ProgessTracking;
 import com.example.gymfitness.data.entities.RoutineRoundExerciseCrossRef;
 import com.example.gymfitness.data.entities.UserInformation;
+import com.example.gymfitness.data.entities.WorkoutLog;
 import com.example.gymfitness.utils.Converters;
 
 @Database(
@@ -40,7 +41,8 @@ import com.example.gymfitness.utils.Converters;
                         FavoriteWorkout.class,
                         Exercise.class,
                         RoutineRoundExerciseCrossRef.class,
-                        FavoriteArticle.class
+                        FavoriteArticle.class,
+                        WorkoutLog.class
                 },
         version = 1,
         exportSchema = false
