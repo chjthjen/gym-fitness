@@ -10,7 +10,7 @@ import com.google.firebase.database.DatabaseError;
 
 import java.util.List;
 
-public class ArticleResourceViewModel extends ViewModel {
+public class ArticleDetailResourceViewModel extends ViewModel {
     private final MutableLiveData<String> title = new MutableLiveData<>();
     private final MutableLiveData<String> publishDate = new MutableLiveData<>();
     private final MutableLiveData<String> description = new MutableLiveData<>();
@@ -19,7 +19,7 @@ public class ArticleResourceViewModel extends ViewModel {
 
     private final FirebaseRepository firebaseRepository;
 
-    public ArticleResourceViewModel() {
+    public ArticleDetailResourceViewModel() {
         firebaseRepository = new FirebaseRepository();
     }
 
@@ -37,6 +37,11 @@ public class ArticleResourceViewModel extends ViewModel {
 
     public LiveData<String> getThumbnail() {
         return thumbnail;
+    }
+    private final MutableLiveData<String> selectedArticleTitle = new MutableLiveData<>();
+
+    public void setSelectedArticle(String articleTitle) {
+        selectedArticleTitle.setValue(articleTitle);
     }
 
     public LiveData<List<ArticleDetail>> getArticleDetails() {
