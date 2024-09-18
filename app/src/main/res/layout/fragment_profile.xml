@@ -474,53 +474,6 @@
                                     android:src="@drawable/arrow_next" />
                             </LinearLayout>
 
-                            <LinearLayout
-                                android:id="@+id/create_routine_container"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="35dp"
-                                android:layout_marginTop="20dp"
-                                android:layout_marginEnd="35dp"
-                                android:gravity="center_vertical"
-                                android:orientation="horizontal"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@id/help_container">
-
-                                <androidx.cardview.widget.CardView
-                                    android:id="@+id/create_routine"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    app:cardCornerRadius="100dp">
-
-                                    <ImageView
-                                        android:layout_width="40dp"
-                                        android:layout_height="40dp"
-                                        android:background="#896CFE"
-                                        android:src="@drawable/support_help_default" />
-                                </androidx.cardview.widget.CardView>
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center_vertical"
-                                    android:layout_marginStart="20dp"
-                                    android:layout_weight="1"
-                                    android:fontFamily="@font/poppins"
-                                    android:gravity="center_vertical"
-                                    android:lineHeight="18sp"
-                                    android:text="Create Your Routine"
-                                    android:textColor="@color/white"
-                                    android:textSize="18sp" />
-
-                                <ImageButton
-                                    android:layout_width="10dp"
-                                    android:layout_height="12dp"
-                                    android:layout_marginStart="25dp"
-                                    android:background="@null"
-                                    android:scaleType="fitCenter"
-                                    android:src="@drawable/arrow_next" />
-                            </LinearLayout>
 
                             <LinearLayout
                                 android:id="@+id/your_routine_container"
@@ -533,7 +486,7 @@
                                 android:orientation="horizontal"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@id/create_routine_container">
+                                app:layout_constraintTop_toBottomOf="@id/help_container">
 
                                 <androidx.cardview.widget.CardView
                                     android:layout_width="wrap_content"
@@ -544,7 +497,9 @@
                                         android:layout_width="40dp"
                                         android:layout_height="40dp"
                                         android:background="#896CFE"
-                                        android:src="@drawable/support_help_default" />
+                                        android:src="@drawable/pencil"
+                                        android:scaleType="centerCrop"
+                                        />
                                 </androidx.cardview.widget.CardView>
 
                                 <TextView

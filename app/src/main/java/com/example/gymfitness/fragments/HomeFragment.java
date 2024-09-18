@@ -81,7 +81,7 @@ public class HomeFragment extends Fragment {
         binding.imgWorkout.setOnClickListener(v -> navController.navigate(R.id.action_homeFragment_to_workoutFragment));
         binding.imgCommunity.setOnClickListener(v -> navController.navigate(R.id.action_homeFragment_to_communityFragment2));
         binding.imgProgess.setOnClickListener(v -> navController.navigate(R.id.action_homeFragment_to_progressTrackingMainFragment));
-
+        binding.tvSeeAll.setOnClickListener(v -> navController.navigate(R.id.action_homeFragment_to_workoutAllFragment));
         homeViewModel.loadWorkoutsByLevel();
         homeViewModel.loadArticlesItem();
         //homeViewModel.loadRoundExercise();
@@ -128,6 +128,12 @@ public class HomeFragment extends Fragment {
                 Log.d("HomeFragment", "Selected workout: " + workout.toString());
                 sharedViewModel.select(workout);
                 navController.navigate(R.id.action_homeFragment_to_homeRoundFragment);
+            }
+        });
+        binding.bannerWeeklyChallenge.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                navController.navigate(R.id.action_homeFragment_to_weeklyChallengeAFragment);
             }
         });
     }

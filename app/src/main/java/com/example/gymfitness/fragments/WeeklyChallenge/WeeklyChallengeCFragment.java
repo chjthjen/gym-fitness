@@ -1,4 +1,4 @@
-package com.example.gymfitness.fragments.resources;
+package com.example.gymfitness.fragments.WeeklyChallenge;
 
 import android.app.Dialog;
 import android.graphics.Color;
@@ -21,16 +21,15 @@ import com.bumptech.glide.Glide;
 import com.example.gymfitness.R;
 import com.example.gymfitness.data.entities.Exercise;
 import com.example.gymfitness.data.entities.Workout;
-import com.example.gymfitness.databinding.FragmentExerciseDetailBinding;
+import com.example.gymfitness.databinding.FragmentWeeklyChallengeCBinding;
 import com.example.gymfitness.helpers.FavoriteHelper;
 import com.example.gymfitness.helpers.ProgressTrackHelper;
-import com.example.gymfitness.utils.UserData;
 import com.example.gymfitness.viewmodels.SharedViewModel;
 
 import java.util.Objects;
 
-public class ExerciseDetailResourceFragment extends Fragment {
-    private FragmentExerciseDetailBinding binding;
+public class WeeklyChallengeCFragment extends Fragment {
+    private FragmentWeeklyChallengeCBinding binding;
     private SharedViewModel sharedViewModel;
     private String level;
     private String urlVideo;
@@ -38,30 +37,30 @@ public class ExerciseDetailResourceFragment extends Fragment {
     private Dialog progressDialog;
     private ProgressTrackHelper progressTrackHelper;
 
-
+    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_exercise_detail, container, false);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_weekly_challenge_c,container,false);
+
         sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
-        level = UserData.getUserLevel(getContext());
+
         return binding.getRoot();
     }
-
     private void loadData() {
         sharedViewModel.getExerciseSelected().observe(getViewLifecycleOwner(), exercise -> {
-            Glide.with(binding.thumbnail.getContext())
+            Glide.with(binding.thumbnailVideo.getContext())
                     .load(exercise.getExerciseThumb())
                     .placeholder(R.drawable.woman_helping_man_gym)
                     .error(R.drawable.woman_helping_man_gym)
-                    .into(binding.thumbnail);
-            binding.exerciseName.setText(exercise.getExercise_name());
-            binding.duration.setText(exercise.getDuration() + " Seconds");
-            binding.rep.setText(exercise.getRep() + " Rep");
-            binding.level.setText(exercise.getLevel());
+                    .into(binding.thumbnailVideo);
+            binding.tvExerciseName.setText(exercise.getExercise_name());
+            binding.tvExerciseDuration.setText(exercise.getDuration() + " Seconds");
+            binding.tvExerciseRep.setText(exercise.getRep() + " Rep");
+            binding.tvExerciseLevel.setText(exercise.getLevel());
             urlVideo = exercise.getLink();
+            level = exercise.getLevel();
         });
     }
-
     private void playVideo(String url) {
         if (url != null && !url.isEmpty()) {
             player = new ExoPlayer.Builder(getContext()).build();
@@ -79,7 +78,6 @@ public class ExerciseDetailResourceFragment extends Fragment {
             player.play();
         }
     }
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -96,7 +94,6 @@ public class ExerciseDetailResourceFragment extends Fragment {
             // save progess
             saveProgress();
         });
-
         // set favorite
         Exercise exerciseFavorite = sharedViewModel.getExerciseSelected().getValue();
         binding.star.setOnClickListener(new View.OnClickListener() {
@@ -108,7 +105,6 @@ public class ExerciseDetailResourceFragment extends Fragment {
 
         FavoriteHelper.checkFavorite(exerciseFavorite, getContext(), binding.star);
     }
-
     private void saveProgress() {
         progressTrackHelper = new ProgressTrackHelper();
         Workout selectedValue = sharedViewModel.getSelected().getValue();
@@ -125,12 +121,11 @@ public class ExerciseDetailResourceFragment extends Fragment {
             Log.w("ProgressTrackHelper", "Selected value, exercise selected value, or activity is null");
         }
     }
-
     @Override
     public void onResume() {
         super.onResume();
-        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle(level);
         loadData();
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle(level);
     }
 
     @Override
@@ -142,21 +137,3 @@ public class ExerciseDetailResourceFragment extends Fragment {
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

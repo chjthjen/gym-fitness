@@ -98,6 +98,7 @@
                     android:gravity="center">
 
                     <TextView
+                        android:id="@+id/tv_see_all"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -136,7 +137,6 @@
                 android:id="@+id/banner_weekly_challenge"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="19dp"
                 android:background="@color/lightpurple"
                 android:paddingTop="27dp"
                 android:paddingBottom="27dp"

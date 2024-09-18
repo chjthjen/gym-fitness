@@ -47,7 +47,7 @@
                                 android:layout_width="10dp"
                                 android:layout_height="12dp"
                                 android:layout_marginLeft="25dp"
-                                android:layout_marginTop="25dp"
+                                android:layout_marginTop="50dp"
                                 android:background="@color/lightblue"
                                 android:src="@drawable/arrow"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -59,7 +59,7 @@
                                 android:layout_width="101dp"
                                 android:layout_height="40dp"
                                 android:layout_marginLeft="10dp"
-                                android:layout_marginTop="10dp"
+                                android:layout_marginTop="35dp"
                                 android:paddingTop="7dp"
                                 android:paddingBottom="8dp"
                                 android:text="My Profile"
@@ -113,7 +113,7 @@
                             android:layout_gravity="center"
                             android:gravity="center"
                             android:textColor="@color/white"
-                            android:textSize="26dp"
+                            android:textSize="22dp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -123,31 +123,16 @@
                             android:layout_gravity="center"
                             android:gravity="center"
                             android:textColor="@color/white"
+                            android:textSize="14dp" />
 
-                            android:textSize="18dp" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:id="@+id/textView21"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="135dp"
-                                android:textColor="@color/white"
-                                android:textSize="18dp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/tvDateOfBirth"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="1dp"
-                                android:textColor="@color/white"
-                                android:textSize="18dp" />
-                        </LinearLayout>
+                        <TextView
+                            android:id="@+id/tvDateOfBirth"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:textColor="@color/white"
+                            android:textSize="14dp" />
 
 
                     </LinearLayout>
@@ -219,7 +204,8 @@
                                     android:gravity="center"
                                     android:textColor="@color/white"
                                     android:textSize="15sp"
-                                    android:textStyle="bold"></TextView>
+                                    android:textStyle="bold"
+                                    android:fontFamily="@font/league_spartan"></TextView>
 
 
                                 <TextView
@@ -305,7 +291,8 @@
                                     android:background="@drawable/rounded_background_edit"
                                     android:ems="10"
                                     android:inputType="text"
-                                    android:padding="6dp" />
+                                    android:padding="6dp"
+                                    android:textColor="@color/black"/>
                             </LinearLayout>
 
                             <TextView
@@ -345,6 +332,7 @@
                                 android:background="@drawable/rounded_background_edit"
                                 android:ems="10"
                                 android:inputType="datetime"
+                                android:textColor="@color/black"
                                 android:padding="7dp" />
 
 
@@ -367,7 +355,8 @@
                                 android:ems="10"
                                 android:inputType="datetime"
                                 android:padding="7dp"
-                                android:hint="01/01/1990"/>
+                                android:hint="01/12/1990"
+                                android:textColor="@color/black"/>
 
                             <TextView
                                 android:id="@+id/textView26"
@@ -386,7 +375,8 @@
                                 android:layout_marginRight="31dp"
                                 android:background="@drawable/rounded_background_edit"
                                 android:inputType="text"
-                                android:padding="7dp" />
+                                android:padding="7dp"
+                                android:textColor="@color/black"/>/>
 
                             <TextView
                                 android:id="@+id/textView27"
@@ -404,7 +394,8 @@
                                 android:background="@drawable/rounded_background_edit"
                                 android:ems="10"
                                 android:inputType="text"
-                                android:padding="7dp" />
+                                android:padding="7dp"
+                                android:textColor="@color/black"/>/>
 
                             <Button
                                 android:id="@+id/btnUpDate"

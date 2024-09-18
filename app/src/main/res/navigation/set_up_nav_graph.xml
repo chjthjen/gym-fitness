@@ -63,5 +63,15 @@
         android:id="@+id/fillProfileFragment"
         android:name="com.example.gymfitness.fragments.setup.FillProfileFragment"
         android:label="FillProfileFragment"
-        tools:layout="@layout/fragment_fill_profile"/>
+        tools:layout="@layout/fragment_fill_profile">
+        <action
+            android:id="@+id/action_fillProfileFragment_to_ownRoutineFragment2"
+            app:destination="@id/ownRoutineFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/ownRoutineFragment2"
+        android:name="com.example.gymfitness.fragments.routine.OwnRoutineFragment"
+        android:label="OwnRoutineFragment"
+        tools:layout="@layout/fragment_own_routine"
+        />
 </navigation>

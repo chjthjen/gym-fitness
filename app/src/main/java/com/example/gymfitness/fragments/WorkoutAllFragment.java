@@ -1,8 +1,5 @@
 package com.example.gymfitness.fragments;
 
-import static android.content.ContentValues.TAG;
-
-import android.content.Context;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,7 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -25,8 +21,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.example.gymfitness.R;
 import com.example.gymfitness.adapters.WorkoutAdapter;
 import com.example.gymfitness.data.entities.Workout;
-import com.example.gymfitness.databinding.FragmentWorkoutBinding;
-import com.example.gymfitness.helpers.FavoriteHelper;
+import com.example.gymfitness.databinding.FragmentAllWorkoutBinding;
 import com.example.gymfitness.utils.UserData;
 import com.example.gymfitness.viewmodels.SharedViewModel;
 import com.example.gymfitness.viewmodels.WorkoutViewModel;
@@ -34,34 +29,26 @@ import com.example.gymfitness.viewmodels.WorkoutViewModel;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class WorkoutFragment extends Fragment {
-    private FragmentWorkoutBinding binding;
+public class WorkoutAllFragment extends Fragment {
+    private FragmentAllWorkoutBinding binding;
     private WorkoutViewModel workoutViewModel;
-    private ArrayList<Workout> list = new ArrayList<>();
     private WorkoutAdapter workoutAdapter;
     private NavController navController;
     private SharedViewModel sharedViewModel;
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_workout, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_all_workout, container, false);
         workoutViewModel = new ViewModelProvider(requireActivity()).get(WorkoutViewModel.class);
-        workoutViewModel.setUserLevel(getContext());
-        workoutViewModel.loadWorkoutsByLevel();
         workoutAdapter = new WorkoutAdapter(new ArrayList<>());
         binding.rvWorkoutItem.setAdapter(workoutAdapter);
         binding.rvWorkoutItem.setLayoutManager(new LinearLayoutManager(getContext()));
         sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
-        workoutViewModel.getWorkouts().observe(getViewLifecycleOwner(), new Observer<ArrayList<Workout>>() {
-            @Override
-            public void onChanged(ArrayList<Workout> workouts) {
-                if (workouts != null && !workouts.isEmpty()) {
-                    workoutAdapter.setWorkoutList(workouts);
-                    workoutAdapter.notifyDataSetChanged();
-                } else {
-                    Log.d(TAG, "List is empty or null");
-                }
+        workoutViewModel.getWorkouts().observe(getViewLifecycleOwner(), workouts -> {
+            if (workouts != null) {
+                workoutAdapter.setWorkoutList(workouts);
+            } else {
+                Log.d("WorkoutAllFragment", "Workouts list is null");
             }
         });
 
@@ -71,39 +58,22 @@ public class WorkoutFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle("Workout");
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle("See All");
         String userLevel = UserData.getUserLevel(getContext());
         ColorStateList colorStateList = ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.limegreen));
-        if (Objects.equals(userLevel, "Beginner"))
-            binding.btnBeginner.setBackgroundTintList(colorStateList);
-        else if (Objects.equals(userLevel, "Intermediate"))
-            binding.btnIntermediate.setBackgroundTintList(colorStateList);
-        else
-            binding.btnAdvanced.setBackgroundTintList(colorStateList);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         navController = Navigation.findNavController(view);
+        workoutViewModel.loadAllWorkouts();
         workoutAdapter.setOnItemClickListener(new WorkoutAdapter.OnWorkoutListener() {
             @Override
             public void onItemClick(Workout workout) {
                 sharedViewModel.select(workout);
-                navController.navigate(R.id.action_workoutFragment_to_exerciseRoutineFragment);
+                navController.navigate(R.id.action_workoutAllFragment_to_exerciseRoutineFragment);
             }
         });
-
-        workoutViewModel.getWorkouts().observe(getViewLifecycleOwner(), workouts -> {
-            if (workouts != null && !workouts.isEmpty()) {
-                Workout firstWorkout = workouts.get(0);
-                FavoriteHelper.checkFavorite(firstWorkout, getContext(), binding.imgStar);
-
-                binding.imgStar.setOnClickListener(v ->
-                        FavoriteHelper.setFavorite(firstWorkout, v.getContext(), binding.imgStar)
-                );
-            }
-        });
-
     }
 }

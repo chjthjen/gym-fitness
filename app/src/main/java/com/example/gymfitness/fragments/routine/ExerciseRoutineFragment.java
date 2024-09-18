@@ -21,6 +21,7 @@
     import com.example.gymfitness.data.entities.Round;
     import com.example.gymfitness.data.entities.Workout;
     import com.example.gymfitness.databinding.FragmentExerciseRoutineBinding;
+    import com.example.gymfitness.helpers.FavoriteHelper;
     import com.example.gymfitness.utils.UserData;
     import com.example.gymfitness.viewmodels.ExerciseRoutineViewModel;
     import com.example.gymfitness.viewmodels.SharedViewModel;
@@ -83,6 +84,15 @@
         @Override
         public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
             super.onViewCreated(view, savedInstanceState);
+            Workout workout = sharedViewModel.getSelected().getValue();
+            binding.imgStar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    FavoriteHelper.setFavorite(workout,v.getContext(), binding.imgStar);
+                }
+            });
+
+            FavoriteHelper.checkFavorite(workout, getContext(), binding.imgStar);
         }
 
         @Override

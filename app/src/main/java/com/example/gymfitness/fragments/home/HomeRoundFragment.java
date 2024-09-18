@@ -18,9 +18,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.bumptech.glide.Glide;
 import com.example.gymfitness.R;
 import com.example.gymfitness.adapters.home.RoundRCVAdapter;
+import com.example.gymfitness.data.entities.Exercise;
 import com.example.gymfitness.data.entities.Round;
 import com.example.gymfitness.data.entities.Workout;
 import com.example.gymfitness.databinding.FragmentExerciseRoutineBinding;
+import com.example.gymfitness.helpers.FavoriteHelper;
 import com.example.gymfitness.utils.UserData;
 import com.example.gymfitness.viewmodels.ExerciseRoutineViewModel;
 import com.example.gymfitness.viewmodels.SharedViewModel;
@@ -37,7 +39,6 @@ public class HomeRoundFragment extends Fragment {
     private RoundRCVAdapter roundAdapter;
     private String level;
 
-    // Remove the private constructor
     public HomeRoundFragment() { }
 
     @Nullable
@@ -76,6 +77,15 @@ public class HomeRoundFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        Workout workout = sharedViewModel.getSelected().getValue();
+        binding.imgStar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FavoriteHelper.setFavorite(workout,v.getContext(), binding.imgStar);
+            }
+        });
+
+        FavoriteHelper.checkFavorite(workout, getContext(), binding.imgStar);
     }
 
     @Override

@@ -6,19 +6,30 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+
 import com.bumptech.glide.Glide;
 import com.example.gymfitness.R;
 import com.example.gymfitness.data.entities.Exercise;
 import com.example.gymfitness.databinding.ExerciseInRoutineItemBinding;
+import com.example.gymfitness.helpers.FavoriteHelper;
+import com.example.gymfitness.viewmodels.SharedViewModel;
+
 import java.util.List;
 
 public class ExerciseInOwnRoutineAdapter extends BaseAdapter { // adapter cho exercise_in_routine_item.xml
     private final List<Exercise> exerciseList;
     private final LayoutInflater inflater;
-
-    public ExerciseInOwnRoutineAdapter(Context context, List<Exercise> exerciseList) {
+    private final ExerciseRemoveListener exerciseRemoveListener;
+    private SharedViewModel sharedViewModel;
+    private NavController navController;
+    public ExerciseInOwnRoutineAdapter(Context context, List<Exercise> exerciseList, ExerciseRemoveListener exerciseRemoveListener, SharedViewModel sharedViewModel) {
         this.exerciseList = exerciseList;
         this.inflater = LayoutInflater.from(context);
+        this.exerciseRemoveListener = exerciseRemoveListener;
+        this.sharedViewModel = sharedViewModel;
+
     }
 
     @Override
@@ -39,7 +50,6 @@ public class ExerciseInOwnRoutineAdapter extends BaseAdapter { // adapter cho ex
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         ExerciseInRoutineItemBinding binding;
-
         if(view == null) {
             binding = ExerciseInRoutineItemBinding.inflate(inflater, viewGroup, false);
             view = binding.getRoot();
@@ -59,9 +69,30 @@ public class ExerciseInOwnRoutineAdapter extends BaseAdapter { // adapter cho ex
         binding.imgPlayvideo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                exerciseRemoveListener.onExerciseRemoved(exercise);
+            }
+        });
 
+        binding.thumbnail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                navController = Navigation.findNavController(view);
+                sharedViewModel.selectExercise(exercise);
+                navController.navigate(R.id.action_ownRoutineFragment_to_exerciseDetail);
+            }
+        });
+
+        FavoriteHelper.checkFavorite(exercise, view.getContext(), binding.imgStar);
+        binding.imgStar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FavoriteHelper.setFavorite(exercise,v.getContext(), binding.imgStar);
             }
         });
         return view;
+    }
+
+    public interface ExerciseRemoveListener {
+        void onExerciseRemoved(Exercise exercise);
     }
 }

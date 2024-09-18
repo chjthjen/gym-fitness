@@ -39,6 +39,15 @@
         <action
             android:id="@+id/action_homeFragment_to_progressTrackingMainFragment"
             app:destination="@id/progressTrackingMainFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_workoutAllFragment"
+            app:destination="@id/workoutAllFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_weeklyChallengeAFragment"
+            app:destination="@id/weeklyChallengeAFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_articlesearch"
+            app:destination="@id/articlesearch" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -121,9 +130,16 @@
     </fragment>
     <fragment
         android:id="@+id/workoutSearch_6_3_2_A"
-        android:name="com.example.gymfitness.fragments.search.WorkoutSearch_6_3_2_A"
+        android:name="com.example.gymfitness.fragments.search.WorkoutSearchFragment"
         android:label="fragment_workout_search_6_3_2__a"
-        tools:layout="@layout/fragment_workout_search_6_3_2__a" />
+        tools:layout="@layout/fragment_workout_search_6_3_2__a" >
+        <action
+            android:id="@+id/action_workoutSearch_6_3_2_A_to_exerciseRoutineFragment"
+            app:destination="@id/exerciseRoutineFragment" />
+        <action
+            android:id="@+id/action_workoutSearch_6_3_2_A_to_articlesearch"
+            app:destination="@id/articlesearch" />
+    </fragment>
     <fragment
         android:id="@+id/ownRoutineFragment"
         android:name="com.example.gymfitness.fragments.routine.OwnRoutineFragment"
@@ -132,6 +148,9 @@
         <action
             android:id="@+id/action_ownRoutineFragment_to_createExerciseForOwnRoutineFragment"
             app:destination="@id/createExerciseForOwnRoutineFragment" />
+        <action
+            android:id="@+id/action_ownRoutineFragment_to_exerciseDetail"
+            app:destination="@id/exerciseDetail" />
     </fragment>
     <fragment
         android:id="@+id/exerciseRoutineFragment"
@@ -174,7 +193,14 @@
         android:name="com.example.gymfitness.fragments.challenge.CongratulationFragment"
         android:label="CongratulationFragment"
         tools:layout="@layout/fragment_congratulation"
-        />
+        >
+        <action
+            android:id="@+id/action_congratulationFragment_to_communityFragment2"
+            app:destination="@id/communityFragment2" />
+        <action
+            android:id="@+id/action_congratulationFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
     <fragment
         android:id="@+id/fragmentWeeklyChallengeA"
         android:name="com.example.gymfitness.fragments.challenge.FragmentWeeklyChallengeA"
@@ -272,5 +298,64 @@
         android:label="ExerciseDetailResourceFragment"
         tools:layout="@layout/fragment_exercise_detail"
         />
+    <fragment
+        android:id="@+id/workoutAllFragment"
+        android:name="com.example.gymfitness.fragments.WorkoutAllFragment"
+        android:label="WorkoutAllFragment"
+        tools:layout="@layout/fragment_all_workout"
+        >
+        <action
+            android:id="@+id/action_workoutAllFragment_to_exerciseRoutineFragment"
+            app:destination="@id/exerciseRoutineFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/weeklyChallengeAFragment"
+        android:name="com.example.gymfitness.fragments.WeeklyChallenge.WeeklyChallengeAFragment"
+        android:label="WeeklyChallengeAFragment"
+        tools:layout="@layout/fragment_weekly_challenge_a"
+        >
+        <action
+            android:id="@+id/action_weeklyChallengeAFragment_to_weeklyChallengeBFragment"
+            app:destination="@id/weeklyChallengeBFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/weeklyChallengeBFragment"
+        android:name="com.example.gymfitness.fragments.WeeklyChallenge.WeeklyChallengeBFragment"
+        android:label="WeeklyChallengeBFragment"
+        tools:layout="@layout/fragment_weekly_challenge_b"
+
+        >
+        <action
+            android:id="@+id/action_weeklyChallengeBFragment_to_weeklyChallengeCFragment"
+            app:destination="@id/weeklyChallengeCFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/weeklyChallengeCFragment"
+        android:name="com.example.gymfitness.fragments.WeeklyChallenge.WeeklyChallengeCFragment"
+        android:label="WeeklyChallengeCFragment"
+        tools:layout="@layout/fragment_weekly_challenge_c"
+        >
+        <action
+            android:id="@+id/action_weeklyChallengeCFragment_to_weeklyChallengeDFragment"
+            app:destination="@id/weeklyChallengeDFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/weeklyChallengeDFragment"
+        android:name="com.example.gymfitness.fragments.WeeklyChallenge.WeeklyChallengeDFragment"
+        android:label="WeeklyChallengeDFragment"
+        tools:layout="@layout/fragment_congratulation"
+        />
+    <fragment android:id="@+id/articlesearch"
+        android:name="com.example.gymfitness.fragments.search.ArticleSearchFragment"
+        android:label="ArticleSearchFragment"
+        tools:layout="@layout/fragment_article_search"
+        >
+        <action
+            android:id="@+id/action_articlesearch_to_articleDetailFragment2"
+            app:destination="@id/articleDetailFragment2" />
+        <action
+            android:id="@+id/action_articlesearch_to_workoutSearch_6_3_2_A"
+            app:destination="@id/workoutSearch_6_3_2_A" />
+    </fragment>
 
 </navigation>

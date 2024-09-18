@@ -45,7 +45,9 @@ public interface RoutineRoundDAO {
     RoutineRound getRoutineRoundById(int roundId);
 
     @Transaction
-    @Query("SELECT * FROM Exercises INNER JOIN RoutineRoundExerciseCrossRef ON Exercises.exercise_id = RoutineRoundExerciseCrossRef.exerciseId WHERE RoutineRoundExerciseCrossRef.routineRoundId = :roundId")
+    @Query("SELECT Exercises.* FROM Exercises INNER JOIN RoutineRoundExerciseCrossRef ON Exercises.exercise_id = RoutineRoundExerciseCrossRef.exerciseId WHERE RoutineRoundExerciseCrossRef.routineRoundId = :roundId")
     LiveData<List<Exercise>> getExercisesForRoutineRound(int roundId);
 
+    @Query("SELECT Count(*) > 0 FROM RoutineRoundExerciseCrossRef WHERE routineRoundId = :roundId AND exerciseId = :exerciseId")
+    LiveData<Boolean> isExerciseAddedToRoutine(int roundId, int exerciseId);
 }

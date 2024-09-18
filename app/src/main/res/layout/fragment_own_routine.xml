@@ -3,28 +3,45 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="ownRoutineViewModel"
             type="com.example.gymfitness.viewmodels.OwnRoutineViewModel" />
     </data>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:background="@color/black">
 
-        <Button
-            android:id="@+id/btnCreateRound"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Create round"/>
-        
         <LinearLayout
-            android:id="@+id/roundContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginTop="16dp"/>
-    </LinearLayout>
+            android:scrollbars="vertical">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnCreateRound"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/button_start_bg"
+                android:fontFamily="@font/poppins"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="Create Round"
+                android:textAllCaps="false"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/roundContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="vertical" />
+        </LinearLayout>
+    </ScrollView>
 </layout>

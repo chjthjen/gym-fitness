@@ -1,4 +1,4 @@
-package com.example.gymfitness.fragments.challenge;
+package com.example.gymfitness.fragments.WeeklyChallenge;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,26 +13,21 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.gymfitness.R;
-import com.example.gymfitness.adapters.WeeklyChallenge.RoundAdapter;
 import com.example.gymfitness.adapters.home.RoundRCVAdapter;
-import com.example.gymfitness.data.Exercise;
 import com.example.gymfitness.data.entities.Round;
 import com.example.gymfitness.data.entities.Workout;
 import com.example.gymfitness.databinding.FragmentExerciseRoutineBinding;
-import com.example.gymfitness.helpers.FavoriteHelper;
 import com.example.gymfitness.utils.UserData;
 import com.example.gymfitness.viewmodels.ExerciseRoutineViewModel;
 import com.example.gymfitness.viewmodels.SharedViewModel;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
-public class FragmentWeeklyChallengeB extends Fragment {
+public class WeeklyChallengeBFragment extends Fragment {
     private FragmentExerciseRoutineBinding binding;
     private ExerciseRoutineViewModel viewModel;
     private SharedViewModel sharedViewModel;
@@ -43,7 +38,7 @@ public class FragmentWeeklyChallengeB extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding= DataBindingUtil.inflate(inflater, R.layout.fragment_exercise_routine, container, false);
+        binding= DataBindingUtil.inflate(inflater, R.layout.fragment_weekly_challenge_b, container, false);
         viewModel=new ViewModelProvider(requireActivity()).get(ExerciseRoutineViewModel.class);
         sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
         level = UserData.getUserLevel(getContext());
@@ -74,22 +69,11 @@ public class FragmentWeeklyChallengeB extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Workout workout = sharedViewModel.getSelected().getValue();
-        binding.imgStar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FavoriteHelper.setFavorite(workout,v.getContext(), binding.imgStar);
-            }
-        });
-
-        FavoriteHelper.checkFavorite(workout, getContext(), binding.imgStar);
     }
-
     @Override
     public void onResume() {
         super.onResume();
         Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle(level);
         loadData();
     }
-
 }

@@ -1,6 +1,7 @@
 package com.example.gymfitness.viewmodels;
 
 import android.app.Application;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -8,6 +9,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.gymfitness.data.DAO.RoutineRoundDAO;
+import com.example.gymfitness.data.DAO.RoutineRoundExerciseRefDAO;
 import com.example.gymfitness.data.entities.Exercise;
 import com.example.gymfitness.data.database.FitnessDB;
 import com.example.gymfitness.data.entities.RoutineRound;
@@ -24,16 +26,18 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class OwnRoutineViewModel extends AndroidViewModel {
-    private LiveData<List<RoutineRound>> routineRoundsLiveData;
-    private RoutineRoundDAO routineRoundDAO;
+    private final LiveData<List<RoutineRound>> routineRoundsLiveData;
+    private final RoutineRoundDAO routineRoundDAO;
+    private final RoutineRoundExerciseRefDAO routineRoundExerciseRefDAO;
     private final ExecutorService executorService;
-
-    private MutableLiveData<List<Exercise>> exeriseList = new MutableLiveData<>();
+    private final MutableLiveData<List<Exercise>> exeriseList = new MutableLiveData<>();
+    private final MutableLiveData<Boolean> exerciseAddedStatus = new MutableLiveData<>();
 
     public OwnRoutineViewModel(Application application) {
         super(application);
         FitnessDB db = FitnessDB.getInstance(application);
         routineRoundDAO = db.routineRoundDAO();
+        routineRoundExerciseRefDAO = db.routineRoundExerciseRefDAO();
         routineRoundsLiveData = routineRoundDAO.getAllRoutineRounds();
         executorService = Executors.newFixedThreadPool(2);
     }
@@ -42,107 +46,93 @@ public class OwnRoutineViewModel extends AndroidViewModel {
         return routineRoundsLiveData;
     }
 
-    // Thêm Round vào Routine
     public void addRoutineRound(String roundName) {
-        executorService.execute(new Runnable() {
-            @Override
-            public void run() {
-                RoutineRound newRoutineRound = new RoutineRound(roundName);
-                routineRoundDAO.insert(newRoutineRound);
-            }
+        executorService.execute(() -> {
+            RoutineRound newRoutineRound = new RoutineRound(roundName);
+            routineRoundDAO.insert(newRoutineRound);
         });
     }
 
-    // Xóa Round và cập nhật lại danh sách Round
     public void removeRoutineRound(int roundId) {
-        executorService.execute(new Runnable() {
-            @Override
-            public void run() {
-                RoutineRound roundToRemove = new RoutineRound();
-                roundToRemove.setId(roundId);
-                routineRoundDAO.delete(roundToRemove);
+        executorService.execute(() -> {
+            RoutineRound roundToRemove = new RoutineRound();
+            roundToRemove.setId(roundId);
+            routineRoundDAO.delete(roundToRemove);
 
-                // Sau khi xóa, cập nhật lại thứ tự các round còn lại
-                List<RoutineRound> remainingRounds = routineRoundDAO.getAllRoutineRoundsDirect();
-                if(remainingRounds != null) {
-                    for (int i = 0; i < remainingRounds.size(); i++) {
-                        String newRoundName = "Round " + (i + 1); // Cập nhật tên theo thứ tự mới
-                        RoutineRound routineRound = remainingRounds.get(i);
-                        routineRound.setName(newRoundName); // Cập nhật tên round
-                        routineRoundDAO.update(routineRound);
-                    }
+            List<RoutineRound> remainingRounds = routineRoundDAO.getAllRoutineRoundsDirect();
+            if (remainingRounds != null) {
+                for (int i = 0; i < remainingRounds.size(); i++) {
+                    String newRoundName = "Round " + (i + 1);
+                    RoutineRound routineRound = remainingRounds.get(i);
+                    routineRound.setName(newRoundName);
+                    routineRoundDAO.update(routineRound);
                 }
             }
         });
     }
 
-    public void getExercisesFromFirebase()
-    {
+    public void getExercisesFromFirebase() {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference databaseRef = database.getReference().child("Workout");
-
         databaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                List<Exercise> exercises = new ArrayList<>();
-
-                for(DataSnapshot workoutSnapshot : snapshot.getChildren()) {
-                    DataSnapshot roundSnapshot = workoutSnapshot.child("round");
-
-                    for(DataSnapshot round : roundSnapshot.getChildren()) {
-                        for (DataSnapshot exerciseSnapshot : round.getChildren()) {
-                            Exercise exercise = exerciseSnapshot.getValue(Exercise.class);
-                            String exerciseName = exerciseSnapshot.getKey();
-                            if(exercise != null) {
-                                exercise.setExercise_name(exerciseName);
-                                exercises.add(exercise);
-
-                                // Lưu vào Room Database
-                                executorService.execute(() -> {
+                executorService.execute(() -> {
+                    List<Exercise> exercises = new ArrayList<>();
+                    for (DataSnapshot workoutSnapshot : snapshot.getChildren()) {
+                        DataSnapshot roundSnapshot = workoutSnapshot.child("round");
+                        for (DataSnapshot round : roundSnapshot.getChildren()) {
+                            for (DataSnapshot exerciseSnapshot : round.getChildren()) {
+                                Exercise exercise = exerciseSnapshot.getValue(Exercise.class);
+                                String exerciseName = exerciseSnapshot.getKey();
+                                if (exercise != null) {
+                                    exercise.setExercise_name(exerciseName);
                                     Exercise existingExercise = routineRoundDAO.getExerciseByName(exerciseName);
                                     if (existingExercise == null) {
-                                        routineRoundDAO.insertExercise(exercise);
+                                        long newId = routineRoundDAO.insertExercise(exercise);
+                                        exercise.setExercise_id((int) newId);
+                                    } else {
+                                        exercise.setExercise_id(existingExercise.getExercise_id());
                                     }
-                                });
+                                    exercises.add(exercise);
+                                }
                             }
                         }
                     }
-                }
-                exeriseList.postValue(exercises);
+                    exeriseList.postValue(exercises);
+                });
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
         });
     }
 
     public void addExerciseToRound(Exercise exercise, int roundId) {
         executorService.execute(() -> {
-            // Tìm RoutineRound theo roundId
             RoutineRound routineRound = routineRoundDAO.getRoutineRoundById(roundId);
             if (routineRound != null) {
-                // Kiểm tra xem Exercise đã tồn tại hay chưa
                 Exercise existingExercise = routineRoundDAO.getExerciseByName(exercise.getExercise_name());
                 int exerciseId;
 
                 if (existingExercise == null) {
-                    // Nếu Exercise chưa tồn tại, thêm nó vào cơ sở dữ liệu
                     exerciseId = (int) routineRoundDAO.insertExercise(exercise);
                 } else {
-                    // Nếu Exercise đã tồn tại, lấy exerciseId
                     exerciseId = existingExercise.getExercise_id();
                 }
 
-                // Tạo liên kết giữa RoutineRound và Exercise bằng RoutineRoundExerciseCrossRef
                 RoutineRoundExerciseCrossRef crossRef = new RoutineRoundExerciseCrossRef(routineRound.getId(), exerciseId);
                 routineRoundDAO.insertRoutineRoundExerciseCrossRef(crossRef);
+
+                // Cập nhật trạng thái thêm bài tập thành công
+                exerciseAddedStatus.postValue(true);
+            } else {
+                exerciseAddedStatus.postValue(false);
             }
         });
     }
 
-    // Lấy dữ liệu Exercises từ Firebase
     public LiveData<List<Exercise>> getExercises() {
         return exeriseList;
     }
@@ -151,4 +141,13 @@ public class OwnRoutineViewModel extends AndroidViewModel {
         return routineRoundDAO.getExercisesForRoutineRound(roundId);
     }
 
+    public void removeExerciseFromRoutineRound(Exercise exercise, int roundId) {
+        executorService.execute(() -> {
+            Exercise existingExercise = routineRoundDAO.getExerciseByName(exercise.getExercise_name());
+            if (existingExercise != null) {
+                int exerciseId = existingExercise.getExercise_id();
+                routineRoundExerciseRefDAO.deleteRoutineRoundExerciseCrossRef(roundId, exerciseId);
+            } else {}
+        });
+    }
 }

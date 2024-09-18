@@ -31,6 +31,7 @@
             void onItemClick(Workout workout);
         }
 
+
         public void setOnItemClickListener(OnWorkoutListener listener) {
             this.listener = listener;
         }
@@ -80,6 +81,7 @@
             Workout workout = listWorkout.get(position);
             Context context = holder.itemView.getContext();
             holder.bind(workout, listener, context);
+
 
         }
 

@@ -8,8 +8,8 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="148dp"
-        android:layout_height="140dp"
+        android:layout_width="157dp"
+        android:layout_height="wrap_content"
         android:layout_marginHorizontal="5dp"
         android:background="@color/primary">
 
@@ -22,23 +22,24 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                >
+                android:background="@color/primary">
                 <ImageView
                     android:id="@+id/thumbnail"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:scaleType="fitXY"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
                     android:layout_alignParentTop="true"
                     android:src="@drawable/woman_help_home" />
                 <ImageView
                     android:id="@+id/img_star"
                     android:layout_width="15dp"
                     android:layout_height="15dp"
-                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="10dp"
-                    android:layout_marginRight="10dp"
-                    android:src="@drawable/star_varient2" />
+                    android:layout_marginEnd="10dp"
+                    android:src="@drawable/star_default" />
                 <LinearLayout
                     android:id="@+id/linear_recommand_name"
                     android:layout_width="match_parent"
@@ -82,11 +83,11 @@
                                 android:fontFamily="@font/poppins"
                                 android:text='@{String.valueOf(item.duration) + " Minutes"}'
                                 android:textColor="@color/white"
-                                android:textSize="10sp" />
+                                android:textSize="12sp" />
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="9dp"
-                                android:layout_marginLeft="45dp"
+                                android:layout_marginStart="20dp"
                                 android:src="@drawable/ic_calories_home" />
                             <TextView
                                 android:layout_width="wrap_content"
@@ -95,7 +96,7 @@
                                 android:fontFamily="@font/poppins"
                                 android:text='@{String.valueOf(item.rep) + " Rep"}'
                                 android:textColor="@color/white"
-                                android:textSize="10sp" />
+                                android:textSize="12sp" />
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
@@ -103,8 +104,8 @@
                     android:id="@+id/btnAddExercise"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_alignParentRight="true"
+                    android:layout_marginEnd="10dp"
+                    android:layout_alignParentEnd="true"
                     android:layout_marginTop="90dp"
                     android:src="@drawable/bot_video_add" />
 
