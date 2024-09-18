@@ -18,6 +18,7 @@ import androidx.media3.common.util.UnstableApi;
 import androidx.media3.exoplayer.ExoPlayer;
 import androidx.media3.ui.AspectRatioFrameLayout;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,6 +60,9 @@ public class ExerciseDetailFragment extends Fragment {
             binding.rep.setText(exercise.getRep() + " Rep");
             binding.level.setText(exercise.getLevel());
             urlVideo = exercise.getLink();
+        });
+        sharedViewModel.getSelected().observe(getViewLifecycleOwner(), workout -> {
+            Log.d("okeemoi",workout.getWorkout_name());
         });
     }
 

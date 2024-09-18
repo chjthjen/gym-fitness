@@ -1,5 +1,6 @@
 package com.example.gymfitness.adapters.challenges;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import com.example.gymfitness.R;
 import com.example.gymfitness.adapters.WorkoutAdapter;
 import com.example.gymfitness.data.entities.Workout;
 import com.example.gymfitness.databinding.ItemWorkoutNonvideoBinding;
+import com.example.gymfitness.helpers.FavoriteHelper;
 
 import java.util.ArrayList;
 
@@ -45,7 +47,8 @@ public class ChallengesAndCompetitionsRCVAdapter extends RecyclerView.Adapter<Ch
     @Override
     public void onBindViewHolder(@NonNull ChallengesAndCompetitionsViewHolder holder, int position) {
         Workout workout = listWorkout.get(position);
-        holder.bind(workout,listener);
+        Context context = holder.itemView.getContext();
+        holder.bind(workout,listener, context);
     }
 
     @Override
@@ -59,7 +62,7 @@ public class ChallengesAndCompetitionsRCVAdapter extends RecyclerView.Adapter<Ch
             super(binding.getRoot());
             this.binding = binding;
         }
-        public void bind(Workout workout , OnChallengesAndCompetitionsListener listener) {
+        public void bind(Workout workout , OnChallengesAndCompetitionsListener listener, Context context) {
             binding.setItem(workout);
             binding.executePendingBindings();
 
@@ -69,6 +72,13 @@ public class ChallengesAndCompetitionsRCVAdapter extends RecyclerView.Adapter<Ch
                     .error(R.drawable.woman_helping_man_gym)
                     .into(binding.thumbnail);
             // set on click
+            FavoriteHelper.checkFavorite(workout, context, binding.star);
+            binding.star.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    FavoriteHelper.setFavorite(workout,v.getContext(), binding.star);
+                }
+            });
             if (listener != null) {
                 itemView.setOnClickListener(v -> listener.onItemClick(workout));
             }
