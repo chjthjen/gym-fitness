@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -97,17 +98,19 @@ public class EditProfileFragment extends Fragment {
                     updatedInfo.setFullname(binding.editFullname.getText().toString());
                     updatedInfo.setEmail(binding.edtEmail.getText().toString());
                     updatedInfo.setPhonenumber(binding.edtPhoneNumber.getText().toString());
-                    Date dateOfBirth =null;
+                    Date dateOfBirth = null;
                     try {
                         dateOfBirth = dob.parse(binding.edtDateOfBirth.getText().toString());
                         updatedInfo.setDob(dateOfBirth);
+                        Log.e("Ngan ne", dateOfBirth.toString());
                     } catch (Exception e) {
                         e.printStackTrace();
+                        Log.e("Lỗi nè", e.toString());
                     }
 
                     int enteredAge = updatedInfo.getAge();
                     int calculatedAge = calculateAgeFromDob(dateOfBirth);
-                    if (enteredAge != calculatedAge) {
+                    if (enteredAge != calculatedAge && dateOfBirth != null) {
                         updatedInfo.setAge(calculatedAge);
                     } else {
                         updatedInfo.setAge(enteredAge);
