@@ -10,6 +10,7 @@ import com.bumptech.glide.Glide;
 import com.example.gymfitness.R;
 import com.example.gymfitness.data.entities.Exercise;
 import com.example.gymfitness.databinding.ExerciseForRoutineItemBinding;
+import com.example.gymfitness.helpers.FavoriteHelper;
 
 import java.util.HashSet;
 import java.util.List;
@@ -91,6 +92,13 @@ public class ExerciseForOwnRoutineAdapter extends BaseAdapter {
             exerciseAddListener.onExerciseAdded(exercise);
         });
 
+        FavoriteHelper.checkFavorite(exercise, view.getContext(), binding.imgStar);
+        binding.imgStar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FavoriteHelper.setFavorite(exercise,v.getContext(), binding.imgStar);
+            }
+        });
         return view;
     }
 
