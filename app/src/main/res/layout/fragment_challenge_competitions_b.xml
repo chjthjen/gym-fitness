@@ -12,6 +12,14 @@
             android:scaleType="centerCrop"
             android:src="@drawable/challenge_competitions_b" />
 
+        <ImageButton
+            android:id="@+id/btn_back"
+            android:layout_width="10dp"
+            android:layout_height="12dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="72dp"
+            android:background="@null"
+            android:src="@drawable/arrow" />
         <LinearLayout
             android:id="@+id/linear"
             android:layout_width="match_parent"
