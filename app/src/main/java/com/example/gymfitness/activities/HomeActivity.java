@@ -108,4 +108,8 @@ public class HomeActivity extends AppCompatActivity {
         super.onDestroy();
         binding = null;
     }
+
+    public BottomNavigationView getBottomNavigationView() {
+        return binding.navigationBottom;
+    }
 }

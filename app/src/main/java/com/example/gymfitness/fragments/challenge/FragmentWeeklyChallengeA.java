@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.bumptech.glide.Glide;
 import com.example.gymfitness.R;
+import com.example.gymfitness.activities.HomeActivity;
 import com.example.gymfitness.adapters.home.RoundRCVAdapter;
 import com.example.gymfitness.data.entities.Round;
 import com.example.gymfitness.data.entities.Workout;
@@ -62,14 +63,16 @@ public class FragmentWeeklyChallengeA extends Fragment {
     public void onResume() {
         super.onResume();
         Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).hide();
+        ((HomeActivity) requireActivity()).getBottomNavigationView().setVisibility(View.GONE);
         loadData();
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).show();
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        ((HomeActivity) requireActivity()).getBottomNavigationView().setVisibility(View.VISIBLE);
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).show();
     }
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {

@@ -97,6 +97,11 @@ public class ExerciseDetailFragment extends Fragment {
             progressDialog.setCancelable(false); // Optional
             progressDialog.show();
             playVideo(urlVideo);
+
+            // save progess
+            
+
+            // congratulation navigate
         });
 
 
