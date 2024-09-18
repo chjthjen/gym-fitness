@@ -131,45 +131,14 @@
             </FrameLayout>
         </RelativeLayout>
 
-        <TextView
-            android:id="@+id/textView29"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcv_round"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_below="@id/rl1"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="25dp"
-            android:fontFamily="@font/poppins"
-            android:text="@string/round_1"
-            android:textColor="#E2F163"
-            android:textSize="20sp" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvRound1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/textView29"
-            android:layout_marginHorizontal="25dp"
-            android:layout_marginTop="15dp" />
-
-        <TextView
-            android:id="@+id/textView30"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/rvRound1"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="25dp"
-            android:fontFamily="@font/poppins"
-            android:text="@string/round_2"
-            android:textColor="#E2F163"
-            android:textSize="20sp" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvRound2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/textView30"
-            android:layout_marginHorizontal="25dp"
-            android:layout_marginTop="15dp" />
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="20dp"
+            />
 
     </RelativeLayout>
 
