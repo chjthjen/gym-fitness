@@ -27,6 +27,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.gymfitness.R;
 
 import com.example.gymfitness.adapters.CustomAdapterListViewWorkoutSearch;
+import com.example.gymfitness.adapters.home.ArticlesTipsRCVAdapter;
 import com.example.gymfitness.adapters.resources.ArticleResourceAdapter;
 import com.example.gymfitness.data.entities.Article;
 
@@ -50,6 +51,7 @@ public class ArticleSearchFragment extends Fragment {
     private HomeViewModel articleViewModel;
     private RecyclerView rvArticleItem;
     private ArticleResourceAdapter articleAdapter;
+    private NavController navController;
 
     public ArticleSearchFragment() {
     }
@@ -64,6 +66,8 @@ public class ArticleSearchFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_article_search, container, false);
+
+        articleViewModel = new ViewModelProvider(requireActivity()).get(HomeViewModel.class);
 
         listView = view.findViewById(R.id.listView);
         edtSearch = view.findViewById(R.id.edtSearchArticle);
@@ -129,6 +133,15 @@ public class ArticleSearchFragment extends Fragment {
 
         articleViewModel.loadArticlesItem();
 
+        Button btnWorkout = view.findViewById(R.id.btnWorkout);
+        btnWorkout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavController navController = Navigation.findNavController(v);
+                navController.navigate(R.id.action_articlesearch_to_workoutSearch);
+            }
+        });
+
         return view;
     }
 
@@ -156,5 +169,16 @@ public class ArticleSearchFragment extends Fragment {
     public void onResume() {
         super.onResume();
         Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle("Search");
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        navController = Navigation.findNavController(view);
+        articleAdapter.setOnItemClickListener(article -> {
+            Bundle bundle = new Bundle();
+            bundle.putString("articleTitle", article.getArticle_title());
+            navController.navigate(R.id.action_articlesearch_to_articleDetailFragment2, bundle);
+        });
     }
 }

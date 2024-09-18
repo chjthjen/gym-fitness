@@ -72,12 +72,12 @@ public class FillProfileFragment extends Fragment {
                     executorService.execute(() -> {
                         setUpViewModel.saveUserInformation();
                     });
-                    navController.navigate(R.id.action_fillProfileFragment_to_ownRoutineFragment2);
+//                    navController.navigate(R.id.action_fillProfileFragment_to_ownRoutineFragment2);
 
-                    // bỏ vào nút continue bên routine own
-//                    Intent intent = new Intent(getContext(), HomeActivity.class);
-//                    startActivity(intent);
-//                    getActivity().finish();
+//                     bỏ vào nút continue bên routine own
+                    Intent intent = new Intent(getContext(), HomeActivity.class);
+                    startActivity(intent);
+                    getActivity().finish();
                 }
             }
         });
