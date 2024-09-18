@@ -48,7 +48,7 @@
     <GridView
         android:id="@+id/gvExercises"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="wrap_content"
         android:numColumns="2"
         android:verticalSpacing="10dp"
         android:layout_marginTop="15dp"
