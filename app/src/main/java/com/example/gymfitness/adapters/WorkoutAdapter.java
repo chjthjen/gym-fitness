@@ -82,6 +82,7 @@
             Context context = holder.itemView.getContext();
             holder.bind(workout, listener, context);
 
+
         }
 
         @Override

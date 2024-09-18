@@ -137,7 +137,7 @@
                     <ImageView
                         android:id="@+id/img_star"
                         android:layout_width="wrap_content"
-                        android:layout_height="20dp"
+                        android:layout_height="15dp"
                         android:layout_marginLeft="250dp"
                         android:layout_marginTop="180dp"
                         android:src="@drawable/star_default"

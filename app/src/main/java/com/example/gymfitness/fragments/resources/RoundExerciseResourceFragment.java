@@ -1,6 +1,6 @@
 package com.example.gymfitness.fragments.resources;
+
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,9 +17,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.bumptech.glide.Glide;
 import com.example.gymfitness.R;
 import com.example.gymfitness.adapters.home.RoundRCVAdapter;
+import com.example.gymfitness.data.entities.Exercise;
 import com.example.gymfitness.data.entities.Round;
 import com.example.gymfitness.data.entities.Workout;
 import com.example.gymfitness.databinding.FragmentExerciseRoutineBinding;
+import com.example.gymfitness.helpers.FavoriteHelper;
 import com.example.gymfitness.utils.UserData;
 import com.example.gymfitness.viewmodels.ExerciseRoutineViewModel;
 import com.example.gymfitness.viewmodels.SharedViewModel;
@@ -35,11 +37,12 @@ public class RoundExerciseResourceFragment extends Fragment {
     private RoundRCVAdapter roundAdapter;
     private String level;
 
+
     public RoundExerciseResourceFragment() { }
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_exercise_routine, container, false);
         viewModel = new ViewModelProvider(requireActivity()).get(ExerciseRoutineViewModel.class);
         sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
@@ -73,6 +76,15 @@ public class RoundExerciseResourceFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        Workout workout = sharedViewModel.getSelected().getValue();
+        binding.imgStar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FavoriteHelper.setFavorite(workout,v.getContext(), binding.imgStar);
+            }
+        });
+
+        FavoriteHelper.checkFavorite(workout, getContext(), binding.imgStar);
     }
 
     @Override
