@@ -27,6 +27,7 @@ import com.example.gymfitness.R;
 import com.example.gymfitness.adapters.CustomAdapterListViewWorkoutSearch;
 import com.example.gymfitness.adapters.WorkoutAdapter;
 import com.example.gymfitness.data.entities.Workout;
+import com.example.gymfitness.viewmodels.SharedViewModel;
 import com.example.gymfitness.viewmodels.WorkoutViewModel;
 
 import java.util.ArrayList;
@@ -46,6 +47,8 @@ public class WorkoutSearchFragment extends Fragment {
     private WorkoutViewModel workoutViewModel;
     private RecyclerView rvWorkoutItem;
     private WorkoutAdapter workoutAdapter;
+    private NavController navController;
+    private SharedViewModel sharedViewModel;
 
     public WorkoutSearchFragment() {
     }
@@ -60,6 +63,8 @@ public class WorkoutSearchFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_workout_search_6_3_2__a, container, false);
+
+        sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
 
         listView = view.findViewById(R.id.listView);
         edtSearch = view.findViewById(R.id.edtSearch);
@@ -146,5 +151,18 @@ public class WorkoutSearchFragment extends Fragment {
     public void onResume() {
         super.onResume();
         Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle("Search");
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        navController = Navigation.findNavController(view);
+        workoutAdapter.setOnItemClickListener(new WorkoutAdapter.OnWorkoutListener() {
+            @Override
+            public void onItemClick(Workout workout) {
+                sharedViewModel.select(workout);
+                navController.navigate(R.id.action_workoutSearchFragment_to_exerciseRoutineFragment);
+            }
+        });
     }
 }
