@@ -2,6 +2,7 @@ package com.example.gymfitness.fragments;
 
 import static android.content.ContentValues.TAG;
 
+import android.content.Context;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,9 +24,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.gymfitness.R;
 import com.example.gymfitness.adapters.WorkoutAdapter;
-import com.example.gymfitness.data.entities.Round;
 import com.example.gymfitness.data.entities.Workout;
 import com.example.gymfitness.databinding.FragmentWorkoutBinding;
+import com.example.gymfitness.helpers.FavoriteHelper;
 import com.example.gymfitness.utils.UserData;
 import com.example.gymfitness.viewmodels.SharedViewModel;
 import com.example.gymfitness.viewmodels.WorkoutViewModel;
@@ -41,11 +42,9 @@ public class WorkoutFragment extends Fragment {
     private NavController navController;
     private SharedViewModel sharedViewModel;
 
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_workout, container, false);
         workoutViewModel = new ViewModelProvider(requireActivity()).get(WorkoutViewModel.class);
         workoutViewModel.setUserLevel(getContext());
@@ -66,8 +65,6 @@ public class WorkoutFragment extends Fragment {
             }
         });
 
-
-
         return binding.getRoot();
     }
 
@@ -77,13 +74,12 @@ public class WorkoutFragment extends Fragment {
         Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle("Workout");
         String userLevel = UserData.getUserLevel(getContext());
         ColorStateList colorStateList = ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.limegreen));
-        if(Objects.equals(userLevel,"Beginner"))
+        if (Objects.equals(userLevel, "Beginner"))
             binding.btnBeginner.setBackgroundTintList(colorStateList);
-        else if(Objects.equals(userLevel,"Intermediate"))
+        else if (Objects.equals(userLevel, "Intermediate"))
             binding.btnIntermediate.setBackgroundTintList(colorStateList);
         else
             binding.btnAdvanced.setBackgroundTintList(colorStateList);
-
     }
 
     @Override
@@ -97,5 +93,17 @@ public class WorkoutFragment extends Fragment {
                 navController.navigate(R.id.action_workoutFragment_to_exerciseRoutineFragment);
             }
         });
+
+        workoutViewModel.getWorkouts().observe(getViewLifecycleOwner(), workouts -> {
+            if (workouts != null && !workouts.isEmpty()) {
+                Workout firstWorkout = workouts.get(0);
+                FavoriteHelper.checkFavorite(firstWorkout, getContext(), binding.imgStar);
+
+                binding.imgStar.setOnClickListener(v ->
+                        FavoriteHelper.setFavorite(firstWorkout, v.getContext(), binding.imgStar)
+                );
+            }
+        });
+
     }
 }

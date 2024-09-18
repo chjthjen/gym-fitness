@@ -39,7 +39,6 @@ public class HomeRoundFragment extends Fragment {
     private RoundRCVAdapter roundAdapter;
     private String level;
 
-    // Remove the private constructor
     public HomeRoundFragment() { }
 
     @Nullable
