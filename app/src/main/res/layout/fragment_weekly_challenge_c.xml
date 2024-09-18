@@ -16,7 +16,7 @@
                 android:id="@+id/parentLayout7_1_1_1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="10dp">
+                >
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/headerLayout"

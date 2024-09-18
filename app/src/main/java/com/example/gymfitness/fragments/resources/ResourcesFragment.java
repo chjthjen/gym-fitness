@@ -2,6 +2,7 @@ package com.example.gymfitness.fragments.resources;
 
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -14,6 +15,8 @@ import com.example.gymfitness.adapters.resources.ResourcesViewpagerAdapter;
 import com.example.gymfitness.databinding.FragmentResourcesBinding;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
+
+import java.util.Objects;
 
 public class ResourcesFragment extends Fragment {
     FragmentResourcesBinding binding;
@@ -31,6 +34,7 @@ public class ResourcesFragment extends Fragment {
     public void onResume() {
         super.onResume();
         setUpTabs();
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle("Resources");
     }
 
     private void setUpTabs() {
