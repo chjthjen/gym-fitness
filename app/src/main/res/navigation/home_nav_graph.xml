@@ -247,5 +247,20 @@
         android:name="com.example.gymfitness.fragments.resources.ArticleResourceDetailFragment"
         android:label="ArticleResourceDetailFragment"
         tools:layout="@layout/fragment_article_detail"/>
+    <fragment
+        android:id="@+id/roundExerciseResourceFragment"
+        android:name="com.example.gymfitness.fragments.resources.RoundExerciseResourceFragment"
+        android:label="RoundExerciseResourceFragment"
+        tools:layout="@layout/fragment_exercise_routine"/>
+    <fragment
+        android:id="@+id/workoutResourceFragment"
+        android:name="com.example.gymfitness.fragments.resources.WorkoutResourceFragment"
+        android:label="WorkoutResourceFragment"
+        tools:layout="@layout/fragment_workout_resource"
+        >
+        <action
+            android:id="@+id/action_workoutResourceFragment_to_roundExerciseResourceFragment"
+            app:destination="@id/roundExerciseResourceFragment" />
+    </fragment>
 
 </navigation>
