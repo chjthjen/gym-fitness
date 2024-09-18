@@ -1,21 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+
     <data>
-        <import type="android.view.View" />
         <variable
             name="notification"
-            type="com.example.gymfitness.data.Notification" />
+            type="com.example.gymfitness.viewmodels.ItemActivitiesViewModel" />
     </data>
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:background="@drawable/item_acti"
         android:layout_height="75dp"
         android:layout_marginTop="10dp"
+        android:background="@drawable/item_acti"
         android:padding="5dp">
+
         <RelativeLayout
             android:layout_width="70dp"
             android:layout_height="70dp">
+
             <ImageView
                 android:id="@+id/imageView12"
                 android:layout_width="60dp"
@@ -24,7 +27,7 @@
                 android:background="@drawable/button_mau_xanh" />
 
             <ImageView
-                android:id="@+id/imageView13"
+                android:id="@+id/img_workout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
@@ -35,9 +38,9 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
+            android:layout_weight="1"
             android:orientation="vertical">
 
             <LinearLayout
@@ -45,73 +48,73 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                    <ImageView
-                        android:id="@+id/imgkcal"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_centerInParent="true"
-                        tools:srcCompat="@drawable/ic_calories_home" />
+                <ImageView
+                    android:id="@+id/imgkcal"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerInParent="true"
+                    tools:srcCompat="@drawable/ic_calories_home" />
 
 
                 <TextView
-                    android:id="@+id/textView32"
+                    android:id="@+id/tvkcal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/league_spartan"
                     android:text="120 Kcal"
-                    android:textSize="12sp"
-                    android:fontFamily="@font/league_spartan"/>
+                    android:textSize="12sp" />
             </LinearLayout>
 
             <TextView
-                android:id="@+id/exer_name"
+                android:id="@+id/tvworkoutlogname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Upper Body Workout"
                 android:fontFamily="@font/poppins_bold"
+                android:text="Upper Body Workout"
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/exer_date"
+                android:id="@+id/tvworkoutlogday"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="June 09"
                 android:fontFamily="@font/poppins"
+                android:text="June 09"
                 android:textColor="@color/purple"
                 android:textSize="12sp" />
         </LinearLayout>
 
         <ImageView
-            android:id="@+id/imageView15"
+            android:id="@+id/img_clock"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_marginRight="5dp"
             android:layout_gravity="center"
+            android:layout_marginRight="5dp"
             tools:srcCompat="@drawable/purple_clock" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_marginRight="5dp"
             android:gravity="center"
-            android:orientation="vertical"
-            android:layout_marginRight="5dp">
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/textView37"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins"
                 android:text="Duration"
                 android:textColor="@color/purple"
-                android:textSize="15sp"
-                android:fontFamily="@font/poppins"/>
+                android:textSize="15sp" />
 
             <TextView
-                android:id="@+id/exer_min"
+                android:id="@+id/tvworkoutlogmin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="25 Mins"
                 android:fontFamily="@font/poppins"
+                android:text="25 Mins"
                 android:textColor="@color/purple"
-                android:textSize="17sp"/>
+                android:textSize="17sp" />
         </LinearLayout>
     </LinearLayout>
 </layout>

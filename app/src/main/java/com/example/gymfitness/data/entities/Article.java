@@ -4,6 +4,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 @Entity(tableName = "Article")
 public class Article implements Serializable {
@@ -86,4 +87,5 @@ public class Article implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
+
 }

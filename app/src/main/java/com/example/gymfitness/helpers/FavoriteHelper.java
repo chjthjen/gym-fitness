@@ -1,7 +1,6 @@
 package com.example.gymfitness.helpers;
 
 import android.content.Context;
-import android.util.Log;
 import android.widget.ImageView;
 
 import com.example.gymfitness.R;
@@ -13,19 +12,24 @@ import com.example.gymfitness.data.entities.FavoriteExercise;
 import com.example.gymfitness.data.entities.FavoriteWorkout;
 import com.example.gymfitness.data.entities.Workout;
 
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class FavoriteHelper {
     private static FavoriteHelper instance;
+
     public static FavoriteHelper getInstance() {
         if (instance == null) {
             instance = new FavoriteHelper();
         }
         return instance;
     }
+
     static ExecutorService executorService;
+
     public static void setFavorite(Object object, Context context, ImageView star) {
         AtomicBoolean is_favorite = new AtomicBoolean(false);
         executorService = Executors.newSingleThreadExecutor();
@@ -51,8 +55,7 @@ public class FavoriteHelper {
                     });
                 }
             });
-        }
-        else if (object instanceof Exercise) {
+        } else if (object instanceof Exercise) {
             Exercise exercise = (Exercise) object;
             executorService.execute(() -> {
                 FavoriteExercise favExercise = FitnessDB.getInstance(context).favoriteExerciseDAO().getExercise(exercise.getExercise_name());
@@ -73,8 +76,7 @@ public class FavoriteHelper {
                     });
                 }
             });
-        }
-        else if(object instanceof Article){
+        } else if (object instanceof Article) {
             Article article = (Article) object;
             executorService.execute(() -> {
                 FavoriteArticle favArticle = FitnessDB.getInstance(context).favoriteArticleDAO().getArticle(article.getArticle_title());
@@ -145,6 +147,21 @@ public class FavoriteHelper {
         return is_favorite.get();
     }
 
-
+    public static List<FavoriteWorkout> getListFavoriteWorkout(Context context) {
+        AtomicReference<List<FavoriteWorkout>> favoriteWorkouts = new AtomicReference<>();
+        ExecutorService executorService = Executors.newSingleThreadExecutor();
+        executorService.execute(() -> {
+            favoriteWorkouts.set(FitnessDB.getInstance(context).favoriteWorkoutDAO().getAll());
+        });
+        return favoriteWorkouts.get();
+    }
+    public static List<FavoriteArticle> getListFavoriteArticle(Context context) {
+        AtomicReference<List<FavoriteArticle>> favoriteArticles = new AtomicReference<>();
+        ExecutorService executorService = Executors.newSingleThreadExecutor();
+        executorService.execute(() -> {
+            favoriteArticles.set(FitnessDB.getInstance(context).favoriteArticleDAO().getAll());
+        });
+        return favoriteArticles.get();
+    }
 
 }

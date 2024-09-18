@@ -11,9 +11,11 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.gymfitness.data.database.FitnessDB;
 import com.example.gymfitness.data.entities.Exercise;
+import com.example.gymfitness.data.entities.FavoriteWorkout;
 import com.example.gymfitness.data.entities.Round;
 import com.example.gymfitness.data.entities.Workout;
 import com.example.gymfitness.firebase.FirebaseRepository;
+import com.example.gymfitness.helpers.FavoriteHelper;
 import com.example.gymfitness.utils.Resource;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -170,5 +172,45 @@ public class WorkoutViewModel extends ViewModel {
     }
 
 
+
+    public void loadArticlesByFavorite( Context context) {
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                ArrayList<Workout> workoutList = new ArrayList<>();
+                for (DataSnapshot workoutSnapshot : dataSnapshot.getChildren()) {
+                    Workout workout = workoutSnapshot.getValue(Workout.class);
+                    workout.setWorkout_name(workoutSnapshot.getKey());
+                    ArrayList<Round> roundsList = new ArrayList<>();
+                    for (DataSnapshot roundSnapshot : workoutSnapshot.child("round").getChildren()) {
+                        Round round = roundSnapshot.getValue(Round.class);
+                        round.setRound_name(roundSnapshot.getKey());
+                        ArrayList<Exercise> exercisesList = new ArrayList<>();
+                        for (DataSnapshot exerciseSnapshot : roundSnapshot.getChildren()) {
+                            Exercise exercise = exerciseSnapshot.getValue(Exercise.class);
+                            exercise.setExercise_name(exerciseSnapshot.getKey());
+                            exercisesList.add(exercise);
+                        }
+                        round.setExercises(exercisesList);
+                        roundsList.add(round);
+                    }
+                    workout.setRound(roundsList);
+                   List<FavoriteWorkout> lsFavoriteWorkouts = FavoriteHelper.getListFavoriteWorkout(context);
+                   for(FavoriteWorkout f : lsFavoriteWorkouts)
+                   {
+                       if(Objects.equals(workout.getWorkout_name(), f.getWorkout_name()))
+                           workoutList.add(workout);
+                   }
+
+                }
+                workoutsLiveData.setValue(workoutList);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.e("WorkoutViewModel", "Database error: " + databaseError.getMessage());
+            }
+        });
+    }
 
 }
