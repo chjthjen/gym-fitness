@@ -13,6 +13,8 @@ public class ProgressTracking implements Serializable {
     int pro_id;
     Date datetime_tracking;
     String exercise_id;
+    int rep;
+    int duration;
     public ProgressTracking() {
     }
 
@@ -44,5 +46,21 @@ public class ProgressTracking implements Serializable {
 
     public void setExercise_id(String exercise_id) {
         this.exercise_id = exercise_id;
+    }
+
+    public int getRep() {
+        return rep;
+    }
+
+    public void setRep(int rep) {
+        this.rep = rep;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
     }
 }
