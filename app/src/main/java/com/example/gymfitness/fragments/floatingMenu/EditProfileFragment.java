@@ -119,6 +119,13 @@ public class EditProfileFragment extends Fragment {
                 }
             }
         });
+
+        binding.btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                requireActivity().onBackPressed();
+            }
+        });
         return binding.getRoot();
     }
 
