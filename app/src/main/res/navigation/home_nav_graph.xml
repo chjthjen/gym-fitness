@@ -135,6 +135,9 @@
         <action
             android:id="@+id/action_ownRoutineFragment_to_createExerciseForOwnRoutineFragment"
             app:destination="@id/createExerciseForOwnRoutineFragment" />
+        <action
+            android:id="@+id/action_ownRoutineFragment_to_exerciseDetail"
+            app:destination="@id/exerciseDetail" />
     </fragment>
     <fragment
         android:id="@+id/exerciseRoutineFragment"

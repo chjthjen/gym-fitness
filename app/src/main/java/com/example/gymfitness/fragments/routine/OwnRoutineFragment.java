@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -11,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +25,7 @@ import com.example.gymfitness.data.entities.Exercise;
 import com.example.gymfitness.data.entities.RoutineRound;
 import com.example.gymfitness.databinding.FragmentOwnRoutineBinding;
 import com.example.gymfitness.viewmodels.OwnRoutineViewModel;
+import com.example.gymfitness.viewmodels.SharedViewModel;
 
 import java.util.List;
 import java.util.Objects;
@@ -32,6 +35,7 @@ public class OwnRoutineFragment extends Fragment {
     private OwnRoutineViewModel ownRoutineViewModel;
     private NavController navController;
     private ExerciseInOwnRoutineAdapter adapter;
+    private SharedViewModel sharedViewModel;
 
     public OwnRoutineFragment() {}
 
@@ -40,6 +44,7 @@ public class OwnRoutineFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentOwnRoutineBinding.inflate(inflater, container, false);
         ownRoutineViewModel = new ViewModelProvider(this).get(OwnRoutineViewModel.class);
+        sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
         binding.setOwnRoutineViewModel(ownRoutineViewModel);
         binding.setLifecycleOwner(this);
         return binding.getRoot();
@@ -100,7 +105,7 @@ public class OwnRoutineFragment extends Fragment {
                 public void onExerciseRemoved(Exercise exercise) {
                     ownRoutineViewModel.removeExerciseFromRoutineRound(exercise, roundId);
                 }
-            });
+            },sharedViewModel);
             gvExercises.setAdapter(adapter);
         });
     }
@@ -108,6 +113,11 @@ public class OwnRoutineFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle("Your Routine");
+        ActionBar actionBar = ((AppCompatActivity) requireActivity()).getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setTitle("Your Routine");
+        } else {
+            Log.d("OwnRoutineFragment", "No action bar present.");
+        }
     }
 }

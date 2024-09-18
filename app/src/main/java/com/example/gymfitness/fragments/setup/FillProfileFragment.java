@@ -10,6 +10,8 @@ import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,6 +37,7 @@ public class FillProfileFragment extends Fragment {
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
     private ExecutorService executorService;
+    private NavController navController;
 
     public FillProfileFragment() {
         // Required empty public constructor
@@ -49,7 +52,6 @@ public class FillProfileFragment extends Fragment {
 
         sharedPreferences = getActivity().getSharedPreferences("UserInformation", Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
-
         // thread
         executorService = Executors.newCachedThreadPool();
         return binding.getRoot();
@@ -58,6 +60,7 @@ public class FillProfileFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        navController = Navigation.findNavController(view);
         binding.btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,9 +72,12 @@ public class FillProfileFragment extends Fragment {
                     executorService.execute(() -> {
                         setUpViewModel.saveUserInformation();
                     });
-                    Intent intent = new Intent(getContext(), HomeActivity.class);
-                    startActivity(intent);
-                    getActivity().finish();
+                    navController.navigate(R.id.action_fillProfileFragment_to_ownRoutineFragment2);
+
+                    // bỏ vào nút continue bên routine own
+//                    Intent intent = new Intent(getContext(), HomeActivity.class);
+//                    startActivity(intent);
+//                    getActivity().finish();
                 }
             }
         });
