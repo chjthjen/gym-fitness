@@ -22,6 +22,7 @@ import com.example.gymfitness.adapters.home.ArticlesTipsRCVAdapter;
 import com.example.gymfitness.adapters.resources.ArticleResourceAdapter;
 
 import com.example.gymfitness.databinding.FragmentArticleResourceBinding;
+import com.example.gymfitness.viewmodels.ArticleDetailResourceViewModel;
 import com.example.gymfitness.viewmodels.HomeViewModel;
 import com.example.gymfitness.viewmodels.SharedViewModel;
 
@@ -32,6 +33,7 @@ public class ArticleResourceFragment extends Fragment {
     private FragmentArticleResourceBinding binding;
     private HomeViewModel homeViewModel;
     private SharedViewModel sharedViewModel;
+    private ArticleDetailResourceViewModel articleDetailResourceViewModel;
     public ArticleResourceFragment() {
     }
 
@@ -78,10 +80,12 @@ public class ArticleResourceFragment extends Fragment {
         });
 
         articleResourceAdapter.setOnItemClickListener(article -> {
-            sharedViewModel.setSelectedArticle(article.getArticle_title());
+            Bundle bundle = new Bundle();
+            bundle.putString("articleTitle", article.getArticle_title());
             NavController navController = Navigation.findNavController(requireView());
-            navController.navigate(R.id.articleResourceDetailFragment);
+            navController.navigate(R.id.articleResourceDetailFragment, bundle);
         });
+
     }
 
 }
