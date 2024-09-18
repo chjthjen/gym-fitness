@@ -139,6 +139,10 @@
         <action
             android:id="@+id/action_workoutSearch_6_3_2_A_to_articlesearch"
             app:destination="@id/articlesearch" />
+        <action
+            android:id="@+id/action_workoutSearchFragment_to_exerciseRoutineFragment"
+            app:destination="@id/exerciseRoutineFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/ownRoutineFragment"
@@ -356,6 +360,10 @@
         <action
             android:id="@+id/action_articlesearch_to_workoutSearch_6_3_2_A"
             app:destination="@id/workoutSearch_6_3_2_A" />
+        <action
+            android:id="@+id/action_articlesearch_to_workoutSearch"
+            app:destination="@id/workoutSearch_6_3_2_A" />
+
     </fragment>
 
 </navigation>
