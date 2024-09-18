@@ -1,66 +1,105 @@
 package com.example.gymfitness.fragments.resources;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import com.example.gymfitness.R;
+import com.example.gymfitness.adapters.home.RecommendExRCVApdater;
+import com.example.gymfitness.data.entities.Workout;
+import com.example.gymfitness.databinding.FragmentWorkoutResourceBinding;
+import com.example.gymfitness.viewmodels.HomeViewModel;
+import com.example.gymfitness.viewmodels.SharedViewModel;
+import androidx.databinding.DataBindingUtil;
+import java.util.ArrayList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link WorkoutResourceFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class WorkoutResourceFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private FragmentWorkoutResourceBinding binding;
+    private RecommendExRCVApdater recommendExRCVApdater;
+    private HomeViewModel homeViewModel;
+    private ExecutorService executorService;
+    private SharedViewModel sharedViewModel;
 
     public WorkoutResourceFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment WorkoutResourceFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static WorkoutResourceFragment newInstance(String param1, String param2) {
-        WorkoutResourceFragment fragment = new WorkoutResourceFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_workout_resource, container, false);
+        homeViewModel = new ViewModelProvider(requireActivity()).get(HomeViewModel.class);
+        //homeViewModel.setUserLevel(getContext());
+        executorService = Executors.newFixedThreadPool(3);
+        sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
+        recommendExRCVApdater = new RecommendExRCVApdater(new ArrayList<>());
+
+        return binding.getRoot();
+    }
+
+    private void setupRecyclerView() {
+        RecyclerView recyclerView = binding.rcvWorkoutResources;
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        //recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        recyclerView.setAdapter(recommendExRCVApdater);
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_workout_resource, container, false);
+    public void onResume() {
+        super.onResume();
+        setupRecyclerView();
     }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+
+
+
+        // navigate
+        //binding.imgWorkout.setOnClickListener(v -> navController.navigate(R.id.action_homeFragment_to_workoutFragment));
+        //binding.imgCommunity.setOnClickListener(v -> navController.navigate(R.id.action_homeFragment_to_communityFragment2));
+        //binding.imgProgess.setOnClickListener(v -> navController.navigate(R.id.action_homeFragment_to_progressTrackingMainFragment));
+        //homeViewModel.loadWorkoutsByLevel();
+        homeViewModel.loadRoundExercise();
+        homeViewModel.getWorkouts().observe(getViewLifecycleOwner(), resource -> {
+            switch (resource.getClass().getSimpleName()) {
+                case "Loading":
+                    binding.progressBarWorkout.setVisibility(View.VISIBLE);
+                    break;
+                case "Success":
+                    binding.progressBarWorkout.setVisibility(View.GONE);
+                    recommendExRCVApdater.setWorkoutList(resource.getData());
+                    break;
+                case "Error":
+                    binding.progressBarWorkout.setVisibility(View.GONE);
+                    Log.d("hello", resource.getMessage());
+                    break;
+            }
+        });
+
+        recommendExRCVApdater.setOnItemClickListener(new RecommendExRCVApdater.OnWorkoutRCMListener() {
+            @Override
+            public void onItemClick(Workout workout) {
+                sharedViewModel.select(workout);
+                NavController navController = Navigation.findNavController(requireView());
+                navController.navigate(R.id.roundExerciseResourceFragment);
+                Log.d("WorkoutResourceFragment", "Selected workout: " + workout.toString());
+            }
+        });
+    }
+
+
 }
