@@ -63,7 +63,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/textView22"
+                android:id="@+id/exer_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Upper Body Workout"
@@ -71,7 +71,7 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/textView36"
+                android:id="@+id/exer_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="June 09"
@@ -105,7 +105,7 @@
                 android:fontFamily="@font/poppins"/>
 
             <TextView
-                android:id="@+id/textView38"
+                android:id="@+id/exer_min"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="25 Mins"
