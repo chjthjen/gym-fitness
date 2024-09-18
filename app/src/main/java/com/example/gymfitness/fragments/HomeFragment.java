@@ -133,8 +133,22 @@ public class HomeFragment extends Fragment {
         binding.bannerWeeklyChallenge.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                navController.navigate(R.id.action_homeFragment_to_weeklyChallengeAFragment);
+                homeViewModel.getWorkouts().observe(getViewLifecycleOwner(), resource -> {
+                    if (resource != null && resource.getData() != null && !resource.getData().isEmpty()) {
+                        ArrayList<Workout> workoutList = resource.getData();
+                        // Lấy workout cuối cùng
+                        Workout item = workoutList.get(workoutList.size() - 1);
+                        // Cập nhật SharedViewModel
+                        sharedViewModel.select(item);
+                        Log.d("HomeFragment", "Selected workout: " + item.getWorkout_name());
+                        // Điều hướng sang WeeklyChallengeFragment
+                        navController.navigate(R.id.action_homeFragment_to_weeklyChallengeAFragment);
+                    } else {
+                        Log.d("HomeFragment", "Workout list is empty or null.");
+                    }
+                });
             }
         });
+
     }
 }
