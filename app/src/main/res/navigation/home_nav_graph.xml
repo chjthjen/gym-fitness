@@ -39,6 +39,9 @@
         <action
             android:id="@+id/action_homeFragment_to_progressTrackingMainFragment"
             app:destination="@id/progressTrackingMainFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_workoutAllFragment"
+            app:destination="@id/workoutAllFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -261,6 +264,16 @@
         <action
             android:id="@+id/action_workoutResourceFragment_to_roundExerciseResourceFragment"
             app:destination="@id/roundExerciseResourceFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/workoutAllFragment"
+        android:name="com.example.gymfitness.fragments.WorkoutAllFragment"
+        android:label="WorkoutAllFragment"
+        tools:layout="@layout/fragment_all_workout"
+        >
+        <action
+            android:id="@+id/action_workoutAllFragment_to_exerciseRoutineFragment"
+            app:destination="@id/exerciseRoutineFragment" />
     </fragment>
 
 </navigation>

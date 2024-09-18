@@ -12,6 +12,7 @@ import com.example.gymfitness.data.database.FitnessDB;
 import com.example.gymfitness.data.entities.Exercise;
 import com.example.gymfitness.data.entities.Round;
 import com.example.gymfitness.data.entities.Workout;
+import com.example.gymfitness.firebase.FirebaseRepository;
 import com.example.gymfitness.utils.Resource;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -20,6 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -27,11 +29,12 @@ import java.util.concurrent.Executors;
 public class WorkoutViewModel extends ViewModel {
     private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Workout");
     private MutableLiveData<ArrayList<Workout>> workoutsLiveData = new MutableLiveData<>();
-
+    private FirebaseRepository firebaseRepository = new FirebaseRepository();
     public LiveData<ArrayList<Workout>> getWorkouts() {
         return workoutsLiveData;
     }
     private String userLevel;
+
     private final ExecutorService executorService = Executors.newSingleThreadExecutor();
     private FitnessDB fitnessDB;
 
@@ -69,7 +72,19 @@ public class WorkoutViewModel extends ViewModel {
             }
         });
     }
+    public void loadAllWorkouts() {
+        firebaseRepository.getAllWorkouts(new FirebaseRepository.WorkoutCallback() {
+            @Override
+            public void onCallback(List<Workout> workouts) {
+                workoutsLiveData.setValue(new ArrayList<>(workouts));
+            }
 
+            @Override
+            public void onError(DatabaseError error) {
+                Log.e("WorkoutViewModel", "Database error: " + error.getMessage());
+            }
+        });
+    }
     public void setUserLevel(Context context) {
         fitnessDB = FitnessDB.getInstance(context);
         executorService.execute(() -> {
