@@ -12,11 +12,19 @@ import com.example.gymfitness.data.entities.FavoriteExercise;
 import com.example.gymfitness.data.entities.FavoriteWorkout;
 import com.example.gymfitness.data.entities.Workout;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.Set;
+import java.util.concurrent.Callable;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.stream.Collectors;
 
 public class FavoriteHelper {
     private static FavoriteHelper instance;
@@ -155,13 +163,49 @@ public class FavoriteHelper {
         });
         return favoriteWorkouts.get();
     }
-    public static List<FavoriteArticle> getListFavoriteArticle(Context context) {
-        AtomicReference<List<FavoriteArticle>> favoriteArticles = new AtomicReference<>();
-        ExecutorService executorService = Executors.newSingleThreadExecutor();
-        executorService.execute(() -> {
-            favoriteArticles.set(FitnessDB.getInstance(context).favoriteArticleDAO().getAll());
+//    public static ArrayList<Article> getListFavoriteArticle(List<Article> articles, Context context) {
+//        ArrayList<Article> articleList = new ArrayList<>();
+//        AtomicReference<List<FavoriteArticle>> favoriteArticles = new AtomicReference<>();
+//        ExecutorService executorService = Executors.newSingleThreadExecutor();
+//        executorService.execute(() -> {
+//            favoriteArticles.set(FitnessDB.getInstance(context).favoriteArticleDAO().getAll());
+//        });
+//        List<FavoriteArticle> favoriteArticleList = favoriteArticles.get();
+//        for (Article article : articles) {
+//            for (FavoriteArticle favoriteArticle : Objects.requireNonNull(favoriteArticleList)) {
+//                if (Objects.equals(article.getArticle_title(), favoriteArticle.getArticle_name())) {
+//                    articleList.add(article);
+//                }
+//            }
+//        }
+//        return articleList;
+//    }
+
+    public static Future<List<Article>> getListFavoriteArticleAsync(List<Article> articles, Context context) {
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+
+        // Return a Future containing the list of articles
+        return executor.submit(new Callable<List<Article>>() {
+            @Override
+            public List<Article> call() throws Exception {
+                List<Article> articleList = new ArrayList<>();
+                List<FavoriteArticle> favoriteArticles = FitnessDB.getInstance(context).favoriteArticleDAO().getAll();
+
+                if (favoriteArticles != null && !favoriteArticles.isEmpty()) {
+                    Set<String> favoriteArticleTitles = favoriteArticles.stream()
+                            .map(FavoriteArticle::getArticle_name)
+                            .collect(Collectors.toSet());
+
+                    for (Article article : articles) {
+                        if (favoriteArticleTitles.contains(article.getArticle_title())) {
+                            articleList.add(article);
+                        }
+                    }
+                }
+                return articleList;
+            }
         });
-        return favoriteArticles.get();
     }
+
 
 }
