@@ -30,6 +30,7 @@ import com.example.gymfitness.data.entities.Exercise;
 import com.example.gymfitness.data.entities.Workout;
 import com.example.gymfitness.data.entities.WorkoutLog;
 import com.example.gymfitness.databinding.FragmentExerciseDetailBinding;
+import com.example.gymfitness.helpers.FavoriteHelper;
 import com.example.gymfitness.helpers.ProgressTrackHelper;
 import com.example.gymfitness.utils.UserData;
 import com.example.gymfitness.viewmodels.SharedViewModel;
@@ -130,6 +131,16 @@ public class ExerciseDetailFragment extends Fragment {
         });
 
 
+        // set favorite
+        Exercise exerciseFavorite = sharedViewModel.getExerciseSelected().getValue();
+        binding.star.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FavoriteHelper.setFavorite(exerciseFavorite,v.getContext(), binding.star);
+            }
+        });
+
+        FavoriteHelper.checkFavorite(exerciseFavorite, getContext(), binding.star);
     }
 
     @Override
