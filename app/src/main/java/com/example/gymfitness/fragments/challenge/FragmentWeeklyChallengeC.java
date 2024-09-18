@@ -13,19 +13,24 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.media3.common.MediaItem;
 import androidx.media3.exoplayer.ExoPlayer;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import com.bumptech.glide.Glide;
 import com.example.gymfitness.R;
 import com.example.gymfitness.data.entities.Exercise;
+import com.example.gymfitness.data.entities.Round;
 import com.example.gymfitness.data.entities.Workout;
 import com.example.gymfitness.databinding.FragmentExerciseDetailBinding;
 import com.example.gymfitness.databinding.FragmentWeeklyChallengeCBinding;
 import com.example.gymfitness.helpers.FavoriteHelper;
 import com.example.gymfitness.helpers.ProgressTrackHelper;
 import com.example.gymfitness.utils.UserData;
+import com.example.gymfitness.viewmodels.ExerciseRoutineViewModel;
 import com.example.gymfitness.viewmodels.SharedViewModel;
 
 import java.util.Objects;
@@ -39,6 +44,8 @@ public class FragmentWeeklyChallengeC extends Fragment {
     private ExoPlayer player;
     private Dialog progressDialog;
     private ProgressTrackHelper progressTrackHelper;
+    private NavController navController;
+    private Workout getWorkout = new Workout();
 
     @Nullable
     @Override
@@ -48,6 +55,14 @@ public class FragmentWeeklyChallengeC extends Fragment {
         sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
 
         return binding.getRoot();
+    }
+    private  void loadWorkoutData() {
+        sharedViewModel.getSelected().observe(getViewLifecycleOwner(), new Observer<Workout>() {
+            @Override
+            public void onChanged(Workout workout) {
+                getWorkout = workout;
+            }
+        });
     }
     private void loadData() {
         sharedViewModel.getExerciseSelected().observe(getViewLifecycleOwner(), exercise -> {
@@ -73,6 +88,10 @@ public class FragmentWeeklyChallengeC extends Fragment {
                     if (state == ExoPlayer.STATE_READY && progressDialog != null) {
                         progressDialog.dismiss();
                     }
+                    if (state == ExoPlayer.STATE_ENDED) {
+                        sharedViewModel.select(getWorkout);
+                        navController.navigate(R.id.action_fragmentWeeklyChallengeC_to_congratulationFragment);
+                    }
                 }
             });
             binding.videoView.setPlayer(player);
@@ -84,6 +103,7 @@ public class FragmentWeeklyChallengeC extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        navController = Navigation.findNavController(view);
         binding.play.setOnClickListener(v -> {
             binding.cardView.setVisibility(View.GONE);
             binding.headerLayout.setBackgroundColor(Color.parseColor("#FF000000"));
@@ -130,6 +150,7 @@ public class FragmentWeeklyChallengeC extends Fragment {
     public void onResume() {
         super.onResume();
         loadData();
+        loadWorkoutData();
         Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle(level);
     }
 
