@@ -35,7 +35,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-public class WorkoutSearch_6_3_2_A extends Fragment {
+public class WorkoutSearchFragment extends Fragment {
 
     private ListView listView;
     private EditText edtSearch;
@@ -47,7 +47,7 @@ public class WorkoutSearch_6_3_2_A extends Fragment {
     private RecyclerView rvWorkoutItem;
     private WorkoutAdapter workoutAdapter;
 
-    public WorkoutSearch_6_3_2_A() {
+    public WorkoutSearchFragment() {
     }
 
     @Override
@@ -115,7 +115,7 @@ public class WorkoutSearch_6_3_2_A extends Fragment {
             @Override
             public void onClick(View v) {
                 NavController navController = Navigation.findNavController(v);
-                navController.navigate(R.id.action_workoutSearch_6_3_2_A_to_nutritionSearchFragment);
+                navController.navigate(R.id.action_workoutSearch_6_3_2_A_to_articlesearch);
             }
         });
 
