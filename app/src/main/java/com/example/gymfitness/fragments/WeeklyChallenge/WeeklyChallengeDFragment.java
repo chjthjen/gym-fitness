@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.media3.common.MediaItem;
 import androidx.media3.exoplayer.ExoPlayer;
@@ -25,6 +26,7 @@ import com.example.gymfitness.data.entities.Exercise;
 import com.example.gymfitness.data.entities.Workout;
 import com.example.gymfitness.databinding.FragmentCongratulationBinding;
 import com.example.gymfitness.databinding.FragmentWeeklyChallengeCBinding;
+import com.example.gymfitness.fragments.HomeFragment;
 import com.example.gymfitness.helpers.FavoriteHelper;
 import com.example.gymfitness.helpers.ProgressTrackHelper;
 import com.example.gymfitness.viewmodels.SharedViewModel;
@@ -54,7 +56,16 @@ public class WeeklyChallengeDFragment extends Fragment {
         binding.btnGoToNextWorkout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                navController.navigate(R.id.action_congratulationFragment_to_communityFragment2);
+                // Lấy FragmentManager của Activity
+                FragmentManager fragmentManager = ((AppCompatActivity) requireActivity()).getSupportFragmentManager();
+
+                // Tạo một transaction để thay thế fragment hiện tại bằng HomeFragment
+                fragmentManager.beginTransaction()
+                        .replace(R.id.fragmentMainContainerView, new HomeFragment()) // Thay thế fragment_container bằng id của ViewGroup chứa fragment
+                        .addToBackStack(null) // Thêm vào backstack nếu bạn muốn quay lại fragment trước đó khi nhấn nút back
+                        .commit(); // Thực hiện thay thế
+
+                // Hiển thị lại thanh công cụ và thanh điều hướng
                 Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).show();
                 ((HomeActivity) requireActivity()).getBottomNavigationView().setVisibility(View.VISIBLE);
             }
@@ -63,7 +74,16 @@ public class WeeklyChallengeDFragment extends Fragment {
         binding.btnHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                navController.navigate(R.id.action_congratulationFragment_to_homeFragment);
+                // Lấy FragmentManager của Activity
+                FragmentManager fragmentManager = ((AppCompatActivity) requireActivity()).getSupportFragmentManager();
+
+                // Tạo một transaction để thay thế fragment hiện tại bằng HomeFragment
+                fragmentManager.beginTransaction()
+                        .replace(R.id.fragmentMainContainerView, new HomeFragment()) // Thay thế fragment_container bằng id của ViewGroup chứa fragment
+                        .addToBackStack(null) // Thêm vào backstack nếu bạn muốn quay lại fragment trước đó khi nhấn nút back
+                        .commit(); // Thực hiện thay thế
+
+                // Hiển thị lại thanh công cụ và thanh điều hướng
                 Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).show();
                 ((HomeActivity) requireActivity()).getBottomNavigationView().setVisibility(View.VISIBLE);
             }
