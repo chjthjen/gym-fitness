@@ -1,5 +1,6 @@
 package com.example.gymfitness.adapters;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,9 @@ import com.example.gymfitness.R;
 import com.example.gymfitness.data.entities.WorkoutLog;
 import com.example.gymfitness.databinding.ItemActivitiesBinding;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class WorkoutLogAdapter extends RecyclerView.Adapter<WorkoutLogAdapter.WorkoutLogViewHolder> {
@@ -59,12 +63,15 @@ public class WorkoutLogAdapter extends RecyclerView.Adapter<WorkoutLogAdapter.Wo
         public void bind(WorkoutLog workoutlog) {
             binding.tvkcal.setText(workoutlog.getKcal() + " Kcal");
             binding.tvworkoutlogname.setText(workoutlog.getWorkout_name());
-            binding.tvworkoutlogday.setText(workoutlog.getDate().toString());
+            String pattern = "dd/MM/yyyy";
+            @SuppressLint("SimpleDateFormat") DateFormat df = new SimpleDateFormat(pattern);
+            Date date = workoutlog.getDate();
+            String dateStr = df.format(date);
+            binding.tvworkoutlogday.setText(dateStr);
             binding.tvworkoutlogmin.setText(workoutlog.getTotalTime() + " Mins");
             binding.imgkcal.setImageResource(R.drawable.ic_calories_home);
             binding.imgWorkout.setImageResource(R.drawable.ic_work_out_wc);
             binding.imgClock.setImageResource(R.drawable.purple_clock);
-
         }
     }
 }

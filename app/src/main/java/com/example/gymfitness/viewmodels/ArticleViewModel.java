@@ -49,27 +49,12 @@ public class ArticleViewModel extends ViewModel {
                 for (DataSnapshot articleSnapshot : dataSnapshot.getChildren()) {
                     Article article = articleSnapshot.getValue(Article.class);
                     article.setArticle_content(articleSnapshot.getKey());
-                    ArrayList<Round> roundsList = new ArrayList<>();
-                        for (DataSnapshot roundSnapshot : articleSnapshot.child("round").getChildren()) {
-                        Round round = roundSnapshot.getValue(Round.class);
-                        round.setRound_name(roundSnapshot.getKey());
-                        ArrayList<Exercise> exercisesList = new ArrayList<>();
-                        for (DataSnapshot exerciseSnapshot : roundSnapshot.getChildren()) {
-                            Exercise exercise = exerciseSnapshot.getValue(Exercise.class);
-                            exercise.setExercise_name(exerciseSnapshot.getKey());
-                            exercisesList.add(exercise);
-                        }
-                        round.setExercises(exercisesList);
-                        roundsList.add(round);
-                    }
-                    article.setRound(roundsList);
                     List<FavoriteArticle> lsFavoriteArticles = FavoriteHelper.getListFavoriteArticle(context);
                     for(FavoriteArticle fArticle : lsFavoriteArticles)
                     {
                         if(Objects.equals(article.getArticle_title(), fArticle.getArticle_name()))
                             articleList.add(article);
                     }
-
                 }
                 articlesLiveData.setValue(articleList);
             }

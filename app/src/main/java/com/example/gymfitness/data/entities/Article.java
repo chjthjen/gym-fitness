@@ -18,9 +18,8 @@ public class Article implements Serializable {
     private int is_favorite;
     private String publish_date;
     private String description;
-    private ArrayList<Round> round = new ArrayList<>();
 
-    public Article(int article_id, String article_title, String article_thumbnail, String article_content, int is_favorite, String publish_date, String description, ArrayList<Round> round) {
+    public Article(int article_id, String article_title, String article_thumbnail, String article_content, int is_favorite, String publish_date, String description) {
         this.article_id = article_id;
         this.article_title = article_title;
         this.article_thumbnail = article_thumbnail;
@@ -28,8 +27,6 @@ public class Article implements Serializable {
         this.is_favorite = is_favorite;
         this.publish_date = publish_date;
         this.description = description;
-        this.round = round;
-
     }
 
     public Article() {
@@ -91,15 +88,4 @@ public class Article implements Serializable {
         this.description = description;
     }
 
-    public void setRound(ArrayList<Round> round) {
-        if (round != null) {
-            this.round = round;
-        } else {
-            this.round = new ArrayList<>();
-        }
-    }
-
-    public ArrayList<Round> getRound(){
-        return round;
-    }
 }
