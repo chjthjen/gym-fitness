@@ -129,7 +129,14 @@
         android:id="@+id/workoutSearch_6_3_2_A"
         android:name="com.example.gymfitness.fragments.search.WorkoutSearch_6_3_2_A"
         android:label="fragment_workout_search_6_3_2__a"
-        tools:layout="@layout/fragment_workout_search_6_3_2__a" />
+        tools:layout="@layout/fragment_workout_search_6_3_2__a" >
+        <action
+            android:id="@+id/action_workoutSearch_6_3_2_A_to_exerciseRoutineFragment"
+            app:destination="@id/exerciseRoutineFragment" />
+        <action
+            android:id="@+id/action_workoutSearch_6_3_2_A_to_articleDetailFragment2"
+            app:destination="@id/articleDetailFragment2" />
+    </fragment>
     <fragment
         android:id="@+id/ownRoutineFragment"
         android:name="com.example.gymfitness.fragments.routine.OwnRoutineFragment"
