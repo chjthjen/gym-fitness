@@ -8,11 +8,10 @@
     android:paddingLeft="30dp"
     android:paddingRight="30dp"
     android:paddingTop="10dp"
-    tools:context=".fragments.search.WorkoutSearch_6_3_2_A">
-
+    tools:context=".fragments.search.ArticleSearchFragment">
 
     <EditText
-        android:id="@+id/edtSearch"
+        android:id="@+id/edtSearchArticle"
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:background="@drawable/rounded_edittext_search"
@@ -53,7 +52,8 @@
             android:textColor="#896CFE"
             android:fontFamily="@font/league_spartan"
             android:textSize="17sp"
-            android:background="@drawable/rounded_button_search_on"/>
+            android:backgroundTint="@color/white"
+            android:background="@drawable/rounded_button_search_off"/>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnNutrition"
@@ -65,7 +65,6 @@
             android:textColor="#896CFE"
             android:fontFamily="@font/league_spartan"
             android:textSize="17sp"
-            android:backgroundTint="@color/white"
             android:background="@drawable/rounded_button_search_on"/>
     </LinearLayout>
 
@@ -96,7 +95,7 @@
             android:layout_gravity="center"/>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_workout_item"
+            android:id="@+id/rv_article_item"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="0dp"
@@ -104,8 +103,5 @@
             android:nestedScrollingEnabled="false"
             tools:listitem="@layout/item_workout_nonvideo" />
     </LinearLayout>
-
-    <!-- Added RecyclerView below ListView -->
-
 
 </LinearLayout>

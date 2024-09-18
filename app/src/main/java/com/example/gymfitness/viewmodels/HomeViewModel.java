@@ -24,6 +24,7 @@ public class HomeViewModel extends ViewModel {
     private final MutableLiveData<Resource<ArrayList<Workout>>> workoutsLiveData = new MutableLiveData<>();
     private final MutableLiveData<Resource<ArrayList<Article>>> articlesLiveData = new MutableLiveData<>();
     private final MutableLiveData<Resource<ArrayList<Workout>>> roundExerciseLiveData = new MutableLiveData<>();
+    private final MutableLiveData<Resource<ArrayList<Article>>> searchArticlesLiveData = new MutableLiveData<>();
 
     public LiveData<Resource<ArrayList<Workout>>> getRoundExercise() {
         return roundExerciseLiveData;
@@ -105,4 +106,31 @@ public class HomeViewModel extends ViewModel {
             }
         });
     }
+    public LiveData<Resource<ArrayList<Article>>> getSearchArticles() {
+        return searchArticlesLiveData;
+    }
+
+    public void searchArticles(String query) {
+        searchArticlesLiveData.setValue(new Resource.Loading<>());
+
+        repository.getArticles(new FirebaseRepository.ArticleCallback() {
+            @Override
+            public void onCallback(List<Article> articles) {
+                List<Article> filteredArticles = new ArrayList<>();
+                for (Article article : articles) {
+                    if (article.getArticle_title().toLowerCase().contains(query.toLowerCase())) {
+                        filteredArticles.add(article);
+                    }
+                }
+                searchArticlesLiveData.setValue(new Resource.Success<>(new ArrayList<>(filteredArticles)));
+            }
+
+            @Override
+            public void onError(DatabaseError error) {
+                searchArticlesLiveData.setValue(new Resource.Error<>(error.getMessage()));
+            }
+        });
+    }
+
+
 }

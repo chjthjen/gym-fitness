@@ -2,6 +2,7 @@ package com.example.gymfitness.viewmodels;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.text.TextUtils;
 import android.util.Log;
 
 import androidx.lifecycle.LiveData;
@@ -125,5 +126,49 @@ public class WorkoutViewModel extends ViewModel {
             }
         });
     }
+
+    public void searchWorkouts(String searchText) {
+        if (TextUtils.isEmpty(searchText)) {
+            loadWorkouts();
+            return;
+        }
+
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                ArrayList<Workout> workoutList = new ArrayList<>();
+                for (DataSnapshot workoutSnapshot : dataSnapshot.getChildren()) {
+                    Workout workout = workoutSnapshot.getValue(Workout.class);
+                    workout.setWorkout_name(workoutSnapshot.getKey());
+                    ArrayList<Round> roundsList = new ArrayList<>();
+                    for (DataSnapshot roundSnapshot : workoutSnapshot.child("round").getChildren()) {
+                        Round round = roundSnapshot.getValue(Round.class);
+                        round.setRound_name(roundSnapshot.getKey());
+                        ArrayList<Exercise> exercisesList = new ArrayList<>();
+                        for (DataSnapshot exerciseSnapshot : roundSnapshot.getChildren()) {
+                            Exercise exercise = exerciseSnapshot.getValue(Exercise.class);
+                            exercise.setExercise_name(exerciseSnapshot.getKey());
+                            exercisesList.add(exercise);
+                        }
+                        round.setExercises(exercisesList);
+                        roundsList.add(round);
+                    }
+                    workout.setRound(roundsList);
+
+                    if (workout.getWorkout_name().toLowerCase().contains(searchText.toLowerCase())) {
+                        workoutList.add(workout);
+                    }
+                }
+                workoutsLiveData.setValue(workoutList);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.e("WorkoutViewModel", "Database error: " + databaseError.getMessage());
+            }
+        });
+    }
+
+
 
 }

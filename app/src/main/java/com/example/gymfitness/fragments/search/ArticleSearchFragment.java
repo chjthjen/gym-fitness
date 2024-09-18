@@ -3,6 +3,7 @@ package com.example.gymfitness.fragments.search;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,10 +25,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gymfitness.R;
+
 import com.example.gymfitness.adapters.CustomAdapterListViewWorkoutSearch;
-import com.example.gymfitness.adapters.WorkoutAdapter;
-import com.example.gymfitness.data.entities.Workout;
-import com.example.gymfitness.viewmodels.WorkoutViewModel;
+import com.example.gymfitness.adapters.resources.ArticleResourceAdapter;
+import com.example.gymfitness.data.entities.Article;
+
+import com.example.gymfitness.utils.Resource;
+import com.example.gymfitness.viewmodels.HomeViewModel;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -35,7 +39,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-public class WorkoutSearch_6_3_2_A extends Fragment {
+public class ArticleSearchFragment extends Fragment {
 
     private ListView listView;
     private EditText edtSearch;
@@ -43,11 +47,11 @@ public class WorkoutSearch_6_3_2_A extends Fragment {
     private CustomAdapterListViewWorkoutSearch adapter;
     private SharedPreferences sharedPreferences;
 
-    private WorkoutViewModel workoutViewModel;
-    private RecyclerView rvWorkoutItem;
-    private WorkoutAdapter workoutAdapter;
+    private HomeViewModel articleViewModel;
+    private RecyclerView rvArticleItem;
+    private ArticleResourceAdapter articleAdapter;
 
-    public WorkoutSearch_6_3_2_A() {
+    public ArticleSearchFragment() {
     }
 
     @Override
@@ -59,29 +63,51 @@ public class WorkoutSearch_6_3_2_A extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_workout_search_6_3_2__a, container, false);
+        View view = inflater.inflate(R.layout.fragment_article_search, container, false);
 
         listView = view.findViewById(R.id.listView);
-        edtSearch = view.findViewById(R.id.edtSearch);
-        rvWorkoutItem = view.findViewById(R.id.rv_workout_item);
+        edtSearch = view.findViewById(R.id.edtSearchArticle);
+        rvArticleItem = view.findViewById(R.id.rv_article_item);
 
         sharedPreferences = requireContext().getSharedPreferences("SearchHistory", getContext().MODE_PRIVATE);
 
-        workoutViewModel = new ViewModelProvider(requireActivity()).get(WorkoutViewModel.class);
+        articleViewModel = new ViewModelProvider(requireActivity()).get(HomeViewModel.class);
 
         searchHistory = loadSearchHistory();
         adapter = new CustomAdapterListViewWorkoutSearch(getActivity(), searchHistory.toArray(new String[0]));
         listView.setAdapter(adapter);
 
-        workoutAdapter = new WorkoutAdapter(new ArrayList<>());
-        rvWorkoutItem.setLayoutManager(new LinearLayoutManager(getContext()));
-        rvWorkoutItem.setAdapter(workoutAdapter);
+        articleAdapter = new ArticleResourceAdapter(new ArrayList<>());
+        rvArticleItem.setLayoutManager(new LinearLayoutManager(getContext()));
+        rvArticleItem.setAdapter(articleAdapter);
 
-        workoutViewModel.getWorkouts().observe(getViewLifecycleOwner(), new Observer<ArrayList<Workout>>() {
+        articleViewModel.getArticles().observe(getViewLifecycleOwner(), new Observer<Resource<ArrayList<Article>>>() {
             @Override
-            public void onChanged(ArrayList<Workout> workouts) {
-                workoutAdapter.setWorkoutList(workouts);
-                workoutAdapter.notifyDataSetChanged();
+            public void onChanged(Resource<ArrayList<Article>> resource) {
+                if (resource instanceof Resource.Success) {
+                    ArrayList<Article> articles = ((Resource.Success<ArrayList<Article>>) resource).getData();
+                    articleAdapter.setArticleList(articles);
+                    articleAdapter.notifyDataSetChanged();
+                } else if (resource instanceof Resource.Error) {
+                    String errorMessage = ((Resource.Error<ArrayList<Article>>) resource).getMessage();
+                    Log.e("InitialLoadError", errorMessage);
+                } else if (resource instanceof Resource.Loading) {
+                }
+            }
+        });
+
+        articleViewModel.getSearchArticles().observe(getViewLifecycleOwner(), new Observer<Resource<ArrayList<Article>>>() {
+            @Override
+            public void onChanged(Resource<ArrayList<Article>> resource) {
+                if (resource instanceof Resource.Success) {
+                    ArrayList<Article> articles = ((Resource.Success<ArrayList<Article>>) resource).getData();
+                    articleAdapter.setArticleList(articles);
+                    articleAdapter.notifyDataSetChanged();
+                } else if (resource instanceof Resource.Error) {
+                    String errorMessage = ((Resource.Error<ArrayList<Article>>) resource).getMessage();
+                    Log.e("SearchError", errorMessage);
+                } else if (resource instanceof Resource.Loading) {
+                }
             }
         });
 
@@ -91,33 +117,17 @@ public class WorkoutSearch_6_3_2_A extends Fragment {
             if (!TextUtils.isEmpty(searchText)) {
                 if (!searchHistory.contains(searchText)) {
                     searchHistory.add(searchText);
-                    adapter = new CustomAdapterListViewWorkoutSearch(getActivity(), searchHistory.toArray(new String[0]));
-                    listView.setAdapter(adapter);
-
+                    adapter.notifyDataSetChanged();
                     saveSearchHistory(searchHistory);
                 }
-
-                workoutViewModel.searchWorkouts(searchText);
+                articleViewModel.searchArticles(searchText);
             } else {
-                workoutViewModel.searchWorkouts("");
+                articleViewModel.searchArticles("");
             }
-
             return true;
         });
 
-
-        workoutViewModel.setUserLevel(getContext());
-        workoutViewModel.loadWorkouts();
-
-
-        Button btnNutrition = view.findViewById(R.id.btnNutrition);
-        btnNutrition.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                NavController navController = Navigation.findNavController(v);
-                navController.navigate(R.id.action_workoutSearch_6_3_2_A_to_nutritionSearchFragment);
-            }
-        });
+        articleViewModel.loadArticlesItem();
 
         return view;
     }
