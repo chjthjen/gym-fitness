@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -18,16 +19,19 @@ import android.widget.TextView;
 
 import com.example.gymfitness.R;
 import com.example.gymfitness.adapters.ExerciseInOwnRoutineAdapter;
+import com.example.gymfitness.data.entities.Exercise;
 import com.example.gymfitness.data.entities.RoutineRound;
 import com.example.gymfitness.databinding.FragmentOwnRoutineBinding;
 import com.example.gymfitness.viewmodels.OwnRoutineViewModel;
 
 import java.util.List;
+import java.util.Objects;
 
 public class OwnRoutineFragment extends Fragment {
     private FragmentOwnRoutineBinding binding;
     private OwnRoutineViewModel ownRoutineViewModel;
     private NavController navController;
+    private ExerciseInOwnRoutineAdapter adapter;
 
     public OwnRoutineFragment() {}
 
@@ -72,13 +76,6 @@ public class OwnRoutineFragment extends Fragment {
         tvRound.setText(roundName);
         binding.roundContainer.addView(newRoundView);
 
-        newRoundView.findViewById(R.id.btnEditRound).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-
         newRoundView.findViewById(R.id.btnDeleteRound).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -98,8 +95,19 @@ public class OwnRoutineFragment extends Fragment {
 ;
         GridView gvExercises = newRoundView.findViewById(R.id.gvExercises);
         ownRoutineViewModel.getExercisesForRound(roundId).observe(getViewLifecycleOwner(), exercises -> {
-            ExerciseInOwnRoutineAdapter adapter = new ExerciseInOwnRoutineAdapter(getContext(), exercises);
+            adapter = new ExerciseInOwnRoutineAdapter(getContext(), exercises, new ExerciseInOwnRoutineAdapter.ExerciseRemoveListener() {
+                @Override
+                public void onExerciseRemoved(Exercise exercise) {
+                    ownRoutineViewModel.removeExerciseFromRoutineRound(exercise, roundId);
+                }
+            });
             gvExercises.setAdapter(adapter);
         });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle("Your Routine");
     }
 }
