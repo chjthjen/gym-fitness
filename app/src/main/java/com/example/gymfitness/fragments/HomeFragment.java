@@ -130,5 +130,11 @@ public class HomeFragment extends Fragment {
                 navController.navigate(R.id.action_homeFragment_to_homeRoundFragment);
             }
         });
+        binding.bannerWeeklyChallenge.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                navController.navigate(R.id.action_homeFragment_to_weeklyChallengeAFragment);
+            }
+        });
     }
 }

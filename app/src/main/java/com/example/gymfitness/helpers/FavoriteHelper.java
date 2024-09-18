@@ -30,8 +30,6 @@ public class FavoriteHelper {
         AtomicBoolean is_favorite = new AtomicBoolean(false);
         executorService = Executors.newSingleThreadExecutor();
         if (object instanceof Workout) {
-            Log.d("dcm","zo duoc em oi");
-
             Workout workout = (Workout) object;
             executorService.execute(() -> {
                 FavoriteWorkout favWorkout = FitnessDB.getInstance(context).favoriteWorkoutDAO().getWorkout(workout.getWorkout_name());
@@ -146,5 +144,7 @@ public class FavoriteHelper {
         }
         return is_favorite.get();
     }
+
+
 
 }
