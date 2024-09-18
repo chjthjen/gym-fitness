@@ -8,7 +8,7 @@
     android:paddingLeft="30dp"
     android:paddingRight="30dp"
     android:paddingTop="10dp"
-    tools:context=".fragments.search.WorkoutSearch_6_3_2_A">
+    tools:context=".fragments.search.WorkoutSearchFragment">
 
 
     <EditText
@@ -61,7 +61,7 @@
             android:layout_height="35dp"
             android:layout_weight="1"
             android:textAllCaps="false"
-            android:text="Nutrition"
+            android:text="Articla"
             android:textColor="#896CFE"
             android:fontFamily="@font/league_spartan"
             android:textSize="17sp"
@@ -88,7 +88,7 @@
         <ListView
             android:id="@+id/listView"
             android:layout_width="match_parent"
-            android:layout_height="118dp"
+            android:layout_height="wrap_content"
             android:clipToPadding="false"
             android:divider="@android:color/transparent"
             android:dividerHeight="10dp"
