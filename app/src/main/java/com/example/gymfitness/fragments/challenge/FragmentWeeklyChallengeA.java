@@ -68,7 +68,7 @@ public class FragmentWeeklyChallengeA extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).show();
 
     }
     @Override
@@ -83,6 +83,7 @@ public class FragmentWeeklyChallengeA extends Fragment {
                 Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).show();
                 navController.navigate(R.id.action_fragmentWeeklyChallengeA_to_fragmentWeeklyChallengeB);
             }
+
         });
     }
 
