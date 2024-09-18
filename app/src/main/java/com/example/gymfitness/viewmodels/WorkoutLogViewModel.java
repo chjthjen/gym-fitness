@@ -1,12 +1,20 @@
 package com.example.gymfitness.viewmodels;
 
+import static java.security.AccessController.getContext;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.gymfitness.data.DAO.WorkoutLogDAO;
+import com.example.gymfitness.data.database.FitnessDB;
+import com.example.gymfitness.data.entities.WorkoutLog;
+
 import java.time.YearMonth;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.concurrent.Executors;
 
 public class WorkoutLogViewModel extends ViewModel {
     private final MutableLiveData<Integer> monthLiveData = new MutableLiveData<>();
@@ -67,4 +75,6 @@ public class WorkoutLogViewModel extends ViewModel {
 
         return days;
     }
+
+
 }
