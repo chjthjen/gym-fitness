@@ -251,7 +251,11 @@
         android:id="@+id/roundExerciseResourceFragment"
         android:name="com.example.gymfitness.fragments.resources.RoundExerciseResourceFragment"
         android:label="RoundExerciseResourceFragment"
-        tools:layout="@layout/fragment_exercise_routine"/>
+        tools:layout="@layout/fragment_exercise_routine">
+        <action
+            android:id="@+id/action_roundExerciseResourceFragment_to_exerciseDetailResourceFragment"
+            app:destination="@id/exerciseDetailResourceFragment" />
+    </fragment>
     <fragment
         android:id="@+id/workoutResourceFragment"
         android:name="com.example.gymfitness.fragments.resources.WorkoutResourceFragment"
@@ -262,5 +266,11 @@
             android:id="@+id/action_workoutResourceFragment_to_roundExerciseResourceFragment"
             app:destination="@id/roundExerciseResourceFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/exerciseDetailResourceFragment"
+        android:name="com.example.gymfitness.fragments.resources.ExerciseDetailResourceFragment"
+        android:label="ExerciseDetailResourceFragment"
+        tools:layout="@layout/fragment_exercise_detail"
+        />
 
 </navigation>
