@@ -8,8 +8,8 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="148dp"
-        android:layout_height="140dp"
+        android:layout_width="157dp"
+        android:layout_height="wrap_content"
         android:layout_marginHorizontal="5dp"
         android:background="@color/primary">
 
@@ -22,12 +22,13 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                >
+                android:background="@color/primary">
                 <ImageView
                     android:id="@+id/thumbnail"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:scaleType="fitXY"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
                     android:layout_alignParentTop="true"
                     android:src="@drawable/woman_help_home" />
                 <ImageView
@@ -38,7 +39,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="10dp"
-                    android:src="@drawable/star_varient2" />
+                    android:src="@drawable/star_default" />
                 <LinearLayout
                     android:id="@+id/linear_recommand_name"
                     android:layout_width="match_parent"
@@ -83,11 +84,11 @@
                                 android:fontFamily="@font/poppins"
                                 android:text='@{String.valueOf(item.duration) + " Minutes"}'
                                 android:textColor="@color/white"
-                                android:textSize="10sp" />
+                                android:textSize="12sp" />
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="9dp"
-                                android:layout_marginLeft="45dp"
+                                android:layout_marginLeft="10dp"
                                 android:src="@drawable/ic_calories_home" />
                             <TextView
                                 android:layout_width="wrap_content"
@@ -96,7 +97,7 @@
                                 android:fontFamily="@font/poppins"
                                 android:text='@{String.valueOf(item.rep) + " Rep"}'
                                 android:textColor="@color/white"
-                                android:textSize="10sp" />
+                                android:textSize="12sp" />
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
@@ -107,7 +108,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginTop="90dp"
                     android:layout_marginRight="10dp"
-                    android:src="@drawable/ic_play_video" />
+                    android:src="@drawable/bot_video_check" />
             </RelativeLayout>
 
         </androidx.cardview.widget.CardView>

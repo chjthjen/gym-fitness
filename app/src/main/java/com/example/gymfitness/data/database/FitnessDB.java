@@ -13,6 +13,7 @@ import com.example.gymfitness.data.DAO.FavoriteExerciseDAO;
 import com.example.gymfitness.data.DAO.FavoriteWorkoutDAO;
 import com.example.gymfitness.data.DAO.ProgressTrackingDAO;
 import com.example.gymfitness.data.DAO.RoutineRoundDAO;
+import com.example.gymfitness.data.DAO.RoutineRoundExerciseRefDAO;
 import com.example.gymfitness.data.DAO.UserInformationDAO;
 import com.example.gymfitness.data.DAO.WorkoutLogDAO;
 import com.example.gymfitness.data.entities.FavoriteArticle;
@@ -70,4 +71,5 @@ public abstract class FitnessDB extends RoomDatabase {
     public abstract FavoriteArticleDAO favoriteArticleDAO();
     public abstract WorkoutLogDAO workoutLogDAO();
     public abstract ProgressTrackingDAO progressTrackingDAO();
+    public abstract RoutineRoundExerciseRefDAO routineRoundExerciseRefDAO();
 }
