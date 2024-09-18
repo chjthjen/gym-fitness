@@ -11,7 +11,9 @@
         android:layout_width="148dp"
         android:layout_height="140dp"
         android:layout_marginHorizontal="5dp"
-        android:background="@color/primary">
+        android:layout_marginBottom="20dp"
+        android:background="@color/primary"
+        >
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
