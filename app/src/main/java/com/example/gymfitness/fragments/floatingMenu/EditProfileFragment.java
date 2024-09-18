@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.gymfitness.R;
 import com.example.gymfitness.data.DAO.UserInformationDAO;
 import com.example.gymfitness.data.database.FitnessDB;
@@ -68,11 +69,17 @@ public class EditProfileFragment extends Fragment {
                         imageResId = R.drawable.account_image;
                     }
 
+                    Glide.with(requireContext())
+                            .load(userInfo.getImg() != null ? userInfo.getImg() : imageResId)
+                            .placeholder(R.drawable.bgr_onboarding_2d)
+                            .error(R.drawable.arrow_next)
+                            .into(binding.imgProfile);
+
                     binding.tvNameProfile.setText(userInfo.getFullname());
                     binding.tvEmail.setText(userInfo.getEmail());
-                    binding.tvWeight.setText(String.valueOf(userInfo.getWeight()));
+                    binding.tvWeight.setText(userInfo.getWeight() + " KG");
                     binding.tvOld.setText(String.valueOf(userInfo.getAge()));
-                    binding.tvHeigh.setText(String.valueOf(userInfo.getHeight()));
+                    binding.tvHeigh.setText(userInfo.getHeight() + " CM");
                     binding.editFullname.setText(userInfo.getFullname());
                     binding.edtEmail.setText(userInfo.getEmail());
                     binding.edtPhoneNumber.setText(userInfo.getPhonenumber());
