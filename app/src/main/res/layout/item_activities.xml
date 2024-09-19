@@ -10,28 +10,29 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="75dp"
-        android:layout_marginTop="10dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/item_acti"
         android:padding="5dp">
 
         <RelativeLayout
-            android:layout_width="70dp"
-            android:layout_height="70dp">
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="-3dp">
 
             <ImageView
                 android:id="@+id/imageView12"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_centerInParent="true"
                 android:background="@drawable/button_mau_xanh" />
 
             <ImageView
                 android:id="@+id/img_workout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:layout_centerInParent="true"
-                android:padding="20dp"
+                android:padding="13dp"
                 tools:srcCompat="@drawable/ic_work_out_wc" />
         </RelativeLayout>
 
@@ -50,8 +51,8 @@
 
                 <ImageView
                     android:id="@+id/imgkcal"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
                     android:layout_centerInParent="true"
                     tools:srcCompat="@drawable/ic_calories_home" />
 
@@ -62,6 +63,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/league_spartan"
                     android:text="120 Kcal"
+                    android:textColor="@color/black"
                     android:textSize="12sp" />
             </LinearLayout>
 
@@ -71,6 +73,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_bold"
                 android:text="Upper Body Workout"
+                android:textColor="@color/black"
                 android:textSize="14sp" />
 
             <TextView
@@ -79,14 +82,15 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins"
                 android:text="June 09"
+                android:layout_marginTop="-5dp"
                 android:textColor="@color/purple"
                 android:textSize="12sp" />
         </LinearLayout>
 
         <ImageView
             android:id="@+id/img_clock"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_gravity="center"
             android:layout_marginRight="5dp"
             tools:srcCompat="@drawable/purple_clock" />
@@ -105,14 +109,15 @@
                 android:fontFamily="@font/poppins"
                 android:text="Duration"
                 android:textColor="@color/purple"
-                android:textSize="15sp" />
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/tvworkoutlogmin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins"
-                android:text="25 Mins"
+                android:gravity="center"
+                android:text="25s"
                 android:textColor="@color/purple"
                 android:textSize="17sp" />
         </LinearLayout>
