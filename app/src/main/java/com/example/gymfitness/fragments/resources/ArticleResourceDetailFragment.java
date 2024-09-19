@@ -10,10 +10,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.bumptech.glide.Glide;
 import com.example.gymfitness.R;
 import com.example.gymfitness.adapters.resources.ArticleDetailAdapter;
+import com.example.gymfitness.databinding.FragmentArticleDetailBinding;
 import com.example.gymfitness.databinding.FragmentArticleResourceDetailBinding;
 import com.example.gymfitness.viewmodels.ArticleDetailResourceViewModel;
 
@@ -22,20 +24,22 @@ import java.util.ArrayList;
 public class ArticleResourceDetailFragment extends Fragment {
     private ArticleDetailAdapter adapter;
     private ArticleDetailResourceViewModel articleDetailResourceViewModel;
-
+    private FragmentArticleResourceDetailBinding  binding;
     public ArticleResourceDetailFragment() {
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        FragmentArticleResourceDetailBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_article_resource_detail, container, false);
-
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_article_resource_detail, container, false);
         articleDetailResourceViewModel = new ViewModelProvider(this).get(ArticleDetailResourceViewModel.class);
         binding.setViewModel(articleDetailResourceViewModel);
         binding.setLifecycleOwner(this);
-        adapter = new ArticleDetailAdapter(requireContext(), new ArrayList<>());
-        binding.lvArticleDetail.setAdapter(adapter);
+
+        adapter = new ArticleDetailAdapter(new ArrayList<>());
+        binding.rvArticleDetail.setLayoutManager(new LinearLayoutManager(requireContext()));
+        binding.rvArticleDetail.setAdapter(adapter);
+
         if (getArguments() != null) {
             String articleTitle = getArguments().getString("articleTitle");
             articleDetailResourceViewModel.loadArticleDetails(articleTitle);
@@ -43,6 +47,7 @@ public class ArticleResourceDetailFragment extends Fragment {
 
         articleDetailResourceViewModel.getArticleDetails().observe(getViewLifecycleOwner(), details -> {
             adapter.setArticleDetails(details);
+            adapter.notifyDataSetChanged();
         });
 
         articleDetailResourceViewModel.getThumbnail().observe(getViewLifecycleOwner(), thumbnail -> {
@@ -50,5 +55,7 @@ public class ArticleResourceDetailFragment extends Fragment {
         });
 
         return binding.getRoot();
+
+
     }
 }
