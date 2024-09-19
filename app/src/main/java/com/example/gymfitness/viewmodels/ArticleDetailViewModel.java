@@ -4,10 +4,13 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.gymfitness.data.entities.Article;
 import com.example.gymfitness.data.entities.ArticleDetail;
+import com.example.gymfitness.data.entities.Workout;
 import com.example.gymfitness.firebase.FirebaseRepository;
 import com.google.firebase.database.DatabaseError;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ArticleDetailViewModel extends ViewModel {
@@ -16,6 +19,8 @@ public class ArticleDetailViewModel extends ViewModel {
     private final MutableLiveData<String> description = new MutableLiveData<>();
     private final MutableLiveData<String> thumbnail = new MutableLiveData<>();
     private final MutableLiveData<List<ArticleDetail>> articleDetails = new MutableLiveData<>();
+    private MutableLiveData<ArrayList<Article>> articlesLiveData = new MutableLiveData<>();
+    public LiveData<ArrayList<Article>> getArticles() {return articlesLiveData;}
 
     private final FirebaseRepository firebaseRepository;
 
@@ -60,4 +65,5 @@ public class ArticleDetailViewModel extends ViewModel {
             }
         });
     }
+
 }

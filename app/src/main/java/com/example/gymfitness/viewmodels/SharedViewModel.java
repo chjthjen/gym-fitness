@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.gymfitness.data.entities.Article;
 import com.example.gymfitness.data.entities.Exercise;
 import com.example.gymfitness.data.entities.Workout;
 
@@ -51,5 +52,17 @@ public class SharedViewModel extends ViewModel {
     // Lấy danh sách Workout
     public LiveData<List<Workout>> getWorkouts() {
         return workoutsList;
+    }
+
+    public final MutableLiveData<Article> article = new MutableLiveData<Article>();
+
+    public void setArticle(Article article)
+    {
+        this.article.setValue(article);
+    }
+
+    public LiveData<Article> getArticle()
+    {
+        return this.article;
     }
 }

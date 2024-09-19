@@ -13,6 +13,7 @@ import com.example.gymfitness.R;
 import com.example.gymfitness.data.entities.Article;
 import com.example.gymfitness.databinding.ArticlesTipsRvItemBinding;
 import com.example.gymfitness.databinding.RcvArticleItemBinding;
+import com.example.gymfitness.helpers.FavoriteHelper;
 
 import java.util.ArrayList;
 
@@ -50,7 +51,13 @@ public class ArticleResourceAdapter extends RecyclerView.Adapter<com.example.gym
                 .into(holder.binding.thumbnail);
 
         holder.binding.executePendingBindings();
-
+        FavoriteHelper.checkFavorite(article, holder.itemView.getContext(), holder.binding.star);
+        holder.binding.star.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FavoriteHelper.setFavorite(article,v.getContext(), holder.binding.star);
+            }
+        });
         holder.itemView.setOnClickListener(v -> {
             if (listener != null) {
                 listener.onItemClick(article);
