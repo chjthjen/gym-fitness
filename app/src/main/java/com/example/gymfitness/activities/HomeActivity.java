@@ -18,6 +18,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.gymfitness.R;
 import com.example.gymfitness.databinding.ActivityHomeBinding;
+import com.example.gymfitness.utils.UserData;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class HomeActivity extends AppCompatActivity {
@@ -26,6 +27,7 @@ public class HomeActivity extends AppCompatActivity {
     private NavHostFragment navHostFragment;
     private NavController navController;
     private BottomNavigationView bottomNavigation;
+    private String username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,13 +48,13 @@ public class HomeActivity extends AppCompatActivity {
         navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentMainContainerView);
         navController = navHostFragment.getNavController();
 
-
+        username = UserData.getUsername(this);
 
         // setting toolbar
         navController.addOnDestinationChangedListener(((navController, navDestination, bundle) -> {
             if(navDestination.getId() == R.id.homeFragment) {
                 getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-                binding.toolbar.setTitle("Hi, Madison");
+                binding.toolbar.setTitle("Hi, " + username);
             } else {
                 getSupportActionBar().setDisplayHomeAsUpEnabled(true);
                 binding.toolbar.setNavigationIcon(R.drawable.arrow);
@@ -61,6 +63,7 @@ public class HomeActivity extends AppCompatActivity {
 //        // bottom navigation
         bottomNavigation = binding.navigationBottom;
         NavigationUI.setupWithNavController(bottomNavigation,navController);
+
 
 
         addEvents();
