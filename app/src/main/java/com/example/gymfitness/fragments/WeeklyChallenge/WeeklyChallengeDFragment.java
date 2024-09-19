@@ -56,36 +56,18 @@ public class WeeklyChallengeDFragment extends Fragment {
         binding.btnGoToNextWorkout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Lấy FragmentManager của Activity
-                FragmentManager fragmentManager = ((AppCompatActivity) requireActivity()).getSupportFragmentManager();
-
-                // Tạo một transaction để thay thế fragment hiện tại bằng HomeFragment
-                fragmentManager.beginTransaction()
-                        .replace(R.id.fragmentMainContainerView, new HomeFragment()) // Thay thế fragment_container bằng id của ViewGroup chứa fragment
-                        .addToBackStack(null) // Thêm vào backstack nếu bạn muốn quay lại fragment trước đó khi nhấn nút back
-                        .commit(); // Thực hiện thay thế
-
-                // Hiển thị lại thanh công cụ và thanh điều hướng
                 Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).show();
                 ((HomeActivity) requireActivity()).getBottomNavigationView().setVisibility(View.VISIBLE);
+                navController.navigate(R.id.communityFragment2);
             }
         });
 
         binding.btnHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Lấy FragmentManager của Activity
-                FragmentManager fragmentManager = ((AppCompatActivity) requireActivity()).getSupportFragmentManager();
-
-                // Tạo một transaction để thay thế fragment hiện tại bằng HomeFragment
-                fragmentManager.beginTransaction()
-                        .replace(R.id.fragmentMainContainerView, new HomeFragment()) // Thay thế fragment_container bằng id của ViewGroup chứa fragment
-                        .addToBackStack(null) // Thêm vào backstack nếu bạn muốn quay lại fragment trước đó khi nhấn nút back
-                        .commit(); // Thực hiện thay thế
-
-                // Hiển thị lại thanh công cụ và thanh điều hướng
                 Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).show();
                 ((HomeActivity) requireActivity()).getBottomNavigationView().setVisibility(View.VISIBLE);
+                navController.navigate(R.id.homeFragment);
             }
         });
     }
