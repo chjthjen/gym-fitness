@@ -97,7 +97,7 @@ public class WorkoutSearchFragment extends Fragment {
 
             if (!TextUtils.isEmpty(searchText)) {
                 if (!searchHistory.contains(searchText)) {
-                    searchHistory.add(searchText);
+                    searchHistory.add(0, searchText);
                     adapter = new CustomAdapterListViewWorkoutSearch(getActivity(), searchHistory.toArray(new String[0]));
                     listView.setAdapter(adapter);
 

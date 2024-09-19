@@ -83,6 +83,10 @@ public class HomeActivity extends AppCompatActivity {
                 navController.navigate(R.id.resourcesFragment2);
                 return true;
             }
+            else if (id == R.id.ic_startsFragment){
+                navController.navigate(R.id.favoritesFragment);
+                return true;
+            }
             return false;
         });
     }
