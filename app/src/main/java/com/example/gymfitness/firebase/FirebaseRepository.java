@@ -9,6 +9,7 @@ import com.example.gymfitness.data.entities.Article;
 import com.example.gymfitness.data.entities.ArticleDetail;
 import com.example.gymfitness.data.entities.Exercise;
 import com.example.gymfitness.data.entities.FavoriteArticle;
+import com.example.gymfitness.data.entities.FavoriteWorkout;
 import com.example.gymfitness.data.entities.Round;
 import com.example.gymfitness.data.entities.Workout;
 import com.google.firebase.database.DataSnapshot;
@@ -160,6 +161,56 @@ public class FirebaseRepository {
                         }
                     }
                     callback.onCallback(favoriteArticleList);
+                });
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                callback.onError(databaseError);
+            }
+        });
+    }
+
+    public void getFavoriteWorkout(WorkoutCallback callback, Context context){
+        workoutReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                ExecutorService executorService = Executors.newSingleThreadExecutor();
+                executorService.execute(() -> {
+                    List<Workout> workoutList = new ArrayList<>();
+                    for (DataSnapshot workoutSnapshot : dataSnapshot.getChildren()) {
+                        Workout workout = workoutSnapshot.getValue(Workout.class);
+                        workout.setWorkout_name(workoutSnapshot.getKey());
+                        workout.setKcal(workoutSnapshot.child("kcal").getValue(Integer.class));
+                        workout.setTotalTime(workoutSnapshot.child("totalTime").getValue(Integer.class));
+                        List<Round> roundsList = new ArrayList<>();
+                        for (DataSnapshot roundSnapshot : workoutSnapshot.child("round").getChildren()) {
+                            if (roundSnapshot.exists()) {
+                                Round round = new Round();
+                                round.setRound_name(roundSnapshot.getKey()); // Set round name
+                                List<Exercise> exercisesList = new ArrayList<>();
+                                for (DataSnapshot exerciseSnapshot : roundSnapshot.getChildren()) {
+                                    Exercise exercise = new Exercise();
+                                    exercise.setExercise_name(exerciseSnapshot.getKey());
+                                    exercisesList.add(exercise);
+                                }
+                                round.setExercises(new ArrayList<>(exercisesList));
+                                roundsList.add(round);
+                            }
+                            workout.setRound(new ArrayList<>(roundsList));
+                        }
+                        workoutList.add(workout);
+                    }
+                    List<FavoriteWorkout> favoriteWorkouts = FitnessDB.getInstance(context).favoriteWorkoutDAO().getAll();
+                    List<Workout> favoriteWorkoutList = new ArrayList<>();
+                    for (Workout workout : workoutList) {
+                        for (FavoriteWorkout favoriteWorkout : favoriteWorkouts) {
+                            if (favoriteWorkout.getWorkout_name().equals(workout.getWorkout_name())) {
+                                favoriteWorkoutList.add(workout);
+                            }
+                        }
+                    }
+                    callback.onCallback(favoriteWorkoutList);
                 });
             }
 
