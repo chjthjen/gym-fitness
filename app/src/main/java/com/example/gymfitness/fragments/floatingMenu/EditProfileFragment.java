@@ -94,10 +94,28 @@ public class EditProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 UserInformation updatedInfo = editProfileViewModel.getUserInformation().getValue();
-                if(updatedInfo != null){
-                    updatedInfo.setFullname(binding.editFullname.getText().toString());
-                    updatedInfo.setEmail(binding.edtEmail.getText().toString());
-                    updatedInfo.setPhonenumber(binding.edtPhoneNumber.getText().toString());
+                if (updatedInfo != null) {
+                    String fullName = binding.editFullname.getText().toString();
+                    if (!TextUtils.isEmpty(fullName)) {
+                        updatedInfo.setFullname(fullName);
+                    } else {
+                        updatedInfo.setFullname("");
+                    }
+
+                    String email = binding.edtEmail.getText().toString();
+                    if (!TextUtils.isEmpty(email)) {
+                        updatedInfo.setEmail(email);
+                    } else {
+                        updatedInfo.setEmail("");
+                    }
+
+                    String phoneNumber = binding.edtPhoneNumber.getText().toString();
+                    if (!TextUtils.isEmpty(phoneNumber)) {
+                        updatedInfo.setPhonenumber(phoneNumber);
+                    } else {
+                        updatedInfo.setPhonenumber("");
+                    }
+
                     Date dateOfBirth = null;
                     try {
                         dateOfBirth = dob.parse(binding.edtDateOfBirth.getText().toString());
@@ -116,8 +134,20 @@ public class EditProfileFragment extends Fragment {
                         updatedInfo.setAge(enteredAge);
                     }
 
-                    updatedInfo.setHeight(Integer.parseInt(binding.edtHeigh.getText().toString()));
-                    updatedInfo.setWeight(Float.parseFloat(binding.edtWeight.getText().toString()));
+                    String height = binding.edtHeigh.getText().toString();
+                    if (!TextUtils.isEmpty(height)) {
+                        updatedInfo.setHeight(Integer.parseInt(height));
+                    } else {
+                        updatedInfo.setHeight(Integer.parseInt("0"));
+                    }
+
+                    String weight = binding.edtWeight.getText().toString();
+                    if (!TextUtils.isEmpty(weight)) {
+                        updatedInfo.setWeight(Float.parseFloat(weight));
+                    } else {
+                        updatedInfo.setWeight(Float.parseFloat("0"));
+                    }
+
                     editProfileViewModel.updateUserInformation(updatedInfo);
                 }
             }
