@@ -28,4 +28,21 @@ public class UserData {
 
         return null;
     }
+
+    public static String getUsername(Context context)
+    {
+        ExecutorService executorService = Executors.newSingleThreadExecutor();
+        Future<String> future = executorService.submit(() -> {
+            FitnessDB fitnessDB = FitnessDB.getInstance(context);
+            return fitnessDB.userInformationDAO().getUserInformation().getFullname();
+        });
+
+        try {
+            return future.get();
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
 }
