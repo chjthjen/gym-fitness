@@ -80,7 +80,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/sort_layout"
-            >
+            android:layout_marginTop="15dp">
 
 
             <androidx.recyclerview.widget.RecyclerView

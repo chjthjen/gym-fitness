@@ -43,8 +43,6 @@
             return new WorkoutViewHolder(binding);
         }
 
-
-
         static class WorkoutViewHolder extends RecyclerView.ViewHolder {
             private ItemWorkoutNonvideoBinding binding;
             public WorkoutViewHolder(@NonNull ItemWorkoutNonvideoBinding binding) {
@@ -96,9 +94,5 @@
             this.listWorkout.addAll(workouts);
             notifyDataSetChanged();
         }
-
-
-
-
     }
 

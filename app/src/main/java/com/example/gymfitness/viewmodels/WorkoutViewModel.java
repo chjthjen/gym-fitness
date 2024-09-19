@@ -10,6 +10,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.gymfitness.data.database.FitnessDB;
+import com.example.gymfitness.data.entities.Article;
 import com.example.gymfitness.data.entities.Exercise;
 import com.example.gymfitness.data.entities.FavoriteWorkout;
 import com.example.gymfitness.data.entities.Round;
@@ -37,7 +38,10 @@ public class WorkoutViewModel extends ViewModel {
         return workoutsLiveData;
     }
     private String userLevel;
-
+    private final MutableLiveData<Resource<ArrayList<Workout>>> workoutsLD = new MutableLiveData<>();
+    public LiveData<Resource<ArrayList<Workout>>> getWorkout() {
+        return workoutsLD;
+    }
     private final ExecutorService executorService = Executors.newSingleThreadExecutor();
     private FitnessDB fitnessDB;
 
@@ -173,44 +177,60 @@ public class WorkoutViewModel extends ViewModel {
 
 
 
-    public void loadArticlesByFavorite( Context context) {
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                ArrayList<Workout> workoutList = new ArrayList<>();
-                for (DataSnapshot workoutSnapshot : dataSnapshot.getChildren()) {
-                    Workout workout = workoutSnapshot.getValue(Workout.class);
-                    workout.setWorkout_name(workoutSnapshot.getKey());
-                    ArrayList<Round> roundsList = new ArrayList<>();
-                    for (DataSnapshot roundSnapshot : workoutSnapshot.child("round").getChildren()) {
-                        Round round = roundSnapshot.getValue(Round.class);
-                        round.setRound_name(roundSnapshot.getKey());
-                        ArrayList<Exercise> exercisesList = new ArrayList<>();
-                        for (DataSnapshot exerciseSnapshot : roundSnapshot.getChildren()) {
-                            Exercise exercise = exerciseSnapshot.getValue(Exercise.class);
-                            exercise.setExercise_name(exerciseSnapshot.getKey());
-                            exercisesList.add(exercise);
-                        }
-                        round.setExercises(exercisesList);
-                        roundsList.add(round);
-                    }
-                    workout.setRound(roundsList);
-                   List<FavoriteWorkout> lsFavoriteWorkouts = FavoriteHelper.getListFavoriteWorkout(context);
-                   for(FavoriteWorkout f : lsFavoriteWorkouts)
-                   {
-                       if(Objects.equals(workout.getWorkout_name(), f.getWorkout_name()))
-                           workoutList.add(workout);
-                   }
+//    public void loadArticlesByFavorite( Context context) {
+//        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                ArrayList<Workout> workoutList = new ArrayList<>();
+//                for (DataSnapshot workoutSnapshot : dataSnapshot.getChildren()) {
+//                    Workout workout = workoutSnapshot.getValue(Workout.class);
+//                    workout.setWorkout_name(workoutSnapshot.getKey());
+//                    ArrayList<Round> roundsList = new ArrayList<>();
+//                    for (DataSnapshot roundSnapshot : workoutSnapshot.child("round").getChildren()) {
+//                        Round round = roundSnapshot.getValue(Round.class);
+//                        round.setRound_name(roundSnapshot.getKey());
+//                        ArrayList<Exercise> exercisesList = new ArrayList<>();
+//                        for (DataSnapshot exerciseSnapshot : roundSnapshot.getChildren()) {
+//                            Exercise exercise = exerciseSnapshot.getValue(Exercise.class);
+//                            exercise.setExercise_name(exerciseSnapshot.getKey());
+//                            exercisesList.add(exercise);
+//                        }
+//                        round.setExercises(exercisesList);
+//                        roundsList.add(round);
+//                    }
+//                    workout.setRound(roundsList);
+//                   List<FavoriteWorkout> lsFavoriteWorkouts = FavoriteHelper.getListFavoriteWorkout(context);
+//                   for(FavoriteWorkout f : lsFavoriteWorkouts)
+//                   {
+//                       if(Objects.equals(workout.getWorkout_name(), f.getWorkout_name()))
+//                           workoutList.add(workout);
+//                   }
+//
+//                }
+//                workoutsLiveData.setValue(workoutList);
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//                Log.e("WorkoutViewModel", "Database error: " + databaseError.getMessage());
+//            }
+//        });
+//    }
 
-                }
-                workoutsLiveData.setValue(workoutList);
+    public void loadWorkoutsByFavorite(Context context){
+        workoutsLD.setValue(new Resource.Loading<>());
+        firebaseRepository.getFavoriteWorkout(new FirebaseRepository.WorkoutCallback() {
+            @Override
+            public void onCallback(List<Workout> wokouts) {
+                Resource<ArrayList<Workout>> resource = new Resource.Success<>(new ArrayList<>(wokouts));
+                workoutsLD.postValue(resource);
+                Log.d("TAG", "onCallback: " + resource.getData());
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Log.e("WorkoutViewModel", "Database error: " + databaseError.getMessage());
+            public void onError(DatabaseError error) {
+                workoutsLD.setValue(new Resource.Error<>(error.getMessage()));
             }
-        });
+        }, context);
     }
-
 }
