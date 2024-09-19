@@ -20,6 +20,7 @@ import com.example.gymfitness.adapters.home.RoundRCVAdapter;
 import com.example.gymfitness.data.entities.Round;
 import com.example.gymfitness.data.entities.Workout;
 import com.example.gymfitness.databinding.FragmentExerciseRoutineBinding;
+import com.example.gymfitness.databinding.FragmentWeeklyChallengeBBinding;
 import com.example.gymfitness.utils.UserData;
 import com.example.gymfitness.viewmodels.ExerciseRoutineViewModel;
 import com.example.gymfitness.viewmodels.SharedViewModel;
@@ -28,7 +29,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class WeeklyChallengeBFragment extends Fragment {
-    private FragmentExerciseRoutineBinding binding;
+    private FragmentWeeklyChallengeBBinding binding;
     private ExerciseRoutineViewModel viewModel;
     private SharedViewModel sharedViewModel;
     private ArrayList<Round> listRound = new ArrayList<>();
@@ -70,6 +71,7 @@ public class WeeklyChallengeBFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
     }
+
     @Override
     public void onResume() {
         super.onResume();

@@ -25,8 +25,9 @@
 
             <Button
                 android:id="@+id/btnBeginner"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:layout_marginEnd="10dp"
                 android:backgroundTint="@color/white"
                 android:text="Beginner"
@@ -35,8 +36,9 @@
 
             <Button
                 android:id="@+id/btnIntermediate"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:layout_marginEnd="10dp"
                 android:backgroundTint="@color/white"
                 android:text="Intermediate"
@@ -45,7 +47,7 @@
 
             <Button
                 android:id="@+id/btnAdvanced"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:backgroundTint="@color/white"
