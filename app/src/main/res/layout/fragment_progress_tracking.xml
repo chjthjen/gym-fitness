@@ -48,38 +48,38 @@
                     android:textColor="#E2F163"
                     android:textSize="24sp" />
 
-<!--                <RelativeLayout-->
-<!--                    android:id="@+id/rl2"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_margin="25dp"-->
-<!--                    android:background="@drawable/bg_chart"-->
-<!--                    android:layout_below="@id/textView34"-->
-<!--                    android:padding="20dp">-->
+                <RelativeLayout
+                    android:id="@+id/rl2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="25dp"
+                    android:background="@drawable/bg_chart"
+                    android:layout_below="@id/textView34"
+                    android:padding="20dp">
 
-<!--                    <TextView-->
-<!--                        android:id="@+id/textView20"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:text="Steps"-->
-<!--                        android:textColor="#E2F163"-->
-<!--                        android:textSize="17sp" />-->
+                    <TextView
+                        android:id="@+id/textView20"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Steps"
+                        android:textColor="#E2F163"
+                        android:textSize="17sp" />
 
-<!--                    <com.github.mikephil.charting.charts.BarChart-->
-<!--                        android:id="@+id/barChart"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="189dp"-->
-<!--                        android:layout_below="@id/textView20"-->
-<!--                        android:layout_marginTop="18dp" />-->
+                    <com.github.mikephil.charting.charts.BarChart
+                        android:id="@+id/barChart"
+                        android:layout_width="match_parent"
+                        android:layout_height="189dp"
+                        android:layout_below="@id/textView20"
+                        android:layout_marginTop="18dp" />
 
-<!--                </RelativeLayout>-->
+                </RelativeLayout>
 
-<!--                <androidx.recyclerview.widget.RecyclerView-->
-<!--                    android:id="@+id/rvDayOverview"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="match_parent"-->
-<!--                    android:layout_marginTop="25dp"-->
-<!--                    android:layout_below="@id/rl2"/>-->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvDayOverview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="25dp"
+                    android:layout_below="@id/rl2"/>
 
             </RelativeLayout>
         </ScrollView>
