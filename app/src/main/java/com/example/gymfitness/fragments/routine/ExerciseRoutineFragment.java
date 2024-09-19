@@ -54,7 +54,6 @@
             binding= DataBindingUtil.inflate(inflater, R.layout.fragment_exercise_routine, container, false);
             viewModel=new ViewModelProvider(requireActivity()).get(ExerciseRoutineViewModel.class);
             sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
-            level = UserData.getUserLevel(getContext());
             return binding.getRoot();
         }
 
@@ -71,6 +70,7 @@
                     binding.totalTime.setText(workout.getTotalTime() + " Minutes");
                     binding.kcal.setText(workout.getKcal() + " Kcal");
                     binding.level.setText(workout.getExerciseCount() + " Exercises");
+                    level = workout.getLevel();
                     for (Round round : workout.getRound())
                         listRound.add(round);
                 }
@@ -98,7 +98,7 @@
         @Override
         public void onResume() {
             super.onResume();
-            Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle(level);
             loadData();
+            Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle(level);
         }
     }
