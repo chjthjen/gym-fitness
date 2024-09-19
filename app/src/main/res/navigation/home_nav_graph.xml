@@ -142,6 +142,9 @@
         <action
             android:id="@+id/action_workoutSearchFragment_to_exerciseRoutineFragment"
             app:destination="@id/exerciseRoutineFragment" />
+        <action
+            android:id="@+id/action_workoutSearch_6_3_2_A_to_allSearchFragment"
+            app:destination="@id/allSearchFragment" />
 
     </fragment>
     <fragment
@@ -363,7 +366,30 @@
         <action
             android:id="@+id/action_articlesearch_to_workoutSearch"
             app:destination="@id/workoutSearch_6_3_2_A" />
+        <action
+            android:id="@+id/action_articlesearch_to_allSearchFragment"
+            app:destination="@id/allSearchFragment" />
 
+    </fragment>
+
+    <fragment
+        android:id="@+id/allSearchFragment"
+        android:name="com.example.gymfitness.fragments.floatingMenu.AllSearchFragment"
+        android:label="AllSearchFragment"
+        tools:layout="@layout/fragment_all_search">
+
+        <action
+            android:id="@+id/action_allSearchFragment_to_workoutSearch_6_3_2_A"
+            app:destination="@id/workoutSearch_6_3_2_A" />
+        <action
+            android:id="@+id/action_allSearchFragment_to_articlesearch"
+            app:destination="@id/articlesearch" />
+        <action
+            android:id="@+id/action_allSearchFragment_to_exerciseRoutineFragment"
+            app:destination="@id/exerciseRoutineFragment" />
+        <action
+            android:id="@+id/action_allSearchFragment_to_articleDetailFragment2"
+            app:destination="@id/articleDetailFragment2" />
     </fragment>
 
 </navigation>

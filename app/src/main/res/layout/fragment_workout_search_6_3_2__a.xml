@@ -105,7 +105,4 @@
             tools:listitem="@layout/item_workout_nonvideo" />
     </LinearLayout>
 
-    <!-- Added RecyclerView below ListView -->
-
-
 </LinearLayout>
