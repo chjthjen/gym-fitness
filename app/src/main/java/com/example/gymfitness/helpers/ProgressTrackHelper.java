@@ -39,7 +39,7 @@ public class ProgressTrackHelper {
             progressTracking.setDatetime_tracking(dateWithoutTime);
             progressTracking.setExercise_id(exercise.getExercise_name());
             progressTracking.setRep(exercise.getRep());
-            progressTracking.setDuration(exercise.getDuration());
+            progressTracking.setDuration(exercise.getDuration()*exercise.getRep());
             FitnessDB.getInstance(context).progressTrackingDAO().insert(progressTracking);
 
             WorkoutLog workoutLog = FitnessDB.getInstance(context).workoutLogDAO().checkWorkout(workout.getWorkout_name(), dateWithoutTime);

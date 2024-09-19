@@ -1,6 +1,7 @@
 package com.example.gymfitness.viewmodels;
 
 import android.app.Application;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -14,6 +15,7 @@ import com.example.gymfitness.data.database.FitnessDB;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -22,6 +24,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class ProgressTrackingViewModel extends AndroidViewModel {
+    private final MutableLiveData<List<DayOverview>> dataMonth=new MutableLiveData<>();
     private final MutableLiveData<List<DayOverview>> data=new MutableLiveData<>();
     private ExecutorService executorService = Executors.newSingleThreadExecutor();
     ProgressTrackingDAO progressTrackingDAO;
@@ -32,15 +35,36 @@ public class ProgressTrackingViewModel extends AndroidViewModel {
         FitnessDB db = FitnessDB.getInstance(application.getApplicationContext());
         progressTrackingDAO = db.progressTrackingDAO();
 
-        executorService.execute(()->{
-            data.postValue(progressTrackingDAO.getDayOverview());
-        });
+//        executorService.execute(()->{
+//            List<DayOverview> dayOverviews = progressTrackingDAO.getDayOverview();
+//            data.postValue(dayOverviews);
+//        });
 
     }
 
+    public void loadProgressDayOverView(){
+        executorService.execute(()->{
+            List<DayOverview> dayOverviews = progressTrackingDAO.getDayOverview();
+            Log.d("ViewModel", "Data fetched: " + dayOverviews.get(0).getDuration());
+            data.postValue(dayOverviews);
+        });
+    }
+    public void loadProgressDayOverView1(){
+        executorService.execute(()->{
+            List<DayOverview> dayOverviews = progressTrackingDAO.getMonthOverview();
+            Log.d("ViewModel", "Data fetched: " + dayOverviews.get(0).getDuration());
+            dataMonth.postValue(dayOverviews);
+        });
+    }
     public MutableLiveData<List<DayOverview>> getData() {
+        loadProgressDayOverView();
         return data;
     }
+    public MutableLiveData<List<DayOverview>> getDataMonth() {
+        loadProgressDayOverView1();
+        return dataMonth;
+    }
+
 
     // lay reps theo tung thang
     public Map<String,Integer> calculateTotalsByMonth(List<DayOverview> dayOverviews){
@@ -48,28 +72,39 @@ public class ProgressTrackingViewModel extends AndroidViewModel {
         DateTimeFormatter formatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
         for (DayOverview dayOverview:dayOverviews){
-            LocalDate localDate=LocalDate.parse(dayOverview.getTime(),formatter);
-            String yearMonth=localDate.getYear()+"-"+ String.format("%02d", localDate.getMonthValue());
+            LocalDate localDate=LocalDate.parse(dayOverview.getDate(),formatter);
 
-            int rep=Integer.parseInt(dayOverview.getReps());
-            totalsByMonth.putIfAbsent(yearMonth,0);
-            totalsByMonth.put(yearMonth,totalsByMonth.getOrDefault(yearMonth,0)+rep);
+
+            String yearMonth = localDate.getYear() + "-" + String.format("%02d", localDate.getMonthValue());
+
+            // Cập nhật tổng rep cho tháng
+            int rep = dayOverview.getRep();
+            totalsByMonth.put(yearMonth, totalsByMonth.getOrDefault(yearMonth, 0) + rep);
         }
         return totalsByMonth;
 
     }
 
-    public List<Integer> getMonths(List<DayOverview> dayOverviews){
-        List<Integer> months=new ArrayList<>();
-        DateTimeFormatter formatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        for (DayOverview dayOverview:dayOverviews){
-            LocalDate localDate=LocalDate.parse(dayOverview.getTime(),formatter);
-            int month=localDate.getMonthValue();
-            if(months.contains(month)){
-                months.add(month);
-            }
+    public List<Integer> getMonths(List<DayOverview> dayOverviews) {
+        List<Integer> months = new ArrayList<>();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
+        for (DayOverview dayOverview : dayOverviews) {
+            if (dayOverview.getDate() != null) {
+                try {
+                    LocalDate localDate = LocalDate.parse(dayOverview.getDate(), formatter);
+                    int month = localDate.getMonthValue();
+                    if (!months.contains(month)) {
+                        months.add(month);
+                    }
+                } catch (DateTimeParseException e) {
+                    Log.e("ProgressTrackingViewModel", "Date parsing error: " + e.getMessage());
+                }
+            } else {
+                Log.e("ProgressTrackingViewModel", "Date string is null");
+            }
         }
         return months;
     }
+
 }

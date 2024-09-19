@@ -44,13 +44,13 @@ public class DayOverviewAdapter extends RecyclerView.Adapter<DayOverviewAdapter.
         }
 
         public void bindData(DayOverview dayOverview){
-            String dayOfWeek=dayOverview.getDayOfWeek(dayOverview.getTime());
-            int dayOfMonth=dayOverview.getDayOfMonth(dayOverview.getTime());
+            String dayOfWeek=dayOverview.getDayOfWeek(dayOverview.getDate());
+            int dayOfMonth=dayOverview.getDayOfMonth(dayOverview.getDate());
 
             binding.tvDayOfWeek.setText(dayOfWeek);
             binding.tvDayOfMonth.setText(String.valueOf(dayOfMonth));
-            binding.tvSteps.setText(dayOverview.getReps());
-            binding.tvDuration.setText(dayOverview.getDuration());
+            binding.tvSteps.setText(String.valueOf(dayOverview.getRep()));
+            binding.tvDuration.setText(String.valueOf(dayOverview.getDuration()));
         }
     }
 }

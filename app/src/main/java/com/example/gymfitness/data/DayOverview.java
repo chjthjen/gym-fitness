@@ -6,56 +6,43 @@ import java.time.format.TextStyle;
 import java.util.Locale;
 
 public class DayOverview {
-    private String reps;
-    private String duration;
-    private String time;
+    private int rep;
+    private int duration;
+    private String date;
 
     public DayOverview(){
 
     }
-    public DayOverview(String timeString, String reps, String duration) {
-        this.time = timeString;
-        this.reps = reps;
+
+
+    public DayOverview(String date, int duration, int rep) {
+        this.date = date;
         this.duration = duration;
-    }
-//    public DayOverview(LocalDate time, String reps, String duration) {
-//        this.time1 = time;
-//        this.reps = reps;
-//        this.duration = duration;
-////        this.time=LocalDate.parse(time.toString(), DateTimeFormatter.ISO_LOCAL_DATE);
-//    }
-
-    public String getTime() {
-        return time;
+        this.rep = rep;
     }
 
-    public void setTime(String timeString) {
-        this.time = timeString;
+    public int getRep() {
+        return rep;
     }
 
-
-//    public LocalDate getTime() {
-//        return time;
-//    }
-//
-//    public void setTime(LocalDate time) {
-//        this.time = time;
-//    }
-
-    public String getReps() {
-        return reps;
+    public void setRep(int rep) {
+        this.rep = rep;
     }
 
-    public void setReps(String reps) {
-        this.reps = reps;
-    }
-
-    public String getDuration() {
+    public int getDuration() {
         return duration;
     }
 
-    public void setDuration(String duration) {
+    public void setDuration(int duration) {
         this.duration = duration;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public String getDayOfWeek(String time){

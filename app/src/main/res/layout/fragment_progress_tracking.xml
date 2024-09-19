@@ -37,14 +37,14 @@
                     android:textSize="14sp" />
 
                 <TextView
-                    android:id="@+id/textView34"
+                    android:id="@+id/tvDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_below="@id/textView33"
                     android:layout_marginStart="25dp"
-                    android:layout_marginTop="7dp"
+                    android:layout_marginTop="4dp"
                     android:fontFamily="@font/poppins"
                     android:text="January 12th"
-                    android:layout_below="@id/textView33"
                     android:textColor="#E2F163"
                     android:textSize="24sp" />
 
@@ -54,7 +54,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="25dp"
                     android:background="@drawable/bg_chart"
-                    android:layout_below="@id/textView34"
+                    android:layout_below="@id/tvDate"
                     android:padding="20dp">
 
                     <TextView

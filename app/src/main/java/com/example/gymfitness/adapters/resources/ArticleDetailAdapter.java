@@ -1,71 +1,57 @@
 package com.example.gymfitness.adapters.resources;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gymfitness.R;
 import com.example.gymfitness.data.entities.ArticleDetail;
 
 import java.util.List;
 
-public class ArticleDetailAdapter extends BaseAdapter {
+public class ArticleDetailAdapter extends RecyclerView.Adapter<ArticleDetailAdapter.ViewHolder> {
 
-    private final Context context;
     private List<ArticleDetail> articleDetails;
-    private final LayoutInflater inflater;
 
-    public ArticleDetailAdapter(Context context, List<ArticleDetail> articleDetails) {
-        this.context = context;
+    public ArticleDetailAdapter(List<ArticleDetail> articleDetails) {
         this.articleDetails = articleDetails;
-        this.inflater = LayoutInflater.from(context);
     }
 
-    public void setArticleDetails(List<ArticleDetail> articleDetails) {
-        this.articleDetails = articleDetails;
-        notifyDataSetChanged();
+    @NonNull
+    @Override
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.lv_article_detail, parent, false);
+        return new ViewHolder(view);
     }
 
     @Override
-    public int getCount() {
-        return articleDetails.size();
-    }
-
-    @Override
-    public Object getItem(int position) {
-        return articleDetails.get(position);
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return position;
-    }
-
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder holder;
-        if (convertView == null) {
-            convertView = inflater.inflate(R.layout.lv_article_detail, parent, false);
-            holder = new ViewHolder();
-            holder.txtHeader = convertView.findViewById(R.id.txtHeader);
-            holder.txtContent = convertView.findViewById(R.id.txtContent);
-            convertView.setTag(holder);
-        } else {
-            holder = (ViewHolder) convertView.getTag();
-        }
-
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ArticleDetail articleDetail = articleDetails.get(position);
         holder.txtHeader.setText(articleDetail.getHeader());
         holder.txtContent.setText(articleDetail.getContent());
-
-        return convertView;
     }
 
-    private static class ViewHolder {
+    @Override
+    public int getItemCount() {
+        return articleDetails.size();
+    }
+
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView txtHeader;
         TextView txtContent;
+
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+            txtHeader = itemView.findViewById(R.id.txtHeader);
+            txtContent = itemView.findViewById(R.id.txtContent);
+        }
+    }
+
+    public void setArticleDetails(List<ArticleDetail> articleDetails){
+        this.articleDetails = articleDetails;
     }
 }

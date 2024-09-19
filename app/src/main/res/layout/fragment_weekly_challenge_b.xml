@@ -2,144 +2,158 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-
-    <data>
-
-        <variable
-            name="viewModel"
-            type="com.example.gymfitness.viewmodels.ResetPasswordViewModel" />
-    </data>
-
     <RelativeLayout
+        android:id="@+id/rl"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/black"
         android:clipToOutline="true"
-        android:paddingTop="30dp">
-
-
-        <RelativeLayout
-            android:id="@+id/rl1"
+        >
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/banner_weekly_challenge"
             android:layout_width="match_parent"
-            android:layout_height="208dp"
-            android:background="#B3A0FF">
+            android:layout_height="250dp"
+            android:background="@color/lightpurple"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            >
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView"
+                android:layout_width="330dp"
+                android:layout_height="210dp"
+                app:cardCornerRadius="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-            <FrameLayout
-                android:layout_width="323dp"
-                android:layout_height="157dp"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true">
-
-                <androidx.cardview.widget.CardView
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/contrain_banner"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    app:cardCornerRadius="20dp">
+                    android:layout_height="match_parent">
 
                     <ImageView
-                        android:id="@+id/imageView8"
+                        android:id="@+id/img_banner"
+                        android:layout_width="match_parent"
+                        android:layout_height="170dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/woman_help_home"
+                        app:layout_constraintTop_toTopOf="parent"
+                        />
+
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:contentDescription="Cardio"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/woman_help_home" />
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/rounded_textview_background"
+                        android:elevation="4dp"
+                        android:gravity="center"
+                        android:text="Functional Training"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/poppins"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:paddingHorizontal="20dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <LinearLayout
+                        android:id="@+id/linearLayoutBelowImage"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
-                        android:layout_gravity="bottom"
-                        android:background="#AA212020"
-                        android:orientation="horizontal">
-
+                        android:background="@drawable/rounded_background_black"
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/img_banner"
+                        >
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="center"
+                            android:gravity="center_vertical"
                             android:orientation="horizontal">
 
                             <ImageView
-                                android:layout_width="15dp"
-                                android:layout_height="15dp"
-                                android:src="@drawable/ic_time"
-                                app:tint="@color/white" />
+                                android:id="@+id/img_time"
+                                android:layout_width="9dp"
+                                android:layout_height="9dp"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginBottom="1dp"
+                                android:src="@drawable/time_default" />
 
                             <TextView
+                                android:id="@+id/totalTime"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:gravity="center_vertical"
+                                android:layout_marginStart="3dp"
+                                android:fontFamily="@font/poppins"
                                 android:text="45 Minutes"
                                 android:textColor="@color/white"
-                                android:textSize="13sp" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:orientation="horizontal">
+                                android:textSize="10sp" />
 
                             <ImageView
-                                android:layout_width="15dp"
-                                android:layout_height="15dp"
-                                android:src="@drawable/ic_fire"
-                                app:tint="@color/white" />
+                                android:layout_width="9dp"
+                                android:layout_height="9dp"
+                                android:layout_marginStart="15dp"
+                                android:layout_marginBottom="1dp"
+                                android:src="@drawable/ic_calories_wc" />
+
+                            <!-- Removed extra `/>` -->
 
                             <TextView
+                                android:id="@+id/kcal"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:gravity="center_vertical"
+                                android:layout_marginStart="3dp"
+                                android:fontFamily="@font/poppins"
                                 android:text="1450 Kcal"
                                 android:textColor="@color/white"
-                                android:textSize="13sp" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:orientation="horizontal">
+                                android:textSize="10sp" />
 
                             <ImageView
-                                android:id="@+id/imageView10"
-                                android:layout_width="15dp"
-                                android:layout_height="15dp"
-                                android:src="@drawable/ic_work_out_wc"
-                                app:tint="@color/white" />
+                                android:layout_width="9dp"
+                                android:layout_height="9dp"
+                                android:layout_marginStart="20dp"
+                                android:layout_marginBottom="1dp"
+                                android:src="@drawable/ic_work_out_wc" />
 
                             <TextView
+                                android:id="@+id/level"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:gravity="center_vertical"
-                                android:text="Intermediate"
+                                android:layout_marginStart="3dp"
+                                android:fontFamily="@font/poppins"
+                                android:text="Beginner"
                                 android:textColor="@color/white"
-                                android:textSize="13sp" />
-
+                                android:textSize="10sp" />
                         </LinearLayout>
 
-                        <ImageView
-                            android:id="@+id/imageView12"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:layout_gravity="center|end"
-                            android:layout_weight="1"
-                            android:src="@drawable/ic_star" />
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-            </FrameLayout>
-        </RelativeLayout>
 
+                    </LinearLayout>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <ImageView
+                    android:id="@+id/img_star"
+                    android:layout_width="wrap_content"
+                    android:layout_height="15dp"
+                    android:layout_marginLeft="250dp"
+                    android:layout_marginTop="180dp"
+                    android:src="@drawable/star_default"
+
+                    />
+
+            </androidx.cardview.widget.CardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcv_round"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/rl1"
+            android:layout_below="@id/banner_weekly_challenge"
             android:layout_marginHorizontal="30dp"
             android:layout_marginTop="20dp"
             />
-
     </RelativeLayout>
 
 </layout>

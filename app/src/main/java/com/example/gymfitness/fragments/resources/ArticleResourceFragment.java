@@ -82,6 +82,7 @@ public class ArticleResourceFragment extends Fragment {
         articleResourceAdapter.setOnItemClickListener(article -> {
             Bundle bundle = new Bundle();
             bundle.putString("articleTitle", article.getArticle_title());
+            sharedViewModel.setArticle(article);
             NavController navController = Navigation.findNavController(requireView());
             navController.navigate(R.id.articleResourceDetailFragment, bundle);
         });

@@ -12,7 +12,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="110dp"
-        android:layout_marginBottom="19dp"
+        android:layout_marginBottom="20dp"
         android:background="@drawable/custom_background_item_workout"
         android:weightSum="3">
 

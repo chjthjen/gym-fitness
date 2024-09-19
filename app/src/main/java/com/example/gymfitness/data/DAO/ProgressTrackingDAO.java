@@ -20,4 +20,7 @@ public interface ProgressTrackingDAO {
 
     @Query("SELECT DATE(datetime_tracking) as date, SUM(duration) as duration, SUM(rep) as rep FROM ProgressTracking GROUP BY DATE(datetime_tracking)")
     List<DayOverview> getDayOverview();
+
+    @Query("SELECT strftime('%Y-%m', datetime_tracking) as date, SUM(duration) as duration, SUM(rep) as rep FROM ProgressTracking GROUP BY strftime('%Y-%m', datetime_tracking)")
+    List<DayOverview> getMonthOverview();
 }
