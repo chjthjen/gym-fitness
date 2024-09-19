@@ -142,6 +142,15 @@ public class ArticleSearchFragment extends Fragment {
             }
         });
 
+        Button btnAll = view.findViewById(R.id.btnAll);
+        btnAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavController navController = Navigation.findNavController(v);
+                navController.navigate(R.id.action_articlesearch_to_allSearchFragment);
+            }
+        });
+
         return view;
     }
 

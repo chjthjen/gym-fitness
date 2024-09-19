@@ -87,6 +87,8 @@ public class WorkoutSearchFragment extends Fragment {
             public void onChanged(ArrayList<Workout> workouts) {
                 workoutAdapter.setWorkoutList(workouts);
                 workoutAdapter.notifyDataSetChanged();
+
+                sharedViewModel.setWorkouts(workouts);
             }
         });
 
@@ -123,6 +125,17 @@ public class WorkoutSearchFragment extends Fragment {
                 navController.navigate(R.id.action_workoutSearch_6_3_2_A_to_articlesearch);
             }
         });
+
+        Button btnAllSearch = view.findViewById(R.id.btnAll);
+        btnAllSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavController navController = Navigation.findNavController(v);
+                navController.navigate(R.id.action_workoutSearch_6_3_2_A_to_allSearchFragment);
+            }
+        });
+
+
 
         return view;
     }

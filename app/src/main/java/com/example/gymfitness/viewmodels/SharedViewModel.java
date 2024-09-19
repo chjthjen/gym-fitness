@@ -7,8 +7,12 @@ import androidx.lifecycle.ViewModel;
 import com.example.gymfitness.data.entities.Exercise;
 import com.example.gymfitness.data.entities.Workout;
 
+import java.util.List;
+
 public class SharedViewModel extends ViewModel {
     private final MutableLiveData<Workout> selected = new MutableLiveData<Workout>();
+    private final MutableLiveData<List<Workout>> workoutsList = new MutableLiveData<>();
+
 
     public void select(Workout item) {
         selected.setValue(item);
@@ -38,5 +42,14 @@ public class SharedViewModel extends ViewModel {
 
     public LiveData<String> getSelectedArticle() {
         return selectedArticleTitle;
+    }
+
+    public void setWorkouts(List<Workout> workouts) {
+        workoutsList.setValue(workouts);
+    }
+
+    // Lấy danh sách Workout
+    public LiveData<List<Workout>> getWorkouts() {
+        return workoutsList;
     }
 }
