@@ -2,6 +2,9 @@ package com.example.gymfitness.data.entities;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
+
+import com.example.gymfitness.helpers.ProgressTrackHelper;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -11,6 +14,7 @@ import java.util.Date;
 public class ProgressTracking implements Serializable {
     @PrimaryKey(autoGenerate = true)
     int pro_id;
+    @TypeConverters(ProgressTrackHelper.class)
     Date datetime_tracking;
     String exercise_id;
     int rep;

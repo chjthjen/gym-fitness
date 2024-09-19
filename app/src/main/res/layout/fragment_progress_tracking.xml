@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.gymfitness.viewmodels.ProgressTracking" />
+            type="com.example.gymfitness.viewmodels.ProgressTrackingViewModel" />
     </data>
     <RelativeLayout
         android:layout_width="match_parent"

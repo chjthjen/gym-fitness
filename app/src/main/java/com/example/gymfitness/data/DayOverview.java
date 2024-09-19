@@ -1,48 +1,60 @@
 package com.example.gymfitness.data;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.time.format.TextStyle;
 import java.util.Locale;
 
 public class DayOverview {
-    private LocalDateTime time;
-    private String steps;
-    private String duration;
+    private int rep;
+    private int duration;
+    private String date;
 
-    public DayOverview(LocalDateTime time, String steps, String duration) {
-        this.time = time;
-        this.steps = steps;
+    public DayOverview(){
+
+    }
+
+
+    public DayOverview(String date, int duration, int rep) {
+        this.date = date;
         this.duration = duration;
+        this.rep = rep;
     }
 
-    public LocalDateTime getTime() {
-        return time;
+    public int getRep() {
+        return rep;
     }
 
-    public void setTime(LocalDateTime time) {
-        this.time = time;
+    public void setRep(int rep) {
+        this.rep = rep;
     }
 
-    public String getSteps() {
-        return steps;
-    }
-
-    public void setSteps(String steps) {
-        this.steps = steps;
-    }
-
-    public String getDuration() {
+    public int getDuration() {
         return duration;
     }
 
-    public void setDuration(String duration) {
+    public void setDuration(int duration) {
         this.duration = duration;
     }
 
-    public String getDayOfWeek(LocalDateTime time){
-         return time.getDayOfWeek().getDisplayName(TextStyle.SHORT, Locale.ENGLISH);
+    public String getDate() {
+        return date;
     }
-    public int getDayOfMonth(LocalDateTime time){
-        return time.getDayOfMonth();
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getDayOfWeek(String time){
+        DateTimeFormatter  formatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+        LocalDate localDate=LocalDate.parse(time,formatter);
+        return localDate.getDayOfWeek().getDisplayName(TextStyle.SHORT, Locale.ENGLISH);
+    }
+    public int getDayOfMonth(String time){
+        DateTimeFormatter  formatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+        LocalDate localDate=LocalDate.parse(time,formatter);
+        return localDate.getDayOfMonth();
     }
 }

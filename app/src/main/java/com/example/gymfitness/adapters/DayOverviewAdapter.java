@@ -1,7 +1,6 @@
 package com.example.gymfitness.adapters;
 
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -45,12 +44,12 @@ public class DayOverviewAdapter extends RecyclerView.Adapter<DayOverviewAdapter.
         }
 
         public void bindData(DayOverview dayOverview){
-            String dayOfWeek=dayOverview.getDayOfWeek(dayOverview.getTime());
-            int dayOfMonth=dayOverview.getDayOfMonth(dayOverview.getTime());
+            String dayOfWeek=dayOverview.getDayOfWeek(dayOverview.getDate());
+            int dayOfMonth=dayOverview.getDayOfMonth(dayOverview.getDate());
 
             binding.tvDayOfWeek.setText(dayOfWeek);
             binding.tvDayOfMonth.setText(String.valueOf(dayOfMonth));
-            binding.tvSteps.setText(dayOverview.getSteps());
+            binding.tvSteps.setText(dayOverview.getRep());
             binding.tvDuration.setText(dayOverview.getDuration());
         }
     }
