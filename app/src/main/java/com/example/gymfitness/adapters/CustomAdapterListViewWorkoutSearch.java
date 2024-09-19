@@ -38,6 +38,8 @@ public class CustomAdapterListViewWorkoutSearch extends ArrayAdapter<String> {
         return rowView;
     }
 
-
-
+    @Override
+    public int getCount() {
+        return 3;
+    }
 }

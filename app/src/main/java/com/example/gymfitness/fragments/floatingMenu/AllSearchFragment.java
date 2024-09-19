@@ -112,7 +112,7 @@ public class AllSearchFragment extends Fragment {
             String searchText = edtSearch.getText().toString().trim();
             if (!TextUtils.isEmpty(searchText)) {
                 if (!searchHistory.contains(searchText)) {
-                    searchHistory.add(searchText);
+                    searchHistory.add(0, searchText);
                     adapter.notifyDataSetChanged();
                     saveSearchHistory(searchHistory);
                 }
