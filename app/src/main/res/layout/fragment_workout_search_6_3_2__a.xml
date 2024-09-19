@@ -61,7 +61,7 @@
             android:layout_height="35dp"
             android:layout_weight="1"
             android:textAllCaps="false"
-            android:text="Articla"
+            android:text="Article"
             android:textColor="#896CFE"
             android:fontFamily="@font/league_spartan"
             android:textSize="17sp"
