@@ -97,7 +97,7 @@ public class HomeActivity extends AppCompatActivity {
             navController.navigate(R.id.profileFragment);
             return true;
         } else if(id == R.id.ic_search){
-            navController.navigate(R.id.workoutSearch_6_3_2_A);
+            navController.navigate(R.id.allSearchFragment);
         }
 
         return super.onOptionsItemSelected(item);

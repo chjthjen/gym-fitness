@@ -216,7 +216,7 @@
                                 android:id="@+id/img_star"
                                 android:layout_width="wrap_content"
                                 android:layout_height="20dp"
-                                android:layout_marginLeft="250dp"
+                                android:layout_marginLeft="280dp"
                                 android:layout_marginTop="180dp"
                                 android:src="@drawable/star_default"
 
@@ -238,6 +238,7 @@
                         app:layout_constraintTop_toBottomOf="@id/banner_weekly_challenge">
 
                         <TextView
+                            android:id="@+id/title_letsgo"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="50dp"
