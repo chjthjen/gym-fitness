@@ -119,6 +119,7 @@ public class HomeFragment extends Fragment {
         articlesTipsRCVAdapter.setOnItemClickListener(article -> {
             Bundle bundle = new Bundle();
             bundle.putString("articleTitle", article.getArticle_title());
+            sharedViewModel.setArticle(article);
             navController.navigate(R.id.action_homeFragment_to_articleDetailFragment2, bundle);
         });
 

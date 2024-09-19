@@ -17,7 +17,9 @@ import com.example.gymfitness.R;
 import com.example.gymfitness.adapters.resources.ArticleDetailAdapter;
 import com.example.gymfitness.databinding.FragmentArticleDetailBinding;
 import com.example.gymfitness.databinding.FragmentArticleResourceDetailBinding;
+import com.example.gymfitness.helpers.FavoriteHelper;
 import com.example.gymfitness.viewmodels.ArticleDetailResourceViewModel;
+import com.example.gymfitness.viewmodels.SharedViewModel;
 
 import java.util.ArrayList;
 
@@ -25,6 +27,8 @@ public class ArticleResourceDetailFragment extends Fragment {
     private ArticleDetailAdapter adapter;
     private ArticleDetailResourceViewModel articleDetailResourceViewModel;
     private FragmentArticleResourceDetailBinding  binding;
+    private SharedViewModel sharedViewModel;
+
     public ArticleResourceDetailFragment() {
     }
 
@@ -33,6 +37,8 @@ public class ArticleResourceDetailFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_article_resource_detail, container, false);
         articleDetailResourceViewModel = new ViewModelProvider(this).get(ArticleDetailResourceViewModel.class);
+
+        sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
         binding.setViewModel(articleDetailResourceViewModel);
         binding.setLifecycleOwner(this);
 
@@ -45,6 +51,16 @@ public class ArticleResourceDetailFragment extends Fragment {
             articleDetailResourceViewModel.loadArticleDetails(articleTitle);
         }
 
+
+
+        return binding.getRoot();
+
+
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         articleDetailResourceViewModel.getArticleDetails().observe(getViewLifecycleOwner(), details -> {
             adapter.setArticleDetails(details);
             adapter.notifyDataSetChanged();
@@ -53,9 +69,12 @@ public class ArticleResourceDetailFragment extends Fragment {
         articleDetailResourceViewModel.getThumbnail().observe(getViewLifecycleOwner(), thumbnail -> {
             Glide.with(requireContext()).load(thumbnail).into(binding.imgArticle);
         });
+        sharedViewModel.getArticle().observe(getViewLifecycleOwner(), article -> {
+            FavoriteHelper.checkFavorite(article, getContext(), binding.imgFavStar);
 
-        return binding.getRoot();
-
-
+            binding.imgFavStar.setOnClickListener(v ->
+                    FavoriteHelper.setFavorite(article, v.getContext(), binding.imgFavStar)
+            );
+        });
     }
 }
