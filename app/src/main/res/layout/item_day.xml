@@ -6,8 +6,8 @@
 
     <TextView
         android:id="@+id/tvDay"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:background="@drawable/day_background"
         android:fontFamily="@font/league_spartan"
         android:gravity="center"

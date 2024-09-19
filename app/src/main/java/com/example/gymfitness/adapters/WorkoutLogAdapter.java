@@ -68,10 +68,20 @@ public class WorkoutLogAdapter extends RecyclerView.Adapter<WorkoutLogAdapter.Wo
             Date date = workoutlog.getDate();
             String dateStr = df.format(date);
             binding.tvworkoutlogday.setText(dateStr);
-            binding.tvworkoutlogmin.setText(workoutlog.getTotalTime() + " Mins");
+
+            int totalTime = workoutlog.getTotalTime();
+            if (totalTime < 60) {
+                binding.tvworkoutlogmin.setText(totalTime + "s");
+            } else {
+                int minutes = totalTime / 60;
+                int second = totalTime % 60;
+                binding.tvworkoutlogmin.setText(minutes + "m" + second +"s");
+            }
+
             binding.imgkcal.setImageResource(R.drawable.ic_calories_home);
             binding.imgWorkout.setImageResource(R.drawable.ic_work_out_wc);
             binding.imgClock.setImageResource(R.drawable.purple_clock);
         }
+
     }
 }
