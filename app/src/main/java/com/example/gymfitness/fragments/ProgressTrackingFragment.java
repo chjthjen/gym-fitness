@@ -31,7 +31,9 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -71,41 +73,68 @@ public class ProgressTrackingFragment extends Fragment {
         binding= DataBindingUtil.inflate(inflater,R.layout.fragment_progress_tracking,container,false);
         viewModel=new ViewModelProvider(requireActivity()).get(ProgressTrackingViewModel.class);
         viewModel.loadProgressDayOverView();
+        viewModel.loadProgressDayOverView1();
 
 
+        LocalDate specificDate = LocalDate.now();
+        DateTimeFormatter monthFormatter = DateTimeFormatter.ofPattern("MMMM");
+        String month = specificDate.format(monthFormatter);
+
+
+        int day = specificDate.getDayOfMonth();
+        String dayWithSuffix = getDayWithSuffix(day);
+        String formattedDate = month + " " + dayWithSuffix;
+
+        binding.tvDate.setText(formattedDate);
         viewModel.getData().observe(getViewLifecycleOwner(), dayOverviews1 -> {
             if (dayOverviews1 == null || dayOverviews1.isEmpty()) {
                 Log.d("Fragment", "DayOverviews is empty or null");
                 return;
             }
             Log.d("Fragment", "DayOverviews size: " + dayOverviews1.size());
+
+
+            DayOverviewAdapter adapter=new DayOverviewAdapter(dayOverviews1);
+            binding.rvDayOverview.setAdapter(adapter);
+            binding.rvDayOverview.setLayoutManager(new LinearLayoutManager(getContext()));
+            binding.rvDayOverview.addItemDecoration(new SpacesItemDecoration(getResources().getDimensionPixelSize(R.dimen.spacing)));
+        });
+
+        viewModel.getDataMonth().observe(getViewLifecycleOwner(),dayOverviews -> {
+            if (dayOverviews == null || dayOverviews.isEmpty()) {
+                Log.d("Fragment", "DayOverviews is empty or null");
+                return;
+            }
+            Log.d("Fragment", "DayOverviews1 size: " + dayOverviews.size());
             List<BarEntry> fixedEntries = new ArrayList<>();
             List<BarEntry> actualEntries = new ArrayList<>();
-            List<Integer> months = viewModel.getMonths(dayOverviews1);
+//
+//
+            List<Integer> months = viewModel.getMonths(dayOverviews);
             List<Integer> reps = new ArrayList<>();
 
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            for (DayOverview dayOverview : dayOverviews1) {
-                try {
-                    LocalDate localDate = LocalDate.parse(String.valueOf(dayOverview.getDate()), formatter);
-                    String yearMonth = localDate.getYear() + "-" + String.format("%02d", localDate.getMonthValue());
-                    Integer rep = viewModel.calculateTotalsByMonth(dayOverviews1).get(yearMonth);
-                    reps.add(rep != null ? rep : 0);
-                } catch (DateTimeParseException e) {
-                    Log.e("Fragment", "Date parsing error: " + e.getMessage());
-                }
-            }
 
-            if (months.size() != reps.size()) {
-                Log.e("Fragment", "Mismatch between months and reps size");
-                return; // Stop processing if there's an error
+            for (DayOverview dayOverview : dayOverviews){
+                reps.add(dayOverview.getRep());
+
+                DateTimeFormatter formatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+                LocalDate localDate=LocalDate.parse(dayOverview.getDate()+ "-01",formatter);
+                months.add(localDate.getMonthValue());
+
             }
+            Log.d("Fragment", "months: " + months.size());
+            Log.d("Fragment", "reps: " + reps.size());
+
 
             for (int i = 0; i < months.size(); i++) {
-                fixedEntries.add(new BarEntry(months.get(i).floatValue(), 170));
-                actualEntries.add(new BarEntry(months.get(i).floatValue(), reps.get(i).floatValue()));
+                fixedEntries.add(new BarEntry(months.get(i).floatValue()-1, 170));
+                actualEntries.add(new BarEntry(months.get(i).floatValue()-1, reps.get(i).floatValue()));
             }
 
+            final String[] months1 = new String[]{"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+            Log.d("Fragment", "fixedEntries size: " + fixedEntries.size());
+            Log.d("Fragment", "actualEntries size: " + actualEntries.size());
             BarDataSet barDataSet = new BarDataSet(fixedEntries, "Steps");
             barDataSet.setColor(Color.rgb(217, 217, 217));
             barDataSet.setDrawValues(false);
@@ -123,6 +152,8 @@ public class ProgressTrackingFragment extends Fragment {
             xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
             xAxis.setDrawGridLines(false);
             xAxis.setGranularity(1f);
+            xAxis.setValueFormatter(new IndexAxisValueFormatter(months1));
+
             xAxis.setGranularityEnabled(true);
             xAxis.setTextColor(Color.rgb(226, 241, 99));
 
@@ -143,17 +174,20 @@ public class ProgressTrackingFragment extends Fragment {
 
 
 
+
 //
-//        List<DayOverview> dayOverviews1=new ArrayList<>();
-////        dayOverviews1.add(new DayOverview(LocalDate.now(),"3,679","1hr40m"));
-////        dayOverviews1.add(new DayOverview(LocalDate.now(),"3,679","1hr40m"));
-////        dayOverviews1.add(new DayOverview(LocalDate.now(),"3,679","1hr40m"));
-////        dayOverviews1.add(new DayOverview(LocalDate.now(),"3,679","1hr40m"));
-////        dayOverviews1.add(new DayOverview(LocalDate.now(),"3,679","1hr40m"));
-//        DayOverviewAdapter adapter=new DayOverviewAdapter(dayOverviews);
-//        binding.rvDayOverview.setAdapter(adapter);
-//        binding.rvDayOverview.setLayoutManager(new LinearLayoutManager(getContext()));
-//        binding.rvDayOverview.addItemDecoration(new SpacesItemDecoration(getResources().getDimensionPixelSize(R.dimen.spacing)));
+
         return binding.getRoot();
+    }
+    private String getDayWithSuffix(int day) {
+        if (day >= 11 && day <= 13) {
+            return day + "th";  // 11th, 12th, 13th
+        }
+        switch (day % 10) {
+            case 1:  return day + "st";
+            case 2:  return day + "nd";
+            case 3:  return day + "rd";
+            default: return day + "th";
+        }
     }
 }

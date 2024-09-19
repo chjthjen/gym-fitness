@@ -24,6 +24,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class ProgressTrackingViewModel extends AndroidViewModel {
+    private final MutableLiveData<List<DayOverview>> dataMonth=new MutableLiveData<>();
     private final MutableLiveData<List<DayOverview>> data=new MutableLiveData<>();
     private ExecutorService executorService = Executors.newSingleThreadExecutor();
     ProgressTrackingDAO progressTrackingDAO;
@@ -34,10 +35,10 @@ public class ProgressTrackingViewModel extends AndroidViewModel {
         FitnessDB db = FitnessDB.getInstance(application.getApplicationContext());
         progressTrackingDAO = db.progressTrackingDAO();
 
-        executorService.execute(()->{
-            List<DayOverview> dayOverviews = progressTrackingDAO.getDayOverview();
-            data.postValue(dayOverviews);
-        });
+//        executorService.execute(()->{
+//            List<DayOverview> dayOverviews = progressTrackingDAO.getDayOverview();
+//            data.postValue(dayOverviews);
+//        });
 
     }
 
@@ -48,10 +49,22 @@ public class ProgressTrackingViewModel extends AndroidViewModel {
             data.postValue(dayOverviews);
         });
     }
+    public void loadProgressDayOverView1(){
+        executorService.execute(()->{
+            List<DayOverview> dayOverviews = progressTrackingDAO.getMonthOverview();
+            Log.d("ViewModel", "Data fetched: " + dayOverviews.get(0).getDuration());
+            dataMonth.postValue(dayOverviews);
+        });
+    }
     public MutableLiveData<List<DayOverview>> getData() {
         loadProgressDayOverView();
         return data;
     }
+    public MutableLiveData<List<DayOverview>> getDataMonth() {
+        loadProgressDayOverView1();
+        return dataMonth;
+    }
+
 
     // lay reps theo tung thang
     public Map<String,Integer> calculateTotalsByMonth(List<DayOverview> dayOverviews){
@@ -60,11 +73,13 @@ public class ProgressTrackingViewModel extends AndroidViewModel {
 
         for (DayOverview dayOverview:dayOverviews){
             LocalDate localDate=LocalDate.parse(dayOverview.getDate(),formatter);
-            String yearMonth=localDate.getYear()+"-"+ String.format("%02d", localDate.getMonthValue());
 
-            int rep=dayOverview.getRep();
-            totalsByMonth.putIfAbsent(yearMonth,0);
-            totalsByMonth.put(yearMonth,totalsByMonth.getOrDefault(yearMonth,0)+rep);
+
+            String yearMonth = localDate.getYear() + "-" + String.format("%02d", localDate.getMonthValue());
+
+            // Cập nhật tổng rep cho tháng
+            int rep = dayOverview.getRep();
+            totalsByMonth.put(yearMonth, totalsByMonth.getOrDefault(yearMonth, 0) + rep);
         }
         return totalsByMonth;
 

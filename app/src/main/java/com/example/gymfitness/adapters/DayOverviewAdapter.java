@@ -49,8 +49,8 @@ public class DayOverviewAdapter extends RecyclerView.Adapter<DayOverviewAdapter.
 
             binding.tvDayOfWeek.setText(dayOfWeek);
             binding.tvDayOfMonth.setText(String.valueOf(dayOfMonth));
-            binding.tvSteps.setText(dayOverview.getRep());
-            binding.tvDuration.setText(dayOverview.getDuration());
+            binding.tvSteps.setText(String.valueOf(dayOverview.getRep()));
+            binding.tvDuration.setText(String.valueOf(dayOverview.getDuration()));
         }
     }
 }
