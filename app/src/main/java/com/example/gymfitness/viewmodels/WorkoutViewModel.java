@@ -98,6 +98,9 @@ public class WorkoutViewModel extends ViewModel {
             userLevel = fitnessDB.userInformationDAO().getUserInformation().getLevel();
         });
     }
+    public void setLevel(String sortLevel) {
+            userLevel = sortLevel;
+    }
     public void loadWorkoutsByLevel() {
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

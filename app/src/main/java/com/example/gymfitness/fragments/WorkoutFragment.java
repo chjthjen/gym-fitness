@@ -68,6 +68,24 @@ public class WorkoutFragment extends Fragment {
         return binding.getRoot();
     }
 
+    private void sortWorkoutByLevel(String level)
+    {
+        workoutViewModel.setLevel(level);
+        workoutViewModel.loadWorkoutsByLevel();
+        workoutViewModel.getWorkouts().observe(getViewLifecycleOwner(), new Observer<ArrayList<Workout>>() {
+            @Override
+            public void onChanged(ArrayList<Workout> workouts) {
+                if (workouts != null && !workouts.isEmpty()) {
+                    workoutAdapter.setWorkoutList(workouts);
+                    workoutAdapter.notifyDataSetChanged();
+                } else {
+                    Log.d(TAG, "List is empty or null");
+                }
+            }
+        });
+
+    }
+
     @Override
     public void onResume() {
         super.onResume();
@@ -80,6 +98,7 @@ public class WorkoutFragment extends Fragment {
             binding.btnIntermediate.setBackgroundTintList(colorStateList);
         else
             binding.btnAdvanced.setBackgroundTintList(colorStateList);
+        binding.titleLetsgo.setText("Let's Go " + userLevel);
     }
 
     @Override
@@ -103,6 +122,34 @@ public class WorkoutFragment extends Fragment {
                         FavoriteHelper.setFavorite(firstWorkout, v.getContext(), binding.imgStar)
                 );
             }
+        });
+
+        binding.btnBeginner.setOnClickListener(v -> {
+            ColorStateList colorStateList = ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.limegreen));
+            ColorStateList colorStateList2 = ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.white));
+            sortWorkoutByLevel("Beginner");
+            binding.titleLetsgo.setText("Let's Go Beginner");
+            binding.btnBeginner.setBackgroundTintList(colorStateList);
+            binding.btnIntermediate.setBackgroundTintList(colorStateList2);
+            binding.btnAdvanced.setBackgroundTintList(colorStateList2);
+        });
+        binding.btnIntermediate.setOnClickListener(v -> {
+            ColorStateList colorStateList = ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.limegreen));
+            ColorStateList colorStateList2 = ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.white));
+            sortWorkoutByLevel("Intermediate");
+            binding.titleLetsgo.setText("Let's Go Intermediate");
+            binding.btnBeginner.setBackgroundTintList(colorStateList2);
+            binding.btnIntermediate.setBackgroundTintList(colorStateList);
+            binding.btnAdvanced.setBackgroundTintList(colorStateList2);
+        });
+        binding.btnAdvanced.setOnClickListener(v -> {
+            ColorStateList colorStateList = ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.limegreen));
+            ColorStateList colorStateList2 = ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.white));
+            sortWorkoutByLevel("Advance");
+            binding.titleLetsgo.setText("Let's Go Advanced");
+            binding.btnBeginner.setBackgroundTintList(colorStateList2);
+            binding.btnIntermediate.setBackgroundTintList(colorStateList2);
+            binding.btnAdvanced.setBackgroundTintList(colorStateList);
         });
 
     }
