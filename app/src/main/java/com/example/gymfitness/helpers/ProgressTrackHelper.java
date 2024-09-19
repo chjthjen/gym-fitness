@@ -51,7 +51,7 @@ public class ProgressTrackHelper {
                 workoutLog.setTotalTime(exercise.getDuration());
                 FitnessDB.getInstance(context).workoutLogDAO().insertWorkoutLog(workoutLog);
             } else {
-                workoutLog.setTotalTime(workoutLog.getTotalTime() + exercise.getDuration());
+                workoutLog.setTotalTime(workoutLog.getTotalTime() + exercise.getDuration() * exercise.getRep());
                 FitnessDB.getInstance(context).workoutLogDAO().insertWorkoutLog(workoutLog);
             }
         });

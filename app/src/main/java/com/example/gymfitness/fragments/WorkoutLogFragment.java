@@ -79,7 +79,7 @@ public class WorkoutLogFragment extends Fragment {
 
 
         binding.listActi.setLayoutManager(new LinearLayoutManager(getContext()));
-        binding.listActi.setAdapter(workoutLogAdapter); // Gán adapter cho RecyclerView
+        binding.listActi.setAdapter(workoutLogAdapter);
 
         viewModel.getMonth().observe(getViewLifecycleOwner(), month -> {
             binding.spnMonth.setSelection(month - 1);
@@ -102,13 +102,13 @@ public class WorkoutLogFragment extends Fragment {
                 if (viewModel.getMonth().getValue() == currentMonth) {
                     selectedPosition = daysOfMonth.indexOf(String.valueOf(currentDay));
                 }
-
-                if (selectedPosition == -1) {
-                    selectedPosition = daysOfMonth.indexOf("1");
-                    if (selectedPosition == -1) {
-                        selectedPosition = 0;
-                    }
-                }
+//
+//                if (selectedPosition == -1) {
+//                    selectedPosition = daysOfMonth.indexOf("1");
+//                    if (selectedPosition == -1) {
+//                        selectedPosition = 0;
+//                    }
+//                }
                 int finalSelectedPosition = selectedPosition;
                 executorService.execute(() -> {
                     List<Date> specialDates = workoutLogDAO.getAllDates();
@@ -134,7 +134,6 @@ public class WorkoutLogFragment extends Fragment {
                             calendarAdapter = new CalendarAdapter(daysOfMonth, finalSelectedPosition, specialDays, binding.spnMonth.getSelectedItem().toString(), this::onDaySelected);
                             binding.calendarRecyclerView.setAdapter(calendarAdapter);
 
-
                             workoutLogAdapter = new WorkoutLogAdapter(logsForSelectedDay);
                             binding.listActi.setLayoutManager(new LinearLayoutManager(getContext()));
                             binding.listActi.setAdapter(workoutLogAdapter);
@@ -148,6 +147,9 @@ public class WorkoutLogFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 viewModel.setMonth(position + 1);
+                updateCalendarForMonth(position + 1);
+
+                workoutLogAdapter.updateData(new ArrayList<>());
             }
 
             @Override
@@ -156,6 +158,36 @@ public class WorkoutLogFragment extends Fragment {
             }
         });
     }
+    private void updateCalendarForMonth(int month) {
+        executorService.execute(() -> {
+            List<Date> specialDates = workoutLogDAO.getAllDates();
+            List<String> specialDays = new ArrayList<>();
+            SimpleDateFormat dayFormat = new SimpleDateFormat("d", Locale.getDefault());
+
+            for (Date date : specialDates) {
+                LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                if (localDate.getMonthValue() == month) {
+                    specialDays.add(dayFormat.format(date));
+                }
+            }
+
+            getActivity().runOnUiThread(() -> {
+                int selectedPosition = -1;
+
+                if (viewModel.getMonth().getValue() == LocalDate.now().getMonthValue()) {
+                    selectedPosition = viewModel.getDaysOfMonth().getValue().indexOf(String.valueOf(LocalDate.now().getDayOfMonth()));
+                }
+
+                if (selectedPosition == -1) {
+                    workoutLogAdapter.updateData(new ArrayList<>());
+                }
+
+                calendarAdapter.updateSpecialDays(specialDays);
+                calendarAdapter.updateMonth(selectedPosition, binding.spnMonth.getSelectedItem().toString());
+            });
+        });
+    }
+
 
     private void onDaySelected(String dayString, String month) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
@@ -165,18 +197,21 @@ public class WorkoutLogFragment extends Fragment {
             String dateString = currentDate.getYear() + "-" + month + "-" + dayString;
             Date selectedDate = dateFormat.parse(dateString);
 
+            workoutLogAdapter.updateData(new ArrayList<>());
+
             executorService.execute(() -> {
                 List<WorkoutLog> logsForSelectedDay = workoutLogDAO.getWorkoutLogByDate(selectedDate);
                 Log.e("hi", logsForSelectedDay.toString());
 
                 getActivity().runOnUiThread(() -> {
-                    workoutLogAdapter = new WorkoutLogAdapter(logsForSelectedDay);
-                    binding.listActi.setLayoutManager(new LinearLayoutManager(getContext()));
-                    binding.listActi.setAdapter(workoutLogAdapter);
+                    workoutLogAdapter.updateData(logsForSelectedDay);
+                    if (logsForSelectedDay.isEmpty()) {
+                        workoutLogAdapter.updateData(new ArrayList<>());  // Clear logs
+                    }
                 });
             });
         } catch (ParseException e) {
-            Log.e("onDaySelected", "Lỗi khi phân tích ngày: " + e.getMessage());
+            Log.e("onDaySelected", "Error: " + e.getMessage());
         }
     }
 

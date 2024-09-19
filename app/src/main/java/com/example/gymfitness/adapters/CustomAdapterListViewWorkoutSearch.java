@@ -40,6 +40,9 @@ public class CustomAdapterListViewWorkoutSearch extends ArrayAdapter<String> {
 
     @Override
     public int getCount() {
+        if (values.length < 3) {
+            return values.length;
+        }
         return 3;
     }
 }

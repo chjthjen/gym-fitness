@@ -55,10 +55,18 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.DayVie
         return days.size();
     }
 
-    public void setSelectedPosition(int position) {
-        this.selectedPosition = position;
+    public void updateSpecialDays(List<String> newSpecialDays) {
+        specialDays.clear();
+        specialDays.addAll(newSpecialDays);
         notifyDataSetChanged();
     }
+
+    public void updateMonth(int selectedPosition, String currentMonth) {
+        this.selectedPosition = selectedPosition;
+        this.currentMonth = currentMonth;
+        notifyDataSetChanged();
+    }
+
 
     class DayViewHolder extends RecyclerView.ViewHolder {
         private ItemDayBinding binding;
@@ -97,8 +105,8 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.DayVie
                     previousSelectedPosition = selectedPosition;
                     selectedPosition = position;
 
-                    String selectedDay = days.get(position);  // Định dạng của ngày có thể khác
-                    // convert month to int
+                    String selectedDay = days.get(position);
+
                     switch (currentMonth) {
                         case "January":
                             currentMonth = "1";
