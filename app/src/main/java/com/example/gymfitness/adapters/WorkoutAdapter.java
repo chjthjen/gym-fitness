@@ -1,7 +1,7 @@
     package com.example.gymfitness.adapters;
 
+    import android.annotation.SuppressLint;
     import android.content.Context;
-    import android.util.Log;
     import android.view.LayoutInflater;
     import android.view.View;
     import android.view.ViewGroup;
@@ -40,6 +40,7 @@
         public WorkoutViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
             ItemWorkoutNonvideoBinding binding = DataBindingUtil.inflate(layoutInflater,R.layout.item_workout_nonvideo, parent, false);
+
             return new WorkoutViewHolder(binding);
         }
 
@@ -58,12 +59,13 @@
                         .placeholder(R.drawable.woman_helping_man_gym)
                         .error(R.drawable.woman_helping_man_gym)
                         .into(binding.thumbnail);
-                binding.star.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        FavoriteHelper.setFavorite(workout,v.getContext(), binding.star);
-                    }
-                });
+//                binding.star.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        FavoriteHelper.setFavorite(workout,v.getContext(), binding.star);
+//                        //notify list changed
+//                    }
+//                });
 
                 FavoriteHelper.checkFavorite(workout, context, binding.star);
 
@@ -73,13 +75,19 @@
             }
         }
 
-        @NonNull
         @Override
         public void onBindViewHolder(@NonNull WorkoutViewHolder holder, int position) {
             Workout workout = listWorkout.get(position);
             Context context = holder.itemView.getContext();
             holder.bind(workout, listener, context);
-
+            holder.binding.star.setOnClickListener(new View.OnClickListener() {
+                @SuppressLint("NotifyDataSetChanged")
+                @Override
+                public void onClick(View v) {
+                    FavoriteHelper.setFavorite(workout,v.getContext(), holder.binding.star);
+                    notifyDataSetChanged();
+                }
+            });
 
         }
 
