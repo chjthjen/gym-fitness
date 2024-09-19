@@ -85,7 +85,14 @@
         android:name="com.example.gymfitness.fragments.floatingMenu.FavoritesFragment"
         android:label="FavoritesFragment"
         tools:layout="@layout/fragment_favorites"
-        />
+        >
+        <action
+            android:id="@+id/action_favoritesFragment_to_fragmentWeeklyChallengeB"
+            app:destination="@id/fragmentWeeklyChallengeB" />
+        <action
+            android:id="@+id/action_favoritesFragment_to_articleDetailFragment2"
+            app:destination="@id/articleDetailFragment2" />
+    </fragment>
     <fragment
         android:id="@+id/helpFragment"
         android:name="com.example.gymfitness.fragments.help.HelpFragment"

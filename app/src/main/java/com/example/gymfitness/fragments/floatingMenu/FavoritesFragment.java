@@ -15,6 +15,9 @@ import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.gymfitness.R;
@@ -22,9 +25,12 @@ import com.example.gymfitness.adapters.WorkoutAdapter;
 import com.example.gymfitness.adapters.home.ArticlesTipsRCVAdapter;
 import com.example.gymfitness.adapters.resources.ArticleResourceAdapter;
 import com.example.gymfitness.data.entities.Article;
+import com.example.gymfitness.data.entities.Workout;
 import com.example.gymfitness.databinding.FragmentFavoritesBinding;
 import com.example.gymfitness.firebase.FirebaseRepository;
+import com.example.gymfitness.viewmodels.ArticleDetailViewModel;
 import com.example.gymfitness.viewmodels.ArticleViewModel;
+import com.example.gymfitness.viewmodels.SharedViewModel;
 import com.example.gymfitness.viewmodels.WorkoutViewModel;
 
 import java.util.ArrayList;
@@ -33,11 +39,15 @@ import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
 
 public class FavoritesFragment extends Fragment {
-    FragmentFavoritesBinding binding;
-    ArticleViewModel articleViewModel;
-    ArticleResourceAdapter articleResourceAdapter;
-    WorkoutAdapter workoutAdapter;
-    WorkoutViewModel workoutViewModel;
+    private FragmentFavoritesBinding binding;
+    private ArticleViewModel articleViewModel;
+    private ArticleResourceAdapter articleResourceAdapter;
+    private WorkoutAdapter workoutAdapter;
+    private WorkoutViewModel workoutViewModel;
+    private SharedViewModel sharedViewModel;
+
+
+    NavController navController;
     private int current_sort = 0;
     private ColorStateList colorStateList;
     @Nullable
@@ -46,7 +56,7 @@ public class FavoritesFragment extends Fragment {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_favorites, container, false);
         articleViewModel = new ArticleViewModel();
         articleResourceAdapter = new ArticleResourceAdapter(new ArrayList<>());
-
+        sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
         workoutViewModel = new WorkoutViewModel();
         workoutAdapter = new WorkoutAdapter(new ArrayList<>());
         return binding.getRoot();
@@ -82,9 +92,26 @@ public class FavoritesFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        navController = Navigation.findNavController(view);
         binding.btnAll.setOnClickListener(v -> sortChange(0));
         binding.btnVideo.setOnClickListener(v -> sortChange(1));
         binding.btnArticle.setOnClickListener(v -> sortChange(2));
+        workoutAdapter.setOnItemClickListener(new WorkoutAdapter.OnWorkoutListener() {
+            @Override
+            public void onItemClick(Workout workout) {
+                sharedViewModel.select(workout);
+                navController.navigate(R.id.action_favoritesFragment_to_fragmentWeeklyChallengeB);
+            }
+        });
+
+        articleResourceAdapter.setOnItemClickListener(new ArticleResourceAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Article article) {
+                Bundle bundle = new Bundle();
+                bundle.putString("articleTitle", article.getArticle_title());
+                navController.navigate(R.id.action_favoritesFragment_to_articleDetailFragment2, bundle);
+            }
+        });
 
     }
     private void sortChange(int pos) {
