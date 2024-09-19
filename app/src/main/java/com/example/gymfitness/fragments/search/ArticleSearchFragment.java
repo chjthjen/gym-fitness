@@ -132,6 +132,16 @@ public class ArticleSearchFragment extends Fragment {
             return true;
         });
 
+        listView.setOnItemClickListener((parent, view1, position, id) -> {
+            String selectedSearchText = searchHistory.get(position);
+
+            // Cập nhật EditText
+            edtSearch.setText(selectedSearchText);
+            articleViewModel.searchArticles(selectedSearchText);
+        });
+
+        articleViewModel.loadArticlesItem();
+
         articleViewModel.loadArticlesItem();
 
         Button btnWorkout = view.findViewById(R.id.btnWorkout);

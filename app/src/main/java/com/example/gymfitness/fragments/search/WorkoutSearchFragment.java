@@ -92,6 +92,15 @@ public class WorkoutSearchFragment extends Fragment {
             }
         });
 
+        // lịch sử tìm kiếm trong ListView
+        listView.setOnItemClickListener((parent, view1, position, id) -> {
+            String selectedSearchText = searchHistory.get(position);
+
+            // Cập nhật EditText
+            edtSearch.setText(selectedSearchText);
+            workoutViewModel.searchWorkouts(selectedSearchText);
+        });
+
         edtSearch.setOnEditorActionListener((v, actionId, event) -> {
             String searchText = edtSearch.getText().toString().trim();
 
