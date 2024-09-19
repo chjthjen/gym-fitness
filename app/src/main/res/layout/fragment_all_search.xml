@@ -1,25 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/id_all_search"
-    android:background="@color/black"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    android:orientation="vertical"
+    android:paddingLeft="30dp"
+    android:paddingRight="30dp"
+    android:paddingTop="10dp"
+    tools:context=".fragments.floatingMenu.AllSearchFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_marginTop="26dp"
-        android:id="@+id/fas_rcv_recommendations"
+    <EditText
+        android:id="@+id/edtSearch"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="@drawable/rounded_edittext_search"
+        android:hint="Search"
+        android:textSize="12sp"
+        android:paddingLeft="10dp"
+        android:textColor="@color/black"
+        android:gravity="center_vertical"/>
+
+    <LinearLayout
+        android:id="@+id/topSearchLayout"
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
+        android:gravity="center_horizontal">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnAll"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_weight="1"
+            android:textAllCaps="false"
+            android:text="All"
+            android:layout_marginRight="8dp"
+            android:textColor="#896CFE"
+            android:fontFamily="@font/league_spartan"
+            android:textSize="17sp"
+            android:background="@drawable/rounded_button_search_on"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnWorkout"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_weight="1"
+            android:textAllCaps="false"
+            android:text="Workout"
+            android:layout_marginRight="8dp"
+            android:textColor="#896CFE"
+            android:fontFamily="@font/league_spartan"
+            android:textSize="17sp"
+            android:backgroundTint="@color/white"
+            android:background="@drawable/rounded_button_search_on"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnNutrition"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_weight="1"
+            android:textAllCaps="false"
+            android:text="Article"
+            android:textColor="#896CFE"
+            android:fontFamily="@font/league_spartan"
+            android:textSize="17sp"
+            android:backgroundTint="@color/white"
+            android:background="@drawable/rounded_button_search_on"/>
         />
+    </LinearLayout>
+
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcv_recommendations"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="26dp"
+        android:layout_marginHorizontal="0dp"
+        android:layout_below="@id/topSearchLayout" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="20dp"
         android:id="@+id/rcv_favorites"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:layout_below="@id/fas_rcv_recommendations"
+        android:layout_marginHorizontal="0dp"
+        android:layout_below="@id/rcv_recommendations"
         />
-</RelativeLayout>
+</LinearLayout>

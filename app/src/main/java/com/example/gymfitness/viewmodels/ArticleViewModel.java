@@ -16,6 +16,7 @@ import com.example.gymfitness.data.entities.Round;
 import com.example.gymfitness.data.entities.Workout;
 import com.example.gymfitness.firebase.FirebaseRepository;
 import com.example.gymfitness.helpers.FavoriteHelper;
+import com.example.gymfitness.utils.Resource;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,12 +28,13 @@ import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 public class ArticleViewModel extends ViewModel {
-    private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Workout");
-    private MutableLiveData<ArrayList<Article>> articlesLiveData = new MutableLiveData<>();
+    private final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Articles");
+    private final MutableLiveData<Resource<ArrayList<Article>>> articlesLiveData = new MutableLiveData<>();
     private FirebaseRepository firebaseRepository = new FirebaseRepository();
-    public LiveData<ArrayList<Article>> getArticles() {
+    public LiveData<Resource<ArrayList<Article>>> getArticles() {
         return articlesLiveData;
     }
     private String userLevel;
@@ -41,28 +43,20 @@ public class ArticleViewModel extends ViewModel {
     private FitnessDB fitnessDB;
 
 
-    public void loadArticlesByFavorite( Context context) {
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+    public void loadArticlesByFavorite(Context context) {
+        articlesLiveData.setValue(new Resource.Loading<>());
+        firebaseRepository.getFavoriteArticles(new FirebaseRepository.ArticleCallback() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                ArrayList<Article> articleList = new ArrayList<>();
-                for (DataSnapshot articleSnapshot : dataSnapshot.getChildren()) {
-                    Article article = articleSnapshot.getValue(Article.class);
-                    article.setArticle_content(articleSnapshot.getKey());
-                    List<FavoriteArticle> lsFavoriteArticles = FavoriteHelper.getListFavoriteArticle(context);
-                    for(FavoriteArticle fArticle : lsFavoriteArticles)
-                    {
-                        if(Objects.equals(article.getArticle_title(), fArticle.getArticle_name()))
-                            articleList.add(article);
-                    }
-                }
-                articlesLiveData.setValue(articleList);
+            public void onCallback(List<Article> articles) {
+                Resource<ArrayList<Article>> resource = new Resource.Success<>(new ArrayList<>(articles));
+                articlesLiveData.postValue(resource);
+                Log.d("TAG", "onCallback: " + resource.getData());
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Log.e("WorkoutViewModel", "Database error: " + databaseError.getMessage());
+            public void onError(DatabaseError error) {
+                articlesLiveData.setValue(new Resource.Error<>(error.getMessage()));
             }
-        });
+        }, context);
     }
 }

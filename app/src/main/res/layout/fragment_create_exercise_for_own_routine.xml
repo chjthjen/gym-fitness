@@ -16,6 +16,7 @@
         android:verticalSpacing="10dp"
         android:horizontalSpacing="10dp"
         android:stretchMode="columnWidth"
+        android:paddingTop="15dp"
         android:paddingStart="35dp"
         android:paddingEnd="35dp"
         android:background="@color/black">

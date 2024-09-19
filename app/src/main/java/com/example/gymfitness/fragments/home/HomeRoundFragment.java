@@ -47,8 +47,6 @@ public class HomeRoundFragment extends Fragment {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_exercise_routine, container, false);
         viewModel = new ViewModelProvider(requireActivity()).get(ExerciseRoutineViewModel.class);
         sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
-        level = UserData.getUserLevel(getContext());
-
         return binding.getRoot();
     }
 
@@ -66,6 +64,8 @@ public class HomeRoundFragment extends Fragment {
                 binding.level.setText(workout.getExerciseCount() + " Exercises");
                 for (Round round : workout.getRound())
                     listRound.add(round);
+                level = workout.getLevel();
+
             }
         });
 
@@ -91,7 +91,8 @@ public class HomeRoundFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle(level);
         loadData();
+        Log.d("level",level);
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle(level);
     }
 }

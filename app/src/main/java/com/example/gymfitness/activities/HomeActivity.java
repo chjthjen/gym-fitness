@@ -18,6 +18,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.gymfitness.R;
 import com.example.gymfitness.databinding.ActivityHomeBinding;
+import com.example.gymfitness.utils.UserData;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class HomeActivity extends AppCompatActivity {
@@ -26,6 +27,7 @@ public class HomeActivity extends AppCompatActivity {
     private NavHostFragment navHostFragment;
     private NavController navController;
     private BottomNavigationView bottomNavigation;
+    private String username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,13 +48,13 @@ public class HomeActivity extends AppCompatActivity {
         navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentMainContainerView);
         navController = navHostFragment.getNavController();
 
-
+        username = UserData.getUsername(this);
 
         // setting toolbar
         navController.addOnDestinationChangedListener(((navController, navDestination, bundle) -> {
             if(navDestination.getId() == R.id.homeFragment) {
                 getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-                binding.toolbar.setTitle("Hi, Madison");
+                binding.toolbar.setTitle("Hi, " + username);
             } else {
                 getSupportActionBar().setDisplayHomeAsUpEnabled(true);
                 binding.toolbar.setNavigationIcon(R.drawable.arrow);
@@ -61,6 +63,7 @@ public class HomeActivity extends AppCompatActivity {
 //        // bottom navigation
         bottomNavigation = binding.navigationBottom;
         NavigationUI.setupWithNavController(bottomNavigation,navController);
+
 
 
         addEvents();
@@ -80,6 +83,10 @@ public class HomeActivity extends AppCompatActivity {
                 navController.navigate(R.id.resourcesFragment2);
                 return true;
             }
+            else if (id == R.id.ic_startsFragment){
+                navController.navigate(R.id.favoritesFragment);
+                return true;
+            }
             return false;
         });
     }
@@ -97,7 +104,7 @@ public class HomeActivity extends AppCompatActivity {
             navController.navigate(R.id.profileFragment);
             return true;
         } else if(id == R.id.ic_search){
-            navController.navigate(R.id.workoutSearch_6_3_2_A);
+            navController.navigate(R.id.allSearchFragment);
         }
 
         return super.onOptionsItemSelected(item);

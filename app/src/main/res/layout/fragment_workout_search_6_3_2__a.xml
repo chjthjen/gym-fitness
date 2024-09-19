@@ -61,7 +61,7 @@
             android:layout_height="35dp"
             android:layout_weight="1"
             android:textAllCaps="false"
-            android:text="Articla"
+            android:text="Article"
             android:textColor="#896CFE"
             android:fontFamily="@font/league_spartan"
             android:textSize="17sp"
@@ -89,11 +89,11 @@
             android:id="@+id/listView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:clipToPadding="false"
             android:divider="@android:color/transparent"
             android:dividerHeight="10dp"
-            android:padding="1dp"
-            android:layout_gravity="center"/>
+            android:padding="1dp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_workout_item"
@@ -104,8 +104,5 @@
             android:nestedScrollingEnabled="false"
             tools:listitem="@layout/item_workout_nonvideo" />
     </LinearLayout>
-
-    <!-- Added RecyclerView below ListView -->
-
 
 </LinearLayout>
