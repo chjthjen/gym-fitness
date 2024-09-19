@@ -22,6 +22,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.gymfitness.R;
 import com.example.gymfitness.adapters.WorkoutAdapter;
+import com.example.gymfitness.adapters.favorites.FavoriteArticlesResourceAdapter;
+import com.example.gymfitness.adapters.favorites.FavoriteWorkoutsAdapter;
 import com.example.gymfitness.adapters.home.ArticlesTipsRCVAdapter;
 import com.example.gymfitness.adapters.resources.ArticleResourceAdapter;
 import com.example.gymfitness.data.entities.Article;
@@ -41,8 +43,8 @@ import java.util.concurrent.CompletableFuture;
 public class FavoritesFragment extends Fragment {
     private FragmentFavoritesBinding binding;
     private ArticleViewModel articleViewModel;
-    private ArticleResourceAdapter articleResourceAdapter;
-    private WorkoutAdapter workoutAdapter;
+    private FavoriteArticlesResourceAdapter articleResourceAdapter;
+    private FavoriteWorkoutsAdapter workoutAdapter;
     private WorkoutViewModel workoutViewModel;
     private SharedViewModel sharedViewModel;
 
@@ -55,10 +57,10 @@ public class FavoritesFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_favorites, container, false);
         articleViewModel = new ArticleViewModel();
-        articleResourceAdapter = new ArticleResourceAdapter(new ArrayList<>());
+        articleResourceAdapter = new FavoriteArticlesResourceAdapter(new ArrayList<>());
         sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
         workoutViewModel = new WorkoutViewModel();
-        workoutAdapter = new WorkoutAdapter(new ArrayList<>());
+        workoutAdapter = new FavoriteWorkoutsAdapter(new ArrayList<>());
         return binding.getRoot();
     }
 
