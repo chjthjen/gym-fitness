@@ -191,6 +191,7 @@ public class FirebaseRepository {
                                 List<Exercise> exercisesList = new ArrayList<>();
                                 for (DataSnapshot exerciseSnapshot : roundSnapshot.getChildren()) {
                                     Exercise exercise = new Exercise();
+                                    exercise = exerciseSnapshot.getValue(Exercise.class);
                                     exercise.setExercise_name(exerciseSnapshot.getKey());
                                     exercisesList.add(exercise);
                                 }
