@@ -76,21 +76,33 @@
         </LinearLayout>
 
 
-        <ScrollView
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/sort_layout"
-            android:layout_marginTop="15dp">
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="20dp">
 
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rcv_favorites"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginHorizontal="20dp"
-                tools:listitem="@layout/rcv_workout_item_video"
-                />
-        </ScrollView>
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rcv_favorites"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:nestedScrollingEnabled="false"
+                    tools:listitem="@layout/rcv_workout_item_video" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rcv_favorites2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:listitem="@layout/rcv_article_item"
+                    android:nestedScrollingEnabled="false"/>
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
 
 
     </RelativeLayout>

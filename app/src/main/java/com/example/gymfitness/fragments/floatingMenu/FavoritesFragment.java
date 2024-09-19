@@ -56,8 +56,7 @@ public class FavoritesFragment extends Fragment {
     public void onResume() {
         super.onResume();
         Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle("Favorites");
-        //setUpArticlesRecyclerView();
-        //setUpWorkoutRecycleView();
+        binding.btnAll.callOnClick();
     }
 
     void setUpArticlesRecyclerView() {
@@ -69,6 +68,17 @@ public class FavoritesFragment extends Fragment {
         binding.rcvFavorites.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.rcvFavorites.setAdapter(workoutAdapter);
     }
+
+    void setUpArticlesRecyclerView2() {
+        binding.rcvFavorites2.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding.rcvFavorites2.setAdapter(articleResourceAdapter);
+    }
+
+    void removeArticleRecyclerView() {
+        articleResourceAdapter.setArticleList(new ArrayList<>());
+        binding.rcvFavorites2.setAdapter(null);
+    }
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -101,11 +111,46 @@ public class FavoritesFragment extends Fragment {
             binding.btnAll.setBackgroundTintList(colorStateList);
             binding.btnAll.setTextColor(ContextCompat.getColor(getContext(), R.color.black));
 
+            setUpWorkoutRecycleView();
+            workoutViewModel.loadWorkoutsByFavorite(getContext());
+            workoutViewModel.getWorkout().observe(getViewLifecycleOwner(), resource -> {
+                switch (resource.getClass().getSimpleName()) {
+                    case "Loading":
+                        Log.d("TAG", "onViewCreated: Loading");
+                        break;
+                    case "Success":
+                        Log.d("TAG", "onViewCreated: Success");
+                        Log.d("Data", "Workout List: " + resource.getData().toString());
+                        workoutAdapter.setWorkoutList(resource.getData());
+                        break;
+                    case "Error":
+                        Log.d("TAG", "onViewCreated: Error");
+                        break;
+                }
+            });
+
+            setUpArticlesRecyclerView2();
+            articleViewModel.loadArticlesByFavorite(getContext());
+            articleViewModel.getArticles().observe(getViewLifecycleOwner(), resource -> {
+                switch (resource.getClass().getSimpleName()) {
+                    case "Loading":
+                        Log.d("TAG", "onViewCreated: Loading");
+                        break;
+                    case "Success":
+                        Log.d("TAG", "onViewCreated: Success");
+                        articleResourceAdapter.setArticleList(resource.getData());
+                        break;
+                    case "Error":
+                        Log.d("TAG", "onViewCreated: Error");
+                        break;
+                }
+            });
 
         } else if (pos == 1) {
             binding.btnVideo.setBackgroundTintList(colorStateList);
             binding.btnVideo.setTextColor(ContextCompat.getColor(getContext(), R.color.black));
 
+            removeArticleRecyclerView();
             setUpWorkoutRecycleView();
             workoutViewModel.loadWorkoutsByFavorite(getContext());
             workoutViewModel.getWorkout().observe(getViewLifecycleOwner(), resource -> {
@@ -127,6 +172,7 @@ public class FavoritesFragment extends Fragment {
             binding.btnArticle.setBackgroundTintList(colorStateList);
             binding.btnArticle.setTextColor(ContextCompat.getColor(getContext(), R.color.black));
 
+            removeArticleRecyclerView();
             setUpArticlesRecyclerView();
             articleViewModel.loadArticlesByFavorite(getContext());
             articleViewModel.getArticles().observe(getViewLifecycleOwner(), resource -> {
