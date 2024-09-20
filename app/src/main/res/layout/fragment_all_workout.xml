@@ -9,40 +9,50 @@
             type="com.example.gymfitness.viewmodels.WorkoutViewModel" />
     </data>
 
-    <LinearLayout
-        android:id="@+id/linear_workout_item"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="vertical"
+        android:layout_height="match_parent"
         android:background="@color/black"
         app:layout_constraintEnd_toEndOf="@id/banner_weekly_challenge"
         app:layout_constraintStart_toStartOf="@id/banner_weekly_challenge"
         app:layout_constraintTop_toBottomOf="@id/banner_weekly_challenge">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
-            android:ellipsize="end"
-            android:fontFamily="@font/poppins"
-            android:maxLines="1"
-            android:text="All Workouts"
-            android:textColor="@color/third"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_workout_item"
+        <LinearLayout
+            android:id="@+id/linear_workout_item"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="15dp"
             android:layout_marginTop="10dp"
-            android:nestedScrollingEnabled="false"
-            app:layout_constraintTop_toBottomOf="@id/tv_text"
-            tools:listitem="@layout/item_workout_nonvideo" />
+            android:orientation="vertical">
 
-    </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/poppins"
+                android:maxLines="1"
+                android:text="All Workouts"
+                android:textColor="@color/third"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_workout_item"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="10dp"
+                android:nestedScrollingEnabled="false"
+                tools:listitem="@layout/item_workout_nonvideo" />
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/progressBarWorkout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_gravity="center" />
+    </FrameLayout>
 
 </layout>

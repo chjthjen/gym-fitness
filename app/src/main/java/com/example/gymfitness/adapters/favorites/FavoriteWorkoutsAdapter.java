@@ -32,6 +32,20 @@ public class FavoriteWorkoutsAdapter extends RecyclerView.Adapter<FavoriteWorkou
         void onItemClick(Workout workout);
     }
 
+    @SuppressLint("NotifyDataSetChanged")
+    public void removeItem(int position) {
+        listWorkout.remove(position);
+        notifyItemRemoved(position);
+    }
+    public Workout getWorkoutAt(int position) {
+        if (position >= 0 && position < listWorkout.size()) {
+            return listWorkout.get(position);
+        } else {
+            return null;
+        }
+    }
+
+
 
     public void setOnItemClickListener(com.example.gymfitness.adapters.WorkoutAdapter.OnWorkoutListener listener) {
         this.listener = listener;
@@ -105,6 +119,7 @@ public class FavoriteWorkoutsAdapter extends RecyclerView.Adapter<FavoriteWorkou
         this.listWorkout.addAll(workouts);
         notifyDataSetChanged();
     }
+
 }
 
 

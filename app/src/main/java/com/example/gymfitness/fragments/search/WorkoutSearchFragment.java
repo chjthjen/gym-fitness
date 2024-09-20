@@ -75,7 +75,7 @@ public class WorkoutSearchFragment extends Fragment {
         workoutViewModel = new ViewModelProvider(requireActivity()).get(WorkoutViewModel.class);
 
         searchHistory = loadSearchHistory();
-        adapter = new CustomAdapterListViewWorkoutSearch(getActivity(), searchHistory.toArray(new String[0]));
+        adapter = new CustomAdapterListViewWorkoutSearch(getActivity(), searchHistory, sharedPreferences);
         listView.setAdapter(adapter);
 
         workoutAdapter = new WorkoutAdapter(new ArrayList<>());
@@ -107,7 +107,7 @@ public class WorkoutSearchFragment extends Fragment {
             if (!TextUtils.isEmpty(searchText)) {
                 if (!searchHistory.contains(searchText)) {
                     searchHistory.add(0, searchText);
-                    adapter = new CustomAdapterListViewWorkoutSearch(getActivity(), searchHistory.toArray(new String[0]));
+                    adapter = new CustomAdapterListViewWorkoutSearch(getActivity(), searchHistory, sharedPreferences);
                     listView.setAdapter(adapter);
 
                     saveSearchHistory(searchHistory);

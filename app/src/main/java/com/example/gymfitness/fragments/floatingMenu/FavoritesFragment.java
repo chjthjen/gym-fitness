@@ -1,12 +1,15 @@
 package com.example.gymfitness.fragments.floatingMenu;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,6 +21,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.gymfitness.R;
@@ -27,9 +31,12 @@ import com.example.gymfitness.adapters.favorites.FavoriteWorkoutsAdapter;
 import com.example.gymfitness.adapters.home.ArticlesTipsRCVAdapter;
 import com.example.gymfitness.adapters.resources.ArticleResourceAdapter;
 import com.example.gymfitness.data.entities.Article;
+import com.example.gymfitness.data.entities.FavoriteArticle;
+import com.example.gymfitness.data.entities.FavoriteWorkout;
 import com.example.gymfitness.data.entities.Workout;
 import com.example.gymfitness.databinding.FragmentFavoritesBinding;
 import com.example.gymfitness.firebase.FirebaseRepository;
+import com.example.gymfitness.utils.SwipeToDeleteCallback;
 import com.example.gymfitness.viewmodels.ArticleDetailViewModel;
 import com.example.gymfitness.viewmodels.ArticleViewModel;
 import com.example.gymfitness.viewmodels.SharedViewModel;
@@ -48,10 +55,10 @@ public class FavoritesFragment extends Fragment {
     private WorkoutViewModel workoutViewModel;
     private SharedViewModel sharedViewModel;
 
-
     NavController navController;
     private int current_sort = 0;
     private ColorStateList colorStateList;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -72,8 +79,8 @@ public class FavoritesFragment extends Fragment {
     }
 
     void setUpArticlesRecyclerView() {
-        binding.rcvFavorites.setLayoutManager(new LinearLayoutManager(getContext()));
-        binding.rcvFavorites.setAdapter(articleResourceAdapter);
+        binding.rcvFavorites2.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding.rcvFavorites2.setAdapter(articleResourceAdapter);
     }
 
     void setUpWorkoutRecycleView(){
@@ -115,23 +122,41 @@ public class FavoritesFragment extends Fragment {
             }
         });
 
+
+        ItemTouchHelper itemTouchHelperArticles = new ItemTouchHelper(new SwipeToDeleteCallback<>(articleResourceAdapter, item -> {
+            if (item instanceof Article) {
+                FavoriteArticle favoriteArticle = new FavoriteArticle();
+                favoriteArticle.setArticle_name(((Article) item).getArticle_title());
+                articleViewModel.deleteArticle(getContext(), favoriteArticle);
+                Toast.makeText(getContext(), "Article deleted: " + favoriteArticle.getArticle_name(), Toast.LENGTH_SHORT).show();
+
+            }
+        }));
+        itemTouchHelperArticles.attachToRecyclerView(binding.rcvFavorites);
+        itemTouchHelperArticles.attachToRecyclerView(binding.rcvFavorites2);
+
+        ItemTouchHelper itemTouchHelperWorkouts = new ItemTouchHelper(new SwipeToDeleteCallback<>(workoutAdapter, item -> {
+            if (item instanceof Workout) {
+                FavoriteWorkout favoriteWorkout = new FavoriteWorkout();
+                favoriteWorkout.setWorkout_name(((Workout) item).getWorkout_name());
+                workoutViewModel.deleteWorkout(getContext(), favoriteWorkout);
+                Toast.makeText(getContext(), "Workout deleted: " + favoriteWorkout.getWorkout_name(), Toast.LENGTH_SHORT).show();
+            }
+        }));
+        itemTouchHelperWorkouts.attachToRecyclerView(binding.rcvFavorites);
     }
     private void sortChange(int pos) {
         colorStateList = ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.white));
-        // set button is not selected
+
         if (current_sort == 0) {
             binding.btnAll.setBackgroundTintList(colorStateList);
             binding.btnAll.setTextColor(ContextCompat.getColor(getContext(), R.color.purple));
-
-
         } else if (current_sort == 1) {
             binding.btnVideo.setBackgroundTintList(colorStateList);
             binding.btnVideo.setTextColor(ContextCompat.getColor(getContext(), R.color.purple));
-
         } else {
             binding.btnArticle.setBackgroundTintList(colorStateList);
             binding.btnArticle.setTextColor(ContextCompat.getColor(getContext(), R.color.purple));
-
         }
 
         // set selected button

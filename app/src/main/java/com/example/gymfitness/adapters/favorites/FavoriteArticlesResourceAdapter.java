@@ -18,7 +18,7 @@ import com.example.gymfitness.helpers.FavoriteHelper;
 import java.util.ArrayList;
 
 public class FavoriteArticlesResourceAdapter extends RecyclerView.Adapter<FavoriteArticlesResourceAdapter.MyViewHolder> {
-    private ArrayList<Article> list;
+    private ArrayList<Article> list = new ArrayList<>();
     private com.example.gymfitness.adapters.resources.ArticleResourceAdapter.OnItemClickListener listener;
 
     public FavoriteArticlesResourceAdapter(ArrayList<Article> list) {
@@ -27,6 +27,18 @@ public class FavoriteArticlesResourceAdapter extends RecyclerView.Adapter<Favori
 
     public interface OnItemClickListener {
         void onItemClick(Article article);
+    }
+    public Article getArticleAt(int position) {
+        if (position >= 0 && position < list.size()) {
+            return list.get(position);
+        } else {
+            return null;
+        }
+    }
+    @SuppressLint("NotifyDataSetChanged")
+    public void removeItem(int position) {
+        list.remove(position);
+        notifyItemRemoved(position);
     }
 
     public void setOnItemClickListener(com.example.gymfitness.adapters.resources.ArticleResourceAdapter.OnItemClickListener listener) {
@@ -80,6 +92,8 @@ public class FavoriteArticlesResourceAdapter extends RecyclerView.Adapter<Favori
         this.list.addAll(articles);
         notifyDataSetChanged();
     }
+
+
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         private RcvArticleItemBinding binding;

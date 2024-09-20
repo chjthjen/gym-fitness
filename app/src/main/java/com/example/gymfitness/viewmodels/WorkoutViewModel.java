@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModel;
 import com.example.gymfitness.data.database.FitnessDB;
 import com.example.gymfitness.data.entities.Article;
 import com.example.gymfitness.data.entities.Exercise;
+import com.example.gymfitness.data.entities.FavoriteExercise;
 import com.example.gymfitness.data.entities.FavoriteWorkout;
 import com.example.gymfitness.data.entities.Round;
 import com.example.gymfitness.data.entities.Workout;
@@ -33,9 +34,19 @@ import java.util.concurrent.Executors;
 public class WorkoutViewModel extends ViewModel {
     private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Workout");
     private MutableLiveData<ArrayList<Workout>> workoutsLiveData = new MutableLiveData<>();
+    private MutableLiveData<Resource<ArrayList<Workout>>> workoutsLiveDataAll = new MutableLiveData<>();
     private FirebaseRepository firebaseRepository = new FirebaseRepository();
     public LiveData<ArrayList<Workout>> getWorkouts() {
         return workoutsLiveData;
+    }
+
+    public void deleteWorkout(Context context, FavoriteWorkout favoriteWorkout) {
+        executorService.execute(() -> {
+            FitnessDB.getInstance(context).favoriteWorkoutDAO().delete(favoriteWorkout.getWorkout_name());
+        });
+    }
+    public LiveData<Resource<ArrayList<Workout>>> getWorkoutsAll() {
+        return workoutsLiveDataAll;
     }
     private String userLevel;
     private final MutableLiveData<Resource<ArrayList<Workout>>> workoutsLD = new MutableLiveData<>();
@@ -79,19 +90,22 @@ public class WorkoutViewModel extends ViewModel {
             }
         });
     }
+
     public void loadAllWorkouts() {
+        workoutsLiveDataAll.setValue(new Resource.Loading<>());
         firebaseRepository.getAllWorkouts(new FirebaseRepository.WorkoutCallback() {
             @Override
             public void onCallback(List<Workout> workouts) {
-                workoutsLiveData.setValue(new ArrayList<>(workouts));
+                workoutsLiveDataAll.setValue(new Resource.Success<>(new ArrayList<>(workouts)));
             }
 
             @Override
             public void onError(DatabaseError error) {
-                Log.e("WorkoutViewModel", "Database error: " + error.getMessage());
+                workoutsLiveDataAll.setValue(new Resource.Error<>(error.getMessage()));
             }
         });
     }
+
     public void setUserLevel(Context context) {
         fitnessDB = FitnessDB.getInstance(context);
         executorService.execute(() -> {

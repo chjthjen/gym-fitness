@@ -82,7 +82,7 @@ public class AllSearchFragment extends Fragment {
 
         sharedPreferences = requireContext().getSharedPreferences("SearchHistory", getContext().MODE_PRIVATE);
         searchHistory = loadSearchHistory();
-        adapter = new CustomAdapterListViewWorkoutSearch(getActivity(), searchHistory.toArray(new String[0]));
+        adapter = new CustomAdapterListViewWorkoutSearch(getActivity(), searchHistory, sharedPreferences);
 
         workoutViewModel = new ViewModelProvider(requireActivity()).get(WorkoutViewModel.class);
         articleViewModel = new ViewModelProvider(requireActivity()).get(HomeViewModel.class);

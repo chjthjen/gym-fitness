@@ -1,8 +1,11 @@
 package com.example.gymfitness.adapters.home;
 
+import static java.security.AccessController.getContext;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
@@ -55,6 +58,7 @@ public class ArticlesTipsRCVAdapter extends RecyclerView.Adapter<ArticlesTipsRCV
             @Override
             public void onClick(View v) {
                 FavoriteHelper.setFavorite(article,v.getContext(), holder.binding.imgStar);
+                Toast.makeText(v.getContext(), "Article added to favorites: " + article.getArticle_title(), Toast.LENGTH_SHORT).show();
             }
         });
         holder.itemView.setOnClickListener(v -> {

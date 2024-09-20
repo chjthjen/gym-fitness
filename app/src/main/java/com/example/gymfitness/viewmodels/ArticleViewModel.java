@@ -42,6 +42,11 @@ public class ArticleViewModel extends ViewModel {
     private final ExecutorService executorService = Executors.newSingleThreadExecutor();
     private FitnessDB fitnessDB;
 
+    public void deleteArticle(Context context, FavoriteArticle favoriteArticle) {
+        executorService.execute(() -> {
+            FitnessDB.getInstance(context).favoriteArticleDAO().delete(favoriteArticle.getArticle_name());
+        });
+    }
 
     public void loadArticlesByFavorite(Context context) {
         articlesLiveData.setValue(new Resource.Loading<>());
