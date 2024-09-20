@@ -48,6 +48,33 @@ public class HomeActivity extends AppCompatActivity {
         navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentMainContainerView);
         navController = navHostFragment.getNavController();
 
+        bottomNavigation = binding.navigationBottom;
+        // update checked bottom navigation
+        navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
+            int id = destination.getId();
+            int id2 = R.id.homeFragment;
+            Log.d("checkid", String.valueOf(id));
+            if(id == R.id.homeFragment)
+            {
+                MenuItem menuItem = bottomNavigation.getMenu().findItem(R.id.ic_homeFragment);
+                if (menuItem != null) {
+                    menuItem.setChecked(true);
+                }
+            }else if(id == R.id.resourcesFragment2)
+            {
+                MenuItem menuItem = bottomNavigation.getMenu().findItem(R.id.ic_resourcesFragment);
+                if (menuItem != null) {
+                    menuItem.setChecked(true);
+                }
+            }else if(id == R.id.favoritesFragment)
+            {
+                MenuItem menuItem = bottomNavigation.getMenu().findItem(R.id.ic_startsFragment);
+                if (menuItem != null) {
+                    menuItem.setChecked(true);
+                }
+            }
+        });
+
         username = UserData.getUsername(this);
 
         // setting toolbar
@@ -60,14 +87,13 @@ public class HomeActivity extends AppCompatActivity {
                 binding.toolbar.setNavigationIcon(R.drawable.arrow);
             }
         }));
-//        // bottom navigation
-        bottomNavigation = binding.navigationBottom;
+        // bottom navigation
         NavigationUI.setupWithNavController(bottomNavigation,navController);
-
-
-
+        // event
         addEvents();
+
     }
+
 
 
     private void addEvents()
