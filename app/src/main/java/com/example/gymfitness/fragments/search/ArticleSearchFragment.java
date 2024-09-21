@@ -78,7 +78,7 @@ public class ArticleSearchFragment extends Fragment {
         articleViewModel = new ViewModelProvider(requireActivity()).get(HomeViewModel.class);
 
         searchHistory = loadSearchHistory();
-        adapter = new CustomAdapterListViewWorkoutSearch(getActivity(), searchHistory.toArray(new String[0]));
+        adapter = new CustomAdapterListViewWorkoutSearch(getActivity(), searchHistory, sharedPreferences);
         listView.setAdapter(adapter);
 
         articleAdapter = new ArticleResourceAdapter(new ArrayList<>());

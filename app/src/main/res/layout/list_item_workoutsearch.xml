@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="52dp"
@@ -18,12 +17,20 @@
 
     <TextView
         android:id="@+id/title"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:layout_gravity="center_vertical"
         android:text="Workout Title"
         style="@style/text_style_poppins"
         android:textColor="@android:color/black"
         android:textSize="13sp" />
 
+    <ImageView
+        android:id="@+id/delete_button"
+        android:layout_width="35dp"
+        android:layout_height="34dp"
+        android:backgroundTint="@color/black"
+        android:layout_gravity="center_vertical"
+        android:background="@drawable/ic_close" />
 </LinearLayout>

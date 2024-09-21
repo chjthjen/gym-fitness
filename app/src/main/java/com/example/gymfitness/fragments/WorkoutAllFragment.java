@@ -35,6 +35,7 @@ public class WorkoutAllFragment extends Fragment {
     private WorkoutAdapter workoutAdapter;
     private NavController navController;
     private SharedViewModel sharedViewModel;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -44,11 +45,20 @@ public class WorkoutAllFragment extends Fragment {
         binding.rvWorkoutItem.setAdapter(workoutAdapter);
         binding.rvWorkoutItem.setLayoutManager(new LinearLayoutManager(getContext()));
         sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
-        workoutViewModel.getWorkouts().observe(getViewLifecycleOwner(), workouts -> {
-            if (workouts != null) {
-                workoutAdapter.setWorkoutList(workouts);
-            } else {
-                Log.d("WorkoutAllFragment", "Workouts list is null");
+
+        workoutViewModel.getWorkoutsAll().observe(getViewLifecycleOwner(), resource -> {
+            switch (resource.getClass().getSimpleName()) {
+                case "Loading":
+                    binding.progressBarWorkout.setVisibility(View.VISIBLE);
+                    break;
+                case "Success":
+                    binding.progressBarWorkout.setVisibility(View.GONE);
+                    workoutAdapter.setWorkoutList(resource.getData());
+                    break;
+                case "Error":
+                    binding.progressBarWorkout.setVisibility(View.GONE);
+                    Log.d("WorkoutAllFragment", resource.getMessage());
+                    break;
             }
         });
 
@@ -56,24 +66,13 @@ public class WorkoutAllFragment extends Fragment {
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle("See All");
-        String userLevel = UserData.getUserLevel(getContext());
-        ColorStateList colorStateList = ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.limegreen));
-    }
-
-    @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         navController = Navigation.findNavController(view);
         workoutViewModel.loadAllWorkouts();
-        workoutAdapter.setOnItemClickListener(new WorkoutAdapter.OnWorkoutListener() {
-            @Override
-            public void onItemClick(Workout workout) {
-                sharedViewModel.select(workout);
-                navController.navigate(R.id.action_workoutAllFragment_to_exerciseRoutineFragment);
-            }
+        workoutAdapter.setOnItemClickListener(workout -> {
+            sharedViewModel.select(workout);
+            navController.navigate(R.id.action_workoutAllFragment_to_exerciseRoutineFragment);
         });
     }
 }

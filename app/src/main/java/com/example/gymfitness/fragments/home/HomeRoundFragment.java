@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -82,6 +83,7 @@ public class HomeRoundFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 FavoriteHelper.setFavorite(workout,v.getContext(), binding.imgStar);
+                Toast.makeText(view.getContext(), "Workout added to favorites: " + workout.getWorkout_name(), Toast.LENGTH_SHORT).show();
             }
         });
 

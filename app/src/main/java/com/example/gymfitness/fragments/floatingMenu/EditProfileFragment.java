@@ -194,6 +194,7 @@ public class EditProfileFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).show();
         binding = null;
     }
 }

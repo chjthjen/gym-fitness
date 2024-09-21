@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
@@ -64,6 +65,7 @@ public class RecommendExRCVApdater extends RecyclerView.Adapter<RecommendExRCVAp
                 @Override
                 public void onClick(View v) {
                     FavoriteHelper.setFavorite(workout,v.getContext(), binding.imgStar);
+                    Toast.makeText(v.getContext(), "Article added to favorites: " + workout.getWorkout_name(), Toast.LENGTH_SHORT).show();
                 }
             });
 

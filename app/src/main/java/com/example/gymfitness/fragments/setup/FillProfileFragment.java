@@ -16,6 +16,7 @@ import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.gymfitness.R;
 import com.example.gymfitness.activities.HomeActivity;
@@ -75,6 +76,7 @@ public class FillProfileFragment extends Fragment {
 //                    navController.navigate(R.id.action_fillProfileFragment_to_ownRoutineFragment2);
 
 //                     bỏ vào nút continue bên routine own
+                    Toast.makeText(getContext(), "Profile has been saved", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(getContext(), HomeActivity.class);
                     startActivity(intent);
                     getActivity().finish();

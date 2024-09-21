@@ -5,6 +5,7 @@
     import android.view.LayoutInflater;
     import android.view.View;
     import android.view.ViewGroup;
+    import android.widget.Toast;
 
     import androidx.annotation.NonNull;
     import androidx.databinding.DataBindingUtil;
@@ -85,6 +86,7 @@
                 @Override
                 public void onClick(View v) {
                     FavoriteHelper.setFavorite(workout,v.getContext(), holder.binding.star);
+                    Toast.makeText(v.getContext(), "Article added to favorites: " + workout.getWorkout_name(), Toast.LENGTH_SHORT).show();
                     notifyDataSetChanged();
                 }
             });
