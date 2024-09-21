@@ -2,6 +2,7 @@ package com.example.gymfitness.helpers;
 
 import android.content.Context;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.gymfitness.R;
 import com.example.gymfitness.data.database.FitnessDB;
@@ -54,12 +55,18 @@ public class FavoriteHelper {
                         favoriteWorkout.setWorkout_name(workout.getWorkout_name());
                         FitnessDB.getInstance(context).favoriteWorkoutDAO().insert(favoriteWorkout);
                         // change icon
-                        star.setImageResource(R.drawable.start_small_on);
+                        star.post(() -> {
+                            star.setImageResource(R.drawable.start_small_on);
+                            Toast.makeText(context, "Workout added to favorites: " + workout.getWorkout_name(), Toast.LENGTH_SHORT).show();
+                        });
                     });
                 } else {
                     executorService.execute(() -> {
                         FitnessDB.getInstance(context).favoriteWorkoutDAO().delete(workout.getWorkout_name());
-                        star.setImageResource(R.drawable.start_small_off);
+                        star.post(() -> {
+                            star.setImageResource(R.drawable.start_small_off);
+                            Toast.makeText(context, "Workout removed from favorites: " + workout.getWorkout_name(), Toast.LENGTH_SHORT).show();
+                        });
                     });
                 }
             });
@@ -75,12 +82,18 @@ public class FavoriteHelper {
                         FavoriteExercise favoriteExercise = new FavoriteExercise();
                         favoriteExercise.setExercise_name(exercise.getExercise_name());
                         FitnessDB.getInstance(context).favoriteExerciseDAO().insert(favoriteExercise);
-                        star.setImageResource(R.drawable.start_small_on);
+                        star.post(() -> {
+                            star.setImageResource(R.drawable.start_small_on);
+                            Toast.makeText(context, "Exercise added to favorites: " + exercise.getExercise_name(), Toast.LENGTH_SHORT).show();
+                        });
                     });
                 } else {
                     executorService.execute(() -> {
                         FitnessDB.getInstance(context).favoriteExerciseDAO().delete(exercise.getExercise_name());
-                        star.setImageResource(R.drawable.start_small_off);
+                        star.post(() -> {
+                            star.setImageResource(R.drawable.start_small_off);
+                            Toast.makeText(context, "Exercise removed from favorites: " + exercise.getExercise_name(), Toast.LENGTH_SHORT).show();
+                        });
                     });
                 }
             });
@@ -96,13 +109,18 @@ public class FavoriteHelper {
                         FavoriteArticle favoriteArticle = new FavoriteArticle();
                         favoriteArticle.setArticle_name(article.getArticle_title());
                         FitnessDB.getInstance(context).favoriteArticleDAO().insert(favoriteArticle);
-                        star.setImageResource(R.drawable.start_small_on);
-
+                        star.post(() -> {
+                            star.setImageResource(R.drawable.start_small_on);
+                            Toast.makeText(context, "Article added to favorites: " + article.getArticle_title(), Toast.LENGTH_SHORT).show();
+                        });
                     });
                 } else {
                     executorService.execute(() -> {
                         FitnessDB.getInstance(context).favoriteArticleDAO().delete(article.getArticle_title());
-                        star.setImageResource(R.drawable.start_small_off);
+                        star.post(() -> {
+                            star.setImageResource(R.drawable.start_small_off);
+                            Toast.makeText(context, "Article removed from favorites: " + article.getArticle_title(), Toast.LENGTH_SHORT).show();
+                        });
                     });
                 }
             });

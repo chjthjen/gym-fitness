@@ -9,6 +9,7 @@ import com.example.gymfitness.adapters.favorites.FavoriteWorkoutsAdapter;
 import com.example.gymfitness.data.entities.Article;
 import com.example.gymfitness.data.entities.Workout;
 
+
 public class SwipeToDeleteCallback<T extends RecyclerView.Adapter<?>> extends ItemTouchHelper.SimpleCallback {
 
     private final T mAdapter;
@@ -40,6 +41,8 @@ public class SwipeToDeleteCallback<T extends RecyclerView.Adapter<?>> extends It
                 ((FavoriteWorkoutsAdapter) mAdapter).removeItem(position);
                 mListener.onItemDeleted(workout);
             }
+        } else {
+            throw new IllegalArgumentException("Unsupported adapter type: " + mAdapter.getClass().getSimpleName());
         }
     }
 
