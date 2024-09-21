@@ -79,8 +79,8 @@ public class FavoritesFragment extends Fragment {
     }
 
     void setUpArticlesRecyclerView() {
-        binding.rcvFavorites2.setLayoutManager(new LinearLayoutManager(getContext()));
-        binding.rcvFavorites2.setAdapter(articleResourceAdapter);
+        binding.rcvFavorites.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding.rcvFavorites.setAdapter(articleResourceAdapter);
     }
 
     void setUpWorkoutRecycleView(){
@@ -159,7 +159,6 @@ public class FavoritesFragment extends Fragment {
             binding.btnArticle.setTextColor(ContextCompat.getColor(getContext(), R.color.purple));
         }
 
-        // set selected button
         colorStateList = ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.limegreen));
         if (pos == 0) {
             binding.btnAll.setBackgroundTintList(colorStateList);
@@ -176,6 +175,7 @@ public class FavoritesFragment extends Fragment {
                         Log.d("TAG", "onViewCreated: Success");
                         Log.d("Data", "Workout List: " + resource.getData().toString());
                         workoutAdapter.setWorkoutList(resource.getData());
+                        workoutAdapter.notifyDataSetChanged();
                         break;
                     case "Error":
                         Log.d("TAG", "onViewCreated: Error");
@@ -193,6 +193,7 @@ public class FavoritesFragment extends Fragment {
                     case "Success":
                         Log.d("TAG", "onViewCreated: Success");
                         articleResourceAdapter.setArticleList(resource.getData());
+                        articleResourceAdapter.notifyDataSetChanged();
                         break;
                     case "Error":
                         Log.d("TAG", "onViewCreated: Error");
@@ -216,6 +217,7 @@ public class FavoritesFragment extends Fragment {
                         Log.d("TAG", "onViewCreated: Success");
                         Log.d("Data", "Workout List: " + resource.getData().toString());
                         workoutAdapter.setWorkoutList(resource.getData());
+                        workoutAdapter.notifyDataSetChanged();
                         break;
                     case "Error":
                         Log.d("TAG", "onViewCreated: Error");
@@ -237,6 +239,7 @@ public class FavoritesFragment extends Fragment {
                     case "Success":
                         Log.d("TAG", "onViewCreated: Success");
                         articleResourceAdapter.setArticleList(resource.getData());
+                        articleResourceAdapter.notifyDataSetChanged();
                         break;
                     case "Error":
                         Log.d("TAG", "onViewCreated: Error");
@@ -244,7 +247,6 @@ public class FavoritesFragment extends Fragment {
                 }
             });
         }
-        // update current sort
         current_sort = pos;
     }
 }
