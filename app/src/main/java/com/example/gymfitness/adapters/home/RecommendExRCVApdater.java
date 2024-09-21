@@ -65,7 +65,7 @@ public class RecommendExRCVApdater extends RecyclerView.Adapter<RecommendExRCVAp
                 @Override
                 public void onClick(View v) {
                     FavoriteHelper.setFavorite(workout,v.getContext(), binding.imgStar);
-                    Toast.makeText(v.getContext(), "Article added to favorites: " + workout.getWorkout_name(), Toast.LENGTH_SHORT).show();
+
                 }
             });
 

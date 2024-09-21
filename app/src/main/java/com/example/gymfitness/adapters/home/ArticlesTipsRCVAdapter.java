@@ -58,7 +58,7 @@ public class ArticlesTipsRCVAdapter extends RecyclerView.Adapter<ArticlesTipsRCV
             @Override
             public void onClick(View v) {
                 FavoriteHelper.setFavorite(article,v.getContext(), holder.binding.imgStar);
-                Toast.makeText(v.getContext(), "Article added to favorites: " + article.getArticle_title(), Toast.LENGTH_SHORT).show();
+
             }
         });
         holder.itemView.setOnClickListener(v -> {
