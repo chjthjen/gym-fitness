@@ -121,7 +121,7 @@ public class WorkoutFragment extends Fragment {
 
                 binding.imgStar.setOnClickListener(v -> {
                     FavoriteHelper.setFavorite(firstWorkout, v.getContext(), binding.imgStar);
-                    Toast.makeText(view.getContext(), "Workout added to favorites: " + firstWorkout.getWorkout_name(), Toast.LENGTH_SHORT).show();
+
                 });
             }
         });

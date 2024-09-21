@@ -78,7 +78,7 @@ public class ChallengesAndCompetitionsRCVAdapter extends RecyclerView.Adapter<Ch
                 @Override
                 public void onClick(View v) {
                     FavoriteHelper.setFavorite(workout,v.getContext(), binding.star);
-                    Toast.makeText(v.getContext(), "Workout added to favorites: " + workout.getWorkout_name(), Toast.LENGTH_SHORT).show();
+
                 }
             });
             if (listener != null) {

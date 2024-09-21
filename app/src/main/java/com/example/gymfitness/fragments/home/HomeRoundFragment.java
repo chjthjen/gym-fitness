@@ -83,7 +83,7 @@ public class HomeRoundFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 FavoriteHelper.setFavorite(workout,v.getContext(), binding.imgStar);
-                Toast.makeText(view.getContext(), "Workout added to favorites: " + workout.getWorkout_name(), Toast.LENGTH_SHORT).show();
+
             }
         });
 
