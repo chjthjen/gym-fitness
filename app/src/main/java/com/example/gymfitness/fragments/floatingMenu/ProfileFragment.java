@@ -114,6 +114,11 @@ public class ProfileFragment extends Fragment {
         binding.yourRoutineContainer.setOnClickListener(v -> navController.navigate(R.id.action_profileFragment_to_ownRoutineFragment));
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).hide();
+    }
 
     @Override
     public void onDestroyView() {
