@@ -11,6 +11,8 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -98,7 +100,11 @@ public class OwnRoutineFragment extends Fragment {
             }
         });
 ;
-        GridView gvExercises = newRoundView.findViewById(R.id.gvExercises);
+        RecyclerView gvExercises = newRoundView.findViewById(R.id.gvExercises);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
+        gvExercises.setLayoutManager(gridLayoutManager);
+        gvExercises.setHasFixedSize(true);
+
         ownRoutineViewModel.getExercisesForRound(roundId).observe(getViewLifecycleOwner(), exercises -> {
             adapter = new ExerciseInOwnRoutineAdapter(getContext(), exercises, new ExerciseInOwnRoutineAdapter.ExerciseRemoveListener() {
                 @Override
