@@ -33,7 +33,7 @@
                 android:layout_marginRight="10dp"/>
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnDeleteRound"
+                android:id="@+id/btnSave"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:background="@drawable/ripple_effect_button_save"

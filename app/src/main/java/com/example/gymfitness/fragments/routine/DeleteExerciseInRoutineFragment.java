@@ -24,7 +24,6 @@ public class DeleteExerciseInRoutineFragment extends BottomSheetDialogFragment {
     private OwnRoutineViewModel ownRoutineViewModel;
 
     public DeleteExerciseInRoutineFragment() {
-        // Required empty public constructor
     }
 
     @Override

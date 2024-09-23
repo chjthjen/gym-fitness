@@ -35,7 +35,6 @@
                 android:textColor="#E2F163"
                 android:textSize="16sp"
                 android:textStyle="bold" />
-
             <LinearLayout
                 android:id="@+id/roundContainer"
                 android:layout_width="match_parent"

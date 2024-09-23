@@ -26,7 +26,6 @@ public class DeleteRoundInRoutineFragment extends BottomSheetDialogFragment {
     private OwnRoutineViewModel ownRoutineViewModel;
 
     public DeleteRoundInRoutineFragment() {
-        // Required empty public constructor
     }
 
     @Override

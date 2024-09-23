@@ -3,11 +3,14 @@ package com.example.gymfitness.fragments.routine;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -29,21 +32,21 @@ import java.util.Set;
 public class CreateExerciseForOwnRoutineFragment extends Fragment {
     private ExerciseForOwnRoutineAdapter adapter;
     private int roundId = 0;
+    private NavController navController;
+    private FragmentCreateExerciseForOwnRoutineBinding binding;
+    private OwnRoutineViewModel ownRoutineViewModel;
 
     public CreateExerciseForOwnRoutineFragment() {
         // Required empty public constructor
     }
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        FragmentCreateExerciseForOwnRoutineBinding binding = DataBindingUtil
-                .inflate(inflater, R.layout.fragment_create_exercise_for_own_routine, container, false);
-        OwnRoutineViewModel ownRoutineViewModel = new ViewModelProvider(this).get(OwnRoutineViewModel.class);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_create_exercise_for_own_routine, container, false);
+        ownRoutineViewModel = new ViewModelProvider(this).get(OwnRoutineViewModel.class);
 
         binding.setOwnRoutineViewModel(ownRoutineViewModel);
         binding.setLifecycleOwner(this);
-
         // Nhận RoundId từ Bundle
         Bundle bundle = getArguments();
         if (bundle != null) {
@@ -87,8 +90,20 @@ public class CreateExerciseForOwnRoutineFragment extends Fragment {
             }
             adapter.setAddedExerciseIds(addedExerciseIds); // set cac bai tap duoc them vao round vao danh sach duoc them
         });
-
         return binding.getRoot();
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        navController = Navigation.findNavController(view);
+        super.onViewCreated(view, savedInstanceState);
+
+        binding.btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                navController.navigate(R.id.action_createExerciseForOwnRoutineFragment_to_ownRoutineFragment);
+            }
+        });
     }
 
     @Override

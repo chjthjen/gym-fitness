@@ -194,7 +194,7 @@
         tools:layout="@layout/fragment_create_exercise_for_own_routine">
         <action
             android:id="@+id/action_createExerciseForOwnRoutineFragment_to_ownRoutineFragment"
-            app:destination="@id/ownRoutineFragment" />
+            app:destination="@id/ownRoutineFragment"/>
     </fragment>
     <fragment
         android:id="@+id/communityFragment2"

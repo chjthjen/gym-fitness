@@ -40,7 +40,9 @@ public class OwnRoutineFragment extends Fragment {
     private ExerciseInOwnRoutineAdapter adapter;
     private SharedViewModel sharedViewModel;
 
-    public OwnRoutineFragment() {}
+    public OwnRoutineFragment() {
+
+    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
