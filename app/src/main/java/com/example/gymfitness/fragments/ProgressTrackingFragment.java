@@ -97,7 +97,7 @@ public class ProgressTrackingFragment extends Fragment {
             DayOverviewAdapter adapter=new DayOverviewAdapter(dayOverviews1);
             binding.rvDayOverview.setAdapter(adapter);
             binding.rvDayOverview.setLayoutManager(new LinearLayoutManager(getContext()));
-            binding.rvDayOverview.addItemDecoration(new SpacesItemDecoration(getResources().getDimensionPixelSize(R.dimen.spacing)));
+//            binding.rvDayOverview.addItemDecoration(new SpacesItemDecoration(getResources().getDimensionPixelSize(R.dimen.spacing)));
         });
 
         viewModel.getDataMonth().observe(getViewLifecycleOwner(),dayOverviews -> {
