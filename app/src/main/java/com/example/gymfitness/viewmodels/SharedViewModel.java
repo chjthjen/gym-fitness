@@ -65,4 +65,16 @@ public class SharedViewModel extends ViewModel {
     {
         return this.article;
     }
+
+    public MutableLiveData<String> username = new MutableLiveData<>();
+
+    public void setUsername(String username)
+    {
+        this.username.setValue(username);
+    }
+
+    public LiveData<String> getUsername()
+    {
+        return username;
+    }
 }

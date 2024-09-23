@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
@@ -19,6 +20,7 @@ import androidx.navigation.ui.NavigationUI;
 import com.example.gymfitness.R;
 import com.example.gymfitness.databinding.ActivityHomeBinding;
 import com.example.gymfitness.utils.UserData;
+import com.example.gymfitness.viewmodels.SharedViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class HomeActivity extends AppCompatActivity {
@@ -28,6 +30,7 @@ public class HomeActivity extends AppCompatActivity {
     private NavController navController;
     private BottomNavigationView bottomNavigation;
     private String username;
+    private SharedViewModel sharedViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +46,7 @@ public class HomeActivity extends AppCompatActivity {
             return insets;
         });
         setSupportActionBar(binding.toolbar);
+        sharedViewModel = new ViewModelProvider(this).get(SharedViewModel.class);
 
 
         navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentMainContainerView);
@@ -76,7 +80,7 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         username = UserData.getUsername(this);
-
+        sharedViewModel.setUsername(username);
         // setting toolbar
         navController.addOnDestinationChangedListener(((navController, navDestination, bundle) -> {
             if(navDestination.getId() == R.id.homeFragment) {

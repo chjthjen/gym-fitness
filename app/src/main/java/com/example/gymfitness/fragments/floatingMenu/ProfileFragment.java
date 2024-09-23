@@ -22,6 +22,7 @@ import com.example.gymfitness.data.database.FitnessDB;
 import com.example.gymfitness.data.entities.UserInformation;
 import com.example.gymfitness.databinding.FragmentProfileBinding;
 import com.example.gymfitness.viewmodels.ProfileViewModel;
+import com.example.gymfitness.viewmodels.SharedViewModel;
 
 import java.text.SimpleDateFormat;
 import java.util.Locale;
@@ -33,7 +34,7 @@ public class ProfileFragment extends Fragment {
     private ProfileViewModel viewModel;
     private NavController navController;
     private FitnessDB db;
-
+    private SharedViewModel sharedViewModel;
     public ProfileFragment() {
     }
 
@@ -42,6 +43,7 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_profile, container, false);
         viewModel = new ViewModelProvider(requireActivity()).get(ProfileViewModel.class);
+        sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
         binding.setViewModel(viewModel);
         binding.setLifecycleOwner(this);
         navController = NavHostFragment.findNavController(this);
