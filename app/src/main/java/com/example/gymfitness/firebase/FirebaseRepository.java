@@ -236,9 +236,9 @@ public class FirebaseRepository {
                     List<ArticleDetail> details = new ArrayList<>();
                     DataSnapshot contentSnapshot = snapshot.child("content");
                     for (DataSnapshot content : contentSnapshot.getChildren()) {
-                        String header = content.getValue(String.class);
-                        String contentText = content.getKey();
-                        details.add(new ArticleDetail(header, contentText));
+                        String header = content.child("Header").getValue(String.class);
+                        String contentText = content.child("Content").getValue(String.class);
+                        details.add(new ArticleDetail(contentText, header));
                     }
                     callback.onCallback(title, publishDate, description, thumbnail, details);
                 }
