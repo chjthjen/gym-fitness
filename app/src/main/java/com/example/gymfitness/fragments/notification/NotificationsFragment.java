@@ -30,7 +30,7 @@ public class NotificationsFragment extends Fragment {
     NotificationsViewModel viewModel;
 
     public NotificationsFragment() {
-        // Required empty public constructor
+
     }
 
     @Override

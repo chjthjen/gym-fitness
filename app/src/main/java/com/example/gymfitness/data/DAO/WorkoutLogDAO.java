@@ -14,7 +14,9 @@ import java.util.List;
 public interface WorkoutLogDAO {
     @Query("SELECT * FROM WorkoutLog WHERE date = :date")
     List<WorkoutLog> getWorkoutLogByDate(Date date);
-
+    // Thêm phương thức tính tổng kcal
+    @Query("SELECT SUM(kcal) FROM WorkoutLog WHERE date = :date")
+    Integer getTotalKcalByDate(Date date);
     @Upsert
     void insertWorkoutLog(WorkoutLog workoutLog);
 
