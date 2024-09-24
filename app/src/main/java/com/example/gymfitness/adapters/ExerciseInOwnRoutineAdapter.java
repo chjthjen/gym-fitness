@@ -71,34 +71,27 @@ public class ExerciseInOwnRoutineAdapter extends RecyclerView.Adapter<ExerciseIn
             binding.setItem(exercise);
             binding.executePendingBindings();
 
-            // Load thumbnail using Glide
             Glide.with(binding.thumbnail.getContext())
                     .load(exercise.getExerciseThumb())
                     .placeholder(R.drawable.woman_help_home)
                     .into(binding.thumbnail);
 
-            // Handle play video button click (remove exercise)
-            binding.imgPlayvideo.setOnClickListener(new View.OnClickListener() {
+                binding.imgPlayvideo.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     exerciseRemoveListener.onExerciseRemoved(exercise);
                 }
             });
 
-            // Handle thumbnail click (navigate to ExerciseDetailFragment)
             binding.thumbnail.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    // Get NavController from the view
                     NavController navController = Navigation.findNavController(view);
-                    // Select the exercise in SharedViewModel
                     sharedViewModel.selectExercise(exercise);
-                    // Navigate to ExerciseDetailFragment
                     navController.navigate(R.id.action_ownRoutineFragment_to_exerciseDetail);
                 }
             });
 
-            // Handle favorite star
             FavoriteHelper.checkFavorite(exercise, context, binding.imgStar);
             binding.imgStar.setOnClickListener(new View.OnClickListener() {
                 @Override

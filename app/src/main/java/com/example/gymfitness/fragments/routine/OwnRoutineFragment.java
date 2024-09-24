@@ -1,5 +1,6 @@
 package com.example.gymfitness.fragments.routine;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -39,7 +40,9 @@ public class OwnRoutineFragment extends Fragment {
     private ExerciseInOwnRoutineAdapter adapter;
     private SharedViewModel sharedViewModel;
 
-    public OwnRoutineFragment() {}
+    public OwnRoutineFragment() {
+
+    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -86,8 +89,12 @@ public class OwnRoutineFragment extends Fragment {
         newRoundView.findViewById(R.id.btnDeleteRound).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                binding.roundContainer.removeView(newRoundView);
-                ownRoutineViewModel.removeRoutineRound(roundId); // Xóa khỏi db và cập nhật lại thứ tự
+                DeleteRoundInRoutineFragment deleteDialog = new DeleteRoundInRoutineFragment();
+                Bundle bundle = new Bundle();
+                bundle.putInt("round_id", roundId);
+                bundle.putString("round_name", tvRound.getText().toString());
+                deleteDialog.setArguments(bundle);
+                deleteDialog.show(getParentFragmentManager(), deleteDialog.getTag());
             }
         });
 
@@ -99,7 +106,7 @@ public class OwnRoutineFragment extends Fragment {
                 navController.navigate(R.id.action_ownRoutineFragment_to_createExerciseForOwnRoutineFragment, bundle);
             }
         });
-;
+
         RecyclerView gvExercises = newRoundView.findViewById(R.id.gvExercises);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
         gvExercises.setLayoutManager(gridLayoutManager);
@@ -109,7 +116,12 @@ public class OwnRoutineFragment extends Fragment {
             adapter = new ExerciseInOwnRoutineAdapter(getContext(), exercises, new ExerciseInOwnRoutineAdapter.ExerciseRemoveListener() {
                 @Override
                 public void onExerciseRemoved(Exercise exercise) {
-                    ownRoutineViewModel.removeExerciseFromRoutineRound(exercise, roundId);
+                    DeleteExerciseInRoutineFragment deleteDialog = new DeleteExerciseInRoutineFragment();
+                    Bundle bundle = new Bundle();
+                    bundle.putString("exercise_name", exercise.getExercise_name());
+                    bundle.putInt("round_id", roundId);
+                    deleteDialog.setArguments(bundle);
+                    deleteDialog.show(getParentFragmentManager(), deleteDialog.getTag());
                 }
             },sharedViewModel);
             gvExercises.setAdapter(adapter);

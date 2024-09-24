@@ -191,8 +191,11 @@
         android:id="@+id/createExerciseForOwnRoutineFragment"
         android:name="com.example.gymfitness.fragments.routine.CreateExerciseForOwnRoutineFragment"
         android:label="CreateExerciseForOwnRoutineFragment"
-        tools:layout="@layout/fragment_create_exercise_for_own_routine"
-        />
+        tools:layout="@layout/fragment_create_exercise_for_own_routine">
+        <action
+            android:id="@+id/action_createExerciseForOwnRoutineFragment_to_ownRoutineFragment"
+            app:destination="@id/ownRoutineFragment"/>
+    </fragment>
     <fragment
         android:id="@+id/communityFragment2"
         android:name="com.example.gymfitness.fragments.challenge.CommunityFragment"
