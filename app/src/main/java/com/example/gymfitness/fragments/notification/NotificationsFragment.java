@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 
 import com.example.gymfitness.R;
 import com.example.gymfitness.databinding.FragmentNotificationsBinding;
+import com.example.gymfitness.helpers.NotificationHelper;
 import com.example.gymfitness.viewmodels.NotificationsViewModel;
 
 import java.util.Objects;
@@ -27,6 +28,7 @@ public class NotificationsFragment extends Fragment {
     private boolean isGeneralNotificationOn = true, isSoundOn = true, isDontDisturbOn = true, isVibrateOn = true, isLockScreenOn = true, isRemindersOn = true;
 
     NotificationsViewModel viewModel;
+
     public NotificationsFragment() {
         // Required empty public constructor
     }
@@ -44,7 +46,6 @@ public class NotificationsFragment extends Fragment {
         binding = FragmentNotificationsBinding.inflate(inflater, container, false);
 
         viewModel = new ViewModelProvider(this).get(NotificationsViewModel.class);
-
         return binding.getRoot();
     }
 
@@ -52,76 +53,26 @@ public class NotificationsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binding.imgGeneralNotification.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (viewModel != null) {
-                    viewModel.toggleLockScreen(binding.imgGeneralNotification, isGeneralNotificationOn);
-                    isGeneralNotificationOn = !isGeneralNotificationOn;
-                } else {
-                    Log.e("NotificationsFragment", "ViewModel is null!");
-                }
-            }
-        });
-        binding.imgSound.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (viewModel != null) {
-                    viewModel.toggleLockScreen(binding.imgSound, isSoundOn);
-                    isSoundOn = !isSoundOn;
-                } else {
-                    Log.e("NotificationsFragment", "ViewModel is null!");
-                }
-            }
-        });
+        // set toogle status
+        boolean isOnNoti = NotificationHelper.isNotificationsOff(getContext());
+        viewModel.toggleLockScreen(binding.imfDontDisturbMode,isOnNoti);
 
         binding.imfDontDisturbMode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (viewModel != null) {
-                    viewModel.toggleLockScreen(binding.imfDontDisturbMode, isDontDisturbOn);
-                    isDontDisturbOn = !isDontDisturbOn;
-                } else {
-                    Log.e("NotificationsFragment", "ViewModel is null!");
+                boolean access = NotificationHelper.isDoNotDisturbAccessGranted(getContext());
+                if(access)
+                {
+                    NotificationHelper.toggleNotifications(getContext());
+                    boolean status = NotificationHelper.isNotificationsOff(getContext());
+                    viewModel.toggleLockScreen(binding.imfDontDisturbMode,status);
                 }
+                else
+                    NotificationHelper.requestDoNotDisturbAccess(getContext());
+
             }
         });
 
-        binding.imgVibrate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (viewModel != null) {
-                    viewModel.toggleLockScreen(binding.imgVibrate, isVibrateOn);
-                    isVibrateOn = !isVibrateOn;
-                } else {
-                    Log.e("NotificationsFragment", "ViewModel is null!");
-                }
-            }
-        });
-
-        binding.imgLockScreen.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (viewModel != null) {
-                    viewModel.toggleLockScreen(binding.imgLockScreen, isLockScreenOn);
-                    isLockScreenOn = !isLockScreenOn;
-                }else {
-                    Log.e("NotificationsFragment", "ViewModel is null!");
-                }
-            }
-        });
-
-        binding.imgReminders.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (viewModel != null) {
-                    viewModel.toggleLockScreen(binding.imgReminders, isRemindersOn);
-                    isRemindersOn = !isRemindersOn;
-                }else {
-                    Log.e("NotificationsFragment", "ViewModel is null!");
-                }
-            }
-        });
     }
 
     @Override
@@ -130,8 +81,7 @@ public class NotificationsFragment extends Fragment {
         MenuItem itemsSearch = menu.findItem(R.id.ic_search);
         MenuItem itemsNotif = menu.findItem(R.id.ic_notif);
         MenuItem itemsProfile = menu.findItem(R.id.ic_profile);
-        if(itemsSearch != null && itemsNotif != null && itemsProfile != null)
-        {
+        if (itemsSearch != null && itemsNotif != null && itemsProfile != null) {
             itemsSearch.setVisible(false);
             itemsNotif.setVisible(false);
             itemsProfile.setVisible(false);
