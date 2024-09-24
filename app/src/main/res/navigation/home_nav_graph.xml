@@ -401,5 +401,10 @@
             android:id="@+id/action_allSearchFragment_to_articleDetailFragment2"
             app:destination="@id/articleDetailFragment2" />
     </fragment>
+    <fragment
+        android:id="@+id/allNotificationsFragment"
+        android:name="com.example.gymfitness.fragments.notification.AllNotificationsFragment"
+        android:label="AllNotificationsFragment"
+        tools:layout="@layout/fragment_all_notifications"/>
 
 </navigation>
