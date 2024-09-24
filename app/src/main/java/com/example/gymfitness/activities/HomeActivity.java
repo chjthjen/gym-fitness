@@ -135,6 +135,11 @@ public class HomeActivity extends AppCompatActivity {
             return true;
         } else if(id == R.id.ic_search){
             navController.navigate(R.id.allSearchFragment);
+            return true;
+        }
+        else if(id == R.id.ic_notif){
+            navController.navigate(R.id.allNotificationsFragment);
+            return true;
         }
 
         return super.onOptionsItemSelected(item);

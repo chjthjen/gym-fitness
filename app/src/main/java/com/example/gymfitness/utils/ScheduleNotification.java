@@ -16,11 +16,12 @@ public class ScheduleNotification {
 
         Intent morningIntent = new Intent(context, NotificationReceiver.class);
         morningIntent.setAction("com.example.gymfitness.ACTION_MORNING_REMINDER");
-        PendingIntent morningPendingIntent = PendingIntent.getBroadcast(context, 0, morningIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-          //7h moi sang thong bao
+        PendingIntent morningPendingIntent = PendingIntent.getBroadcast(context, 0, morningIntent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
+
+        //7h moi sang thong bao
         Calendar morningCalendar = Calendar.getInstance();
-        morningCalendar.set(Calendar.HOUR_OF_DAY, 7);
-        morningCalendar.set(Calendar.MINUTE, 0);
+        morningCalendar.set(Calendar.HOUR_OF_DAY, 15);
+        morningCalendar.set(Calendar.MINUTE, 36);
         morningCalendar.set(Calendar.SECOND, 0);
 
 
@@ -40,11 +41,11 @@ public class ScheduleNotification {
 
         Intent kcalIntent = new Intent(context, NotificationReceiver.class);
         kcalIntent.setAction("com.example.gymfitness.ACTION_KCAL_REMINDER");
-        PendingIntent kcalPendingIntent = PendingIntent.getBroadcast(context, 2, kcalIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent kcalPendingIntent = PendingIntent.getBroadcast(context, 2, kcalIntent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 
         Calendar kcalCalendar = Calendar.getInstance();
-        kcalCalendar.set(Calendar.HOUR_OF_DAY, 14);
-        kcalCalendar.set(Calendar.MINUTE, 38);
+        kcalCalendar.set(Calendar.HOUR_OF_DAY, 15);
+        kcalCalendar.set(Calendar.MINUTE, 35);
         kcalCalendar.set(Calendar.SECOND, 0);
 
 
