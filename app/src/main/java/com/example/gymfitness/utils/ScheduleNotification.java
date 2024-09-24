@@ -20,8 +20,8 @@ public class ScheduleNotification {
 
         //7h moi sang thong bao
         Calendar morningCalendar = Calendar.getInstance();
-        morningCalendar.set(Calendar.HOUR_OF_DAY, 15);
-        morningCalendar.set(Calendar.MINUTE, 36);
+        morningCalendar.set(Calendar.HOUR_OF_DAY, 8);
+        morningCalendar.set(Calendar.MINUTE, 22);
         morningCalendar.set(Calendar.SECOND, 0);
 
 
@@ -44,8 +44,8 @@ public class ScheduleNotification {
         PendingIntent kcalPendingIntent = PendingIntent.getBroadcast(context, 2, kcalIntent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 
         Calendar kcalCalendar = Calendar.getInstance();
-        kcalCalendar.set(Calendar.HOUR_OF_DAY, 15);
-        kcalCalendar.set(Calendar.MINUTE, 35);
+        kcalCalendar.set(Calendar.HOUR_OF_DAY, 20);
+        kcalCalendar.set(Calendar.MINUTE, 26);
         kcalCalendar.set(Calendar.SECOND, 0);
 
 
