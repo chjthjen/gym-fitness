@@ -102,7 +102,7 @@ public class HomeActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(bottomNavigation,navController);
         // event
         addEvents();
-        askNotificationPermission();
+//        askNotificationPermission();
 
     }
 
