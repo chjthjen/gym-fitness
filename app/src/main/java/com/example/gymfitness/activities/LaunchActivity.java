@@ -29,6 +29,7 @@ public class LaunchActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private ExecutorService executorService;
     private SharedPreferences setupPrefs;
+    private static final int EXACT_ALARM_PERMISSION_REQUEST_CODE = 1002;
 
     private void addControls() {
         sharedPreferences = getSharedPreferences("remember", MODE_PRIVATE);
@@ -47,8 +48,8 @@ public class LaunchActivity extends AppCompatActivity {
         executorService.execute(() -> {
             FitnessDB.getInstance(getApplicationContext()).userInformationDAO().getUserInformation();
         });
-
         checkAndRequestNotificationPermission();
+        requestExactAlarmPermission();
     }
 
     private void checkAndRequestNotificationPermission() {
@@ -108,7 +109,19 @@ public class LaunchActivity extends AppCompatActivity {
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
-
+    private boolean hasExactAlarmPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            return checkSelfPermission(Manifest.permission.SCHEDULE_EXACT_ALARM) == PackageManager.PERMISSION_GRANTED;
+        }
+        return true;
+    }
+    private void requestExactAlarmPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            if (!hasExactAlarmPermission()) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.SCHEDULE_EXACT_ALARM}, EXACT_ALARM_PERMISSION_REQUEST_CODE);
+            }
+        }
+    }
     @Override
     protected void onDestroy() {
         super.onDestroy();
