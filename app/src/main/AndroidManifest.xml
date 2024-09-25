@@ -4,13 +4,8 @@
     package="com.example.gymfitness" >
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
-    <uses-permission android:name="android.permission.DISABLE_KEYGUARD"/>
-    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
-    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY"/>
+
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-
-
 
     <application
         android:name=".GymFitnessAplication"
@@ -28,7 +23,13 @@
 
 
         <receiver android:name=".receivers.NotificationReceiver" />
-
+        <receiver android:name=".receivers.BootReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
 
         <activity
             android:name=".activities.setup.SetUpStartActivity"
