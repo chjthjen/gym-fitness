@@ -1,7 +1,7 @@
 package com.example.gymfitness.activities;
 
 import android.Manifest;
-import android.app.AlertDialog;
+//import android.app.AlertDialog;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
