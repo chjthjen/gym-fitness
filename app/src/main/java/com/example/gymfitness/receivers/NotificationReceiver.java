@@ -34,7 +34,7 @@ import java.util.concurrent.Executors;
 
 
 public class NotificationReceiver extends BroadcastReceiver {
-    private WorkoutLogDAO workoutLogDAO; // Khai báo DAO ở đây
+    private WorkoutLogDAO workoutLogDAO;
     private ExecutorService executorService = Executors.newSingleThreadExecutor();
 
     @Override
@@ -55,7 +55,11 @@ public class NotificationReceiver extends BroadcastReceiver {
     private void showKcalReminder(Context context) {
         executorService.execute(() -> {
             int totalKcal = getTotalKcalForToday(context);
-            sendNotification(context, "Nhắc nhở kcal", "Tổng kcal hôm nay: " + totalKcal, 2);
+            if(totalKcal > 0) {
+                sendNotification(context, "Ket Qua Tap Luyen", "Tổng kcal hôm nay: " + totalKcal, 2);
+            }else {
+                sendNotification(context, "Nhắc nhở tập luyện", "Bạn chưa ghi nhận kcal nào hôm nay!", 3);
+            }
         });
     }
 
