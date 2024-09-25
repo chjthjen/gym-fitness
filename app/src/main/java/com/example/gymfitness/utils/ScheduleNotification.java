@@ -4,7 +4,6 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 
 import com.example.gymfitness.receivers.NotificationReceiver;
 
@@ -30,13 +29,8 @@ public class ScheduleNotification {
         }
 
         if (alarmManager != null) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, morningCalendar.getTimeInMillis(), morningPendingIntent);
-            } else {
-                alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, morningCalendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, morningPendingIntent);
-            }
+            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, morningCalendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, morningPendingIntent);
         }
-
 
 
     }
@@ -49,8 +43,8 @@ public class ScheduleNotification {
         PendingIntent kcalPendingIntent = PendingIntent.getBroadcast(context, 2, kcalIntent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 
         Calendar kcalCalendar = Calendar.getInstance();
-        kcalCalendar.set(Calendar.HOUR_OF_DAY, 20);
-        kcalCalendar.set(Calendar.MINUTE, 53);
+        kcalCalendar.set(Calendar.HOUR_OF_DAY, 15);
+        kcalCalendar.set(Calendar.MINUTE, 13);
         kcalCalendar.set(Calendar.SECOND, 0);
 
 
@@ -59,12 +53,7 @@ public class ScheduleNotification {
         }
 
         if (alarmManager != null) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, kcalCalendar.getTimeInMillis(), kcalPendingIntent);
-            } else {
-                alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, kcalCalendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, kcalPendingIntent);
-            }
+            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, kcalCalendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, kcalPendingIntent);
         }
-
     }
 }

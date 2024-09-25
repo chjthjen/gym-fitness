@@ -1,30 +1,37 @@
 package com.example.gymfitness.receivers;
 
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
+
+
+import android.Manifest;
+import android.app.Application;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
-
-
+import androidx.core.content.ContextCompat;
 import com.example.gymfitness.R;
 import com.example.gymfitness.activities.LaunchActivity;
 import com.example.gymfitness.data.DAO.WorkoutLogDAO;
 import com.example.gymfitness.data.database.FitnessDB;
+import com.example.gymfitness.data.entities.WorkoutLog;
+import com.example.gymfitness.viewmodels.ProgressTrackingViewModel;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
 
 public class NotificationReceiver extends BroadcastReceiver {
     private WorkoutLogDAO workoutLogDAO;
@@ -48,9 +55,9 @@ public class NotificationReceiver extends BroadcastReceiver {
     private void showKcalReminder(Context context) {
         executorService.execute(() -> {
             int totalKcal = getTotalKcalForToday(context);
-            if (totalKcal > 0) {
+            if(totalKcal > 0) {
                 sendNotification(context, "Ket Qua Tap Luyen", "Tổng kcal hôm nay: " + totalKcal, 2);
-            } else {
+            }else {
                 sendNotification(context, "Nhắc nhở tập luyện", "Bạn chưa ghi nhận kcal nào hôm nay!", 3);
             }
         });
@@ -62,6 +69,7 @@ public class NotificationReceiver extends BroadcastReceiver {
         String dateString = currentDate.getYear() + "-" + String.format("%02d", currentDate.getMonthValue()) + "-" + String.format("%02d", currentDate.getDayOfMonth());
         try {
             Date selectedDate = dateFormat.parse(dateString);
+
             Integer totalKcal = workoutLogDAO.getTotalKcalByDate(selectedDate);
             return totalKcal != null ? totalKcal : 0;
         } catch (ParseException e) {
@@ -74,17 +82,19 @@ public class NotificationReceiver extends BroadcastReceiver {
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         String channelId = "daily_reminder_channel";
 
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel channel = notificationManager.getNotificationChannel(channelId);
-            if (channel == null) {
-                channel = new NotificationChannel(channelId, "Daily Reminder", NotificationManager.IMPORTANCE_DEFAULT);
-                notificationManager.createNotificationChannel(channel);
+            NotificationChannel channel = new NotificationChannel(channelId, "Daily Reminder", NotificationManager.IMPORTANCE_DEFAULT);
+            notificationManager.createNotificationChannel(channel);
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+                return;
             }
         }
 
         Intent notificationIntent = new Intent(context, LaunchActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, channelId)
                 .setSmallIcon(R.drawable.notification_off)
