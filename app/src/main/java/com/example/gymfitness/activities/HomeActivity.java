@@ -104,7 +104,6 @@ public class HomeActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(bottomNavigation,navController);
         // event
         addEvents();
-//        askNotificationPermission();
 
     }
 
@@ -161,45 +160,5 @@ public class HomeActivity extends AppCompatActivity {
 
     public BottomNavigationView getBottomNavigationView() {
         return binding.navigationBottom;
-    }
-
-    // Declare the launcher at the top of your Activity/Fragment:
-    private final ActivityResultLauncher<String> requestPermissionLauncher =
-            registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
-                if (isGranted) {
-                    // FCM SDK (and your app) can post notifications.
-                } else {
-                    // TODO: Inform user that that your app will not show notifications.
-                }
-            });
-
-    private void askNotificationPermission() {
-        // This is only necessary for API level >= 33 (TIRAMISU)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) ==
-                    PackageManager.PERMISSION_GRANTED) {
-                // FCM SDK (and your app) can post notifications.
-            } else if (shouldShowRequestPermissionRationale(Manifest.permission.POST_NOTIFICATIONS)) {
-
-                // Show an explanation to the user *asynchronously* -- don't block
-                // this thread waiting for the user's response! After the user
-                // sees the explanation, try again to request the permission.
-                new AlertDialog.Builder(this)
-                        .setTitle("Permission needed")
-                        .setMessage("This permission is needed because of FCM SDK")
-                        .setPositiveButton("OK", (dialog, which) -> {
-                            // Directly ask for the permission
-                            requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS);
-                        })
-                        .setNegativeButton("Cancel", (dialog, which) -> {
-                            // Do nothing
-                        })
-                        .create()
-                        .show();
-            } else {
-                // Directly ask for the permission
-                requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS);
-            }
-        }
     }
 }
