@@ -1,6 +1,7 @@
 package com.example.gymfitness.activities;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -24,6 +25,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
+import android.Manifest;
 import com.example.gymfitness.R;
 import com.example.gymfitness.databinding.ActivityHomeBinding;
 import com.example.gymfitness.utils.UserData;
@@ -102,10 +104,9 @@ public class HomeActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(bottomNavigation,navController);
         // event
         addEvents();
-        askNotificationPermission();
+//        askNotificationPermission();
+
     }
-
-
 
     private void addEvents()
     {

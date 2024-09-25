@@ -1,5 +1,6 @@
 package com.example.gymfitness.fragments.notification;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -8,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,8 +25,6 @@ import java.util.Objects;
 public class NotificationsFragment extends Fragment {
 
     FragmentNotificationsBinding binding;
-    private boolean isGeneralNotificationOn = true, isSoundOn = true, isDontDisturbOn = true, isVibrateOn = true, isLockScreenOn = true, isRemindersOn = true;
-
     NotificationsViewModel viewModel;
 
     public NotificationsFragment() {
@@ -56,6 +54,10 @@ public class NotificationsFragment extends Fragment {
         // set toogle status
         boolean isOnNoti = NotificationHelper.isNotificationsOff(getContext());
         viewModel.toggleLockScreen(binding.imfDontDisturbMode,isOnNoti);
+        boolean isOnVol = NotificationHelper.isAppVolumeOn(getContext());
+        viewModel.toggleLockScreen(binding.imgSound,isOnVol);
+        boolean isOnBroadCast = NotificationHelper.areNotificationsEnabled(getContext());
+        viewModel.toggleLockScreen(binding.imgGeneralNotification,isOnBroadCast);
 
         binding.imfDontDisturbMode.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,6 +72,24 @@ public class NotificationsFragment extends Fragment {
                 else
                     NotificationHelper.requestDoNotDisturbAccess(getContext());
 
+            }
+        });
+
+        binding.imgSound.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                    NotificationHelper.toggleAppVolume(getContext());
+                    boolean status = NotificationHelper.isAppVolumeOn(getContext());
+                    viewModel.toggleLockScreen(binding.imgSound,status);
+            }
+        });
+
+        binding.imgGeneralNotification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NotificationHelper.toggleNotificationPermission(getContext());
+                boolean status = NotificationHelper.areNotificationsEnabled(getContext());
+                viewModel.toggleLockScreen(binding.imgGeneralNotification,status);
             }
         });
 
