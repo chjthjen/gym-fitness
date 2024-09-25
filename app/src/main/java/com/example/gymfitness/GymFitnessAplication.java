@@ -6,8 +6,8 @@ import android.content.SharedPreferences;
 import com.example.gymfitness.utils.ScheduleNotification;
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
-// name
 public class GymFitnessAplication extends Application {
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -15,6 +15,7 @@ public class GymFitnessAplication extends Application {
         AppEventsLogger.activateApp(this);
         ScheduleNotification.setMorningReminder(this);
         ScheduleNotification.setDailyReminders(this);
+
     }
     }
 
