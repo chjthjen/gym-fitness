@@ -43,19 +43,21 @@ public class LaunchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
 
-        // hoi 1 lan duy nhat
+        // hoi 1 lan
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             boolean isPermissionRequested = sharedPreferences.getBoolean("isPermissionRequested", false);
             if (!isPermissionRequested) {
                 if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
                     ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.POST_NOTIFICATIONS}, NOTIFICATION_PERMISSION_CODE);
                 } else {
+                    // Nếu đã cấp quyền, lưu trạng thái đã yêu cầu
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putBoolean("isPermissionRequested", true);
                     editor.apply();
                 }
             }
         }
+
 
         setContentView(R.layout.activity_launch);
         addControls();
