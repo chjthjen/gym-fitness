@@ -43,7 +43,11 @@ public class NotificationWorkoutRCVAdapter extends RecyclerView.Adapter<Notifica
         if(notification == null)
             return;
 
-        holder.imvNotificationWorkout.setImageResource(notification.getType());
+        if (notification.getType() == 1) {
+            holder.imvNotificationWorkout.setImageResource(R.drawable.notification_off_circle);
+        } else {
+            holder.imvNotificationWorkout.setImageResource(R.drawable.list_off);
+        }
         holder.tvNameNotificationWorkout.setText(notification.getName());
 
         SimpleDateFormat sdf = new SimpleDateFormat("MMM dd - hh:mm a", Locale.getDefault());

@@ -27,6 +27,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import android.Manifest;
 import com.example.gymfitness.R;
+import com.example.gymfitness.data.entities.UserInformation;
 import com.example.gymfitness.databinding.ActivityHomeBinding;
 import com.example.gymfitness.utils.UserData;
 import com.example.gymfitness.viewmodels.SharedViewModel;
@@ -88,23 +89,37 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        username = UserData.getUsername(this);
-        sharedViewModel.setUsername(username);
-        // setting toolbar
         navController.addOnDestinationChangedListener(((navController, navDestination, bundle) -> {
             if(navDestination.getId() == R.id.homeFragment) {
                 getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-                binding.toolbar.setTitle("Hi, " + username);
+                sharedViewModel.getUsername().observe(this, userInfo -> {
+                    username = userInfo.getFullname();
+                    binding.toolbar.setTitle("Hi, " + username);
+                });
             } else {
                 getSupportActionBar().setDisplayHomeAsUpEnabled(true);
                 binding.toolbar.setNavigationIcon(R.drawable.arrow);
             }
         }));
+
         // bottom navigation
         NavigationUI.setupWithNavController(bottomNavigation,navController);
         // event
         addEvents();
         askNotificationPermission();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setUsername();
+    }
+
+    private void setUsername(){
+        username = UserData.getUsername(this);
+        UserInformation userInformation = new UserInformation();
+        userInformation.setFullname(username);
+        sharedViewModel.setUsername(userInformation);
     }
 
     private void addEvents()

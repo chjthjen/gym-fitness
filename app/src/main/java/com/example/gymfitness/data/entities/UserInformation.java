@@ -146,4 +146,11 @@ public class UserInformation implements Serializable {
         this.phonenumber = phonenumber;
     }
 
+    public UserInformation(String name){
+        this.fullname = name;
+    }
+    public void setUsername(String username){
+        this.fullname = username;
+    }
+
 }
