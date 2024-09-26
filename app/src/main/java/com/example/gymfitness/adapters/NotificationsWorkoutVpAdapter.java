@@ -2,6 +2,8 @@ package com.example.gymfitness.adapters;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.example.gymfitness.fragments.notification.NotificationsWorkoutRemindersFragment;
@@ -11,6 +13,10 @@ public class NotificationsWorkoutVpAdapter extends FragmentStateAdapter {
 
     public NotificationsWorkoutVpAdapter(@NonNull Fragment fragment) {
         super(fragment);
+    }
+
+    public NotificationsWorkoutVpAdapter(FragmentManager childFragmentManager, Lifecycle lifecycle) {
+        super(childFragmentManager, lifecycle);
     }
 
     @NonNull

@@ -12,15 +12,14 @@ public class Notification implements Serializable {
     @PrimaryKey(autoGenerate = true)
     private int id;
     private String name;
-    private String type;
+    private int type;
     private String content;
     private Date date;
 
     public Notification() {
     }
 
-    public Notification(int id, String name, String type, String content, Date date) {
-        this.id = id;
+    public Notification(String name, int type, String content, Date date) {
         this.name = name;
         this.type = type;
         this.content = content;
@@ -51,11 +50,11 @@ public class Notification implements Serializable {
         this.name = name;
     }
 
-    public String getType() {
+    public int getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(int type) {
         this.type = type;
     }
 
