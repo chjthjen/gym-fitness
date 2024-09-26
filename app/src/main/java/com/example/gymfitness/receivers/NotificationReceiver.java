@@ -8,9 +8,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
+import android.os.Handler;
 import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
+import androidx.core.content.ContextCompat;
 
 
 import com.example.gymfitness.R;
@@ -74,26 +76,32 @@ public class NotificationReceiver extends BroadcastReceiver {
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         String channelId = "daily_reminder_channel";
 
-
+        // Tạo NotificationChannel nếu cần thiết
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel = notificationManager.getNotificationChannel(channelId);
             if (channel == null) {
-                channel = new NotificationChannel(channelId, "Daily Reminder", NotificationManager.IMPORTANCE_DEFAULT);
+                channel = new NotificationChannel(channelId, "Daily Reminder", NotificationManager.IMPORTANCE_HIGH);
                 notificationManager.createNotificationChannel(channel);
             }
         }
 
+        // Intent để mở ứng dụng khi người dùng nhấn vào thông báo
         Intent notificationIntent = new Intent(context, LaunchActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 
+        // Xây dựng thông báo
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, channelId)
                 .setSmallIcon(R.drawable.notification_off)
                 .setContentTitle(title)
                 .setContentText(content)
+                .setColor(ContextCompat.getColor(context, R.color.purple))
+                .setContentIntent(pendingIntent)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
-                .setFullScreenIntent(pendingIntent, true)
                 .setAutoCancel(true);
 
+        // Hiển thị thông báo
         notificationManager.notify(notificationId, builder.build());
     }
+
+
 }
