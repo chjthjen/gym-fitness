@@ -48,8 +48,9 @@ public class LaunchActivity extends AppCompatActivity {
         executorService.execute(() -> {
             FitnessDB.getInstance(getApplicationContext()).userInformationDAO().getUserInformation();
         });
-        checkAndRequestNotificationPermission();
-        requestExactAlarmPermission();
+//        checkAndRequestNotificationPermission();
+//        requestExactAlarmPermission();
+        proceedToNextActivity();
     }
 
     private void checkAndRequestNotificationPermission() {

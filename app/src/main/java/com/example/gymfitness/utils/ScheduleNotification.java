@@ -20,8 +20,8 @@ public class ScheduleNotification {
         PendingIntent morningPendingIntent = PendingIntent.getBroadcast(context, 0, morningIntent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 
         Calendar morningCalendar = Calendar.getInstance();
-        morningCalendar.set(Calendar.HOUR_OF_DAY, 8);
-        morningCalendar.set(Calendar.MINUTE, 22);
+        morningCalendar.set(Calendar.HOUR_OF_DAY, 12);
+        morningCalendar.set(Calendar.MINUTE, 14);
         morningCalendar.set(Calendar.SECOND, 0);
 
 
@@ -32,12 +32,13 @@ public class ScheduleNotification {
         if (alarmManager != null) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 alarmManager.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, morningCalendar.getTimeInMillis(), morningPendingIntent);
+                //cai nay dung gio hon khi nao can gap moi dung cai nay
+            //alarmManager.setAlarmClock(new AlarmManager.AlarmClockInfo(morningCalendar.getTimeInMillis(), null), morningPendingIntent);
+               // alarmManager.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, morningCalendar.getTimeInMillis(), morningPendingIntent);
             } else {
                 alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, morningCalendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, morningPendingIntent);
             }
         }
-
-
 
     }
 
@@ -50,8 +51,8 @@ public class ScheduleNotification {
         PendingIntent kcalPendingIntent = PendingIntent.getBroadcast(context, 2, kcalIntent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 
         Calendar kcalCalendar = Calendar.getInstance();
-        kcalCalendar.set(Calendar.HOUR_OF_DAY, 21);
-        kcalCalendar.set(Calendar.MINUTE, 43);
+        kcalCalendar.set(Calendar.HOUR_OF_DAY, 12);
+        kcalCalendar.set(Calendar.MINUTE, 15);
         kcalCalendar.set(Calendar.SECOND, 0);
 
 
@@ -62,6 +63,8 @@ public class ScheduleNotification {
         if (alarmManager != null) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 alarmManager.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, kcalCalendar.getTimeInMillis(), kcalPendingIntent);
+                //alarmManager.setAlarmClock(new AlarmManager.AlarmClockInfo( kcalCalendar.getTimeInMillis(), null), kcalPendingIntent);
+              //  alarmManager.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, kcalCalendar.getTimeInMillis(), kcalPendingIntent);
             } else {
                 alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, kcalCalendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, kcalPendingIntent);
             }
