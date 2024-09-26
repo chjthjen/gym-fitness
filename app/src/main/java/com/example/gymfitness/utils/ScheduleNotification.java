@@ -20,8 +20,8 @@ public class ScheduleNotification {
         PendingIntent morningPendingIntent = PendingIntent.getBroadcast(context, 0, morningIntent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 
         Calendar morningCalendar = Calendar.getInstance();
-        morningCalendar.set(Calendar.HOUR_OF_DAY, 15);
-        morningCalendar.set(Calendar.MINUTE, 27);
+        morningCalendar.set(Calendar.HOUR_OF_DAY, 19);
+        morningCalendar.set(Calendar.MINUTE, 04);
         morningCalendar.set(Calendar.SECOND, 0);
 
 
