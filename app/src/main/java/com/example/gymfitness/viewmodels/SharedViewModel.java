@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.gymfitness.data.entities.Article;
 import com.example.gymfitness.data.entities.Exercise;
+import com.example.gymfitness.data.entities.UserInformation;
 import com.example.gymfitness.data.entities.Workout;
 
 import java.util.List;
@@ -66,14 +67,14 @@ public class SharedViewModel extends ViewModel {
         return this.article;
     }
 
-    public MutableLiveData<String> username = new MutableLiveData<>();
+    public MutableLiveData<UserInformation> username = new MutableLiveData<>();
 
-    public void setUsername(String username)
+    public void setUsername(UserInformation username)
     {
         this.username.setValue(username);
     }
 
-    public LiveData<String> getUsername()
+    public LiveData<UserInformation> getUsername()
     {
         return username;
     }
