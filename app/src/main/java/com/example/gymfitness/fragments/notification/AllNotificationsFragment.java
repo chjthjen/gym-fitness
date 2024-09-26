@@ -29,6 +29,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 public class AllNotificationsFragment extends Fragment {
     private NotificationWorkoutRCVAdapter notificationWorkoutRCVAdapter;
@@ -62,15 +65,12 @@ public class AllNotificationsFragment extends Fragment {
     }
 
     private List<Notification> getListTodayNotificationWorkout() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM d - h:mm a", Locale.ENGLISH);
         List<Notification> notificationList = new ArrayList<>();
+        Future<List<Notification>> future = Executors.newSingleThreadExecutor().submit(() -> FitnessDB.getInstance(requireContext()).notificationDao().getAllNotifications());
         try {
-            notificationList.add(new Notification("New Workout Is Available", R.drawable.star_big_star_off, "Reminders", dateFormat.parse("June 10 - 10:00 AM")));
-            notificationList.add(new Notification("Don't Forget To Drink Water", R.drawable.bulb_on, "Reminders", dateFormat.parse("June 10 - 10:00 AM")));
-            notificationList.add(new Notification("New Workout Is Available", R.drawable.star_big_star_off, "System", dateFormat.parse("June 10 - 10:00 AM")));
-        }
-        catch (Exception ex) {
-
+            notificationList.addAll(future.get());
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return notificationList;
     }
