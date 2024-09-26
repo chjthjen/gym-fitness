@@ -47,32 +47,41 @@ public class NotificationReceiver extends BroadcastReceiver {
     }
 
     private void showMorningReminder(Context context) {
-        sendNotification(context, "Nhắc nhở tập luyện", "Đã đến giờ tập luyện buổi sáng! Hãy bắt đầu nào!", 1);
+
+        sendNotification(context, "Workout Reminder", "It's time for your morning workout! Let's get started!", 1);
+        if (notificationDao != null) {
+            saveNotificationToDatabase("Morning Reminder", "It's time for your morning workout! Let's get started!", 1);
+        } else {
+            Log.e("NotificationReceiver", "notificationDao is null!");
+        }
     }
+
+
 
     private void showKcalReminder(Context context) {
         executorService.execute(() -> {
             int totalKcal = getTotalKcalForToday(context);
             String content;
             if (totalKcal > 0) {
-                content = "Tổng kcal hôm nay: " + totalKcal;
-                sendNotification(context, "Ket Qua Tap Luyen", content, 2);
-                if (notificationDao != null) { // Kiểm tra notificationDao không null
+                content = "Total kcal today: " + totalKcal;
+                sendNotification(context, "Workout Results", content, 2);
+                if (notificationDao != null) {
                     saveNotificationToDatabase("Kcal Reminder", content, 2);
                 } else {
                     Log.e("NotificationReceiver", "notificationDao is null!");
                 }
             } else {
-                content = "Bạn chưa ghi nhận kcal nào hôm nay!";
-                sendNotification(context, "Nhắc nhở tập luyện", content, 3);
-                if (notificationDao != null) { // Kiểm tra notificationDao không null
-                    saveNotificationToDatabase("Nhắc nhở tập luyện", content, 3);
+                content = "You haven't recorded any kcal today!";
+                sendNotification(context, "Workout Reminder", content, 3);
+                if (notificationDao != null) {
+                    saveNotificationToDatabase("Workout Reminder", content, 3);
                 } else {
                     Log.e("NotificationReceiver", "notificationDao is null!");
                 }
             }
         });
     }
+
     private void saveNotificationToDatabase(String name, String content, int type) {
         Notification notification = new Notification(name, type, content, new Date());
 
