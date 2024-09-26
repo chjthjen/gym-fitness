@@ -26,6 +26,7 @@ import com.example.gymfitness.data.entities.UserInformation;
 import com.example.gymfitness.databinding.FragmentEditprofileBinding;
 import com.example.gymfitness.viewmodels.EditProfileViewModel;
 import com.example.gymfitness.viewmodels.ProfileViewModel;
+import com.example.gymfitness.viewmodels.SharedViewModel;
 import com.example.gymfitness.viewmodelsfactory.EditProfileViewModelFactory;
 
 import java.text.SimpleDateFormat;
@@ -38,6 +39,7 @@ public class EditProfileFragment extends Fragment {
 
     FragmentEditprofileBinding binding;
     EditProfileViewModel editProfileViewModel;
+    SharedViewModel sharedViewModel;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,6 +50,8 @@ public class EditProfileFragment extends Fragment {
         EditProfileViewModelFactory factory = new EditProfileViewModelFactory(userInformationDAO);
         editProfileViewModel = new ViewModelProvider(this, factory).get(EditProfileViewModel.class);
         editProfileViewModel.loadUserInformation();
+
+        sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
 
         SimpleDateFormat dob = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
 
@@ -149,6 +153,7 @@ public class EditProfileFragment extends Fragment {
                     }
 
                     editProfileViewModel.updateUserInformation(updatedInfo);
+                    sharedViewModel.setUsername(updatedInfo);
                 }
             }
         });
