@@ -17,8 +17,10 @@ import androidx.core.content.ContextCompat;
 
 import com.example.gymfitness.R;
 import com.example.gymfitness.activities.LaunchActivity;
+import com.example.gymfitness.data.DAO.NotificationDao;
 import com.example.gymfitness.data.DAO.WorkoutLogDAO;
 import com.example.gymfitness.data.database.FitnessDB;
+import com.example.gymfitness.data.entities.Notification;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -31,10 +33,11 @@ import java.util.concurrent.Executors;
 public class NotificationReceiver extends BroadcastReceiver {
     private WorkoutLogDAO workoutLogDAO;
     private ExecutorService executorService = Executors.newSingleThreadExecutor();
-
+    private NotificationDao notificationDao;
     @Override
     public void onReceive(Context context, Intent intent) {
         workoutLogDAO = FitnessDB.getInstance(context).workoutLogDAO();
+        notificationDao = FitnessDB.getInstance(context).notificationDao();
         String action = intent.getAction();
         if ("com.example.gymfitness.ACTION_MORNING_REMINDER".equals(action)) {
             showMorningReminder(context);
@@ -50,13 +53,40 @@ public class NotificationReceiver extends BroadcastReceiver {
     private void showKcalReminder(Context context) {
         executorService.execute(() -> {
             int totalKcal = getTotalKcalForToday(context);
+            String content;
             if (totalKcal > 0) {
-                sendNotification(context, "Ket Qua Tap Luyen", "Tổng kcal hôm nay: " + totalKcal, 2);
+                content = "Tổng kcal hôm nay: " + totalKcal;
+                sendNotification(context, "Ket Qua Tap Luyen", content, 2);
+                if (notificationDao != null) { // Kiểm tra notificationDao không null
+                    saveNotificationToDatabase("Kcal Reminder", content, 2);
+                } else {
+                    Log.e("NotificationReceiver", "notificationDao is null!");
+                }
             } else {
-                sendNotification(context, "Nhắc nhở tập luyện", "Bạn chưa ghi nhận kcal nào hôm nay!", 3);
+                content = "Bạn chưa ghi nhận kcal nào hôm nay!";
+                sendNotification(context, "Nhắc nhở tập luyện", content, 3);
+                if (notificationDao != null) { // Kiểm tra notificationDao không null
+                    saveNotificationToDatabase("Nhắc nhở tập luyện", content, 3);
+                } else {
+                    Log.e("NotificationReceiver", "notificationDao is null!");
+                }
             }
         });
     }
+    private void saveNotificationToDatabase(String name, String content, int type) {
+        Notification notification = new Notification(name, type, content, new Date());
+
+        executorService.execute(() -> {
+            if (notificationDao != null) {
+                notificationDao.insertNotification(notification);
+                Log.d("luu thong bao", "luu thanh cong roi: " + notification.toString());
+            } else {
+                Log.e("luu thong bao", "ngu is null!");
+            }
+        });
+    }
+
+
 
     private int getTotalKcalForToday(Context context) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
