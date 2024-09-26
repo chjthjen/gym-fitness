@@ -13,7 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.gymfitness.R;
 import com.example.gymfitness.data.entities.Notification;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Locale;
 
 
 public class NotificationWorkoutRCVAdapter extends RecyclerView.Adapter<NotificationWorkoutRCVAdapter.NotificationWorkoutViewHolder>{
@@ -41,9 +43,12 @@ public class NotificationWorkoutRCVAdapter extends RecyclerView.Adapter<Notifica
         if(notification == null)
             return;
 
-        holder.imvNotificationWorkout.setImageResource(notification.getId());
+        holder.imvNotificationWorkout.setImageResource(notification.getType());
         holder.tvNameNotificationWorkout.setText(notification.getName());
-        holder.tvContentNotificationWorkout.setText(notification.getContent());
+
+        SimpleDateFormat sdf = new SimpleDateFormat("MMM dd - hh:mm a", Locale.getDefault());
+        String formattedDate = sdf.format(notification.getDate());
+        holder.tvDateNotificationWorkout.setText(formattedDate);
     }
 
     @Override
@@ -53,16 +58,16 @@ public class NotificationWorkoutRCVAdapter extends RecyclerView.Adapter<Notifica
         return 0;
     }
 
-    public class NotificationWorkoutViewHolder extends RecyclerView.ViewHolder {
+    public static class NotificationWorkoutViewHolder extends RecyclerView.ViewHolder {
         private ImageView imvNotificationWorkout;
         private TextView tvNameNotificationWorkout;
-        private TextView tvContentNotificationWorkout;
+        private TextView tvDateNotificationWorkout;
 
         public NotificationWorkoutViewHolder(@NonNull View itemView) {
             super(itemView);
             imvNotificationWorkout = itemView.findViewById(R.id.imv_notification_workout);
             tvNameNotificationWorkout = itemView.findViewById(R.id.tv_name_notification_workout);
-            tvContentNotificationWorkout = itemView.findViewById(R.id.tv_content_notification_workout);
+            tvDateNotificationWorkout = itemView.findViewById(R.id.tv_date_notification_workout);
         }
     }
 }
