@@ -6,11 +6,20 @@
     android:padding="16dp"
     android:background="@color/primary">
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:scrollbars="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="All Notifications"
+            android:textSize="20dp"
+            android:textColor="@color/third"
+            />
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcv_notification_workout_reminders"

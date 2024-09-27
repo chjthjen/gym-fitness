@@ -17,7 +17,6 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
 
-
 public class NotificationWorkoutRCVAdapter extends RecyclerView.Adapter<NotificationWorkoutRCVAdapter.NotificationWorkoutViewHolder>{
     private Context context;
     private List<Notification> listNotification;
@@ -25,9 +24,19 @@ public class NotificationWorkoutRCVAdapter extends RecyclerView.Adapter<Notifica
     public NotificationWorkoutRCVAdapter(Context context) {
         this.context = context;
     }
+
     public void setData(List<Notification> listNotification) {
         this.listNotification = listNotification;
         notifyDataSetChanged();
+    }
+
+    public Notification getNotificationAt(int position) {
+        return listNotification.get(position);
+    }
+
+    public void removeItem(int position) {
+        listNotification.remove(position);
+        notifyItemRemoved(position);
     }
 
     @NonNull

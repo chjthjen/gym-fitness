@@ -2,6 +2,7 @@ package com.example.gymfitness.data.DAO;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 
@@ -17,4 +18,7 @@ public interface NotificationDao {
 
     @Insert
     void insertNotification(Notification notification);
+
+    @Delete
+    void delete(Notification notification);
 }

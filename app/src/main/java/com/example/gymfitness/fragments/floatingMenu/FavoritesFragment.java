@@ -135,7 +135,7 @@ public class FavoritesFragment extends Fragment {
                 articleViewModel.deleteArticle(getContext(), favoriteArticle);
                 Toast.makeText(getContext(), "Article deleted: " + favoriteArticle.getArticle_name(), Toast.LENGTH_SHORT).show();
             }
-        }));
+        }, getContext()));
 
         itemTouchHelperArticles.attachToRecyclerView(binding.rcvFavorites2);
     }
@@ -148,7 +148,7 @@ public class FavoritesFragment extends Fragment {
                 workoutViewModel.deleteWorkout(getContext(), favoriteWorkout);
                 Toast.makeText(getContext(), "Workout deleted: " + favoriteWorkout.getWorkout_name(), Toast.LENGTH_SHORT).show();
             }
-        }));
+        }, getContext()));
         itemTouchHelperWorkouts.attachToRecyclerView(binding.rcvFavorites);
     }
 
