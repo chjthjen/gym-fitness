@@ -2,6 +2,8 @@ package com.example.gymfitness.fragments.floatingMenu;
 
 import static android.app.Activity.RESULT_OK;
 
+import static com.example.gymfitness.utils.StringUtils.capitalizeFirstLetter;
+
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -10,7 +12,6 @@ import android.os.Bundle;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -18,8 +19,9 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.text.Editable;
 import android.text.TextUtils;
-import android.util.Log;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,6 +51,8 @@ public class EditProfileFragment extends Fragment {
     private SharedViewModel sharedViewModel;
     private ActivityResultLauncher<Intent> imagePickerLauncher;
     private static final int REQUEST_CODE_READ_MEDIA_IMAGES = 100;
+    private boolean isProfileChanged = false;
+    private UserInformation initialUserInfo;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -65,20 +69,16 @@ public class EditProfileFragment extends Fragment {
 
         editProfileViewModel.getUserInformation().observe(getViewLifecycleOwner(), userInfo -> {
             if (userInfo != null) {
+                initialUserInfo = userInfo;
+
                 if (userInfo.getDob() != null) {
                     String dateOfBirth = dobFormat.format(userInfo.getDob());
                     binding.tvDateOfBirth.setText(dateOfBirth);
                     binding.edtDateOfBirth.setText(dateOfBirth);
                 }
 
-                int imageResId;
-                if ("male".equalsIgnoreCase(userInfo.getGender())) {
-                    imageResId = R.drawable.man_profile;
-                } else if ("female".equalsIgnoreCase(userInfo.getGender())) {
-                    imageResId = R.drawable.wonman_profile;
-                } else {
-                    imageResId = R.drawable.account_image;
-                }
+                int imageResId = "male".equalsIgnoreCase(userInfo.getGender()) ? R.drawable.man_profile :
+                        "female".equalsIgnoreCase(userInfo.getGender()) ? R.drawable.wonman_profile : R.drawable.account_image;
 
                 Glide.with(requireContext())
                         .load(userInfo.getImagePath() != null ? userInfo.getImagePath() : imageResId)
@@ -86,7 +86,7 @@ public class EditProfileFragment extends Fragment {
                         .error(R.drawable.arrow_next)
                         .into(binding.imgProfile);
 
-                binding.tvNameProfile.setText(userInfo.getFullname());
+                binding.tvNameProfile.setText(capitalizeFirstLetter(userInfo.getFullname()));
                 binding.tvEmail.setText(userInfo.getEmail());
                 binding.tvWeight.setText(userInfo.getWeight() + " KG");
                 binding.tvOld.setText(String.valueOf(userInfo.getAge()));
@@ -99,39 +99,43 @@ public class EditProfileFragment extends Fragment {
             }
         });
 
+        binding.btnUpDate.setEnabled(false);
+
+        TextWatcher textWatcher = new SimpleTextWatcher();
+        binding.editFullname.addTextChangedListener(textWatcher);
+        binding.edtEmail.addTextChangedListener(textWatcher);
+        binding.edtPhoneNumber.addTextChangedListener(textWatcher);
+        binding.edtWeight.addTextChangedListener(textWatcher);
+        binding.edtHeigh.addTextChangedListener(textWatcher);
+        binding.edtDateOfBirth.addTextChangedListener(textWatcher);
+
         binding.btnUpDate.setOnClickListener(v -> {
+            if (!isProfileChanged) {
+                Toast.makeText(requireContext(), "No changes to update.", Toast.LENGTH_SHORT).show();
+                return;
+            }
             UserInformation updatedInfo = editProfileViewModel.getUserInformation().getValue();
             if (updatedInfo != null) {
-                String fullName = binding.editFullname.getText().toString();
-                updatedInfo.setFullname(!TextUtils.isEmpty(fullName) ? fullName : "");
+                updatedInfo.setFullname(binding.editFullname.getText().toString());
+                updatedInfo.setEmail(binding.edtEmail.getText().toString());
+                updatedInfo.setPhonenumber(binding.edtPhoneNumber.getText().toString());
 
-                String email = binding.edtEmail.getText().toString();
-                updatedInfo.setEmail(!TextUtils.isEmpty(email) ? email : "");
-
-                String phoneNumber = binding.edtPhoneNumber.getText().toString();
-                updatedInfo.setPhonenumber(!TextUtils.isEmpty(phoneNumber) ? phoneNumber : "");
-
-                Date dateOfBirth = null;
                 try {
-                    dateOfBirth = dobFormat.parse(binding.edtDateOfBirth.getText().toString());
+                    Date dateOfBirth = dobFormat.parse(binding.edtDateOfBirth.getText().toString());
                     updatedInfo.setDob(dateOfBirth);
+                    updatedInfo.setAge(calculateAgeFromDob(dateOfBirth));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
 
-                int enteredAge = updatedInfo.getAge();
-                int calculatedAge = calculateAgeFromDob(dateOfBirth);
-                updatedInfo.setAge((enteredAge != calculatedAge && dateOfBirth != null) ? calculatedAge : enteredAge);
-
-                String height = binding.edtHeigh.getText().toString();
-                updatedInfo.setHeight(!TextUtils.isEmpty(height) ? Integer.parseInt(height) : 0);
-
-                String weight = binding.edtWeight.getText().toString();
-                updatedInfo.setWeight(!TextUtils.isEmpty(weight) ? Float.parseFloat(weight) : 0);
+                updatedInfo.setHeight(Integer.parseInt(binding.edtHeigh.getText().toString()));
+                updatedInfo.setWeight(Float.parseFloat(binding.edtWeight.getText().toString()));
 
                 editProfileViewModel.updateUserInformation(updatedInfo);
                 sharedViewModel.setUsername(updatedInfo);
                 NotificationReceiver.sendProfileUpdateNotification(requireContext(), updatedInfo.getFullname());
+                isProfileChanged = false;
+                binding.btnUpDate.setEnabled(false);
             }
         });
 
@@ -149,6 +153,10 @@ public class EditProfileFragment extends Fragment {
                                         .placeholder(R.drawable.bgr_onboarding_2d)
                                         .error(R.drawable.arrow_next)
                                         .into(binding.imgProfile);
+
+
+                                isProfileChanged = true;
+                                binding.btnUpDate.setEnabled(true);
                             }
                         }
                     }
@@ -156,37 +164,29 @@ public class EditProfileFragment extends Fragment {
         );
 
         binding.imgProfile.setOnClickListener(v -> requestReadMediaImagesPermission());
-
-
+        binding.btnBack.setOnClickListener(v -> requireActivity().onBackPressed());
         return binding.getRoot();
     }
 
     private void requestReadMediaImagesPermission() {
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
-            // Nếu chạy trên Android 13 trở lên, yêu cầu quyền READ_MEDIA_IMAGES
-            if (ContextCompat.checkSelfPermission(requireContext(), android.Manifest.permission.READ_MEDIA_IMAGES) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(requireActivity(), new String[]{android.Manifest.permission.READ_MEDIA_IMAGES}, REQUEST_CODE_READ_MEDIA_IMAGES);
-            } else {
-                openImagePicker();
-            }
+        String permission = android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU ?
+                android.Manifest.permission.READ_MEDIA_IMAGES : android.Manifest.permission.READ_EXTERNAL_STORAGE;
+
+        if (ContextCompat.checkSelfPermission(requireContext(), permission) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(requireActivity(), new String[]{permission}, REQUEST_CODE_READ_MEDIA_IMAGES);
         } else {
-            // Nếu chạy trên Android 12 trở xuống, yêu cầu quyền READ_EXTERNAL_STORAGE
-            if (ContextCompat.checkSelfPermission(requireContext(), android.Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(requireActivity(), new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_CODE_READ_MEDIA_IMAGES);
-            } else {
-                openImagePicker();
-            }
+            openImagePicker();
         }
     }
+
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == REQUEST_CODE_READ_MEDIA_IMAGES) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                openImagePicker(); // Mở trình chọn hình ảnh nếu quyền được cấp
-            } else {
-                Toast.makeText(requireContext(), "Permission denied to read images", Toast.LENGTH_SHORT).show();
-            }
+        if (requestCode == REQUEST_CODE_READ_MEDIA_IMAGES && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            openImagePicker();
+        } else {
+            Toast.makeText(requireContext(), "Permission denied to read images", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -211,6 +211,27 @@ public class EditProfileFragment extends Fragment {
             age--;
         }
         return age;
+    }
+
+    private class SimpleTextWatcher implements TextWatcher {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            if (initialUserInfo == null) return;
+
+            isProfileChanged = !s.toString().equals(initialUserInfo.getFullname()) &&
+                    !s.toString().equals(initialUserInfo.getEmail()) &&
+                    !s.toString().equals(initialUserInfo.getPhonenumber()) &&
+                    !s.toString().equals(String.valueOf(initialUserInfo.getWeight())) &&
+                    !s.toString().equals(String.valueOf(initialUserInfo.getHeight()));
+
+            binding.btnUpDate.setEnabled(isProfileChanged);
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {}
     }
 
     @Override

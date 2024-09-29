@@ -82,18 +82,26 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 tools:ignore="MissingConstraints">
+                       <androidx.cardview.widget.CardView
+                           android:id="@+id/cardView"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           app:cardCornerRadius="100dp"
+                           app:layout_constraintEnd_toEndOf="parent"
+                           app:layout_constraintStart_toStartOf="parent">
+                           <ImageView
+                               android:id="@+id/imgProfile"
+                               android:layout_width="125dp"
+                               android:layout_height="125dp"
+                               android:layout_marginTop="0dp"
+                               android:background="@drawable/cicrle_background"
+                               android:clipToOutline="true"
+                               android:scaleType="centerCrop"
+                               android:src="@drawable/account_image"
+                               android:clickable="true"
+                               android:focusable="true" />
+                       </androidx.cardview.widget.CardView>
 
-                                <ImageView
-                                    android:id="@+id/imgProfile"
-                                    android:layout_width="125dp"
-                                    android:layout_height="125dp"
-                                    android:layout_marginTop="0dp"
-                                    android:background="@drawable/cicrle_background"
-                                    android:clipToOutline="true"
-                                    android:scaleType="centerCrop"
-                                    android:src="@drawable/wonman_profile"
-                                    android:clickable="true"
-                                    android:focusable="true" />
 
 
                             </FrameLayout>
