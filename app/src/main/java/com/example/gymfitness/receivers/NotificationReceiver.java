@@ -1,5 +1,7 @@
 package com.example.gymfitness.receivers;
 
+import static com.example.gymfitness.utils.StringUtils.capitalizeFirstLetter;
+
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -185,25 +187,7 @@ public class NotificationReceiver extends BroadcastReceiver {
         });
     }
 
-    private static String capitalizeFirstLetter(String name) {
-        if (name == null || name.isEmpty()) {
-            return name; // Return as is if null or empty
-        }
 
-        String[] words = name.split(" ");
-        StringBuilder capitalizedName = new StringBuilder();
-
-        for (String word : words) {
-            if (!word.isEmpty()) {
-                capitalizedName.append(Character.toUpperCase(word.charAt(0))); // Capitalize first letter
-                capitalizedName.append(word.substring(1).toLowerCase()); // Append the rest of the word in lowercase
-                capitalizedName.append(" "); // Add a space after each word
-            }
-        }
-
-        // Remove the trailing space and return the result
-        return capitalizedName.toString().trim();
-    }
 
 
 

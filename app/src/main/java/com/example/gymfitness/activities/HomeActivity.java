@@ -1,5 +1,7 @@
 package com.example.gymfitness.activities;
 
+import static com.example.gymfitness.utils.StringUtils.capitalizeFirstLetter;
+
 import android.Manifest;
 //import android.app.AlertDialog;
 import android.content.pm.PackageManager;
@@ -93,7 +95,7 @@ public class HomeActivity extends AppCompatActivity {
             if(navDestination.getId() == R.id.homeFragment) {
                 getSupportActionBar().setDisplayHomeAsUpEnabled(false);
                 sharedViewModel.getUsername().observe(this, userInfo -> {
-                    username = userInfo.getFullname();
+                    username = capitalizeFirstLetter(userInfo.getFullname());
                     binding.toolbar.setTitle("Hi, " + username);
                 });
             } else {

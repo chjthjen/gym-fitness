@@ -41,88 +41,82 @@ android {
 
 
 }
+// Version constants
 def nav_version = "2.7.7"
 def core_version = "1.13.1"
 def appcompat_version = "1.7.0"
 def lifecycle_version = "2.8.4"
+def room_version = "2.6.1"
+def work_version = "2.9.1"
+
 dependencies {
-    def room_version = "2.6.1"
-    def work_version = "2.9.1"
-    implementation libs.appcompat
-    implementation libs.material
-    implementation libs.activity
-    implementation libs.constraintlayout
-    implementation libs.navigation.fragment
-    implementation libs.navigation.ui
-    implementation "androidx.legacy:legacy-support-v4:1.0.0"
 
-    implementation libs.lifecycle.viewmodel.ktx
-    implementation libs.firebase.auth
-    implementation libs.firebase.database
-    testImplementation libs.junit
-    androidTestImplementation libs.ext.junit
-    androidTestImplementation libs.espresso.core
-    //KTX
-    implementation "androidx.collection:collection-ktx:1.4.3"
-    //Glide
-    implementation ("com.github.bumptech.glide:glide:4.16.0")
-    // ViewModel
-    implementation("androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version")
-    // room
-    implementation "androidx.room:room-runtime:$room_version"
-    annotationProcessor "androidx.room:room-compiler:$room_version"
-    // Retrofit
-    implementation("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
-    // LiveData
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
-    // ViewPagerIndicator
-    implementation libs.viewpagerindicator
-    // Views/Fragments Integration
-    implementation "androidx.navigation:navigation-fragment:$nav_version"
-    implementation "androidx.navigation:navigation-ui:$nav_version"
+    // Core Android Libraries
+    implementation "androidx.appcompat:appcompat:$appcompat_version"  // AppCompat support library
+    implementation "com.google.android.material:material:1.9.0"  // Material Design components
+    implementation "androidx.activity:activity-ktx:1.7.2"  // KTX extensions for Activity
+    implementation "androidx.constraintlayout:constraintlayout:2.1.4"  // ConstraintLayout support
+    implementation "androidx.navigation:navigation-fragment:$nav_version"  // Navigation for Fragment
+    implementation "androidx.navigation:navigation-ui:$nav_version"  // UI navigation components
+    implementation "androidx.legacy:legacy-support-v4:1.0.0"  // Legacy support for older APIs
 
-    //thanh tuoi
-    implementation("io.github.ShawnLin013:number-picker:2.4.13")
+    // ViewModel and LiveData
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"  // ViewModel KTX support
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"  // LiveData KTX support
 
-    //
-    implementation ('com.google.android.material:material:1.9.0')
+    // Firebase Libraries
+    implementation platform("com.google.firebase:firebase-bom:33.2.0")  // Firebase BOM for version management
+    implementation "com.google.firebase:firebase-auth"  // Firebase Authentication
+    implementation "com.google.firebase:firebase-database"  // Firebase Realtime Database
+    implementation "com.google.firebase:firebase-dynamic-links"  // Firebase Dynamic Links
+    implementation "com.google.firebase:firebase-analytics"  // Firebase Analytics
+    implementation "com.google.android.gms:play-services-auth:21.2.0"  // Google Play Services Auth
+    implementation 'com.facebook.android:facebook-android-sdk:[8,9)'  // Facebook SDK
+    implementation 'com.facebook.android:facebook-login:latest.release'  // Facebook Login
+    implementation 'androidx.browser:browser:1.5.0'  // Browser support for opening web links
 
-    // Firebase
-    implementation platform("com.google.firebase:firebase-bom:33.2.0")
-    implementation "com.google.firebase:firebase-auth"
-    implementation "com.google.android.gms:play-services-auth:21.2.0"
-    implementation 'com.facebook.android:facebook-android-sdk:[8,9)'
-    implementation 'com.facebook.android:facebook-login:latest.release'
-    implementation 'com.google.firebase:firebase-dynamic-links'
-    implementation 'com.google.firebase:firebase-analytics'
-    // Facebook SDK với exclude
-//    implementation('com.facebook.android:facebook-android-sdk:5.15.3') {
-//        exclude group: 'androidx.legacy', module: 'legacy-support-v4'
-//    }
-//    implementation 'androidx.browser:browser:1.5.0'
-//    implementation 'com.facebook.android:facebook-login:17.0.1'  // Thay latest_version bằng phiên bản mới nhất.
-    implementation 'androidx.browser:browser:1.5.0'
+    // Unit and UI Testing
+    testImplementation "junit:junit:4.13.2"  // JUnit for unit tests
+    androidTestImplementation "androidx.test.ext:junit:1.1.5"  // Extended JUnit for Android
+    androidTestImplementation "androidx.test.espresso:espresso-core:3.5.1"  // Espresso for UI testing
 
-    implementation 'com.squareup.picasso:picasso:2.8'
-    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+    // KTX Libraries
+    implementation "androidx.collection:collection-ktx:1.4.3"  // KTX extensions for Collection API
 
-    // Media3 ExoPlayer
-    implementation "androidx.media3:media3-exoplayer:1.4.1"
-    implementation "androidx.media3:media3-exoplayer-dash:1.4.1"
-    implementation "androidx.media3:media3-ui:1.4.1"
+    // Glide - Image loading and caching
+    implementation "com.github.bumptech.glide:glide:4.16.0"  // Glide for image loading
 
-    //WorkManager
-    implementation "androidx.work:work-runtime:$work_version"
-    // RxJava
-    implementation 'io.reactivex.rxjava3:rxandroid:3.0.2'
-    implementation 'io.reactivex.rxjava3:rxjava:3.1.5'
+    // Room - ORM for SQLite
+    implementation "androidx.room:room-runtime:$room_version"  // Room runtime for database access
+    annotationProcessor "androidx.room:room-compiler:$room_version"  // Room compiler for annotation processing
 
-// Retrofit
-    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
-    implementation 'com.github.akarnokd:rxjava3-retrofit-adapter:3.0.0'
-    implementation("com.squareup.okhttp3:okhttp:4.12.0")
+    // Retrofit - Networking library
+    implementation "com.squareup.retrofit2:retrofit:2.9.0"  // Retrofit core library
+    implementation "com.squareup.retrofit2:converter-gson:2.9.0"  // Gson converter for Retrofit
+    implementation "com.github.akarnokd:rxjava3-retrofit-adapter:3.0.0"  // Retrofit adapter for RxJava3
+    implementation "com.squareup.okhttp3:okhttp:4.12.0"  // OkHttp for networking
 
+    // ViewPager Indicator
+    implementation "com.github.JakeWharton:ViewPagerIndicator:2.4.1"  // ViewPager indicator library
 
+    // Number Picker
+    implementation "io.github.ShawnLin013:number-picker:2.4.13"  // Number Picker library
+
+    // Picasso - Image loading and caching
+    implementation "com.squareup.picasso:picasso:2.8"  // Picasso for image handling
+
+    // MPAndroidChart - Charts and graphs
+    implementation "com.github.PhilJay:MPAndroidChart:v3.1.0"  // MPAndroidChart for chart visualization
+
+    // ExoPlayer - Media playback
+    implementation "androidx.media3:media3-exoplayer:1.4.1"  // ExoPlayer core library
+    implementation "androidx.media3:media3-exoplayer-dash:1.4.1"  // Dash support for ExoPlayer
+    implementation "androidx.media3:media3-ui:1.4.1"  // UI components for ExoPlayer
+
+    // WorkManager - Background processing
+    implementation "androidx.work:work-runtime:$work_version"  // WorkManager for background tasks
+
+    // RxJava - Reactive programming
+    implementation 'io.reactivex.rxjava3:rxandroid:3.0.2'  // RxJava Android support
+    implementation 'io.reactivex.rxjava3:rxjava:3.1.5'  // RxJava core library
 }
