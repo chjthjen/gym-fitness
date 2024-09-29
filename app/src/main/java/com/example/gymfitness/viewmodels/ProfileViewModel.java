@@ -15,4 +15,12 @@ public class ProfileViewModel extends ViewModel {
     public void setUserInformation(UserInformation userInformation) {
         userInformationLiveData.setValue(userInformation);
     }
+
+    public void setImagePath(String imagePath) {
+        UserInformation userInformation = userInformationLiveData.getValue();
+        if (userInformation != null) {
+            userInformation.setImagePath(imagePath);
+            userInformationLiveData.setValue(userInformation);
+        }
+    }
 }

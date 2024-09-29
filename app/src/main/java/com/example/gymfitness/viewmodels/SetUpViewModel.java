@@ -1,5 +1,7 @@
 package com.example.gymfitness.viewmodels;
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -18,6 +20,8 @@ public class SetUpViewModel extends ViewModel {
     private final MutableLiveData<String> nickname = new MutableLiveData<>();
     private final MutableLiveData<String> email = new MutableLiveData<>();
     private final MutableLiveData<String> phonenumber = new MutableLiveData<>();
+    private final MutableLiveData<String> imagePath = new MutableLiveData<>();
+
 
     private final UserInformationDAO userInformationDAO;
 
@@ -39,11 +43,23 @@ public class SetUpViewModel extends ViewModel {
         userInformation.setNickname(getNickname().getValue());
         userInformation.setEmail(getEmail().getValue());
         userInformation.setPhonenumber(getPhonenumber().getValue());
+        userInformation.setImagePath(getImagePath().getValue());
+        userInformationDAO.upsertWorkout(userInformation);
+        Log.d("SetUpViewModel", "Saving user information with image path: " + getImagePath().getValue());
 
         userInformationDAO.upsertWorkout(userInformation);
 
+        // Log after saving
+        Log.d("SetUpViewModel", "User information saved successfully");
+
+    }
+    public void setImagePath(String imagePath) {
+        this.imagePath.setValue(imagePath);
     }
 
+    public LiveData<String> getImagePath() {
+        return imagePath;
+    }
     public void setGender(String gender)
     {
         this.gender.setValue(gender);

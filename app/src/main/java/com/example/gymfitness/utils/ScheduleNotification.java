@@ -48,8 +48,8 @@ public class ScheduleNotification {
         PendingIntent kcalPendingIntent = PendingIntent.getBroadcast(context, 2, kcalIntent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 
         Calendar kcalCalendar = Calendar.getInstance();
-        kcalCalendar.set(Calendar.HOUR_OF_DAY, 14);
-        kcalCalendar.set(Calendar.MINUTE, 39);
+        kcalCalendar.set(Calendar.HOUR_OF_DAY, 12);
+        kcalCalendar.set(Calendar.MINUTE, 27);
         kcalCalendar.set(Calendar.SECOND, 0);
 
 

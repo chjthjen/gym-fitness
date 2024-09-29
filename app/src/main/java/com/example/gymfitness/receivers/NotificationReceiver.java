@@ -55,6 +55,96 @@ public class NotificationReceiver extends BroadcastReceiver {
             Log.e("NotificationReceiver", "notificationDao is null!");
         }
     }
+    public static void sendWelcomeNotification(Context context, String fullName) {
+        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        String channelId = "welcome_channel";
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = notificationManager.getNotificationChannel(channelId);
+            if (channel == null) {
+                channel = new NotificationChannel(channelId, "Welcome Notifications", NotificationManager.IMPORTANCE_HIGH);
+                notificationManager.createNotificationChannel(channel);
+            }
+        }
+
+        Intent notificationIntent = new Intent(context, LaunchActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
+
+        // Capitalize the first letter of the full name
+        String capitalizedFullName = capitalizeFirstLetter(fullName);
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, channelId)
+                .setSmallIcon(R.drawable.notification_off)
+                .setContentTitle("Profile Saved!")
+                .setContentText("Welcome " + capitalizedFullName + " to Gym Fitness!")
+                .setColor(ContextCompat.getColor(context, R.color.purple))
+                .setContentIntent(pendingIntent)
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setAutoCancel(true);
+
+        // Hiển thị thông báo
+        notificationManager.notify(0, builder.build());
+        // Lưu thông báo vào cơ sở dữ liệu
+        NotificationDao notificationDao = FitnessDB.getInstance(context).notificationDao();
+        Notification notification = new Notification("Welcome to GymFiness", 1, "Welcome " + capitalizedFullName + " to Gym Fitness!", new Date());
+
+        // Lưu vào cơ sở dữ liệu trong một luồng riêng
+        ExecutorService executorService = Executors.newSingleThreadExecutor();
+        executorService.execute(() -> {
+            if (notificationDao != null) {
+                notificationDao.insertNotification(notification);
+                Log.d("luu", "luu thanh cong roi: " + notification.toString());
+            } else {
+                Log.e("luu", "notificationDao is null!");
+            }
+        });
+    }
+    public static void sendProfileUpdateNotification(Context context, String fullName) {
+        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        String channelId = "profile_update_channel";
+
+        // Tạo NotificationChannel nếu cần thiết
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = notificationManager.getNotificationChannel(channelId);
+            if (channel == null) {
+                channel = new NotificationChannel(channelId, "Profile Update Notifications", NotificationManager.IMPORTANCE_HIGH);
+                notificationManager.createNotificationChannel(channel);
+            }
+        }
+
+        Intent notificationIntent = new Intent(context, LaunchActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
+
+        // Capitalize the first letter of the full name
+        String capitalizedFullName = capitalizeFirstLetter(fullName);
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, channelId)
+                .setSmallIcon(R.drawable.notification_off)
+                .setContentTitle("Profile Updated!")
+                .setContentText("Your profile has been updated successfully, " + capitalizedFullName + "!")
+                .setColor(ContextCompat.getColor(context, R.color.purple))
+                .setContentIntent(pendingIntent)
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setAutoCancel(true);
+
+        // Hiển thị thông báo
+        notificationManager.notify(1, builder.build());
+
+        // Lưu thông báo vào cơ sở dữ liệu
+        NotificationDao notificationDao = FitnessDB.getInstance(context).notificationDao();
+        Notification notification = new Notification("Profile Update", 4, "Your profile has been updated successfully, " + capitalizedFullName + "!", new Date());
+
+        // Lưu vào cơ sở dữ liệu trong một luồng riêng
+        ExecutorService executorService = Executors.newSingleThreadExecutor();
+        executorService.execute(() -> {
+            if (notificationDao != null) {
+                notificationDao.insertNotification(notification);
+                Log.d("luu", "Lưu thành công: " + notification.toString());
+            } else {
+                Log.e("luu", "notificationDao is null!");
+            }
+        });
+    }
 
 
 
@@ -66,7 +156,7 @@ public class NotificationReceiver extends BroadcastReceiver {
                 content = "Total kcal today: " + totalKcal;
                 sendNotification(context, "Workout Results", content, 2);
                 if (notificationDao != null) {
-                    saveNotificationToDatabase("Kcal Reminder", content, 2);
+                    saveNotificationToDatabase("Total Kcal Reminder: "+totalKcal, content, 2);
                 } else {
                     Log.e("NotificationReceiver", "notificationDao is null!");
                 }
@@ -74,7 +164,7 @@ public class NotificationReceiver extends BroadcastReceiver {
                 content = "You haven't recorded any kcal today!";
                 sendNotification(context, "Workout Reminder", content, 3);
                 if (notificationDao != null) {
-                    saveNotificationToDatabase("Workout Reminder", content, 3);
+                    saveNotificationToDatabase("You haven't recorded any kcal today!", content, 3);
                 } else {
                     Log.e("NotificationReceiver", "notificationDao is null!");
                 }
@@ -93,6 +183,26 @@ public class NotificationReceiver extends BroadcastReceiver {
                 Log.e("luu thong bao", "ngu is null!");
             }
         });
+    }
+
+    private static String capitalizeFirstLetter(String name) {
+        if (name == null || name.isEmpty()) {
+            return name; // Return as is if null or empty
+        }
+
+        String[] words = name.split(" ");
+        StringBuilder capitalizedName = new StringBuilder();
+
+        for (String word : words) {
+            if (!word.isEmpty()) {
+                capitalizedName.append(Character.toUpperCase(word.charAt(0))); // Capitalize first letter
+                capitalizedName.append(word.substring(1).toLowerCase()); // Append the rest of the word in lowercase
+                capitalizedName.append(" "); // Add a space after each word
+            }
+        }
+
+        // Remove the trailing space and return the result
+        return capitalizedName.toString().trim();
     }
 
 
