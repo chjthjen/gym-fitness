@@ -18,6 +18,7 @@
             android:text="All Notifications"
             android:textSize="20dp"
             android:textColor="@color/third"
+            android:padding="10dp"
             />
 
 
@@ -28,9 +29,7 @@
             android:layout_gravity="center"
             android:clipToPadding="false"
             android:scrollbars="vertical"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="5dp"
+            android:padding="10dp"
             tools:listitem="@layout/item_notification_workout"/>
     </LinearLayout>
 </ScrollView>

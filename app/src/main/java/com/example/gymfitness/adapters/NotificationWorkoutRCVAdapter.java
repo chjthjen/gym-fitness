@@ -54,6 +54,9 @@ public class NotificationWorkoutRCVAdapter extends RecyclerView.Adapter<Notifica
 
         if (notification.getType() == 1) {
             holder.imvNotificationWorkout.setImageResource(R.drawable.notification_off_circle);
+        } else if (notification.getType() == 4) {
+            holder.imvNotificationWorkout.setImageResource(R.drawable.ic_edit_profile);
+
         } else {
             holder.imvNotificationWorkout.setImageResource(R.drawable.list_off);
         }

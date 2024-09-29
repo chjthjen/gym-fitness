@@ -14,7 +14,7 @@ import java.util.List;
 public interface NotificationDao {
 
     @Query("SELECT * FROM Notification ORDER BY date DESC")
-    List<Notification> getAllNotifications();
+    LiveData<List<Notification>> getAllNotifications();
 
     @Insert
     void insertNotification(Notification notification);

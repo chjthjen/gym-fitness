@@ -23,6 +23,8 @@ public class UserInformation implements Serializable {
     private String nickname;
     private String email;
     private String phonenumber;
+    private String imagePath;
+
 
     public UserInformation(){}
 
@@ -41,7 +43,14 @@ public class UserInformation implements Serializable {
         this.email = email;
         this.phonenumber = phonenumber;
     }
+    // Getter và Setter cho imagePath
+    public String getImagePath() {
+        return imagePath;
+    }
 
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
     public int getId() {
         return id;
     }

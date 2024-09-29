@@ -139,6 +139,9 @@ public class HomeActivity extends AppCompatActivity {
                 navController.navigate(R.id.favoritesFragment);
                 return true;
             }
+            else if (id == R.id.ic_supportFragment){
+                navController.navigate(R.id.chatAiFragment);
+            }
             return false;
         });
     }
