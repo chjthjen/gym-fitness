@@ -91,7 +91,10 @@
                                     android:background="@drawable/cicrle_background"
                                     android:clipToOutline="true"
                                     android:scaleType="centerCrop"
-                                    android:src="@drawable/wonman_profile" />
+                                    android:src="@drawable/wonman_profile"
+                                    android:clickable="true"
+                                    android:focusable="true" />
+
 
                             </FrameLayout>
 

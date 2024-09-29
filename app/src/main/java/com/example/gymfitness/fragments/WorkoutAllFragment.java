@@ -75,4 +75,10 @@ public class WorkoutAllFragment extends Fragment {
             navController.navigate(R.id.action_workoutAllFragment_to_exerciseRoutineFragment);
         });
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle("Workout");
+    }
 }

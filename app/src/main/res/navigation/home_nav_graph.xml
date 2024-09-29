@@ -48,6 +48,9 @@
         <action
             android:id="@+id/action_homeFragment_to_articlesearch"
             app:destination="@id/articlesearch" />
+        <action
+            android:id="@+id/action_homeFragment_to_chatAiFragment"
+            app:destination="@id/chatAiFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -406,5 +409,11 @@
         android:name="com.example.gymfitness.fragments.notification.AllNotificationsFragment"
         android:label="AllNotificationsFragment"
         tools:layout="@layout/fragment_all_notifications"/>
+    <fragment
+        android:id="@+id/chatAiFragment"
+        android:name="com.example.gymfitness.fragments.ChatAiFragment"
+        android:label="ChatAiFragment"
+        tools:layout="@layout/fragment_chatbot"
+        />
 
 </navigation>

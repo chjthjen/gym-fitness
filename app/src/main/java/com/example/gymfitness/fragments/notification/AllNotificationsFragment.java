@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,6 +24,7 @@ import com.example.gymfitness.data.database.FitnessDB;
 import com.example.gymfitness.data.entities.Notification;
 import com.example.gymfitness.databinding.FragmentAllNotificationsBinding;
 import com.example.gymfitness.utils.SwipeToDeleteCallback;
+import com.example.gymfitness.viewmodels.NotificationViewModel;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
@@ -39,8 +41,7 @@ import java.util.concurrent.Future;
 public class AllNotificationsFragment extends Fragment implements SwipeToDeleteCallback.OnItemDeletedListener {
     private NotificationWorkoutRCVAdapter notificationWorkoutRCVAdapter;
     private FragmentAllNotificationsBinding binding;
-//    private RecyclerView recyclerView;
-//    private NotificationAdapter adapter;
+    private NotificationViewModel notificationViewModel;
 
     @Nullable
     @Override
@@ -50,9 +51,30 @@ public class AllNotificationsFragment extends Fragment implements SwipeToDeleteC
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle("Notifications");
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        notificationWorkoutRCVAdapter = new NotificationWorkoutRCVAdapter(getContext());
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
+
+        binding.rcvNotificationWorkoutReminders.setLayoutManager(layoutManager);
+        binding.rcvNotificationWorkoutReminders.setAdapter(notificationWorkoutRCVAdapter);
+
+        // Tạo ViewModel
+        notificationViewModel = new ViewModelProvider(this).get(NotificationViewModel.class);
+
+        // Lắng nghe sự thay đổi của dữ liệu thông báo
+        notificationViewModel.getNotificationList().observe(getViewLifecycleOwner(), new Observer<List<Notification>>() {
+            @Override
+            public void onChanged(List<Notification> notifications) {
+                notificationWorkoutRCVAdapter.setData(notifications);
+            }
+        });
+
+        // Thiết lập swipe-to-delete
+        SwipeToDeleteCallback<NotificationWorkoutRCVAdapter> swipeToDeleteCallback = new SwipeToDeleteCallback<>(notificationWorkoutRCVAdapter, this, getContext());
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(swipeToDeleteCallback);
+        itemTouchHelper.attachToRecyclerView(binding.rcvNotificationWorkoutReminders);
     }
 
     @Override
@@ -66,31 +88,5 @@ public class AllNotificationsFragment extends Fragment implements SwipeToDeleteC
             });
         }
     }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-        notificationWorkoutRCVAdapter = new NotificationWorkoutRCVAdapter(getContext());
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
-
-        binding.rcvNotificationWorkoutReminders.setLayoutManager(layoutManager);
-        notificationWorkoutRCVAdapter.setData(getListTodayNotificationWorkout());
-        binding.rcvNotificationWorkoutReminders.setAdapter(notificationWorkoutRCVAdapter);
-
-        SwipeToDeleteCallback<NotificationWorkoutRCVAdapter> swipeToDeleteCallback = new SwipeToDeleteCallback<>(notificationWorkoutRCVAdapter, this, getContext());
-        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(swipeToDeleteCallback);
-        itemTouchHelper.attachToRecyclerView(binding.rcvNotificationWorkoutReminders);
-    }
-
-    private List<Notification> getListTodayNotificationWorkout() {
-        List<Notification> notificationList = new ArrayList<>();
-        Future<List<Notification>> future = Executors.newSingleThreadExecutor().submit(() -> FitnessDB.getInstance(requireContext()).notificationDao().getAllNotifications());
-        try {
-            notificationList.addAll(future.get());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return notificationList;
-    }
 }
+
