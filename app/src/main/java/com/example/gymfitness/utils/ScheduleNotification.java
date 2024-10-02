@@ -20,8 +20,8 @@ public class ScheduleNotification {
         PendingIntent morningPendingIntent = PendingIntent.getBroadcast(context, 0, morningIntent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 
         Calendar morningCalendar = Calendar.getInstance();
-        morningCalendar.set(Calendar.HOUR_OF_DAY, 19);
-        morningCalendar.set(Calendar.MINUTE, 04);
+        morningCalendar.set(Calendar.HOUR_OF_DAY, 7);
+        morningCalendar.set(Calendar.MINUTE, 0);
         morningCalendar.set(Calendar.SECOND, 0);
 
 
@@ -48,8 +48,8 @@ public class ScheduleNotification {
         PendingIntent kcalPendingIntent = PendingIntent.getBroadcast(context, 2, kcalIntent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 
         Calendar kcalCalendar = Calendar.getInstance();
-        kcalCalendar.set(Calendar.HOUR_OF_DAY, 12);
-        kcalCalendar.set(Calendar.MINUTE, 27);
+        kcalCalendar.set(Calendar.HOUR_OF_DAY, 4);
+        kcalCalendar.set(Calendar.MINUTE, 0);
         kcalCalendar.set(Calendar.SECOND, 0);
 
 
