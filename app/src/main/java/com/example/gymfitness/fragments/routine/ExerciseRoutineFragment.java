@@ -23,6 +23,7 @@
     import com.example.gymfitness.data.entities.Workout;
     import com.example.gymfitness.databinding.FragmentExerciseRoutineBinding;
     import com.example.gymfitness.helpers.FavoriteHelper;
+    import com.example.gymfitness.retrofit.AdsServices;
     import com.example.gymfitness.utils.UserData;
     import com.example.gymfitness.viewmodels.ExerciseRoutineViewModel;
     import com.example.gymfitness.viewmodels.SharedViewModel;
@@ -101,28 +102,7 @@
 
             FavoriteHelper.checkFavorite(workout, getContext(), binding.imgStar);
             // Initialize the Mobile Ads SDK
-            MobileAds.initialize(getContext(), new OnInitializationCompleteListener() {
-                @Override
-                public void onInitializationComplete(InitializationStatus initializationStatus) {
-                    Log.e("Test", "SDK initialized successfully");
-                }
-            });
-            AdRequest adRequest = new AdRequest.Builder().build();
-            binding.adView.loadAd(adRequest);
-
-            binding.adView.setAdListener(new AdListener() {
-                @Override
-                public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
-                    super.onAdFailedToLoad(loadAdError);
-                    binding.adView.setVisibility(View.GONE);
-                }
-
-                @Override
-                public void onAdLoaded() {
-                    super.onAdLoaded();
-                    binding.adView.setVisibility(View.VISIBLE);
-                }
-            });
+            AdsServices.showBannerAds(binding.adView, getContext());
         }
 
         @Override

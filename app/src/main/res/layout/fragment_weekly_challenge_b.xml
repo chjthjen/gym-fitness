@@ -146,11 +146,21 @@
 
             </androidx.cardview.widget.CardView>
         </androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.gms.ads.AdView
+            xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            ads:adSize="BANNER"
+            android:layout_marginTop="10dp"
+            ads:adUnitId="@string/admob_banner_id"
+            android:layout_below="@+id/banner_weekly_challenge"
+            />
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcv_round"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/banner_weekly_challenge"
+            android:layout_below="@id/adView"
             android:layout_marginHorizontal="30dp"
             android:layout_marginTop="20dp"
             />

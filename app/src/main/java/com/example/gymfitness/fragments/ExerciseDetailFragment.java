@@ -165,22 +165,7 @@ public class ExerciseDetailFragment extends Fragment {
                 Log.e("Test", "SDK initialized successfully");
             }
         });
-        AdRequest adRequest = new AdRequest.Builder().build();
-        binding.adView.loadAd(adRequest);
-
-        binding.adView.setAdListener(new AdListener() {
-            @Override
-            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
-                super.onAdFailedToLoad(loadAdError);
-                binding.adView.setVisibility(View.GONE);
-            }
-
-            @Override
-            public void onAdLoaded() {
-                super.onAdLoaded();
-                binding.adView.setVisibility(View.VISIBLE);
-            }
-        });
+        AdsServices.showBannerAds(binding.adView, getContext());
     }
 
     @Override

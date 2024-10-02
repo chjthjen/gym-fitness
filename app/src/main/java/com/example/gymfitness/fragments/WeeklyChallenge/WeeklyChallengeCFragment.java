@@ -27,7 +27,14 @@ import com.example.gymfitness.data.entities.Workout;
 import com.example.gymfitness.databinding.FragmentWeeklyChallengeCBinding;
 import com.example.gymfitness.helpers.FavoriteHelper;
 import com.example.gymfitness.helpers.ProgressTrackHelper;
+import com.example.gymfitness.retrofit.AdsServices;
 import com.example.gymfitness.viewmodels.SharedViewModel;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 import java.util.Objects;
 
@@ -49,6 +56,8 @@ public class WeeklyChallengeCFragment extends Fragment {
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_weekly_challenge_c,container,false);
 
         sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
+        AdsServices.showBannerAds(binding.adView, getContext());
+
 
         return binding.getRoot();
     }
@@ -123,6 +132,7 @@ public class WeeklyChallengeCFragment extends Fragment {
         });
 
         FavoriteHelper.checkFavorite(exerciseFavorite, getContext(), binding.star);
+
     }
     private void saveProgress() {
         progressTrackHelper = new ProgressTrackHelper();

@@ -29,6 +29,7 @@ import com.example.gymfitness.databinding.FragmentExerciseDetailBinding;
 import com.example.gymfitness.databinding.FragmentWeeklyChallengeCBinding;
 import com.example.gymfitness.helpers.FavoriteHelper;
 import com.example.gymfitness.helpers.ProgressTrackHelper;
+import com.example.gymfitness.retrofit.AdsServices;
 import com.example.gymfitness.utils.UserData;
 import com.example.gymfitness.viewmodels.ExerciseRoutineViewModel;
 import com.example.gymfitness.viewmodels.SharedViewModel;
@@ -127,6 +128,7 @@ public class FragmentWeeklyChallengeC extends Fragment {
         });
 
         FavoriteHelper.checkFavorite(exerciseFavorite, getContext(), binding.star);
+        AdsServices.showBannerAds(binding.adView, getContext());
     }
 
     private void saveProgress() {
