@@ -28,7 +28,10 @@
         android:theme="@style/Theme.GymFitness"
         android:usesCleartextTraffic="true"
         tools:targetApi="31" >
-
+        <property
+            android:name="android.adservices.AD_SERVICES_CONFIG"
+            android:resource="@xml/ga_ad_services_config"
+            tools:replace="android:resource" />
 
         <receiver android:name=".receivers.NotificationReceiver" />
         <receiver android:name=".receivers.BootReceiver"
@@ -38,7 +41,9 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
             </intent-filter>
         </receiver>
-
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-6887234432611994~9108113180"/>
         <activity
             android:name=".activities.setup.SetUpStartActivity"
             android:exported="false" />

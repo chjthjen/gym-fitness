@@ -226,16 +226,28 @@
 
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
+                    <com.google.android.gms.ads.AdView
+                        xmlns:ads="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/adView"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        ads:adSize="BANNER"
+                        ads:adUnitId="@string/admob_banner_id"
+                        android:layout_marginTop="10dp"
+                        app:layout_constraintTop_toBottomOf="@id/banner_weekly_challenge"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
 
                     <LinearLayout
                         android:id="@+id/linear_workout_item"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="8dp"
                         android:orientation="vertical"
                         app:layout_constraintEnd_toEndOf="@id/banner_weekly_challenge"
+                        app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="@id/banner_weekly_challenge"
-                        app:layout_constraintTop_toBottomOf="@id/banner_weekly_challenge">
+                        app:layout_constraintTop_toBottomOf="@id/adView">
 
                         <TextView
                             android:id="@+id/title_letsgo"

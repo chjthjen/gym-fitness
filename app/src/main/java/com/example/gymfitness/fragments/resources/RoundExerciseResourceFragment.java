@@ -1,6 +1,7 @@
 package com.example.gymfitness.fragments.resources;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +27,12 @@ import com.example.gymfitness.helpers.FavoriteHelper;
 import com.example.gymfitness.utils.UserData;
 import com.example.gymfitness.viewmodels.ExerciseRoutineViewModel;
 import com.example.gymfitness.viewmodels.SharedViewModel;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -87,6 +94,29 @@ public class RoundExerciseResourceFragment extends Fragment {
         });
 
         FavoriteHelper.checkFavorite(workout, getContext(), binding.imgStar);
+        // Initialize the Mobile Ads SDK
+        MobileAds.initialize(getContext(), new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+                Log.e("Test", "SDK initialized successfully");
+            }
+        });
+        AdRequest adRequest = new AdRequest.Builder().build();
+        binding.adView.loadAd(adRequest);
+
+        binding.adView.setAdListener(new AdListener() {
+            @Override
+            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                super.onAdFailedToLoad(loadAdError);
+                binding.adView.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onAdLoaded() {
+                super.onAdLoaded();
+                binding.adView.setVisibility(View.VISIBLE);
+            }
+        });
     }
 
     @Override

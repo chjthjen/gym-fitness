@@ -78,4 +78,21 @@ public class SharedViewModel extends ViewModel {
     {
         return username;
     }
+    private final MutableLiveData<Integer> count_ex = new MutableLiveData<>();
+    public void increaseCountEx()
+    {
+        if(this.count_ex.getValue() != null)
+        {
+            this.count_ex.setValue(this.count_ex.getValue() + 1);
+        }
+        else
+        {
+            this.count_ex.setValue(1);
+        }
+    }
+
+    public LiveData<Integer> getCountEx(){
+        return this.count_ex;
+    }
+
 }

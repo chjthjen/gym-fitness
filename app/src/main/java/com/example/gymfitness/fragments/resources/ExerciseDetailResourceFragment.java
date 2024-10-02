@@ -24,8 +24,15 @@ import com.example.gymfitness.data.entities.Workout;
 import com.example.gymfitness.databinding.FragmentExerciseDetailBinding;
 import com.example.gymfitness.helpers.FavoriteHelper;
 import com.example.gymfitness.helpers.ProgressTrackHelper;
+import com.example.gymfitness.retrofit.AdsServices;
 import com.example.gymfitness.utils.UserData;
 import com.example.gymfitness.viewmodels.SharedViewModel;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 import java.util.Objects;
 
@@ -44,6 +51,7 @@ public class ExerciseDetailResourceFragment extends Fragment {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_exercise_detail, container, false);
         sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
         level = UserData.getUserLevel(getContext());
+        AdsServices.loadFullscreenADS(getContext());
         return binding.getRoot();
     }
 
@@ -84,6 +92,15 @@ public class ExerciseDetailResourceFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         binding.play.setOnClickListener(v -> {
+            sharedViewModel.increaseCountEx();
+            sharedViewModel.getCountEx().observe(getViewLifecycleOwner(), count -> {
+                if(count % 3 == 0)
+                {
+                    Log.d("helloooooooooooooo","Quang cao di em oi");
+                    AdsServices.showADSFullscreen(getContext());
+                }
+                Log.d("helloooooooooooooo",String.valueOf(count));
+            });
             binding.cardView.setVisibility(View.GONE);
             binding.headerLayout.setBackgroundColor(Color.parseColor("#FF000000"));
             binding.videoView.setVisibility(View.VISIBLE);
@@ -107,6 +124,29 @@ public class ExerciseDetailResourceFragment extends Fragment {
         });
 
         FavoriteHelper.checkFavorite(exerciseFavorite, getContext(), binding.star);
+        // Initialize the Mobile Ads SDK
+        MobileAds.initialize(getContext(), new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+                Log.e("Test", "SDK initialized successfully");
+            }
+        });
+        AdRequest adRequest = new AdRequest.Builder().build();
+        binding.adView.loadAd(adRequest);
+
+        binding.adView.setAdListener(new AdListener() {
+            @Override
+            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                super.onAdFailedToLoad(loadAdError);
+                binding.adView.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onAdLoaded() {
+                super.onAdLoaded();
+                binding.adView.setVisibility(View.VISIBLE);
+            }
+        });
     }
 
     private void saveProgress() {
