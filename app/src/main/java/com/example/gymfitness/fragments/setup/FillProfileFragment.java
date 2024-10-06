@@ -22,6 +22,8 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,7 +52,7 @@ public class FillProfileFragment extends Fragment {
     private static final int REQUEST_CODE_READ_EXTERNAL_STORAGE = 100;
 
     public FillProfileFragment() {
-        // Required empty public constructor
+
     }
 
     @Override
@@ -135,15 +137,26 @@ public class FillProfileFragment extends Fragment {
             public void onClick(View v) {
                 setFillProfile();
                 boolean validateRS = validateFields();
+
                 if (validateRS) {
                     setData();
-                    executorService.execute(() -> {
-                        setUpViewModel.saveUserInformation();
-                        sendWelcomeNotification(getContext(), fullname);
-                    });
-                    Intent intent = new Intent(getContext(), HomeActivity.class);
-                    startActivity(intent);
-                    getActivity().finish();
+                    Log.d("ButtonClick", "Starting Animation");
+                    // Start the animation
+                    binding.btnStart.startAnimation();
+
+                    // Use a Handler to stop the animation after 4 seconds
+                    new Handler().postDelayed(() -> {
+                        binding.btnStart.revertAnimation();
+
+                        Intent intent = new Intent(getContext(), HomeActivity.class);
+                        startActivity(intent);
+                        getActivity().finish();
+                        getActivity().overridePendingTransition(R.anim.from_right, R.anim.from_left);
+                        executorService.execute(() -> {
+                            setUpViewModel.saveUserInformation();
+                            sendWelcomeNotification(getContext(), fullname);
+                        });
+                    }, 3000);
                 }
             }
         });
@@ -160,7 +173,7 @@ public class FillProfileFragment extends Fragment {
     private void openImagePicker() {
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType("image/*");
-        imagePickerLauncher.launch(intent); // Launch image picker using ActivityResultLauncher
+        imagePickerLauncher.launch(intent);
     }
 
     private void setData() {

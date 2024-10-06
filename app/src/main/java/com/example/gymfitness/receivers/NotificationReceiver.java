@@ -27,6 +27,7 @@ import com.example.gymfitness.data.entities.Notification;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.Locale;
 import java.util.concurrent.ExecutorService;
@@ -84,7 +85,7 @@ public class NotificationReceiver extends BroadcastReceiver {
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setAutoCancel(true);
 
-        // Hiển thị thông báo
+
         notificationManager.notify(0, builder.build());
         // Lưu thông báo vào cơ sở dữ liệu
         NotificationDao notificationDao = FitnessDB.getInstance(context).notificationDao();
@@ -192,18 +193,14 @@ public class NotificationReceiver extends BroadcastReceiver {
 
 
     private int getTotalKcalForToday(Context context) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         LocalDate currentDate = LocalDate.now();
-        String dateString = currentDate.getYear() + "-" + String.format("%02d", currentDate.getMonthValue()) + "-" + String.format("%02d", currentDate.getDayOfMonth());
-        try {
-            Date selectedDate = dateFormat.parse(dateString);
-            Integer totalKcal = workoutLogDAO.getTotalKcalByDate(selectedDate);
-            return totalKcal != null ? totalKcal : 0;
-        } catch (ParseException e) {
-            e.printStackTrace();
-            return 0;
-        }
+        Date selectedDate = Date.from(currentDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        Integer totalKcal = workoutLogDAO.getTotalKcalByDate(selectedDate);
+
+        return totalKcal != null ? totalKcal : 0;
     }
+
+
 
     private void sendNotification(Context context, String title, String content, int notificationId) {
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);

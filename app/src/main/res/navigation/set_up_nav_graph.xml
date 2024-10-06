@@ -12,7 +12,8 @@
         tools:layout="@layout/fragment_gender" >
         <action
             android:id="@+id/action_genderFragment_to_howOldFragment"
-            app:destination="@id/howOldFragment" />
+            app:destination="@id/howOldFragment"
+            app:enterAnim="@anim/from_right" />
     </fragment>
     <fragment
         android:id="@+id/howOldFragment"
@@ -21,7 +22,9 @@
         tools:layout="@layout/fragment_how_old">
         <action
             android:id="@+id/action_howOldFragment_to_weightFragment"
-            app:destination="@id/weightFragment" />
+            app:destination="@id/weightFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/from_left" />
     </fragment>
     <fragment
         android:id="@+id/weightFragment"
@@ -30,7 +33,9 @@
         tools:layout="@layout/fragment_weight">
         <action
             android:id="@+id/action_weightFragment_to_heightFragment"
-            app:destination="@id/heightFragment" />
+            app:destination="@id/heightFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/from_left" />
     </fragment>
     <fragment
         android:id="@+id/heightFragment"
@@ -39,7 +44,9 @@
         tools:layout="@layout/fragment_height" >
         <action
             android:id="@+id/action_heightFragment_to_goalFragment"
-            app:destination="@id/goalFragment" />
+            app:destination="@id/goalFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/from_left" />
     </fragment>
     <fragment
         android:id="@+id/goalFragment"
@@ -48,7 +55,9 @@
         tools:layout="@layout/fragment_goal" >
         <action
             android:id="@+id/action_goalFragment_to_physicalActivityLevelFragment"
-            app:destination="@id/physicalActivityLevelFragment" />
+            app:destination="@id/physicalActivityLevelFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/from_left" />
     </fragment>
     <fragment
         android:id="@+id/physicalActivityLevelFragment"
@@ -57,7 +66,9 @@
         tools:layout="@layout/fragment_physical_activity_level">
         <action
             android:id="@+id/action_physicalActivityLevelFragment_to_fillProfileFragment"
-            app:destination="@id/fillProfileFragment" />
+            app:destination="@id/fillProfileFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/from_left" />
     </fragment>
     <fragment
         android:id="@+id/fillProfileFragment"
@@ -66,7 +77,9 @@
         tools:layout="@layout/fragment_fill_profile">
         <action
             android:id="@+id/action_fillProfileFragment_to_ownRoutineFragment2"
-            app:destination="@id/ownRoutineFragment2" />
+            app:destination="@id/ownRoutineFragment2"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/from_left" />
     </fragment>
     <fragment
         android:id="@+id/ownRoutineFragment2"

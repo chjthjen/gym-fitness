@@ -48,7 +48,7 @@ def appcompat_version = "1.7.0"
 def lifecycle_version = "2.8.4"
 def room_version = "2.6.1"
 def work_version = "2.9.1"
-
+def lottieVersion = "3.4.0"
 dependencies {
 
 
@@ -130,5 +130,10 @@ dependencies {
 
     implementation 'com.google.android.gms:play-services-ads:23.3.0'
     implementation 'androidx.lifecycle:lifecycle-process:2.8.3'
+
+    implementation "com.airbnb.android:lottie:$lottieVersion"
+
+    implementation("com.github.leandroborgesferreira:loading-button-android:2.3.0")
+
 
 }

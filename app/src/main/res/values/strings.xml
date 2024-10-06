@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">GymFitnessPro</string>
+    <string name="app_name">GymFitness</string>
     <string name="skip">Skip</string>
     <string name="Temps_of_use">Terms of Use and Privacy Policy.</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>

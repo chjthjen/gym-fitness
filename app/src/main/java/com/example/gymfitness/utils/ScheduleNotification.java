@@ -34,6 +34,7 @@ public class ScheduleNotification {
                 alarmManager.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, morningCalendar.getTimeInMillis(), morningPendingIntent);
             } else {
                 alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, morningCalendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, morningPendingIntent);
+
             }
         }
 
@@ -48,7 +49,7 @@ public class ScheduleNotification {
         PendingIntent kcalPendingIntent = PendingIntent.getBroadcast(context, 2, kcalIntent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 
         Calendar kcalCalendar = Calendar.getInstance();
-        kcalCalendar.set(Calendar.HOUR_OF_DAY, 4);
+        kcalCalendar.set(Calendar.HOUR_OF_DAY, 16);
         kcalCalendar.set(Calendar.MINUTE, 0);
         kcalCalendar.set(Calendar.SECOND, 0);
 
@@ -62,6 +63,7 @@ public class ScheduleNotification {
                 alarmManager.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, kcalCalendar.getTimeInMillis(), kcalPendingIntent);
             } else {
                 alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, kcalCalendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, kcalPendingIntent);
+
             }
         }
 
