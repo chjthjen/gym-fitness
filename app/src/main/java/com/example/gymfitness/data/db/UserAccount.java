@@ -1,4 +1,4 @@
-package com.example.gymfitness.data;
+package com.example.gymfitness.data.db;
 
 public class UserAccount {
     private String user_id;

@@ -1,4 +1,4 @@
-package com.example.gymfitness.data;
+package com.example.gymfitness.utils;
 
 public interface SignUpCallback {
     void onSuccess();

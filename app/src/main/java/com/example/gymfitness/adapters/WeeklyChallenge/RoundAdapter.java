@@ -9,7 +9,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gymfitness.R;
-import com.example.gymfitness.data.Exercise;
+import com.example.gymfitness.data.db.Exercise;
 import com.example.gymfitness.databinding.RoundItemBinding;
 
 import java.util.List;

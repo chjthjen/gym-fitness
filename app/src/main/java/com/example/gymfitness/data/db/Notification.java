@@ -1,4 +1,4 @@
-package com.example.gymfitness.data;
+package com.example.gymfitness.data.db;
 
 public class Notification {
     private int id;

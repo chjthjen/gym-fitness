@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.gymfitness.data.ApiResponse;
-import com.example.gymfitness.data.UserAccount;
 import com.example.gymfitness.retrofit.GymApi;
 import com.example.gymfitness.retrofit.RetrofitInstance;
 import com.google.firebase.auth.ActionCodeSettings;

@@ -3,17 +3,15 @@ package com.example.gymfitness.viewmodels;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.gymfitness.data.ApiResponse;
-import com.example.gymfitness.data.SignUpCallback;
-import com.example.gymfitness.data.UserAccount;
-import com.example.gymfitness.data.Users;
+import com.example.gymfitness.utils.SignUpCallback;
+import com.example.gymfitness.data.db.UserAccount;
+import com.example.gymfitness.data.db.Users;
 import com.example.gymfitness.retrofit.GymApi;
 import com.example.gymfitness.retrofit.RetrofitInstance;
 import com.facebook.AccessToken;

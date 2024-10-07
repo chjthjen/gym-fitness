@@ -1,14 +1,10 @@
 package com.example.gymfitness.viewmodels;
 
-import android.util.Log;
-
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.gymfitness.data.UserAccount;
+import com.example.gymfitness.data.db.UserAccount;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class AuthViewModel extends ViewModel {
     public MutableLiveData<String> email;
