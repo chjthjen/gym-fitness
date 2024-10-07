@@ -21,7 +21,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.gymfitness.R;
-import com.example.gymfitness.adapters.WorkoutAdapter;
 import com.example.gymfitness.adapters.challenges.ChallengesAndCompetitionsRCVAdapter;
 import com.example.gymfitness.data.entities.Workout;
 import com.example.gymfitness.databinding.FragmentCommunityBinding;

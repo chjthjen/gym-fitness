@@ -1,7 +1,6 @@
-package com.example.gymfitness.adapters;
+package com.example.gymfitness.adapters.exercise;
 
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;

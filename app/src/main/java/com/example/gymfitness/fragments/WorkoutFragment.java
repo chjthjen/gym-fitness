@@ -2,14 +2,12 @@ package com.example.gymfitness.fragments;
 
 import static android.content.ContentValues.TAG;
 
-import android.content.Context;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,7 +22,7 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.gymfitness.R;
-import com.example.gymfitness.adapters.WorkoutAdapter;
+import com.example.gymfitness.adapters.workout.WorkoutAdapter;
 import com.example.gymfitness.data.entities.Workout;
 import com.example.gymfitness.databinding.FragmentWorkoutBinding;
 import com.example.gymfitness.helpers.FavoriteHelper;
@@ -32,10 +30,6 @@ import com.example.gymfitness.retrofit.AdsServices;
 import com.example.gymfitness.utils.UserData;
 import com.example.gymfitness.viewmodels.SharedViewModel;
 import com.example.gymfitness.viewmodels.WorkoutViewModel;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.initialization.InitializationStatus;
-import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 import java.util.ArrayList;
 import java.util.Objects;

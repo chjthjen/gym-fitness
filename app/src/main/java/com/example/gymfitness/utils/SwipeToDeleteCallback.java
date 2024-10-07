@@ -6,7 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.gymfitness.adapters.NotificationWorkoutRCVAdapter;
+import com.example.gymfitness.adapters.notification.NotificationWorkoutRCVAdapter;
 import com.example.gymfitness.adapters.favorites.FavoriteArticlesResourceAdapter;
 import com.example.gymfitness.adapters.favorites.FavoriteWorkoutsAdapter;
 import com.example.gymfitness.data.entities.Article;

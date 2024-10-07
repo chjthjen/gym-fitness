@@ -1,18 +1,13 @@
 package com.example.gymfitness.activities.setup;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.gymfitness.R;
@@ -20,7 +15,7 @@ import com.example.gymfitness.data.DAO.UserInformationDAO;
 import com.example.gymfitness.data.database.FitnessDB;
 import com.example.gymfitness.databinding.ActivitySetUpBinding;
 import com.example.gymfitness.viewmodels.SetUpViewModel;
-import com.example.gymfitness.viewmodelsfactory.SetUpViewModelFactory;
+import com.example.gymfitness.viewmodels.viewmodelsfactory.SetUpViewModelFactory;
 
 public class SetUpActivity extends AppCompatActivity {
     ActivitySetUpBinding binding;

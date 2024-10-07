@@ -25,7 +25,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gymfitness.R;
 import com.example.gymfitness.adapters.CustomAdapterListViewWorkoutSearch;
-import com.example.gymfitness.adapters.WorkoutAdapter;
+import com.example.gymfitness.adapters.workout.WorkoutAdapter;
 import com.example.gymfitness.data.entities.Workout;
 import com.example.gymfitness.viewmodels.SharedViewModel;
 import com.example.gymfitness.viewmodels.WorkoutViewModel;

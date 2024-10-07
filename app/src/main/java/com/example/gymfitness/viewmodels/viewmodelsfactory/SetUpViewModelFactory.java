@@ -1,4 +1,4 @@
-package com.example.gymfitness.viewmodelsfactory;
+package com.example.gymfitness.viewmodels.viewmodelsfactory;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;

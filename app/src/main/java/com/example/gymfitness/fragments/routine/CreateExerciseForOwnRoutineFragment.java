@@ -12,13 +12,12 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.gymfitness.R;
-import com.example.gymfitness.adapters.ExerciseForOwnRoutineAdapter;
+import com.example.gymfitness.adapters.exercise.ExerciseForOwnRoutineAdapter;
 import com.example.gymfitness.data.entities.Exercise;
 import com.example.gymfitness.databinding.FragmentCreateExerciseForOwnRoutineBinding;
 import com.example.gymfitness.viewmodels.OwnRoutineViewModel;

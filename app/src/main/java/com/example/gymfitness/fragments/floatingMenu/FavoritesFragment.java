@@ -1,10 +1,7 @@
 package com.example.gymfitness.fragments.floatingMenu;
 
-import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
-import android.os.Vibrator;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +14,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -25,27 +21,22 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.gymfitness.R;
-import com.example.gymfitness.adapters.WorkoutAdapter;
+import com.example.gymfitness.adapters.workout.WorkoutAdapter;
 import com.example.gymfitness.adapters.favorites.FavoriteArticlesResourceAdapter;
 import com.example.gymfitness.adapters.favorites.FavoriteWorkoutsAdapter;
-import com.example.gymfitness.adapters.home.ArticlesTipsRCVAdapter;
 import com.example.gymfitness.adapters.resources.ArticleResourceAdapter;
 import com.example.gymfitness.data.entities.Article;
 import com.example.gymfitness.data.entities.FavoriteArticle;
 import com.example.gymfitness.data.entities.FavoriteWorkout;
 import com.example.gymfitness.data.entities.Workout;
 import com.example.gymfitness.databinding.FragmentFavoritesBinding;
-import com.example.gymfitness.firebase.FirebaseRepository;
 import com.example.gymfitness.utils.SwipeToDeleteCallback;
-import com.example.gymfitness.viewmodels.ArticleDetailViewModel;
 import com.example.gymfitness.viewmodels.ArticleViewModel;
 import com.example.gymfitness.viewmodels.SharedViewModel;
 import com.example.gymfitness.viewmodels.WorkoutViewModel;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
-import java.util.concurrent.CompletableFuture;
 
 public class FavoritesFragment extends Fragment {
     private FragmentFavoritesBinding binding;

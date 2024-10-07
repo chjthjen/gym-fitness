@@ -1,4 +1,4 @@
-package com.example.gymfitness.adapters;
+package com.example.gymfitness.adapters.notification;
 
 import android.view.LayoutInflater;
 import android.view.View;

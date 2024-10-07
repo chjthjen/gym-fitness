@@ -12,8 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.gymfitness.R;
-import com.example.gymfitness.adapters.NotificationWorkoutRCVAdapter;
+import com.example.gymfitness.adapters.notification.NotificationWorkoutRCVAdapter;
 import com.example.gymfitness.data.entities.Notification;
 import com.example.gymfitness.databinding.FragmentNotificationsWorkoutRemindersBinding;
 

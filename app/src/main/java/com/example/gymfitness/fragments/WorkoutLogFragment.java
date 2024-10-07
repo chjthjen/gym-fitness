@@ -20,7 +20,7 @@ import android.widget.ArrayAdapter;
 
 import com.example.gymfitness.R;
 import com.example.gymfitness.adapters.CalendarAdapter;
-import com.example.gymfitness.adapters.WorkoutLogAdapter;
+import com.example.gymfitness.adapters.workout.WorkoutLogAdapter;
 import com.example.gymfitness.data.DAO.WorkoutLogDAO;
 import com.example.gymfitness.data.database.FitnessDB;
 import com.example.gymfitness.data.entities.WorkoutLog;

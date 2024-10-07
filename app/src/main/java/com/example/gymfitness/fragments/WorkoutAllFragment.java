@@ -1,6 +1,5 @@
 package com.example.gymfitness.fragments;
 
-import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,7 +9,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -19,10 +17,8 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.gymfitness.R;
-import com.example.gymfitness.adapters.WorkoutAdapter;
-import com.example.gymfitness.data.entities.Workout;
+import com.example.gymfitness.adapters.workout.WorkoutAdapter;
 import com.example.gymfitness.databinding.FragmentAllWorkoutBinding;
-import com.example.gymfitness.utils.UserData;
 import com.example.gymfitness.viewmodels.SharedViewModel;
 import com.example.gymfitness.viewmodels.WorkoutViewModel;
 

@@ -1,4 +1,4 @@
-package com.example.gymfitness.adapters;
+package com.example.gymfitness.adapters.exercise;
 
 import android.content.Context;
 import android.view.LayoutInflater;

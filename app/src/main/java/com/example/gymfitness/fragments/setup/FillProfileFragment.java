@@ -143,11 +143,11 @@ public class FillProfileFragment extends Fragment {
                     Log.d("ButtonClick", "Starting Animation");
                     // Start the animation
                     binding.btnStart.startAnimation();
-
+                   // binding.btnStart.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_checked, 0);
                     // Use a Handler to stop the animation after 4 seconds
                     new Handler().postDelayed(() -> {
                         binding.btnStart.revertAnimation();
-
+                      //  binding.btnStart.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_checked, 0);
                         Intent intent = new Intent(getContext(), HomeActivity.class);
                         startActivity(intent);
                         getActivity().finish();

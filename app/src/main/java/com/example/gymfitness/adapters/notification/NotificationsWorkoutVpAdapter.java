@@ -1,4 +1,4 @@
-package com.example.gymfitness.adapters;
+package com.example.gymfitness.adapters.notification;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;

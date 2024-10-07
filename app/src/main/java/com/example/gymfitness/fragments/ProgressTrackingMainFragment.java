@@ -1,10 +1,8 @@
 package com.example.gymfitness.fragments;
 
-import android.content.res.ColorStateList;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -16,16 +14,12 @@ import android.view.ViewGroup;
 import com.bumptech.glide.Glide;
 import com.example.gymfitness.R;
 import com.example.gymfitness.adapters.ProgressTrackingViewpagerAdapter;
-import com.example.gymfitness.adapters.help.HelpViewpagerAdapter;
 import com.example.gymfitness.data.DAO.UserInformationDAO;
 import com.example.gymfitness.data.database.FitnessDB;
 import com.example.gymfitness.data.entities.UserInformation;
 import com.example.gymfitness.databinding.FragmentProgressTrackingMainBinding;
-import com.example.gymfitness.utils.UserData;
-import com.example.gymfitness.viewmodels.EditProfileViewModel;
 import com.example.gymfitness.viewmodels.ProgressTrackingMainViewModel;
-import com.example.gymfitness.viewmodelsfactory.EditProfileViewModelFactory;
-import com.example.gymfitness.viewmodelsfactory.ProgressTrackingMainFactory;
+import com.example.gymfitness.viewmodels.viewmodelsfactory.ProgressTrackingMainFactory;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 

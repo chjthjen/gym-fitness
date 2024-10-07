@@ -8,7 +8,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -16,27 +15,16 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.gymfitness.R;
-import com.example.gymfitness.adapters.NotificationAdapter;
-import com.example.gymfitness.adapters.NotificationWorkoutRCVAdapter;
-import com.example.gymfitness.adapters.NotificationsWorkoutVpAdapter;
+import com.example.gymfitness.adapters.notification.NotificationWorkoutRCVAdapter;
 import com.example.gymfitness.data.database.FitnessDB;
 import com.example.gymfitness.data.entities.Notification;
 import com.example.gymfitness.databinding.FragmentAllNotificationsBinding;
 import com.example.gymfitness.utils.SwipeToDeleteCallback;
 import com.example.gymfitness.viewmodels.NotificationViewModel;
-import com.google.android.material.tabs.TabLayout;
-import com.google.android.material.tabs.TabLayoutMediator;
 
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
-import java.util.Objects;
-import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 
 public class AllNotificationsFragment extends Fragment implements SwipeToDeleteCallback.OnItemDeletedListener {
     private NotificationWorkoutRCVAdapter notificationWorkoutRCVAdapter;

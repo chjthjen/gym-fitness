@@ -20,7 +20,6 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.text.Editable;
-import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,7 +35,7 @@ import com.example.gymfitness.databinding.FragmentEditprofileBinding;
 import com.example.gymfitness.receivers.NotificationReceiver;
 import com.example.gymfitness.viewmodels.EditProfileViewModel;
 import com.example.gymfitness.viewmodels.SharedViewModel;
-import com.example.gymfitness.viewmodelsfactory.EditProfileViewModelFactory;
+import com.example.gymfitness.viewmodels.viewmodelsfactory.EditProfileViewModelFactory;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

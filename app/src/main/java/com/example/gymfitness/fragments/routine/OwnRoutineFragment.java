@@ -1,6 +1,5 @@
 package com.example.gymfitness.fragments.routine;
 
-import android.app.AlertDialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -19,11 +18,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridView;
 import android.widget.TextView;
 
 import com.example.gymfitness.R;
-import com.example.gymfitness.adapters.ExerciseInOwnRoutineAdapter;
+import com.example.gymfitness.adapters.exercise.ExerciseInOwnRoutineAdapter;
 import com.example.gymfitness.data.entities.Exercise;
 import com.example.gymfitness.data.entities.RoutineRound;
 import com.example.gymfitness.databinding.FragmentOwnRoutineBinding;
@@ -31,7 +29,6 @@ import com.example.gymfitness.viewmodels.OwnRoutineViewModel;
 import com.example.gymfitness.viewmodels.SharedViewModel;
 
 import java.util.List;
-import java.util.Objects;
 
 public class OwnRoutineFragment extends Fragment {
     private FragmentOwnRoutineBinding binding;

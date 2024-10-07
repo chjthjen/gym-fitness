@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.gymfitness.R;
-import com.example.gymfitness.adapters.NotificationsWorkoutVpAdapter;
+import com.example.gymfitness.adapters.notification.NotificationsWorkoutVpAdapter;
 import com.example.gymfitness.databinding.FragmentNotificationsWorkoutBinding;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;

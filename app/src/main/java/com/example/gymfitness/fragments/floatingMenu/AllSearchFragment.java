@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,7 +25,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gymfitness.R;
 import com.example.gymfitness.adapters.CustomAdapterListViewWorkoutSearch;
-import com.example.gymfitness.adapters.WorkoutAdapter;
+import com.example.gymfitness.adapters.workout.WorkoutAdapter;
 import com.example.gymfitness.adapters.home.RecommendExRCVApdater;
 import com.example.gymfitness.adapters.resources.ArticleResourceAdapter;
 import com.example.gymfitness.data.entities.Article;

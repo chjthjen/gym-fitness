@@ -12,12 +12,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.gymfitness.R;
+import com.example.gymfitness.adapters.workout.WorkoutAdapter;
 import com.example.gymfitness.data.entities.Workout;
 import com.example.gymfitness.databinding.ItemWorkoutNonvideoBinding;
 import com.example.gymfitness.helpers.FavoriteHelper;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class FavoriteWorkoutsAdapter extends RecyclerView.Adapter<FavoriteWorkoutsAdapter.FavoriteWorkoutsViewHolder> {
 
@@ -26,7 +26,7 @@ public class FavoriteWorkoutsAdapter extends RecyclerView.Adapter<FavoriteWorkou
     public FavoriteWorkoutsAdapter(ArrayList<Workout> list){
         this.listWorkout = list;
     }
-    private com.example.gymfitness.adapters.WorkoutAdapter.OnWorkoutListener listener;
+    private WorkoutAdapter.OnWorkoutListener listener;
 
     public interface OnWorkoutListener {
         void onItemClick(Workout workout);
@@ -47,7 +47,7 @@ public class FavoriteWorkoutsAdapter extends RecyclerView.Adapter<FavoriteWorkou
 
 
 
-    public void setOnItemClickListener(com.example.gymfitness.adapters.WorkoutAdapter.OnWorkoutListener listener) {
+    public void setOnItemClickListener(WorkoutAdapter.OnWorkoutListener listener) {
         this.listener = listener;
     }
     @NonNull
@@ -65,7 +65,7 @@ public class FavoriteWorkoutsAdapter extends RecyclerView.Adapter<FavoriteWorkou
             super(binding.getRoot());
             this.binding = binding;
         }
-        public void bind(Workout workout , com.example.gymfitness.adapters.WorkoutAdapter.OnWorkoutListener listener, Context context) {
+        public void bind(Workout workout , WorkoutAdapter.OnWorkoutListener listener, Context context) {
             binding.setItem(workout);
             binding.executePendingBindings();
 

@@ -8,9 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.gymfitness.adapters.WorkoutAdapter;
 import com.example.gymfitness.data.entities.Exercise;
-import com.example.gymfitness.data.entities.Workout;
 import com.example.gymfitness.databinding.ExerciseItemBinding;
 import com.example.gymfitness.R;
 import com.example.gymfitness.utils.Converters;
