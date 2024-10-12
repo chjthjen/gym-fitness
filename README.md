@@ -1,45 +1,39 @@
 # GymFitness App
 ## Overview
-**GymFitness** là ứng dụng di động được thiết kế để giúp người dùng quản lý hành trình rèn luyện thể chất của mình một cách hiệu quả. 
-Ứng dụng cung cấp cho người dùng các bài tập luyện được cá nhân hóa, kế hoạch dinh dưỡng và theo dõi tiến trình, tất cả ở một nơi. 
-Ứng dụng được xây dựng bằng **Java**, **XML** và tuân theo kiến ​​trúc **MVVM**.
+GymFitness là một ứng dụng di động được thiết kế để giúp người dùng quản lý hành trình rèn luyện thể chất của mình một cách hiệu quả. Ứng dụng cung cấp cho người dùng các bài tập luyện cá nhân hóa, kế hoạch dinh dưỡng và theo dõi tiến trình, tất cả được tích hợp trong một nền tảng duy nhất. Ứng dụng được phát triển bằng Java, XML và tuân theo kiến trúc MVVM.
 ###  link apk: https://www.mediafire.com/file/6gq8k96488mmofr/gym-fitness.apk/file
 ### Key Features
 - **User Authentication**: Đăng nhập 1 lần
-- **Workout Plans**: Các bài tập luyện được cá nhân hóa dựa trên sở thích và mục tiêu của người dùng.
-- **Progress Tracking**: Người dùng có thể theo dõi tiến trình tập luyện và theo dõi các cột mốc rèn luyện thể chất.
-- **Exercise Library**: Thư viện bài tập chi tiết có hướng dẫn, hình ảnh và video.
-- **Notifications**: Người dùng nhận được lời nhắc về các bài tập luyện mỗi ngày và tổng kcal tập được một ngày.
+- **Workout Plans**: Cung cấp các bài tập cá nhân hóa dựa trên sở thích và mục tiêu của người dùng.
+- **Progress Tracking**: Người dùng có thể theo dõi quá trình tập luyện và các cột mốc phát triển thể chất.
+- **Exercise Library**: Cung cấp chi tiết về các bài tập với hướng dẫn, hình ảnh và video.
+- **Notifications**: Người dùng nhận được thông báo nhắc nhở về các bài tập mỗi ngày và tổng số calo đã đốt cháy trong ngày
 ### App Preview
 # 1.Setup
 ![Untitled](https://github.com/user-attachments/assets/0e34231f-ac7d-4364-9009-b91ea7a9dfc5)
 ![setup2](https://github.com/user-attachments/assets/58efe24d-9807-453f-8c35-8023d1c728a9)
 # 2.Home
 
-- Recommand: Gợi ý các bài tập cá nhân hóa dựa trên mục tiêu và sở thích của người dùng.
-
--  Tips: Đưa ra những thử thách tập luyện mới mỗi tuần để tạo động lực cho người dùng.
-
--  Fragment Resource: Chứa các video hướng dẫn chi tiết về tập luyện và bài viết chuyên sâu cung cấp kiến thức về thể thao và sức khỏe.
-
--  Fragment Starts: Hiển thị danh sách các bài tập và bài viết mà người dùng đã lưu để dễ dàng truy cập lại.
-
--  Fragment Chatbot: Hỗ trợ người dùng tìm kiếm thông tin và trả lời các câu hỏi liên quan đến việc tập luyện và sức khỏe.
+- Gợi ý: Cung cấp các bài tập cá nhân hóa dựa trên mục tiêu và sở thích của người dùng.
+- Mẹo: Đưa ra những thử thách tập luyện mới mỗi tuần để tạo động lực cho người dùng.
+- Tài nguyên: Chứa các video hướng dẫn chi tiết về tập luyện và các bài viết chuyên sâu cung cấp kiến thức về thể thao và sức khỏe.
+- Danh sách đã lưu: Hiển thị danh sách các bài tập và bài viết mà người dùng đã lưu để dễ dàng truy cập lại.
+- Chatbot: Hỗ trợ người dùng tìm kiếm thông tin và trả lời các câu hỏi liên quan đến tập luyện và sức khỏe.
 
 ![home](https://github.com/user-attachments/assets/46b30e1f-6e31-4eda-ba58-6f8beadd7b2b)
 # 3.Workout 
-Hiển thị các Round cho từng cái Workout và Round sẽ chứa những video cho người dùng tập.
+Hiển thị các vòng tập (Rounds) cho từng bài tập, với mỗi vòng chứa các video hướng dẫn cho người dùng.
 ![workout](https://github.com/user-attachments/assets/d7f644ba-15c2-48d4-9d5c-ff1affe62639)
 
-#Ex 
-Hiển thị những bài viết Article, chỉnh sửa thông tin các nhân, tạo Routine dựa trên sở thích và mục tiêu của người dùng
+# 4.Article
+Hiển thị các bài viết (Articles), cho phép chỉnh sửa thông tin cá nhân và tạo kế hoạch tập luyện (Routine) dựa trên sở thích và mục tiêu của người dùng.
 ![3](https://github.com/user-attachments/assets/caaac6e3-619d-4b6d-8bb6-ce80b09c07ef).
-# 4. Notification Favorites
-Hiển thị danh sách thông báo và yêu thích có thể xóa nó.
+# 5. Notification Favorites
+Hiển thị danh sách thông báo và bài viết yêu thích, cho phép người dùng xóa chúng khi không còn cần thiết.
 ![list](https://github.com/user-attachments/assets/08d61d25-db51-47df-be8b-45e0aeb59629)
 
-# 5. Search
-Tìm kiếm tất cả hay từng cái Workout và Article và xóa lịch sử tìm kiếm 
+# 6. Search
+Cho phép người dùng tìm kiếm tất cả hoặc từng bài tập và bài viết, cũng như xóa lịch sử tìm kiếm.
 ![search](https://github.com/user-attachments/assets/3fd7868d-ed1e-4a8a-b02b-6e6e6a8aa515)
 
 
