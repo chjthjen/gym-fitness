@@ -3,6 +3,7 @@
 **GymFitness** là ứng dụng di động được thiết kế để giúp người dùng quản lý hành trình rèn luyện thể chất của mình một cách hiệu quả. 
 Ứng dụng cung cấp cho người dùng các bài tập luyện được cá nhân hóa, kế hoạch dinh dưỡng và theo dõi tiến trình, tất cả ở một nơi. 
 Ứng dụng được xây dựng bằng **Java**, **XML** và tuân theo kiến ​​trúc **MVVM**.
+###  link apk: https://www.mediafire.com/file/6gq8k96488mmofr/gym-fitness.apk/file
 ### Key Features
 - **User Authentication**: Đăng nhập 1 lần
 - **Workout Plans**: Các bài tập luyện được cá nhân hóa dựa trên sở thích và mục tiêu của người dùng.
