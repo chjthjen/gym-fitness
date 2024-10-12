@@ -15,23 +15,17 @@
 ![Untitled](https://github.com/user-attachments/assets/0e34231f-ac7d-4364-9009-b91ea7a9dfc5)
 ![setup2](https://github.com/user-attachments/assets/58efe24d-9807-453f-8c35-8023d1c728a9)
 # 2.Home
-Thanh tiêu đề: Hiển thị lời chào, khẩu hiệu của ứng dụng, cùng với các nút chức năng như tìm kiếm, thông báo và hồ sơ cá nhân.
 
-Thanh điều hướng chính: Cung cấp điều hướng dễ dàng giữa các chức năng chính của ứng dụng: Tập luyện, Theo dõi, Dinh dưỡng, và Cộng đồng.
+- Recommand: Gợi ý các bài tập cá nhân hóa dựa trên mục tiêu và sở thích của người dùng.
 
-Phần Khuyến nghị: Gợi ý các bài tập cá nhân hóa dựa trên mục tiêu và sở thích của người dùng.
+-  Tips: Đưa ra những thử thách tập luyện mới mỗi tuần để tạo động lực cho người dùng.
 
-Phần Thách thức hàng tuần: Đưa ra những thử thách tập luyện mới mỗi tuần để tạo động lực cho người dùng.
+-  Fragment Resource: Chứa các video hướng dẫn chi tiết về tập luyện và bài viết chuyên sâu cung cấp kiến thức về thể thao và sức khỏe.
 
-Phần Bài viết & Mẹo: Cung cấp kiến thức và mẹo về tập luyện và dinh dưỡng nhằm giúp người dùng cải thiện sức khỏe và thể hình.
+-  Fragment Starts: Hiển thị danh sách các bài tập và bài viết mà người dùng đã lưu để dễ dàng truy cập lại.
 
-Thanh điều hướng dưới cùng: Cho phép người dùng chuyển nhanh giữa các phần chính của ứng dụng.
+-  Fragment Chatbot: Hỗ trợ người dùng tìm kiếm thông tin và trả lời các câu hỏi liên quan đến việc tập luyện và sức khỏe.
 
-Resource: Chứa các video hướng dẫn chi tiết về tập luyện và bài viết chuyên sâu cung cấp kiến thức về thể thao và sức khỏe.
-
-Starts: Hiển thị danh sách các bài tập và bài viết mà người dùng đã lưu để dễ dàng truy cập lại.
-
-Chatbot: Hỗ trợ người dùng tìm kiếm thông tin và trả lời các câu hỏi liên quan đến việc tập luyện và sức khỏe.
 ![home](https://github.com/user-attachments/assets/46b30e1f-6e31-4eda-ba58-6f8beadd7b2b)
 # 3.Workout 
 Hiển thị các Round cho từng cái Workout và Round sẽ chứa những video cho người dùng tập.
