@@ -37,12 +37,18 @@ Chatbot: Hỗ trợ người dùng tìm kiếm thông tin và trả lời các c
 Hiển thị các Round cho từng cái Workout và Round sẽ chứa những video cho người dùng tập.
 ![workout](https://github.com/user-attachments/assets/d7f644ba-15c2-48d4-9d5c-ff1affe62639)
 
-#Exe
+#Ex 
 Hiển thị những bài viết Article, chỉnh sửa thông tin các nhân, tạo Routine dựa trên sở thích và mục tiêu của người dùng
-![3](https://github.com/user-attachments/assets/caaac6e3-619d-4b6d-8bb6-ce80b09c07ef)
-# 4. Search
-Tìm kiếm tất cả, workout và Article 
-![search](https://github.com/user-attachments/assets/018525b7-ce61-4acc-9874-bb4fcd145130)
+![3](https://github.com/user-attachments/assets/caaac6e3-619d-4b6d-8bb6-ce80b09c07ef).
+# 4. Notification Favorites
+Hiển thị danh sách thông báo và yêu thích có thể xóa nó.
+![list](https://github.com/user-attachments/assets/08d61d25-db51-47df-be8b-45e0aeb59629)
+
+# 5. Search
+Tìm kiếm tất cả hay từng cái Workout và Article và xóa lịch sử tìm kiếm 
+![search](https://github.com/user-attachments/assets/3fd7868d-ed1e-4a8a-b02b-6e6e6a8aa515)
+
+
 
 ### Công cụ và thư viện đã dùng
 - Navigation Component: Sử dụng một Activity để chứa nhiều Fragment thay vì tạo nhiều Activity riêng lẻ, giúp quản lý điều hướng giữa các phần của ứng dụng dễ dàng.
