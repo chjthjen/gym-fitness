@@ -10,6 +10,14 @@ GymFitness là một ứng dụng di động được thiết kế để giúp n
 - **Notifications**: Người dùng nhận được thông báo nhắc nhở về các bài tập mỗi ngày và tổng số calo đã đốt cháy trong ngày
 # App Preview
 ### 1.Setup
+- Truy cập màn hình "Tạo hồ sơ": Người dùng sẽ bắt đầu bằng cách truy cập vào màn hình tạo hồ sơ cá nhân.
+- Nhập thông tin giới tính: Hệ thống sẽ hiển thị màn hình để người dùng chọn giới tính của mình.
+- Nhập thông tin tuổi: Tiếp theo, màn hình sẽ yêu cầu người dùng cung cấp thông tin về độ tuổi.
+- Nhập thông tin cân nặng: Người dùng sẽ được hướng dẫn nhập cân nặng của mình trên màn hình thu thập dữ liệu.
+- Nhập thông tin chiều cao: Hệ thống tiếp tục hiển thị màn hình để người dùng cung cấp thông tin về chiều cao.
+- Nhập mục tiêu tập luyện: Cuối cùng, người dùng sẽ được yêu cầu xác định mục tiêu tập luyện của mình.
+- Lưu trữ thông tin: Tất cả các thông tin đã thu thập sẽ được lưu vào hồ sơ người dùng mới.
+- Điều hướng đến màn hình chính: Sau khi hoàn tất, hệ thống sẽ tự động điều hướng người dùng đến màn hình chính của ứng dụng.
 ![Untitled](https://github.com/user-attachments/assets/0e34231f-ac7d-4364-9009-b91ea7a9dfc5)
 ![setup2](https://github.com/user-attachments/assets/58efe24d-9807-453f-8c35-8023d1c728a9)
 ### 2.Home
