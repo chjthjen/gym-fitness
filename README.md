@@ -11,10 +11,10 @@
 - **Exercise Library**: Thư viện bài tập chi tiết có hướng dẫn, hình ảnh và video.
 - **Notifications**: Người dùng nhận được lời nhắc về các bài tập luyện mỗi ngày và tổng kcal tập được một ngày.
 ### App Preview
-# SetUp
+# 1.Setup
 ![Untitled](https://github.com/user-attachments/assets/0e34231f-ac7d-4364-9009-b91ea7a9dfc5)
 ![setup2](https://github.com/user-attachments/assets/58efe24d-9807-453f-8c35-8023d1c728a9)
-# Home
+# 2.Home
 Thanh tiêu đề: Hiển thị lời chào, khẩu hiệu của ứng dụng, cùng với các nút chức năng như tìm kiếm, thông báo và hồ sơ cá nhân.
 
 Thanh điều hướng chính: Cung cấp điều hướng dễ dàng giữa các chức năng chính của ứng dụng: Tập luyện, Theo dõi, Dinh dưỡng, và Cộng đồng.
@@ -33,7 +33,7 @@ Starts: Hiển thị danh sách các bài tập và bài viết mà người dù
 
 Chatbot: Hỗ trợ người dùng tìm kiếm thông tin và trả lời các câu hỏi liên quan đến việc tập luyện và sức khỏe.
 ![home](https://github.com/user-attachments/assets/46b30e1f-6e31-4eda-ba58-6f8beadd7b2b)
-# Workout 
+# 3.Workout 
 Hiển thị các Round cho từng cái Workout và Round sẽ chứa những video cho người dùng tập.
 ![workout](https://github.com/user-attachments/assets/d7f644ba-15c2-48d4-9d5c-ff1affe62639)
 
