@@ -8,11 +8,11 @@ GymFitness là một ứng dụng di động được thiết kế để giúp n
 - **Progress Tracking**: Người dùng có thể theo dõi quá trình tập luyện và các cột mốc phát triển thể chất.
 - **Exercise Library**: Cung cấp chi tiết về các bài tập với hướng dẫn, hình ảnh và video.
 - **Notifications**: Người dùng nhận được thông báo nhắc nhở về các bài tập mỗi ngày và tổng số calo đã đốt cháy trong ngày
-### App Preview
-# 1.Setup
+# App Preview
+### 1.Setup
 ![Untitled](https://github.com/user-attachments/assets/0e34231f-ac7d-4364-9009-b91ea7a9dfc5)
 ![setup2](https://github.com/user-attachments/assets/58efe24d-9807-453f-8c35-8023d1c728a9)
-# 2.Home
+### 2.Home
 
 - Gợi ý: Cung cấp các bài tập cá nhân hóa dựa trên mục tiêu và sở thích của người dùng.
 - Mẹo: Đưa ra những thử thách tập luyện mới mỗi tuần để tạo động lực cho người dùng.
@@ -21,18 +21,18 @@ GymFitness là một ứng dụng di động được thiết kế để giúp n
 - Chatbot: Hỗ trợ người dùng tìm kiếm thông tin và trả lời các câu hỏi liên quan đến tập luyện và sức khỏe.
 
 ![home](https://github.com/user-attachments/assets/46b30e1f-6e31-4eda-ba58-6f8beadd7b2b)
-# 3.Workout 
+### 3.Workout 
 Hiển thị các vòng tập (Rounds) cho từng bài tập, với mỗi vòng chứa các video hướng dẫn cho người dùng.
 ![workout](https://github.com/user-attachments/assets/d7f644ba-15c2-48d4-9d5c-ff1affe62639)
 
-# 4.Article
+### 4.Article
 Hiển thị các bài viết (Articles), cho phép chỉnh sửa thông tin cá nhân và tạo kế hoạch tập luyện (Routine) dựa trên sở thích và mục tiêu của người dùng.
 ![3](https://github.com/user-attachments/assets/caaac6e3-619d-4b6d-8bb6-ce80b09c07ef).
-# 5. Notification Favorites
+### 5. Notification Favorites
 Hiển thị danh sách thông báo và bài viết yêu thích, cho phép người dùng xóa chúng khi không còn cần thiết.
 ![list](https://github.com/user-attachments/assets/08d61d25-db51-47df-be8b-45e0aeb59629)
 
-# 6. Search
+### 6. Search
 Cho phép người dùng tìm kiếm tất cả hoặc từng bài tập và bài viết, cũng như xóa lịch sử tìm kiếm.
 ![search](https://github.com/user-attachments/assets/3fd7868d-ed1e-4a8a-b02b-6e6e6a8aa515)
 
