@@ -41,7 +41,7 @@ public class ApiService {
 
         RequestBody body = RequestBody.create(JSON, jsonBody.toString());
         Request request = new Request.Builder()
-                .url("https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=")
+                .url("https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=")
                 .post(body)
                 .build();
 
